@@ -1,4 +1,4 @@
-# 6Cash Mobile App
+# Bittsave Digital App
 
 
 
