@@ -1,7 +1,7 @@
-import 'package:firebase_messaging/firebase_messaging.dart';
+// import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+// import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:six_cash/controller/menu_controller.dart';
 import 'package:six_cash/controller/profile_screen_controller.dart';
@@ -25,32 +25,32 @@ class NavBarScreen extends StatefulWidget {
 
 class _NavBarScreenState extends State<NavBarScreen> {
   final PageStorageBucket bucket = PageStorageBucket();
-  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
+  // FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
 
   @override
   void initState() {
     super.initState();
 
-    var androidInitialize = const AndroidInitializationSettings('notification_icon');
-    var iOSInitialize = const IOSInitializationSettings();
-    var initializationsSettings = InitializationSettings(android: androidInitialize, iOS: iOSInitialize);
-    flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-    flutterLocalNotificationsPlugin.initialize(initializationsSettings);
+    // var androidInitialize = const AndroidInitializationSettings('notification_icon');
+    // var iOSInitialize = const IOSInitializationSettings();
+    // var initializationsSettings = InitializationSettings(android: androidInitialize, iOS: iOSInitialize);
+    // flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+    // flutterLocalNotificationsPlugin.initialize(initializationsSettings);
 
-    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      NotificationHelper.showNotification(message, flutterLocalNotificationsPlugin, false);
-      Get.find<ProfileController>().profileData(loading: true);
-      Get.find<RequestedMoneyController>().getRequestedMoneyList(1,context ,reload: true );
-      Get.find<RequestedMoneyController>().getOwnRequestedMoneyList(1 ,reload: true );
-      Get.find<TransactionHistoryController>().getTransactionData(1, reload: true);
-    });
+    // FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+    //   NotificationHelper.showNotification(message, flutterLocalNotificationsPlugin, false);
+    //   Get.find<ProfileController>().profileData(loading: true);
+    //   Get.find<RequestedMoneyController>().getRequestedMoneyList(1,context ,reload: true );
+    //   Get.find<RequestedMoneyController>().getOwnRequestedMoneyList(1 ,reload: true );
+    //   Get.find<TransactionHistoryController>().getTransactionData(1, reload: true);
+    // });
 
-    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-      Get.find<ProfileController>().profileData(loading: true);
-       Get.find<RequestedMoneyController>().getRequestedMoneyList(1,context ,reload: true );
-       Get.find<RequestedMoneyController>().getOwnRequestedMoneyList(1 ,reload: true );
-       Get.find<TransactionHistoryController>().getTransactionData(1, reload: true);
-    });
+    // FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+    //   Get.find<ProfileController>().profileData(loading: true);
+    //    Get.find<RequestedMoneyController>().getRequestedMoneyList(1,context ,reload: true );
+    //    Get.find<RequestedMoneyController>().getOwnRequestedMoneyList(1 ,reload: true );
+    //    Get.find<TransactionHistoryController>().getTransactionData(1, reload: true);
+    // });
   }
 
   @override

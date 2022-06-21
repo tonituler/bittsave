@@ -9,7 +9,8 @@ class AppConstants {
   // //demo
   // static const String BASE_URL = 'https://6cash-admin.6amtech.com';
   //fun
-  static const String BASE_URL = 'https://6cash-admin.6am.fun';
+  // static const String BASE_URL = 'https://6cash-admin.6am.fun';
+  static const String BASE_URL = 'https://app.bittsave.com';
   static const bool DEMO = false;
   //  static const double APP_VERSION = 2;
 

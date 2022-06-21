@@ -2,9 +2,10 @@
 import 'dart:io';
 import 'dart:math' as math;
 
-import 'package:camera/camera.dart';
+// import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:six_cash/controller/auth_controller.dart';
 import 'package:six_cash/controller/image_controller.dart';
 import 'package:six_cash/helper/route_helper.dart';
@@ -25,7 +26,8 @@ class SelfieCaptureScreen extends StatefulWidget {
 }
 
 class _SelfieCaptureScreenState extends State<SelfieCaptureScreen> {
-  CameraController controller;
+  // CameraController controller;
+  // XFile imageFile;
   XFile imageFile;
 
 
@@ -33,13 +35,13 @@ class _SelfieCaptureScreenState extends State<SelfieCaptureScreen> {
   void initState() {
     super.initState();
 
-    controller = CameraController(cameras[1], ResolutionPreset.medium, enableAudio: false);
-    controller.initialize().then((_) {
-      if (!mounted) {
-        return ;
-      }
-      setState(() {});
-    });
+    // controller = CameraController(cameras[1], ResolutionPreset.medium, enableAudio: false);
+    // controller.initialize().then((_) {
+    //   if (!mounted) {
+    //     return ;
+    //   }
+    //   setState(() {});
+    // });
 
 
 
@@ -50,19 +52,19 @@ class _SelfieCaptureScreenState extends State<SelfieCaptureScreen> {
     var tmp = MediaQuery.of(context).size;
 
 
-    tmp = controller.value.previewSize;
+    // tmp = controller.value.previewSize;
 
 
 
-    if (!controller.value.isInitialized) {
-      return Scaffold(
-        body: Container(
-          child: Center(
-            child: CircularProgressIndicator(),
-          ),
-        ),
-      );
-    }
+    // if (!controller.value.isInitialized) {
+    //   return Scaffold(
+    //     body: Container(
+    //       child: Center(
+    //         child: CircularProgressIndicator(),
+    //       ),
+    //     ),
+    //   );
+    // }
 
 
     return WillPopScope(
@@ -93,11 +95,11 @@ class _SelfieCaptureScreenState extends State<SelfieCaptureScreen> {
                 decoration: BoxDecoration(shape: BoxShape.circle,),
                 child: imageFile == null ? ClipRRect(
                   borderRadius: BorderRadius.circular(tmp.width * 0.6),
-                  child: OverflowBox(
-                    child: CameraPreview(
-                      controller,
-                    ),
-                  ),
+                  // child: OverflowBox(
+                  //   child: CameraPreview(
+                  //     controller,
+                  //   ),
+                  // ),
                 ) :
                 Transform(
                   alignment: Alignment.center,
@@ -134,11 +136,11 @@ class _SelfieCaptureScreenState extends State<SelfieCaptureScreen> {
               elevation: 0,
               onPressed: () async {
                 if(imageFile == null){
-                  imageFile = await controller.takePicture();
-                  print(File(imageFile.path));
-                  print(imageFile.path);
-                  Get.find<ImageController>().setImage(File(imageFile.path));
-                  setState(() {});
+                  // imageFile = await controller.takePicture();
+                  // print(File(imageFile.path));
+                  // print(imageFile.path);
+                  // Get.find<ImageController>().setImage(File(imageFile.path));
+                  // setState(() {});
                 }
 
 

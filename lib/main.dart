@@ -1,11 +1,11 @@
 import 'dart:async';
 
-import 'package:camera/camera.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
+// import 'package:camera/camera.dart';
+// import 'package:firebase_core/firebase_core.dart';
+// import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+// import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:six_cash/controller/localization_controller.dart';
 import 'package:six_cash/controller/theme_controller.dart';
@@ -19,26 +19,26 @@ import 'package:url_strategy/url_strategy.dart';
 
 import 'helper/get_di.dart' as di;
 
-final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
- List<CameraDescription> cameras;
+// final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+//  List<CameraDescription> cameras;
 
 Future<void> main() async {
   setPathUrlStrategy();
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-   cameras = await availableCameras();
+  // await Firebase.initializeApp();
+  //  cameras = await availableCameras();
 
   Map<String, Map<String, String>> _languages = await di.init();
 
   int _orderID;
   try {
     if (GetPlatform.isMobile) {
-      final NotificationAppLaunchDetails notificationAppLaunchDetails = await flutterLocalNotificationsPlugin.getNotificationAppLaunchDetails();
-      if (notificationAppLaunchDetails?.didNotificationLaunchApp ?? false) {
-        _orderID = notificationAppLaunchDetails.payload != null ? int.parse(notificationAppLaunchDetails.payload) : null;
-      }
-      await NotificationHelper.initialize(flutterLocalNotificationsPlugin);
-      FirebaseMessaging.onBackgroundMessage(myBackgroundMessageHandler);
+      // final NotificationAppLaunchDetails notificationAppLaunchDetails = await flutterLocalNotificationsPlugin.getNotificationAppLaunchDetails();
+      // if (notificationAppLaunchDetails?.didNotificationLaunchApp ?? false) {
+      //   _orderID = notificationAppLaunchDetails.payload != null ? int.parse(notificationAppLaunchDetails.payload) : null;
+      // }
+      // await NotificationHelper.initialize(flutterLocalNotificationsPlugin);
+      // FirebaseMessaging.onBackgroundMessage(myBackgroundMessageHandler);
     }
   }catch(e) {}
 

@@ -16,9 +16,9 @@ dependencies:
   get: ^4.6.1
   shared_preferences: ^2.0.6
   connectivity: ^3.0.6
-  firebase_core: ^1.2.1
-  firebase_messaging: ^11.2.12
-  flutter_local_notifications: ^9.4.0
+  # firebase_core: ^1.2.1
+  # firebase_messaging: ^11.2.12
+  # flutter_local_notifications: ^9.4.0
   path_provider: ^2.0.2
   url_strategy: ^0.2.0
   dotted_border: ^2.0.0+1
@@ -32,7 +32,9 @@ dependencies:
   smooth_page_indicator: ^1.0.0+2
   image_picker: ^0.8.4+4
   country_code_picker: ^2.0.2
-  camera: ^0.9.4+21
+  # camera: 0.9.4+21
+  # camera: 0.9.8+1
+  # camera: ^0.9.4+21
   http: ^0.13.4
   flutter_barcode_scanner: ^2.0.0
   carousel_slider: ^4.0.0

@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:camera/camera.dart';
+// import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -27,23 +27,23 @@ class SelfieController extends GetxController implements GetxService{
   }
  
   // camera
-  CameraController cameraController ;
+  // CameraController cameraController ;
   XFile _imageFile;
 
   XFile get imageFile => _imageFile;
 
 
   void initCamera(){
-    cameraController = CameraController(cameras[1], ResolutionPreset.medium, enableAudio: false);
-    cameraController.initialize();
+    // cameraController = CameraController(cameras[1], ResolutionPreset.medium, enableAudio: false);
+    // cameraController.initialize();
   }
   void removeImage(){
     _imageFile = null;
     update();
   }
   void capturePicture()async{
-    _imageFile = await cameraController.takePicture();
-    print(File(imageFile.path));
+    // _imageFile = await cameraController.takePicture();
+    // print(File(imageFile.path));
   }
 
   // void showAudioDeniedDialog({@required bool fromEditProfile}) {
