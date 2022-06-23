@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:six_cash/view/new_screens/wallet_tabs/funding_options/bank_transfer_page.dart';
 import '../funding_usd_wallet_page.dart';
 
 const kLightTextStyle = TextStyle(
@@ -97,15 +98,23 @@ class _FundBitExpressState extends State<FundBitExpress> {
                             ],
                           ),
                           style: kLightTextStyle),
-                      InnerContainer(
-                          height: 70,
-                          col: Colors.pink,
-                          data: 13,
-                          widget: Text('Continue',
-                              style: kLightTextStyle.copyWith(
-                                  color: Colors.white,
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.w300))),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (contet) {
+                            return BankTransferPage();
+                          }));
+                        },
+                        child: InnerContainer(
+                            height: 70,
+                            col: Colors.pink,
+                            data: 13,
+                            widget: Text('Continue',
+                                style: kLightTextStyle.copyWith(
+                                    color: Colors.white,
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.w300))),
+                      ),
                     ],
                   ),
                 ),

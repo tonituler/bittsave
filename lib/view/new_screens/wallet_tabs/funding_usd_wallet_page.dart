@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:six_cash/util/color_resources.dart';
 import 'package:six_cash/view/new_screens/wallet_tabs/funding_options/fund_bit_express.dart';
+import 'package:six_cash/view/new_screens/wallet_tabs/funding_options/request_from_a_riend/bitsave_user_request.dart';
 
 class FundingUsdWallet extends StatefulWidget {
   const FundingUsdWallet({Key key}) : super(key: key);
@@ -13,6 +15,7 @@ class _FundingUsdWalletState extends State<FundingUsdWallet> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // backgroundColor: Colors.pinkAccent[300],
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -94,6 +97,7 @@ class _FundingUsdWalletState extends State<FundingUsdWallet> {
                   ),
                 ),
                 getFunds(
+                  icon: Icons.qr_code,
                   title: "BitXpress",
                   subTitle:
                       'Fund your USD wallet using our \nexternal partners and assoiciates',
@@ -108,6 +112,13 @@ class _FundingUsdWalletState extends State<FundingUsdWallet> {
                   height: 40,
                 ),
                 getFunds(
+                  ontap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return BittSaveUserRequest();
+                    }));
+                  },
+                  icon: Icons.qr_code,
                   title: 'Request from a friend ',
                   subTitle:
                       'Fund your USD wallet by requesting\nfund from bitsave users.',
@@ -149,7 +160,7 @@ class BackButtons extends StatelessWidget {
       child: Icon(
         Icons.arrow_back_ios_outlined,
         color: Colors.pink,
-        size: 28,
+        size: 30,
       ),
     );
   }
@@ -159,7 +170,8 @@ class getFunds extends StatelessWidget {
   final String title;
   final String subTitle;
   final Function ontap;
-  const getFunds({this.subTitle, this.title, this.ontap});
+  final IconData icon;
+  const getFunds({this.subTitle, this.title, this.ontap, this.icon});
 
   @override
   Widget build(BuildContext context) {
@@ -178,9 +190,9 @@ class getFunds extends StatelessWidget {
                     color: Colors.pink,
                     borderRadius: BorderRadius.circular(16)),
                 child: Icon(
-                  Icons.qr_code,
+                  icon,
                   color: Colors.white,
-                  size: 40,
+                  size: 32,
                 ),
               ),
             ),
@@ -206,8 +218,8 @@ class getFunds extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(right: 10.0),
               child: Icon(
-                Icons.arrow_forward_ios_outlined,
-                color: Colors.grey,
+                CupertinoIcons.forward,
+                color: Colors.grey[400],
                 size: 28,
               ),
             )
