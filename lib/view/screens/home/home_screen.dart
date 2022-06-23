@@ -99,8 +99,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: rubikLight.copyWith(
-                              fontSize: Dimensions.FONT_SIZE_OVER_LARGE,
+                              fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE,
                               color: ColorResources.whiteColor,
+                              fontWeight: FontWeight.w600
                             ),
                           ),
                           Text(
@@ -109,7 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: rubikLight.copyWith(
-                              fontSize: Dimensions.FONT_SIZE_DEFAULT,
+                              fontSize: Dimensions.FONT_SIZE_LARGE,
                               color: ColorResources.whiteColor,
                             ),
                           ),
@@ -204,82 +205,50 @@ class _HomeScreenState extends State<HomeScreen> {
                         ],
                       ),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Expanded(
-                          child: Container(
-                            margin: EdgeInsets.all(15),
-                            padding: EdgeInsets.all(20),
-                            height: 180,
-                            decoration: BoxDecoration(color: ColorResources.primaryColor, borderRadius: BorderRadius.circular(20)),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      height: 20,
-                                      width: 20,
-                                      decoration: BoxDecoration(color: ColorResources.whiteColor, borderRadius: BorderRadius.circular(5)),
-                                      padding: EdgeInsets.all(2),
-                                      child: Image.asset(
-                                        "assets/image/CurrencyDollar.png",
-                                        // color: ColorResources.primaryColor,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Expanded(
+                            child: Container(
+                              margin: EdgeInsets.all(5),
+                              padding: EdgeInsets.all(20),
+                              height: 180,
+                              decoration: BoxDecoration(color: ColorResources.primaryColor, borderRadius: BorderRadius.circular(20)),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        height: 20,
+                                        width: 20,
+                                        decoration: BoxDecoration(color: ColorResources.whiteColor, borderRadius: BorderRadius.circular(5)),
+                                        padding: EdgeInsets.all(2),
+                                        child: Image.asset(
+                                          "assets/image/CurrencyDollar.png",
+                                          // color: ColorResources.primaryColor,
+                                        ),
                                       ),
-                                    ),
-                                    const SizedBox(
-                                      width: 5,
-                                    ),
-                                    Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          'USD',
-                                          textAlign: TextAlign.start,
-                                          maxLines: 1,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: rubikLight.copyWith(
-                                              fontSize: Dimensions.FONT_SIZE_SMALL, color: ColorResources.whiteColor, fontWeight: FontWeight.bold),
-                                        ),
-                                        Text(
-                                          'Wallet',
-                                          textAlign: TextAlign.start,
-                                          maxLines: 1,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: rubikLight.copyWith(
-                                            fontSize: Dimensions.FONT_SIZE_SMALL,
-                                            color: ColorResources.whiteColor,
+                                      const SizedBox(
+                                        width: 5,
+                                      ),
+                                      Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            'USD',
+                                            textAlign: TextAlign.start,
+                                            maxLines: 1,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: rubikLight.copyWith(
+                                                fontSize: Dimensions.FONT_SIZE_SMALL, color: ColorResources.whiteColor, fontWeight: FontWeight.bold),
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      crossAxisAlignment: CrossAxisAlignment.end,
-                                      children: [
-                                        Text(
-                                          '\$ 3,753',
-                                          textAlign: TextAlign.start,
-                                          maxLines: 1,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: rubikLight.copyWith(
-                                              fontSize: Dimensions.FONT_SIZE_OVER_LARGE,
-                                              color: ColorResources.whiteColor,
-                                              fontWeight: FontWeight.w400),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                            bottom: 3,
-                                          ),
-                                          child: Text(
-                                            '.35',
+                                          Text(
+                                            'Wallet',
                                             textAlign: TextAlign.start,
                                             maxLines: 1,
                                             overflow: TextOverflow.ellipsis,
@@ -288,98 +257,98 @@ class _HomeScreenState extends State<HomeScreen> {
                                               color: ColorResources.whiteColor,
                                             ),
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                    Text(
-                                      '      USD',
-                                      textAlign: TextAlign.center,
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: rubikLight.copyWith(
-                                        fontSize: Dimensions.FONT_SIZE_DEFAULT,
-                                        color: ColorResources.whiteColor,
+                                        ],
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              ],
+                                    ],
+                                  ),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        crossAxisAlignment: CrossAxisAlignment.end,
+                                        children: [
+                                          Text(
+                                            '\$ 3,753',
+                                            textAlign: TextAlign.start,
+                                            maxLines: 1,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: rubikLight.copyWith(
+                                                fontSize: Dimensions.FONT_SIZE_OVER_LARGE,
+                                                color: ColorResources.whiteColor,
+                                                fontWeight: FontWeight.w400),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                              bottom: 3,
+                                            ),
+                                            child: Text(
+                                              '.35',
+                                              textAlign: TextAlign.start,
+                                              maxLines: 1,
+                                              overflow: TextOverflow.ellipsis,
+                                              style: rubikLight.copyWith(
+                                                fontSize: Dimensions.FONT_SIZE_SMALL,
+                                                color: ColorResources.whiteColor,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Text(
+                                        '      USD',
+                                        textAlign: TextAlign.center,
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: rubikLight.copyWith(
+                                          fontSize: Dimensions.FONT_SIZE_DEFAULT,
+                                          color: ColorResources.whiteColor,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                        Expanded(
-                          child: Container(
-                            margin: EdgeInsets.all(15),
-                            padding: EdgeInsets.all(20),
-                            height: 180,
-                            decoration: BoxDecoration(color: ColorResources.blackColor, borderRadius: BorderRadius.circular(20)),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      height: 20,
-                                      width: 20,
-                                      decoration: BoxDecoration(color: ColorResources.whiteColor, borderRadius: BorderRadius.circular(5)),
-                                      padding: EdgeInsets.all(2),
-                                      child: Image.asset(
-                                        "assets/image/CurrencyBtc.png",
-                                        // color: ColorResources.blackColor,
+                          Expanded(
+                            child: Container(
+                              margin: EdgeInsets.all(5),
+                              padding: EdgeInsets.all(20),
+                              height: 180,
+                              decoration: BoxDecoration(color: ColorResources.blackColor, borderRadius: BorderRadius.circular(20)),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        height: 20,
+                                        width: 20,
+                                        decoration: BoxDecoration(color: ColorResources.whiteColor, borderRadius: BorderRadius.circular(5)),
+                                        padding: EdgeInsets.all(2),
+                                        child: Image.asset(
+                                          "assets/image/CurrencyBtc.png",
+                                          // color: ColorResources.blackColor,
+                                        ),
                                       ),
-                                    ),
-                                    const SizedBox(
-                                      width: 5,
-                                    ),
-                                    Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          'BTC',
-                                          textAlign: TextAlign.start,
-                                          maxLines: 1,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: rubikLight.copyWith(
-                                              fontSize: Dimensions.FONT_SIZE_SMALL, color: ColorResources.whiteColor, fontWeight: FontWeight.bold),
-                                        ),
-                                        Text(
-                                          'Wallet',
-                                          textAlign: TextAlign.start,
-                                          maxLines: 1,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: rubikLight.copyWith(
-                                            fontSize: Dimensions.FONT_SIZE_SMALL,
-                                            color: ColorResources.whiteColor,
+                                      const SizedBox(
+                                        width: 5,
+                                      ),
+                                      Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            'BTC',
+                                            textAlign: TextAlign.start,
+                                            maxLines: 1,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: rubikLight.copyWith(
+                                                fontSize: Dimensions.FONT_SIZE_SMALL, color: ColorResources.whiteColor, fontWeight: FontWeight.bold),
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      crossAxisAlignment: CrossAxisAlignment.end,
-                                      children: [
-                                        Text(
-                                          'BTC 0.00',
-                                          textAlign: TextAlign.start,
-                                          maxLines: 1,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: rubikLight.copyWith(
-                                              fontSize: Dimensions.FONT_SIZE_OVER_LARGE,
-                                              color: ColorResources.whiteColor,
-                                              fontWeight: FontWeight.w400),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                            bottom: 3,
-                                          ),
-                                          child: Text(
-                                            '.35',
+                                          Text(
+                                            'Wallet',
                                             textAlign: TextAlign.start,
                                             maxLines: 1,
                                             overflow: TextOverflow.ellipsis,
@@ -388,26 +357,61 @@ class _HomeScreenState extends State<HomeScreen> {
                                               color: ColorResources.whiteColor,
                                             ),
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                    Text(
-                                      '      Satoshis',
-                                      textAlign: TextAlign.center,
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: rubikLight.copyWith(
-                                        fontSize: Dimensions.FONT_SIZE_DEFAULT,
-                                        color: ColorResources.whiteColor,
+                                        ],
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              ],
+                                    ],
+                                  ),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        crossAxisAlignment: CrossAxisAlignment.end,
+                                        children: [
+                                          Text(
+                                            'BTC 0.00',
+                                            textAlign: TextAlign.start,
+                                            maxLines: 1,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: rubikLight.copyWith(
+                                                fontSize: Dimensions.FONT_SIZE_OVER_LARGE,
+                                                color: ColorResources.whiteColor,
+                                                fontWeight: FontWeight.w400),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                              bottom: 3,
+                                            ),
+                                            child: Text(
+                                              '.35',
+                                              textAlign: TextAlign.start,
+                                              maxLines: 1,
+                                              overflow: TextOverflow.ellipsis,
+                                              style: rubikLight.copyWith(
+                                                fontSize: Dimensions.FONT_SIZE_SMALL,
+                                                color: ColorResources.whiteColor,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Text(
+                                        '      Satoshis',
+                                        textAlign: TextAlign.center,
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: rubikLight.copyWith(
+                                          fontSize: Dimensions.FONT_SIZE_DEFAULT,
+                                          color: ColorResources.whiteColor,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
@@ -467,23 +471,23 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     requestCard(status: "Request"),
                     requestCard(status: "Pending Payment"),
-                    // splashController.configModel.themeIndex == '1'
-                    //     ? GetBuilder<ProfileController>(
-                    //         builder: (profile) => FirstCardPortion(profileController: profile),
-                    //       )
-                    //     : splashController.configModel.themeIndex == '2'
-                    //         ? SecondCardPortion()
-                    //         : splashController.configModel.themeIndex == '3'
-                    //             ? ThirdCardPortion()
-                    //             : GetBuilder<ProfileController>(builder: (profile) => FirstCardPortion(profileController: profile)),
-                    // SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
-                    // GetBuilder<WebsiteLinkController>(builder: (websiteLinkController) {
-                    //   return websiteLinkController.isLoading
-                    //       ? WebSiteShimmer()
-                    //       : websiteLinkController.websiteList.length > 0
-                    //           ? LinkedWebsite(websiteLinkController: websiteLinkController)
-                    //           : SizedBox();
-                    // }),
+                    splashController.configModel.themeIndex == '1'
+                        ? GetBuilder<ProfileController>(
+                            builder: (profile) => FirstCardPortion(profileController: profile),
+                          )
+                        : splashController.configModel.themeIndex == '2'
+                            ? SecondCardPortion()
+                            : splashController.configModel.themeIndex == '3'
+                                ? ThirdCardPortion()
+                                : GetBuilder<ProfileController>(builder: (profile) => FirstCardPortion(profileController: profile)),
+                    SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
+                    GetBuilder<WebsiteLinkController>(builder: (websiteLinkController) {
+                      return websiteLinkController.isLoading
+                          ? WebSiteShimmer()
+                          : websiteLinkController.websiteList.length > 0
+                              ? LinkedWebsite(websiteLinkController: websiteLinkController)
+                              : SizedBox();
+                    }),
 
                     const SizedBox(height: 80),
                   ],

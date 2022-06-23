@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/style.dart';
 import 'package:six_cash/util/color_resources.dart';
+import 'package:six_cash/util/dimensions.dart';
 import 'package:six_cash/view/new_screens/wallet_tabs/funding_options/fund_bit_express.dart';
 import 'package:six_cash/view/new_screens/wallet_tabs/funding_options/request_from_a_riend/bitsave_user_request.dart';
 
@@ -15,19 +17,24 @@ class _FundingUsdWalletState extends State<FundingUsdWallet> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Colors.pinkAccent[300],
+      appBar: AppBar(
+        leading: BackButtons(),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.only(left: 16.0, top: 20),
+            padding: const EdgeInsets.only(left: 16.0, top: 0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                BackButtons(),
                 Padding(
-                  padding:
-                      const EdgeInsets.only(bottom: 10.0, top: 20, left: 8),
-                  child: BoldTextTitle(data: 'Funding USD Wallet'),
+                  padding: const EdgeInsets.only(bottom: 10.0, top: 20, left: 8),
+                  child: BoldTextTitle(
+                    data: 'Funding USD Wallet',
+                    fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE,
+                  ),
                 ),
                 // SizedBox(),
                 Padding(
@@ -36,22 +43,22 @@ class _FundingUsdWalletState extends State<FundingUsdWallet> {
                     'We have rebranding the methods of depositing USD into your wallet.',
                     textAlign: TextAlign.left,
                     style: TextStyle(
-                        color: Colors.grey,
-                        fontWeight: FontWeight.w300,
-                        fontSize: 22),
+                      color: Colors.grey,
+                      fontWeight: FontWeight.w300,
+                      fontSize: Dimensions.FONT_SIZE_LARGE,
+                    ),
                   ),
                 ),
                 Padding(
-                  padding:
-                      EdgeInsets.only(top: 10, right: 20, left: 5, bottom: 80),
+                  padding: EdgeInsets.only(top: 10, right: 20, left: 5, bottom: 60),
                   child: PhysicalModel(
                     elevation: 8,
                     color: Colors.pink,
                     shadowColor: Colors.lightBlueAccent,
                     borderRadius: BorderRadius.circular(30),
                     child: Container(
-                      padding: EdgeInsets.all(14),
-                      height: 200,
+                      padding: EdgeInsets.all(20),
+                      height: 180,
                       width: double.infinity,
                       child: Column(
                         children: [
@@ -60,36 +67,39 @@ class _FundingUsdWalletState extends State<FundingUsdWallet> {
                               Text(
                                 'USD',
                                 style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 35,
-                                    fontWeight: FontWeight.w200),
+                                  color: Colors.white,
+                                  fontSize: Dimensions.FONT_SIZE_EXTRA_OVER_LARGE,
+                                  fontWeight: FontWeight.w200,
+                                ),
                               ),
                               Spacer(),
                               Text(
                                 '\$',
                                 style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 50,
-                                    fontWeight: FontWeight.w300),
+                                  color: Colors.white,
+                                  fontSize: Dimensions.FONT_SIZE_EXTRA_OVER_LARGE,
+                                  fontWeight: FontWeight.w500,
+                                ),
                               )
                             ],
+                          ),
+                          SizedBox(
+                            height: 25,
                           ),
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 10.0),
                             child: Text(
                               '\$500.00',
                               style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 40),
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600,
+                                fontSize: Dimensions.FONT_SIZE_EXTRA_OVER_LARGE + 5,
+                              ),
                             ),
                           ),
                           Text(
                             'Your Balance',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w200,
-                                fontSize: 25),
+                            style: TextStyle(color: Colors.white, fontWeight: FontWeight.w200, fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE),
                           )
                         ],
                       ),
@@ -99,11 +109,9 @@ class _FundingUsdWalletState extends State<FundingUsdWallet> {
                 getFunds(
                   icon: Icons.qr_code,
                   title: "BitXpress",
-                  subTitle:
-                      'Fund your USD wallet using our \nexternal partners and assoiciates',
+                  subTitle: 'Fund your USD wallet using our \nexternal partners and assoiciates',
                   ontap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) {
                       return const FundBitExpress();
                     }));
                   },
@@ -113,15 +121,13 @@ class _FundingUsdWalletState extends State<FundingUsdWallet> {
                 ),
                 getFunds(
                   ontap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) {
                       return BittSaveUserRequest();
                     }));
                   },
                   icon: Icons.qr_code,
                   title: 'Request from a friend ',
-                  subTitle:
-                      'Fund your USD wallet by requesting\nfund from bitsave users.',
+                  subTitle: 'Fund your USD wallet by requesting\nfund from bitsave users.',
                 )
               ],
             ),
@@ -134,14 +140,14 @@ class _FundingUsdWalletState extends State<FundingUsdWallet> {
 
 class BoldTextTitle extends StatelessWidget {
   final String data;
-  const BoldTextTitle({Key key, this.data}) : super(key: key);
+  final double fontSize;
+  const BoldTextTitle({Key key, this.data, this.fontSize}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Text(
       data,
-      style: TextStyle(
-          color: Colors.black, fontWeight: FontWeight.w600, fontSize: 30),
+      style: TextStyle(color: Colors.black, fontWeight: FontWeight.w600, fontSize: fontSize ?? 30),
     );
   }
 }
@@ -175,56 +181,30 @@ class getFunds extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return ListTile(
       onTap: ontap,
-      child: Padding(
-        padding: const EdgeInsets.only(left: 10.0, right: 10),
-        child: Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(right: 20.0),
-              child: Container(
-                width: 60,
-                height: 60,
-                decoration: BoxDecoration(
-                    color: Colors.pink,
-                    borderRadius: BorderRadius.circular(16)),
-                child: Icon(
-                  icon,
-                  color: Colors.white,
-                  size: 32,
-                ),
-              ),
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
-                ),
-                SizedBox(height: 8),
-                Text(
-                  subTitle,
-                  style: TextStyle(
-                      fontWeight: FontWeight.w300,
-                      fontSize: 20,
-                      color: Colors.grey),
-                )
-              ],
-            ),
-            Spacer(),
-            Padding(
-              padding: const EdgeInsets.only(right: 10.0),
-              child: Icon(
-                CupertinoIcons.forward,
-                color: Colors.grey[400],
-                size: 28,
-              ),
-            )
-          ],
+      leading: Container(
+        width: 60,
+        height: 60,
+        decoration: BoxDecoration(color: Colors.pink, borderRadius: BorderRadius.circular(16)),
+        child: Icon(
+          icon,
+          color: Colors.white,
+          size: 32,
         ),
+      ),
+      title: Text(
+        title,
+        style: TextStyle(fontWeight: FontWeight.w600, fontSize: Dimensions.FONT_SIZE_DEFAULT),
+      ),
+      subtitle: Text(
+        subTitle,
+        style: TextStyle(fontWeight: FontWeight.w300, fontSize: Dimensions.FONT_SIZE_DEFAULT, color: Colors.grey),
+      ),
+      trailing: Icon(
+        CupertinoIcons.forward,
+        color: Colors.grey[400],
+        size: 28,
       ),
     );
   }

@@ -5,6 +5,7 @@ import 'package:six_cash/view/screens/profile/profile_screen.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:six_cash/view/screens/wallet/wallet.dart';
 
 class MenuController extends GetxController implements GetxService{
   int _currentTab = 0;
@@ -12,7 +13,7 @@ class MenuController extends GetxController implements GetxService{
   final List<Widget> screen = [
     HomeScreen(),
     HistoryScreen(),
-    NotificationScreen(),
+    WalletScreen(),
     ProfileScreen()
   ];
   Widget _currentScreen = HomeScreen();
@@ -36,7 +37,7 @@ class MenuController extends GetxController implements GetxService{
   }
 
   selectNotificationPage() {
-    _currentScreen = NotificationScreen();
+    _currentScreen = WalletScreen();
     _currentTab = 2;
     update();
   }
