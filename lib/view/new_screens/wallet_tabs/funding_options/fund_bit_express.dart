@@ -86,10 +86,13 @@ class _FundBitExpressState extends State<FundBitExpress> {
                                 style: kLightTextStyle.copyWith(
                                     color: Colors.grey),
                               ),
+                              SizedBox(height: 5),
                               Text(
                                 'N40,000.00',
                                 style: kLightTextStyle.copyWith(
-                                    fontWeight: FontWeight.w600),
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.black,
+                                    fontSize: 25),
                               ),
                             ],
                           ),
