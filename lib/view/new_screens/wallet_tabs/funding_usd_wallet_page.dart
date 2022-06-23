@@ -117,7 +117,7 @@ class _FundingUsdWalletState extends State<FundingUsdWallet> {
                   },
                 ),
                 SizedBox(
-                  height: 40,
+                  height: 10,
                 ),
                 getFunds(
                   ontap: () {
@@ -163,9 +163,11 @@ class BackButtons extends StatelessWidget {
       onTap: () {
         Navigator.pop(context);
       },
+      splashColor: Colors.transparent,
+      overlayColor: MaterialStateProperty.all(Colors.transparent),
       child: Icon(
         Icons.arrow_back_ios_outlined,
-        color: Colors.pink,
+        color: ColorResources.primaryColor,
         size: 30,
       ),
     );
@@ -183,6 +185,7 @@ class getFunds extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       onTap: ontap,
+      isThreeLine: true,
       leading: Container(
         width: 60,
         height: 60,
@@ -199,7 +202,9 @@ class getFunds extends StatelessWidget {
       ),
       subtitle: Text(
         subTitle,
-        style: TextStyle(fontWeight: FontWeight.w300, fontSize: Dimensions.FONT_SIZE_DEFAULT, color: Colors.grey),
+        maxLines: 2,
+        overflow: TextOverflow.ellipsis,
+        style: TextStyle(fontWeight: FontWeight.w300, fontSize: Dimensions.FONT_SIZE_DEFAULT - 1, color: Colors.grey),
       ),
       trailing: Icon(
         CupertinoIcons.forward,

@@ -41,7 +41,7 @@ class _BTCWalletScreenState extends State<BTCWalletScreen> {
                 elevation: 8,
                 color: Colors.pink,
                 shadowColor: Colors.lightBlueAccent,
-                borderRadius: BorderRadius.circular(30),
+                borderRadius: BorderRadius.circular(20),
                 child: Container(
                   padding: EdgeInsets.all(20),
                   height: 150,
@@ -88,31 +88,37 @@ class _BTCWalletScreenState extends State<BTCWalletScreen> {
                 children: [
                   WalletIcons(
                     ontap: () {},
-                    icon: "Notification.png",
+                    icon: "Compass.png",
                     label: "Sell",
                   ),
                   WalletIcons(
                     ontap: () {},
-                    icon: "Notification.png",
+                    icon: "StopCircle.png",
                     label: "Buy",
                   ),
                   WalletIcons(
                     ontap: () {},
-                    icon: "Notification.png",
+                    icon: "CaretCircleUp.png",
                     label: "Send",
                   ),
                   WalletIcons(
                     ontap: () {},
-                    icon: "Notification.png",
+                    icon: "PlayCircle.png",
                     label: "Receive",
                   )
                 ],
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(10),
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
               child: Divider(color: ColorResources.primaryColor, height: 2, thickness: 1,),
-            )
+            ),
+            SizedBox(height: 10,),
+            Text(
+                'Recent Transactions',
+                textAlign: TextAlign.left,
+                style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w400, fontSize: Dimensions.FONT_SIZE_EXTRA_OVER_LARGE),
+              ),
           ],
         ),
       ),
@@ -139,14 +145,14 @@ class WalletIcons extends StatelessWidget {
             Row(
               children: [
                 Container(
-                  padding: EdgeInsets.all(10),
+                  padding: EdgeInsets.all(5),
                   width: 60,
                   height: 60,
                   decoration: BoxDecoration(color: Colors.pink, borderRadius: BorderRadius.circular(16)),
                   child: Container(
-                    padding: EdgeInsets.all(10),
-                    decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(30)),
-                    child: Image.asset("assets/image/" + icon),
+                    padding: EdgeInsets.all(0),
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(30)),
+                    child: Image.asset("assets/image/" + icon, color: ColorResources.whiteColor,),
                   ),
                 ),
               ],

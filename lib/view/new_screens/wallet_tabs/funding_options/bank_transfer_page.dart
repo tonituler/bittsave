@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:six_cash/util/dimensions.dart';
 import 'package:six_cash/view/new_screens/wallet_tabs/funding_options/partner_information.dart';
 import 'package:six_cash/view/new_screens/wallet_tabs/funding_usd_wallet_page.dart';
 
@@ -29,6 +30,7 @@ class _BankTransferPageState extends State<BankTransferPage> {
                 padding: const EdgeInsets.only(bottom: 5.0, top: 30, left: 12),
                 child: BoldTextTitle(
                   data: 'How do you want to deposit?',
+                  fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE + 5,
                 ),
               ),
               SizedBox(

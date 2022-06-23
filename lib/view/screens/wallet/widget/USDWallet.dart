@@ -46,7 +46,7 @@ class _USDWalletScreenState extends State<USDWalletScreen> {
                 elevation: 8,
                 color: Colors.pink,
                 shadowColor: Colors.lightBlueAccent,
-                borderRadius: BorderRadius.circular(30),
+                borderRadius: BorderRadius.circular(20),
                 child: Container(
                   padding: EdgeInsets.all(20),
                   height: 150,
@@ -89,12 +89,12 @@ class _USDWalletScreenState extends State<USDWalletScreen> {
                 children: [
                   WalletIcons(
                     ontap: () {},
-                    icon: "Notification.png",
+                    icon: "CaretCircleUp.png",
                     label: "Send",
                   ),
                   WalletIcons(
                     ontap: () {},
-                    icon: "Notification.png",
+                    icon: "Compass.png",
                     label: "Withdraw",
                   ),
                   WalletIcons(
@@ -103,20 +103,28 @@ class _USDWalletScreenState extends State<USDWalletScreen> {
                         return FundingUsdWallet();
                       }));
                     },
-                    icon: "Notification.png",
+                    icon: "StopCircle.png",
                     label: "Deposit",
                   ),
                 ],
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(10),
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
               child: Divider(
                 color: ColorResources.primaryColor,
                 height: 2,
                 thickness: 1,
               ),
-            )
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              'Recent Transactions',
+              textAlign: TextAlign.left,
+              style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w400, fontSize: Dimensions.FONT_SIZE_EXTRA_OVER_LARGE),
+            ),
           ],
         ),
       ),
