@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:six_cash/util/color_resources.dart';
 import 'package:six_cash/view/new_screens/wallet_tabs/funding_options/fund_bit_express.dart';
+import 'package:six_cash/view/new_screens/wallet_tabs/funding_options/request_from_a_riend/bitsave_user_request.dart';
 
 class FundingUsdWallet extends StatefulWidget {
   const FundingUsdWallet({Key key}) : super(key: key);
@@ -111,6 +112,12 @@ class _FundingUsdWalletState extends State<FundingUsdWallet> {
                   height: 40,
                 ),
                 getFunds(
+                  ontap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return BittSaveUserRequest();
+                    }));
+                  },
                   icon: Icons.qr_code,
                   title: 'Request from a friend ',
                   subTitle:
