@@ -27,7 +27,7 @@ class FirstCardPortion extends StatelessWidget {
         children: [
           Container(
             height: Dimensions.MAIN_BACKGROUND_CARD_WEIGHT,
-            color: ColorResources.getPrimaryColor(),
+            // color: ColorResources.getPrimaryColor(),
           ),
           Positioned(
             child: Column(
