@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:six_cash/util/color_resources.dart';
 import 'package:six_cash/view/new_screens/wallet_tabs/funding_options/fund_bit_express.dart';
 import 'package:six_cash/view/new_screens/wallet_tabs/funding_options/request_from_a_riend/bitsave_user_request.dart';
+import 'package:six_cash/view/new_screens/wallet_tabs/funding_options/request_from_a_riend/friend_identity.dart';
 
 class FundingUsdWallet extends StatefulWidget {
   const FundingUsdWallet({Key key}) : super(key: key);
@@ -15,115 +16,118 @@ class _FundingUsdWalletState extends State<FundingUsdWallet> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Colors.pinkAccent[300],
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.only(left: 16.0, top: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                BackButtons(),
-                Padding(
-                  padding:
-                      const EdgeInsets.only(bottom: 10.0, top: 20, left: 8),
-                  child: BoldTextTitle(data: 'Funding USD Wallet'),
-                ),
-                // SizedBox(),
-                Padding(
-                  padding: const EdgeInsets.only(left: 8.0, bottom: 40),
-                  child: Text(
-                    'We have rebranding the methods of depositing USD into your wallet.',
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                        color: Colors.grey,
-                        fontWeight: FontWeight.w300,
-                        fontSize: 22),
+      body: BackGroundColr(
+        child: SafeArea(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.only(
+                left: 16.0,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  BackButtons(),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 10.0, left: 8),
+                    child: BoldTextTitle(data: 'Funding USD Wallet'),
                   ),
-                ),
-                Padding(
-                  padding:
-                      EdgeInsets.only(top: 10, right: 20, left: 5, bottom: 80),
-                  child: PhysicalModel(
-                    elevation: 8,
-                    color: Colors.pink,
-                    shadowColor: Colors.lightBlueAccent,
-                    borderRadius: BorderRadius.circular(30),
-                    child: Container(
-                      padding: EdgeInsets.all(14),
-                      height: 200,
-                      width: double.infinity,
-                      child: Column(
-                        children: [
-                          Row(
-                            children: [
-                              Text(
-                                'USD',
+                  // SizedBox(),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8.0, bottom: 40),
+                    child: Text(
+                      'We have rebranding the methods of depositing USD into your wallet.',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                          color: Colors.grey,
+                          fontWeight: FontWeight.w300,
+                          fontSize: 22),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(
+                        top: 10, right: 20, left: 5, bottom: 80),
+                    child: PhysicalModel(
+                      elevation: 8,
+                      color: Colors.pink,
+                      shadowColor: Colors.lightBlueAccent,
+                      borderRadius: BorderRadius.circular(30),
+                      child: Container(
+                        padding: EdgeInsets.all(14),
+                        height: 200,
+                        width: double.infinity,
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Text(
+                                  'USD',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 35,
+                                      fontWeight: FontWeight.w200),
+                                ),
+                                Spacer(),
+                                Text(
+                                  '\$',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 50,
+                                      fontWeight: FontWeight.w300),
+                                )
+                              ],
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 10.0),
+                              child: Text(
+                                '\$500.00',
                                 style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: 35,
-                                    fontWeight: FontWeight.w200),
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 40),
                               ),
-                              Spacer(),
-                              Text(
-                                '\$',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 50,
-                                    fontWeight: FontWeight.w300),
-                              )
-                            ],
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 10.0),
-                            child: Text(
-                              '\$500.00',
+                            ),
+                            Text(
+                              'Your Balance',
                               style: TextStyle(
                                   color: Colors.white,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 40),
-                            ),
-                          ),
-                          Text(
-                            'Your Balance',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w200,
-                                fontSize: 25),
-                          )
-                        ],
+                                  fontWeight: FontWeight.w200,
+                                  fontSize: 25),
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                ),
-                getFunds(
-                  icon: Icons.qr_code,
-                  title: "BitXpress",
-                  subTitle:
-                      'Fund your USD wallet using our \nexternal partners and assoiciates',
-                  ontap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return const FundBitExpress();
-                    }));
-                  },
-                ),
-                SizedBox(
-                  height: 40,
-                ),
-                getFunds(
-                  ontap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return BittSaveUserRequest();
-                    }));
-                  },
-                  icon: Icons.qr_code,
-                  title: 'Request from a friend ',
-                  subTitle:
-                      'Fund your USD wallet by requesting\nfund from bitsave users.',
-                )
-              ],
+                  getFunds(
+                    icon: Icons.qr_code,
+                    title: "BitXpress",
+                    subTitle:
+                        'Fund your USD wallet using our \nexternal partners and assoiciates.',
+                    ontap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return const FundBitExpress();
+                      }));
+                    },
+                  ),
+                  SizedBox(
+                    height: 40,
+                  ),
+                  getFunds(
+                    ontap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return BittSaveUserRequest();
+                      }));
+                    },
+                    icon: Icons.qr_code,
+                    title: 'Request from a friend ',
+                    subTitle:
+                        'Fund your USD wallet by requesting\nfund from bitsave users.',
+                  )
+                ],
+              ),
             ),
           ),
         ),
@@ -157,10 +161,15 @@ class BackButtons extends StatelessWidget {
       onTap: () {
         Navigator.pop(context);
       },
-      child: Icon(
-        Icons.arrow_back_ios_outlined,
-        color: Colors.pink,
-        size: 30,
+      child: Container(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 7.0, vertical: 30),
+          child: Icon(
+            Icons.arrow_back_ios_outlined,
+            color: Colors.pink,
+            size: 30,
+          ),
+        ),
       ),
     );
   }
