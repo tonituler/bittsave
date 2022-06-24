@@ -27,33 +27,29 @@ class _FundingUsdWalletState extends State<FundingUsdWallet> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   BackButtons(),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 10.0, left: 8),
-                    child: BoldTextTitle(data: 'Funding USD Wallet'),
-                  ),
+                  BoldTextTitle(data: 'Funding USD Wallet'),
                   // SizedBox(),
                   Padding(
-                    padding: const EdgeInsets.only(left: 8.0, bottom: 40),
+                    padding: const EdgeInsets.only(left: 8.0, bottom: 30),
                     child: Text(
                       'We have rebranding the methods of depositing USD into your wallet.',
-                      textAlign: TextAlign.left,
+                      // textAlign: TextAlign.start,
                       style: TextStyle(
                           color: Colors.grey,
                           fontWeight: FontWeight.w300,
-                          fontSize: 22),
+                          fontSize: 16.5),
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(
-                        top: 10, right: 20, left: 5, bottom: 80),
+                    padding: EdgeInsets.only(right: 20, left: 5, bottom: 50),
                     child: PhysicalModel(
-                      elevation: 8,
+                      elevation: 10,
                       color: Colors.pink,
                       shadowColor: Colors.lightBlueAccent,
                       borderRadius: BorderRadius.circular(30),
                       child: Container(
                         padding: EdgeInsets.all(14),
-                        height: 200,
+                        height: 160,
                         width: double.infinity,
                         child: Column(
                           children: [
@@ -63,7 +59,7 @@ class _FundingUsdWalletState extends State<FundingUsdWallet> {
                                   'USD',
                                   style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 35,
+                                      fontSize: 20,
                                       fontWeight: FontWeight.w200),
                                 ),
                                 Spacer(),
@@ -71,20 +67,20 @@ class _FundingUsdWalletState extends State<FundingUsdWallet> {
                                   '\$',
                                   style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 50,
+                                      fontSize: 30,
                                       fontWeight: FontWeight.w300),
                                 )
                               ],
                             ),
                             Padding(
                               padding:
-                                  const EdgeInsets.symmetric(vertical: 10.0),
+                                  const EdgeInsets.symmetric(vertical: 5.0),
                               child: Text(
                                 '\$500.00',
                                 style: TextStyle(
                                     color: Colors.white,
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 40),
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 30),
                               ),
                             ),
                             Text(
@@ -92,7 +88,7 @@ class _FundingUsdWalletState extends State<FundingUsdWallet> {
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.w200,
-                                  fontSize: 25),
+                                  fontSize: 18),
                             )
                           ],
                         ),
@@ -107,7 +103,7 @@ class _FundingUsdWalletState extends State<FundingUsdWallet> {
                     ontap: () {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
-                        return const FundBitExpress();
+                        return FundBitExpress();
                       }));
                     },
                   ),
@@ -142,10 +138,13 @@ class BoldTextTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      data,
-      style: TextStyle(
-          color: Colors.black, fontWeight: FontWeight.w600, fontSize: 30),
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10.0, left: 8, top: 8),
+      child: Text(
+        data,
+        style: TextStyle(
+            color: Colors.black, fontWeight: FontWeight.w400, fontSize: 20),
+      ),
     );
   }
 }
@@ -157,17 +156,19 @@ class BackButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        Navigator.pop(context);
-      },
-      child: Container(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 7.0, vertical: 30),
+    return SizedBox(
+      height: 40,
+      child: InkWell(
+        onTap: () {
+          Navigator.pop(context);
+        },
+        child: Container(
+          height: 20,
+          width: 20,
           child: Icon(
             Icons.arrow_back_ios_outlined,
             color: Colors.pink,
-            size: 30,
+            size: 20,
           ),
         ),
       ),
@@ -193,15 +194,15 @@ class getFunds extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(right: 20.0),
               child: Container(
-                width: 60,
-                height: 60,
+                width: 40,
+                height: 40,
                 decoration: BoxDecoration(
                     color: Colors.pink,
-                    borderRadius: BorderRadius.circular(16)),
+                    borderRadius: BorderRadius.circular(12)),
                 child: Icon(
                   icon,
                   color: Colors.white,
-                  size: 32,
+                  size: 22,
                 ),
               ),
             ),
@@ -211,14 +212,15 @@ class getFunds extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
+                  style: TextStyle(fontWeight: FontWeight.w300, fontSize: 18),
                 ),
                 SizedBox(height: 8),
                 Text(
                   subTitle,
+                  overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                       fontWeight: FontWeight.w300,
-                      fontSize: 20,
+                      fontSize: 13,
                       color: Colors.grey),
                 )
               ],
@@ -229,7 +231,7 @@ class getFunds extends StatelessWidget {
               child: Icon(
                 CupertinoIcons.forward,
                 color: Colors.grey[400],
-                size: 28,
+                size: 20,
               ),
             )
           ],

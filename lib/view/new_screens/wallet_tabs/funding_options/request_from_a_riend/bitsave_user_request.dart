@@ -21,31 +21,27 @@ class _BittSaveUserRequestState extends State<BittSaveUserRequest> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 12.0),
-                child: BackButtons(),
+              SizedBox(height: 20),
+              BackButtons(),
+              BoldTextTitle(
+                data: 'Request from Bittsave\nUser',
               ),
               Padding(
-                  padding:
-                      const EdgeInsets.only(top: 50.0, left: 12, bottom: 100),
+                padding: const EdgeInsets.only(top: 50.0),
+                child: Container(
+                  margin: EdgeInsets.symmetric(horizontal: 12),
+                  padding: EdgeInsets.only(top: 15, left: 20),
+                  width: double.infinity,
+                  height: 50,
+                  color: Colors.pink[50],
                   child: Text(
-                    'Request from  Bittsave\nUser',
-                    style: TextStyle(
+                    'bittsave username',
+                    textAlign: TextAlign.left,
+                    style: kLightTextStyle.copyWith(
                         color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 35),
-                  )),
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: 12),
-                padding: EdgeInsets.only(top: 15, left: 20),
-                width: double.infinity,
-                height: 50,
-                color: Colors.pink[50],
-                child: Text(
-                  'bittsave username',
-                  textAlign: TextAlign.left,
-                  style: kLightTextStyle.copyWith(
-                      color: Colors.black, fontWeight: FontWeight.w400),
+                        fontWeight: FontWeight.w300,
+                        fontSize: 16),
+                  ),
                 ),
               ),
               SizedBox(height: 400),
@@ -56,15 +52,12 @@ class _BittSaveUserRequestState extends State<BittSaveUserRequest> {
                   }));
                 },
                 child: InnerContainer(
-                  data: 20,
                   col: Colors.pink,
-                  height: 69,
-                  style: kLightTextStyle,
                   widget: Text(
                     'Continue',
                     style: TextStyle(
                         color: Colors.white,
-                        fontSize: 25,
+                        fontSize: 18,
                         fontWeight: FontWeight.w300),
                   ),
                 ),
@@ -75,21 +68,28 @@ class _BittSaveUserRequestState extends State<BittSaveUserRequest> {
       ),
     ));
   }
+}
 
-  Widget InnerContainer(
-      {double height,
-      Color col,
-      double data,
-      String text,
-      TextStyle style,
-      Widget widget}) {
+class InnerContainer extends StatelessWidget {
+  const InnerContainer({
+    Key key,
+    this.widget,
+    this.col,
+  }) : super(key: key);
+  final Color col;
+  final Widget widget;
+
+  @override
+  Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        height: height,
+        height: 50,
         width: double.infinity,
         decoration: BoxDecoration(
-            color: col, borderRadius: BorderRadius.circular(data)),
+          color: col,
+          borderRadius: BorderRadius.circular(14),
+        ),
         child: Center(
           child: widget,
         ),
