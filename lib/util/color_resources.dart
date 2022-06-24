@@ -3,11 +3,11 @@ import 'package:get/get.dart';
 
 class ColorResources {
   static Color getPrimaryColor() {
-    return Get.isDarkMode ? Color(0xFF002931) : Color(0xFF003E47);
+    return Get.isDarkMode ? Color(0xFF950035) : Color(0xFFD92A68);
   }
 
   static Color getPrimaryTextColor() {
-    return Get.isDarkMode ? Color(0xFF8dbac3) : Color(0xFF003E47);
+    return Get.isDarkMode ? Color(0xFF8dbac3) : Color(0xFFD92A68);
   }
 
   static Color getSecondaryHeaderColor() {
@@ -171,7 +171,7 @@ class ColorResources {
   }
 
   ///#686868
-  static const Color COLOR_PRIMARY = Color(0xFF003E47);
+  static const Color COLOR_PRIMARY = Color(0xFFD92A68);
   static const Color COLOR_GREY = Color(0xFFA0A4A8);
   static const Color COLOR_BLACK = Color(0xFF000000);
   static const Color COLOR_LIGHT_BLACK = Color(0xFF4A4B4D);
@@ -214,10 +214,10 @@ class ColorResources {
 
   //
   static Color secondaryColor = const Color(0xFFE0EC53);
-  static const Color primaryColor = const Color(0xFF003E47);
+  static const Color primaryColor = const Color(0xFFD92A68);
   static Color whiteColor = const Color(0xFFFFFFFF);
   static Color blackColor = const Color(0xFF000000);
-  static Color gradientColor = const Color(0xFF45A735);
+  static Color gradientColor = const Color(0xFFEC77A0);
   static Color backgroundColor = const Color(0xFFE5E5E5);
   static Color balanceTextColor = const Color(0xFF393939);
   static Color cardOrangeColor = const Color(0xFFFFCB66);
@@ -230,6 +230,7 @@ class ColorResources {
   static Color textFieldColor = const Color(0xFFF2F2F6);
   static Color otpFieldColor = const Color(0xFFF2F2F7);
   static Color redColor = const Color(0xFFFF0000);
+  static Color greyColor = const Color(0xFF8B8B8B);
   static Color phoneNumberColor = const Color(0xFF484848);
   static Color themeLightBackgroundColor = const Color(0xFFFAFAFA);
   static Color themeDarkBackgroundColor = const Color(0xFF343636);
