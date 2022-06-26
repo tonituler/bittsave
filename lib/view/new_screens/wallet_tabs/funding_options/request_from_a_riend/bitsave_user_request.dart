@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:six_cash/util/color_resources.dart';
 import 'package:six_cash/util/dimensions.dart';
 import 'package:six_cash/view/new_screens/wallet_tabs/funding_options/fund_bit_express.dart';
+import 'package:six_cash/view/new_screens/wallet_tabs/funding_options/request_from_a_riend/friend_identity.dart';
 import 'package:six_cash/view/new_screens/wallet_tabs/funding_usd_wallet_page.dart';
 
 class BittSaveUserRequest extends StatefulWidget {
@@ -15,7 +16,8 @@ class _BittSaveUserRequestState extends State<BittSaveUserRequest> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
+        body: BackGroundColr(
+      child: SafeArea(
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 12),
           child: Column(
@@ -26,6 +28,7 @@ class _BittSaveUserRequestState extends State<BittSaveUserRequest> {
                 child: BackButtons(),
               ),
               Padding(
+<<<<<<< HEAD
                 padding: const EdgeInsets.only(top: 30.0, left: 12, bottom: 100),
                 child: Text(
                   'Request from  Bittsave\nUser',
@@ -98,6 +101,48 @@ class _BittSaveUserRequestState extends State<BittSaveUserRequest> {
                     color: Colors.white,
                     fontSize: Dimensions.FONT_SIZE_DEFAULT,
                     fontWeight: FontWeight.w300,
+=======
+                  padding:
+                      const EdgeInsets.only(top: 50.0, left: 12, bottom: 100),
+                  child: Text(
+                    'Request from  Bittsave\nUser',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 35),
+                  )),
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 12),
+                padding: EdgeInsets.only(top: 15, left: 20),
+                width: double.infinity,
+                height: 50,
+                color: Colors.pink[50],
+                child: Text(
+                  'bittsave username',
+                  textAlign: TextAlign.left,
+                  style: kLightTextStyle.copyWith(
+                      color: Colors.black, fontWeight: FontWeight.w400),
+                ),
+              ),
+              SizedBox(height: 400),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return FriendsIdentity();
+                  }));
+                },
+                child: InnerContainer(
+                  data: 20,
+                  col: Colors.pink,
+                  height: 69,
+                  style: kLightTextStyle,
+                  widget: Text(
+                    'Continue',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 25,
+                        fontWeight: FontWeight.w300),
+>>>>>>> daf7d9dfe819cbcfa5fa5e2a15e7d7336b6a34a9
                   ),
                 ),
               )
@@ -105,7 +150,7 @@ class _BittSaveUserRequestState extends State<BittSaveUserRequest> {
           ),
         ),
       ),
-    );
+    ));
   }
 
   Widget InnerContainer({double height, Color col, double data, String text, TextStyle style, Widget widget}) {
