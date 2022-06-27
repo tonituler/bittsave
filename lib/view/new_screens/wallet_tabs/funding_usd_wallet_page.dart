@@ -99,7 +99,6 @@ class _FundingUsdWalletState extends State<FundingUsdWallet> {
                       ),
                     ),
                   ),
-<<<<<<< HEAD
                 ),
                 getFunds(
                   icon: Icons.qr_code,
@@ -125,37 +124,6 @@ class _FundingUsdWalletState extends State<FundingUsdWallet> {
                   subTitle: 'Fund your USD wallet by requesting\nfund from bitsave users.',
                 )
               ],
-=======
-                  getFunds(
-                    icon: Icons.qr_code,
-                    title: "BitXpress",
-                    subTitle:
-                        'Fund your USD wallet using our \nexternal partners and assoiciates.',
-                    ontap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                        return const FundBitExpress();
-                      }));
-                    },
-                  ),
-                  SizedBox(
-                    height: 40,
-                  ),
-                  getFunds(
-                    ontap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                        return BittSaveUserRequest();
-                      }));
-                    },
-                    icon: Icons.qr_code,
-                    title: 'Request from a friend ',
-                    subTitle:
-                        'Fund your USD wallet by requesting\nfund from bitsave users.',
-                  )
-                ],
-              ),
->>>>>>> daf7d9dfe819cbcfa5fa5e2a15e7d7336b6a34a9
             ),
           ),
         ),
@@ -189,24 +157,12 @@ class BackButtons extends StatelessWidget {
       onTap: () {
         Navigator.pop(context);
       },
-<<<<<<< HEAD
       splashColor: Colors.transparent,
       overlayColor: MaterialStateProperty.all(Colors.transparent),
       child: Icon(
         Icons.arrow_back_ios_outlined,
         color: ColorResources.primaryColor,
         size: 30,
-=======
-      child: Container(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 7.0, vertical: 30),
-          child: Icon(
-            Icons.arrow_back_ios_outlined,
-            color: Colors.pink,
-            size: 30,
-          ),
-        ),
->>>>>>> daf7d9dfe819cbcfa5fa5e2a15e7d7336b6a34a9
       ),
     );
   }
@@ -223,7 +179,6 @@ class getFunds extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: ontap,
-<<<<<<< HEAD
       isThreeLine: true,
       leading: Container(
         width: 60,
@@ -250,57 +205,6 @@ class getFunds extends StatelessWidget {
         color: Colors.grey[400],
         size: 28,
       ),
-=======
-      child: Padding(
-        padding: const EdgeInsets.only(left: 10.0, right: 10),
-        child: Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(right: 20.0),
-              child: Container(
-                width: 60,
-                height: 60,
-                decoration: BoxDecoration(
-                    color: Colors.pink,
-                    borderRadius: BorderRadius.circular(16)),
-                child: Icon(
-                  icon,
-                  color: Colors.white,
-                  size: 32,
-                ),
-              ),
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
-                ),
-                SizedBox(height: 8),
-                Text(
-                  subTitle,
-                  style: TextStyle(
-                      fontWeight: FontWeight.w300,
-                      fontSize: 20,
-                      color: Colors.grey),
-                )
-              ],
-            ),
-            Spacer(),
-            Padding(
-              padding: const EdgeInsets.only(right: 10.0),
-              child: Icon(
-                CupertinoIcons.forward,
-                color: Colors.grey[400],
-                size: 28,
-              ),
-            )
-          ],
-        ),
-      ),
->>>>>>> daf7d9dfe819cbcfa5fa5e2a15e7d7336b6a34a9
     );
   }
 }

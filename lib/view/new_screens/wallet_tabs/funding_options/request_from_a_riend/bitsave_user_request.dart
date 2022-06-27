@@ -28,7 +28,6 @@ class _BittSaveUserRequestState extends State<BittSaveUserRequest> {
                 child: BackButtons(),
               ),
               Padding(
-<<<<<<< HEAD
                 padding: const EdgeInsets.only(top: 30.0, left: 12, bottom: 100),
                 child: Text(
                   'Request from  Bittsave\nUser',
@@ -101,48 +100,6 @@ class _BittSaveUserRequestState extends State<BittSaveUserRequest> {
                     color: Colors.white,
                     fontSize: Dimensions.FONT_SIZE_DEFAULT,
                     fontWeight: FontWeight.w300,
-=======
-                  padding:
-                      const EdgeInsets.only(top: 50.0, left: 12, bottom: 100),
-                  child: Text(
-                    'Request from  Bittsave\nUser',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 35),
-                  )),
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: 12),
-                padding: EdgeInsets.only(top: 15, left: 20),
-                width: double.infinity,
-                height: 50,
-                color: Colors.pink[50],
-                child: Text(
-                  'bittsave username',
-                  textAlign: TextAlign.left,
-                  style: kLightTextStyle.copyWith(
-                      color: Colors.black, fontWeight: FontWeight.w400),
-                ),
-              ),
-              SizedBox(height: 400),
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return FriendsIdentity();
-                  }));
-                },
-                child: InnerContainer(
-                  data: 20,
-                  col: Colors.pink,
-                  height: 69,
-                  style: kLightTextStyle,
-                  widget: Text(
-                    'Continue',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 25,
-                        fontWeight: FontWeight.w300),
->>>>>>> daf7d9dfe819cbcfa5fa5e2a15e7d7336b6a34a9
                   ),
                 ),
               )
