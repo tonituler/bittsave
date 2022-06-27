@@ -19,111 +19,102 @@ class _RequestSuccessfulState extends State<RequestSuccessful> {
       body: BackGroundColr(
         child: Container(
           width: double.infinity,
-          margin: EdgeInsets.only(left: 10, right: 10, top: 40),
+          margin: EdgeInsets.symmetric(horizontal: 10, vertical: 40),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 10),
               BackButtons(),
               Padding(
-                padding: const EdgeInsets.only(top: 30.0, bottom: 20),
+                padding: const EdgeInsets.only(top: 70.0, bottom: 20),
                 child: Center(
                   child: Text(
                     'Request Successful',
                     style: TextStyle(
                         color: Colors.pink,
                         fontWeight: FontWeight.w300,
-                        fontSize: 25),
+                        fontSize: 45),
                   ),
                 ),
               ),
               Center(
                 child: Container(
                   margin: EdgeInsets.symmetric(horizontal: 14),
-                  height: 500,
+                  height: 600,
                   width: double.infinity,
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(10)),
                   child: Column(
                     children: [
-                      SizedBox(height: 50),
+                      SizedBox(height: 70),
                       Text(
                         'Amount',
                         style: kLightTextStyle.copyWith(
-                            color: Colors.grey, fontSize: 18),
+                            color: Colors.black, fontSize: 22),
                       ),
                       SizedBox(height: 10),
                       Text(
                         '\$1,240.00',
                         style: TextStyle(
                             color: Colors.black,
-                            fontSize: 30,
+                            fontSize: 40,
                             fontWeight: FontWeight.w400),
                       ),
                       Container(
-                          margin: EdgeInsets.only(top: 40, bottom: 10),
-                          width: 70,
-                          height: 70,
+                          margin: EdgeInsets.only(top: 65, bottom: 10),
+                          width: 100,
+                          height: 100,
                           decoration: BoxDecoration(
                               color: Colors.black,
                               borderRadius: BorderRadius.circular(8),
                               image: DecorationImage(
-                                  scale: 3,
                                   image: AssetImage('assets/image/logo.png')))),
                       Text(
                         'Alan Santos',
                         style: TextStyle(
-                            fontWeight: FontWeight.w400, fontSize: 16),
+                            fontWeight: FontWeight.w400, fontSize: 20),
                       ),
-                      SizedBox(height: 40),
+                      SizedBox(height: 60),
                       Container(
                         decoration: BoxDecoration(
                             border: Border.all(width: 0.1),
                             borderRadius: BorderRadius.circular(18)),
                         margin: EdgeInsets.symmetric(horizontal: 20),
-                        // padding: EdgeInsets.symmetric(horizontal: 12),
+                        padding: EdgeInsets.symmetric(horizontal: 12),
                         // color: Colors.pink,
                         width: double.infinity,
-                        height: 70,
+                        height: 80,
                         child: Row(
                           children: [
+                            Icon(Icons.qr_code_2_sharp, size: 50),
                             Padding(
-                              padding: const EdgeInsets.only(left: 8.0),
-                              child: Icon(Icons.qr_code_2_sharp, size: 30),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 10.0),
+                              padding: const EdgeInsets.only(left: 20.0),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Padding(
                                     padding: const EdgeInsets.only(
-                                        left: 35.0, bottom: 5),
+                                        left: 40.0, bottom: 10),
                                     child: Text(
                                       'share with your friend',
                                       style: TextStyle(
                                           color: Colors.black,
                                           fontWeight: FontWeight.w300,
-                                          fontSize: 13),
+                                          fontSize: 19),
                                     ),
                                   ),
                                   Text(
                                     'Click here to share your QR Code',
                                     style: TextStyle(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w400),
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w500),
                                   ),
                                 ],
                               ),
                             ),
                             Spacer(),
-                            Padding(
-                              padding: const EdgeInsets.only(right: 8.0),
-                              child: Icon(Icons.share,
-                                  color: Colors.pink, size: 25),
-                            )
+                            Icon(Icons.share, color: Colors.pink, size: 30)
                           ],
                         ),
                       ),
