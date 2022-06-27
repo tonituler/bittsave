@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:six_cash/util/color_resources.dart';
 import 'package:six_cash/view/new_screens/wallet_tabs/funding_options/fund_bit_express.dart';
 import 'package:six_cash/view/new_screens/wallet_tabs/funding_options/request_from_a_riend/bitsave_user_request.dart';
 import 'package:six_cash/view/new_screens/wallet_tabs/funding_options/request_from_a_riend/friend_identity.dart';
@@ -96,7 +95,9 @@ class _FundingUsdWalletState extends State<FundingUsdWallet> {
                     ),
                   ),
                   getFunds(
-                    icon: Icons.qr_code,
+                    widget: Container(
+                      child: Image.asset('assets/newImages/Plus in a box.png'),
+                    ),
                     title: "BitXpress",
                     subTitle:
                         'Fund your USD wallet using our \nexternal partners and assoiciates.',
@@ -117,7 +118,9 @@ class _FundingUsdWalletState extends State<FundingUsdWallet> {
                         return BittSaveUserRequest();
                       }));
                     },
-                    icon: Icons.qr_code,
+                    widget: Container(
+                      child: Image.asset('assets/newImages/Plus in a box.png'),
+                    ),
                     title: 'Request from a friend ',
                     subTitle:
                         'Fund your USD wallet by requesting\nfund from bitsave users.',
@@ -180,8 +183,8 @@ class getFunds extends StatelessWidget {
   final String title;
   final String subTitle;
   final Function ontap;
-  final IconData icon;
-  const getFunds({this.subTitle, this.title, this.ontap, this.icon});
+  final Widget widget;
+  const getFunds({this.subTitle, this.title, this.ontap, this.widget});
 
   @override
   Widget build(BuildContext context) {
@@ -199,11 +202,7 @@ class getFunds extends StatelessWidget {
                 decoration: BoxDecoration(
                     color: Colors.pink,
                     borderRadius: BorderRadius.circular(12)),
-                child: Icon(
-                  icon,
-                  color: Colors.white,
-                  size: 22,
-                ),
+                child: widget,
               ),
             ),
             Column(

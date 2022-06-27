@@ -40,7 +40,9 @@ class _BankTransferPageState extends State<BankTransferPage> {
                     return PartnersInformation();
                   }));
                 },
-                icon: Icons.send_outlined,
+                widget: Container(
+                  child: Image.asset('assets/newImages/TelegramLogo.png'),
+                ),
                 title: 'Bank Transfer',
                 subTitle:
                     'you will be requied to make a Bank\ntransfer to your deposit.',
