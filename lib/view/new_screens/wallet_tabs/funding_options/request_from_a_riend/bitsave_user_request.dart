@@ -23,9 +23,10 @@ class _BittSaveUserRequestState extends State<BittSaveUserRequest> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 12.0),
-                child: BackButtons(),
+              SizedBox(height: 20),
+              BackButtons(),
+              BoldTextTitle(
+                data: 'Request from Bittsave\nUser',
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 30.0, left: 12, bottom: 100),
@@ -109,12 +110,13 @@ class _BittSaveUserRequestState extends State<BittSaveUserRequest> {
       ),
     ));
   }
+}
 
   Widget InnerContainer({double height, Color col, double data, String text, TextStyle style, Widget widget}) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        height: height,
+        height: 50,
         width: double.infinity,
         decoration: BoxDecoration(color: col, borderRadius: BorderRadius.circular(data)),
         child: Center(
@@ -123,4 +125,3 @@ class _BittSaveUserRequestState extends State<BittSaveUserRequest> {
       ),
     );
   }
-}

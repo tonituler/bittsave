@@ -15,7 +15,9 @@ class _BTCWalletScreenState extends State<BTCWalletScreen> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10,),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 10,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -23,7 +25,7 @@ class _BTCWalletScreenState extends State<BTCWalletScreen> {
               padding: const EdgeInsets.only(bottom: 10.0, top: 20, left: 8),
               child: BoldTextTitle(
                 data: 'BTC Wallet',
-                fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE,
+                // fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE,
               ),
             ),
             // SizedBox(),
@@ -32,7 +34,10 @@ class _BTCWalletScreenState extends State<BTCWalletScreen> {
               child: Text(
                 'Swipe right to view your USD wallet.',
                 textAlign: TextAlign.left,
-                style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w300, fontSize: Dimensions.FONT_SIZE_DEFAULT),
+                style: TextStyle(
+                    color: Colors.grey,
+                    fontWeight: FontWeight.w300,
+                    fontSize: Dimensions.FONT_SIZE_DEFAULT),
               ),
             ),
             Padding(
@@ -52,7 +57,10 @@ class _BTCWalletScreenState extends State<BTCWalletScreen> {
                         children: [
                           Text(
                             'BTC',
-                            style: TextStyle(color: Colors.white, fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE, fontWeight: FontWeight.w500),
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE,
+                                fontWeight: FontWeight.w500),
                           ),
                           Spacer(),
                           Image.asset(
@@ -68,12 +76,18 @@ class _BTCWalletScreenState extends State<BTCWalletScreen> {
                         padding: const EdgeInsets.symmetric(vertical: 5.0),
                         child: Text(
                           '0.0000000000',
-                          style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600, fontSize: Dimensions.FONT_SIZE_EXTRA_OVER_LARGE),
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600,
+                              fontSize: Dimensions.FONT_SIZE_EXTRA_OVER_LARGE),
                         ),
                       ),
                       Text(
                         '\$0.00 | 0 satoshis',
-                        style: TextStyle(color: Colors.white, fontWeight: FontWeight.w200, fontSize: Dimensions.FONT_SIZE_LARGE),
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w200,
+                            fontSize: Dimensions.FONT_SIZE_LARGE),
                       )
                     ],
                   ),
@@ -148,7 +162,9 @@ class WalletIcons extends StatelessWidget {
                   padding: EdgeInsets.all(5),
                   width: 60,
                   height: 60,
-                  decoration: BoxDecoration(color: Colors.pink, borderRadius: BorderRadius.circular(16)),
+                  decoration: BoxDecoration(
+                      color: Colors.pink,
+                      borderRadius: BorderRadius.circular(16)),
                   child: Container(
                     padding: EdgeInsets.all(0),
                     decoration: BoxDecoration(borderRadius: BorderRadius.circular(30)),
@@ -157,10 +173,15 @@ class WalletIcons extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 5,),
+            SizedBox(
+              height: 5,
+            ),
             Text(
               label ?? "",
-              style: TextStyle(color: ColorResources.blackColor, fontWeight: FontWeight.w600, fontSize: Dimensions.FONT_SIZE_SMALL),
+              style: TextStyle(
+                  color: ColorResources.blackColor,
+                  fontWeight: FontWeight.w600,
+                  fontSize: Dimensions.FONT_SIZE_SMALL),
             )
           ],
         ),

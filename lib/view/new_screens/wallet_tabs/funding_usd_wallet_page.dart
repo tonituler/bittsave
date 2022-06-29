@@ -17,101 +17,110 @@ class _FundingUsdWalletState extends State<FundingUsdWallet> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: BackGroundColr(
-      child: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.only(
-              left: 16.0,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                BackButtons(),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 10.0, left: 8),
-                  child: BoldTextTitle(data: 'Funding USD Wallet'),
-                ),
-                // SizedBox(),
-                Padding(
-                  padding: const EdgeInsets.only(left: 8.0, bottom: 40),
-                  child: Text(
-                    'We have rebranding the methods of depositing USD into your wallet.',
-                    textAlign: TextAlign.left,
-                    style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w300, fontSize: 22),
+      body: BackGroundColr(
+        child: SafeArea(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.only(
+                left: 16.0,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  BackButtons(),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 10.0, left: 8),
+                    child: BoldTextTitle(data: 'Funding USD Wallet'),
                   ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 10, right: 20, left: 5, bottom: 80),
-                  child: PhysicalModel(
-                    elevation: 8,
-                    color: Colors.pink,
-                    shadowColor: Colors.lightBlueAccent,
-                    borderRadius: BorderRadius.circular(30),
-                    child: Container(
-                      padding: EdgeInsets.all(14),
-                      height: 200,
-                      width: double.infinity,
-                      child: Column(
-                        children: [
-                          Row(
-                            children: [
-                              Text(
-                                'USD',
-                                style: TextStyle(color: Colors.white, fontSize: 35, fontWeight: FontWeight.w200),
-                              ),
-                              Spacer(),
-                              Text(
-                                '\$',
-                                style: TextStyle(color: Colors.white, fontSize: 50, fontWeight: FontWeight.w300),
-                              )
-                            ],
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 10.0),
-                            child: Text(
-                              '\$500.00',
-                              style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 40),
+                  // SizedBox(),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8.0, bottom: 40),
+                    child: Text(
+                      'We have rebranding the methods of depositing USD into your wallet.',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w300, fontSize: 22),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 10, right: 20, left: 5, bottom: 80),
+                    child: PhysicalModel(
+                      elevation: 8,
+                      color: Colors.pink,
+                      shadowColor: Colors.lightBlueAccent,
+                      borderRadius: BorderRadius.circular(30),
+                      child: Container(
+                        padding: EdgeInsets.all(14),
+                        height: 200,
+                        width: double.infinity,
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Text(
+                                  'USD',
+                                  style: TextStyle(color: Colors.white, fontSize: 35, fontWeight: FontWeight.w200),
+                                ),
+                                Spacer(),
+                                Text(
+                                  '\$',
+                                  style: TextStyle(color: Colors.white, fontSize: 50, fontWeight: FontWeight.w300),
+                                )
+                              ],
                             ),
-                          ),
-                          Text(
-                            'Your Balance',
-                            style: TextStyle(color: Colors.white, fontWeight: FontWeight.w200, fontSize: 25),
-                          )
-                        ],
+                            Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 10.0),
+                              child: Text(
+                                '\$500.00',
+                                style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 40),
+                              ),
+                            ),
+                            Text(
+                              'Your Balance',
+                              style: TextStyle(color: Colors.white, fontWeight: FontWeight.w200, fontSize: 25),
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                ),
-                getFunds(
-                  icon: Icons.qr_code,
-                  title: "BitXpress",
-                  subTitle: 'Fund your USD wallet using our \nexternal partners and assoiciates',
-                  ontap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) {
-                      return const FundBitExpress();
-                    }));
-                  },
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                getFunds(
-                  ontap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) {
-                      return BittSaveUserRequest();
-                    }));
-                  },
-                  icon: Icons.qr_code,
-                  title: 'Request from a friend ',
-                  subTitle: 'Fund your USD wallet by requesting\nfund from bitsave users.',
-                )
-              ],
+                  getFunds(
+                    widget: Icon(
+                      Icons.qr_code,
+                      color: Colors.white,
+                      size: 32,
+                    ),
+                    title: "BitXpress",
+                    subTitle: 'Fund your USD wallet using our \nexternal partners and assoiciates',
+                    ontap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) {
+                        return const FundBitExpress();
+                      }));
+                    },
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  getFunds(
+                    ontap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) {
+                        return BittSaveUserRequest();
+                      }));
+                    },
+                    widget: Icon(
+                      Icons.qr_code,
+                      color: Colors.white,
+                      size: 32,
+                    ),
+                    title: 'Request from a friend ',
+                    subTitle: 'Fund your USD wallet by requesting\nfund from bitsave users.',
+                  )
+                ],
+              ),
             ),
           ),
         ),
       ),
-    ));
+    );
   }
 }
 
@@ -155,8 +164,8 @@ class getFunds extends StatelessWidget {
   final String title;
   final String subTitle;
   final Function ontap;
-  final IconData icon;
-  const getFunds({this.subTitle, this.title, this.ontap, this.icon});
+  final Widget widget;
+  const getFunds({this.subTitle, this.title, this.ontap, this.widget});
 
   @override
   Widget build(BuildContext context) {
@@ -167,11 +176,7 @@ class getFunds extends StatelessWidget {
         width: 60,
         height: 60,
         decoration: BoxDecoration(color: Colors.pink, borderRadius: BorderRadius.circular(16)),
-        child: Icon(
-          icon,
-          color: Colors.white,
-          size: 32,
-        ),
+        child: widget,
       ),
       title: Text(
         title,

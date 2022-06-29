@@ -66,6 +66,7 @@ flutter:
     - assets/image/
     - assets/language/
     - assets/animationFile/
+    - assets/newImages/
 
   fonts:
     - family: Rubik

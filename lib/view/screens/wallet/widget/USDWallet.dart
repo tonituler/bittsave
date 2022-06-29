@@ -28,7 +28,7 @@ class _USDWalletScreenState extends State<USDWalletScreen> {
               padding: const EdgeInsets.only(bottom: 10.0, top: 20, left: 8),
               child: BoldTextTitle(
                 data: 'USD Wallet',
-                fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE,
+                // fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE,
               ),
             ),
             // SizedBox(),
@@ -37,7 +37,10 @@ class _USDWalletScreenState extends State<USDWalletScreen> {
               child: Text(
                 'Swipe left to view your BTC wallet.',
                 textAlign: TextAlign.left,
-                style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w300, fontSize: Dimensions.FONT_SIZE_DEFAULT),
+                style: TextStyle(
+                    color: Colors.grey,
+                    fontWeight: FontWeight.w300,
+                    fontSize: Dimensions.FONT_SIZE_DEFAULT),
               ),
             ),
             Padding(
@@ -57,7 +60,10 @@ class _USDWalletScreenState extends State<USDWalletScreen> {
                         children: [
                           Text(
                             'USD',
-                            style: TextStyle(color: Colors.white, fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE, fontWeight: FontWeight.w500),
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE,
+                                fontWeight: FontWeight.w500),
                           ),
                           Spacer(),
                           Image.asset(
@@ -73,7 +79,10 @@ class _USDWalletScreenState extends State<USDWalletScreen> {
                         padding: const EdgeInsets.symmetric(vertical: 5.0),
                         child: Text(
                           '\$0.00',
-                          style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600, fontSize: Dimensions.FONT_SIZE_EXTRA_OVER_LARGE),
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600,
+                              fontSize: Dimensions.FONT_SIZE_EXTRA_OVER_LARGE),
                         ),
                       ),
                     ],
@@ -99,7 +108,8 @@ class _USDWalletScreenState extends State<USDWalletScreen> {
                   ),
                   WalletIcons(
                     ontap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
                         return FundingUsdWallet();
                       }));
                     },

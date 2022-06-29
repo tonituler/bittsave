@@ -20,24 +20,30 @@ class AppBarBase extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ProfileController>(builder: (profileController) {
-      return Container(
-        // color: ColorResources.getPrimaryColor(),
+      return Expanded(
         child: Container(
-          padding: const EdgeInsets.only(
-            top: 54,
-            left: Dimensions.PADDING_SIZE_LARGE,
-            right: Dimensions.PADDING_SIZE_LARGE,
-            bottom: Dimensions.PADDING_SIZE_SMALL,
-          ),
-          decoration: BoxDecoration(
-            color: ColorResources.whiteColor.withOpacity(0.1),
-            borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(Dimensions.RADIUS_SIZE_EXTRA_LARGE)),
-          ),
-          child: Row(
-            children: [
-              const SizedBox(width: Dimensions.PADDING_SIZE_SMALL),
-              Get.find<SplashController>().configModel.themeIndex == '1' ? ShowName() : ShowBalance(profileController: profileController),
-            ],
+          // color: ColorResources.getPrimaryColor(),
+          child: Container(
+            padding: const EdgeInsets.only(
+              top: 54,
+              left: Dimensions.PADDING_SIZE_LARGE,
+              right: Dimensions.PADDING_SIZE_LARGE,
+              bottom: Dimensions.PADDING_SIZE_SMALL,
+            ),
+            decoration: BoxDecoration(
+              color: ColorResources.whiteColor.withOpacity(0.1),
+              borderRadius: const BorderRadius.only(
+                  bottomLeft:
+                      Radius.circular(Dimensions.RADIUS_SIZE_EXTRA_LARGE)),
+            ),
+            child: Row(
+              children: [
+                const SizedBox(width: Dimensions.PADDING_SIZE_SMALL),
+                Get.find<SplashController>().configModel.themeIndex == '1'
+                    ? ShowName()
+                    : ShowBalance(profileController: profileController),
+              ],
+            ),
           ),
         ),
       );
