@@ -36,8 +36,8 @@ class _FundBitExpressState extends State<FundBitExpress> {
                 Padding(
                   padding: const EdgeInsets.only(left: 10.0, top: 10, bottom: 10),
                   child: BoldTextTitle(
-                    data: 'How much do you want to\ndeposit?',
-                    fontSize: 20.sp,
+                    data: 'How much do you want to deposit?',
+                    fontSize: 24.sp,
                   ),
                 ),
                 Padding(
@@ -51,7 +51,7 @@ class _FundBitExpressState extends State<FundBitExpress> {
                     top: 15,
                     bottom: 10,
                   ),
-                  height: 200,
+                  height: 150,
                   width: double.maxFinite,
                   child: Center(
                     child: Column(
@@ -62,12 +62,12 @@ class _FundBitExpressState extends State<FundBitExpress> {
                           style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.w700,
-                            fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE + 25,
+                            fontSize: 45.sp,
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: LightText(text: 'USD Bal: \$500.00'),
+                          padding: const EdgeInsets.all(2.0),
+                          child: LightText(text: 'USD Bal: \$500.00', fontSize: 12.sp),
                         ),
                       ],
                     ),
@@ -76,13 +76,13 @@ class _FundBitExpressState extends State<FundBitExpress> {
                 Container(
                   margin: const EdgeInsets.only(top: 10.0, right: 12),
                   padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: Colors.black),
+                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: Colors.black),
                   child: Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         InnerContainer(
-                            height: 70,
+                            height: 50,
                             col: Colors.white,
                             data: 5,
                             widget: Column(
@@ -92,10 +92,10 @@ class _FundBitExpressState extends State<FundBitExpress> {
                                   "you'll pay",
                                   style: kLightTextStyle.copyWith(color: Colors.grey),
                                 ),
-                                SizedBox(height: 5),
+                                SizedBox(height: 2),
                                 Text(
                                   'N40,000.00',
-                                  style: kLightTextStyle.copyWith(fontWeight: FontWeight.w400, color: Colors.black, fontSize: Dimensions.FONT_SIZE_OVER_LARGE),
+                                  style: kLightTextStyle.copyWith(fontWeight: FontWeight.w400, color: Colors.black, fontSize: 16.sp),
                                 ),
                               ],
                             ),
@@ -110,12 +110,12 @@ class _FundBitExpressState extends State<FundBitExpress> {
                             );
                           },
                           child: InnerContainer(
-                            height: 60,
+                            height: 50,
                             col: Colors.pink,
-                            data: 13,
+                            data: 10,
                             widget: Text(
                               'Continue',
-                              style: kLightTextStyle.copyWith(color: Colors.white, fontSize: Dimensions.FONT_SIZE_OVER_LARGE, fontWeight: FontWeight.w300),
+                              style: kLightTextStyle.copyWith(color: Colors.white, fontSize: 18.sp, fontWeight: FontWeight.w400),
                             ),
                           ),
                         ),
@@ -131,10 +131,12 @@ class _FundBitExpressState extends State<FundBitExpress> {
     );
   }
 
-  Widget LightText({String text}) {
+  Widget LightText({String text, double fontSize}) {
     return Text(
       text,
-      style: kLightTextStyle,
+      style: kLightTextStyle.copyWith(
+        fontSize: fontSize ?? 12.sp
+      ),
     );
   }
 

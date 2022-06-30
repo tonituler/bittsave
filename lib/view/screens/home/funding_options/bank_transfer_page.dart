@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:six_cash/app/extensions.dart';
 import 'package:six_cash/util/dimensions.dart';
 import 'package:six_cash/view/screens/home/funding_options/partner_information.dart';
 import 'package:six_cash/view/screens/home/funding_usd_wallet_page.dart';
@@ -15,6 +16,11 @@ class _BankTransferPageState extends State<BankTransferPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: BackButtons(),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
       body: SafeArea(
         child: Container(
           padding: EdgeInsets.only(left: 12),
@@ -22,18 +28,14 @@ class _BankTransferPageState extends State<BankTransferPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 8),
-                child: BackButtons(),
-              ),
-              Padding(
                 padding: const EdgeInsets.only(bottom: 5.0, top: 30, left: 12),
                 child: BoldTextTitle(
                   data: 'How do you want to deposit?',
-                  fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE + 5,
+                  fontSize: 22.sp,
                 ),
               ),
               SizedBox(
-                height: 70,
+                height: 50,
               ),
               getFunds(
                 ontap: () {
@@ -47,6 +49,7 @@ class _BankTransferPageState extends State<BankTransferPage> {
                   );
                 },
                 widget: Container(
+                  padding: EdgeInsets.all(8),
                   child: Image.asset('assets/newImages/TelegramLogo.png'),
                 ),
                 title: 'Bank Transfer',

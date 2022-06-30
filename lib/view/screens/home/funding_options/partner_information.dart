@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:six_cash/app/extensions.dart';
 import 'package:six_cash/util/color_resources.dart';
 import 'package:six_cash/util/dimensions.dart';
 import 'package:six_cash/view/screens/home/funding_options/fund_bit_express.dart';
@@ -31,7 +32,7 @@ class _PartnersInformationState extends State<PartnersInformation> {
               child: Text(
                 "Partner's Information",
                 style: TextStyle(
-                  fontSize: Dimensions.FONT_SIZE_EXTRA_OVER_LARGE + 5,
+                  fontSize: 25.sp,
                   color: Colors.black,
                   fontWeight: FontWeight.w600,
                 ),
@@ -112,12 +113,12 @@ class _PartnersInformationState extends State<PartnersInformation> {
             children: [
               Text(
                 "$title",
-                style: TextStyle(fontSize: Dimensions.FONT_SIZE_DEFAULT, fontWeight: FontWeight.w200, color: Colors.black87),
+                style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w200, color: Colors.black87),
               ),
               SizedBox(height: 3),
               Text(
                 "$subtitle",
-                style: TextStyle(fontWeight: FontWeight.w500, fontSize: Dimensions.FONT_SIZE_LARGE),
+                style: TextStyle(fontWeight: FontWeight.w500, fontSize: 14.sp),
               ),
             ],
           ),
