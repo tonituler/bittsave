@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 // import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
+import 'package:six_cash/app/size_config/config.dart';
 import 'package:six_cash/controller/menu_controller.dart';
 import 'package:six_cash/controller/profile_screen_controller.dart';
 import 'package:six_cash/controller/qr_code_scanner_controller.dart';
@@ -55,6 +56,7 @@ class _NavBarScreenState extends State<NavBarScreen> {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig.init(context);
     final qrScannerController = Get.find<QrCodeScannerController>();
 
     return WillPopScope(

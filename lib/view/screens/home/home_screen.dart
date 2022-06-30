@@ -1,6 +1,7 @@
 import 'package:expandable_bottom_sheet/expandable_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:six_cash/app/size_config/config.dart';
 import 'package:six_cash/controller/banner_controller.dart';
 import 'package:six_cash/controller/home_controller.dart';
 import 'package:six_cash/controller/notification_controller.dart';
@@ -59,6 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig.init(context);
     return GetBuilder<HomeController>(builder: (controller) {
       return Scaffold(
         //backgroundColor: Theme.of(context).canvasColor,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:six_cash/app/extensions.dart';
 import 'package:six_cash/util/dimensions.dart';
 import 'package:six_cash/view/screens/home/funding_options/bank_transfer_page.dart';
 import 'package:six_cash/view/screens/home/funding_usd_wallet_page.dart';
@@ -36,7 +37,7 @@ class _FundBitExpressState extends State<FundBitExpress> {
                   padding: const EdgeInsets.only(left: 10.0, top: 10, bottom: 10),
                   child: BoldTextTitle(
                     data: 'How much do you want to\ndeposit?',
-                    fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE,
+                    fontSize: 20.sp,
                   ),
                 ),
                 Padding(
