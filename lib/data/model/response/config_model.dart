@@ -29,6 +29,12 @@ class ConfigModel {
     this.privacyPolicy,
     this.aboutUs,
     this.themeIndex,
+    this.btcValue,
+    this.loanCommissionNgn,
+    this.loanCommissionUsd,
+    this.usdToNgn,
+    this.buyBtcRate,
+    this.sellBtcRate
   });
 
   String companyName;
@@ -52,6 +58,12 @@ class ConfigModel {
   String privacyPolicy;
   String aboutUs;
   String themeIndex;
+  String btcValue;
+  String loanCommissionNgn;
+  String loanCommissionUsd;
+  String usdToNgn;
+  String buyBtcRate;
+  String sellBtcRate;
 
   factory ConfigModel.fromJson(Map<String, dynamic> json) => ConfigModel(
     companyName: json["company_name"],
@@ -75,6 +87,12 @@ class ConfigModel {
     privacyPolicy: json["privacy_policy"],
     aboutUs: json["about_us"],
     themeIndex: json["user_app_theme"],
+    btcValue: json["btc_usd"].toString(),
+    loanCommissionNgn: json["loan_commission_flat_ngn"].toString(),
+    loanCommissionUsd: json["loan_commission_flat_usd"].toString(),
+    usdToNgn: json["usd_ngn"].toString(),
+    buyBtcRate: json["buy_btc_rate"].toString(),
+    sellBtcRate: json["sell_btc_rate"].toString(),
   );
 }
 

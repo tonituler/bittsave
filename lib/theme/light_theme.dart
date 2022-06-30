@@ -3,7 +3,7 @@ import 'package:six_cash/util/color_resources.dart';
 
 ThemeData light = ThemeData(
   brightness: Brightness.light,
-  fontFamily: 'Rubik',
+  fontFamily: 'Montserrat',
   primaryColor: Color(0xFF950035),
   secondaryHeaderColor: Color(0xFFCFEC7E),
   highlightColor: Color(0xFF003E47),

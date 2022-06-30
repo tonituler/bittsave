@@ -69,13 +69,13 @@ flutter:
     - assets/newImages/
 
   fonts:
-    - family: Rubik
+    - family: Montserrat
       fonts:
-        - asset: assets/font/Rubik-Light.ttf
+        - asset: assets/font/Montserrat-Light.ttf
           weight: 300
-        - asset: assets/font/Rubik-Regular.ttf
+        - asset: assets/font/Montserrat-Regular.ttf
           weight: 400
-        - asset: assets/font/Rubik-Medium.ttf
+        - asset: assets/font/Montserrat-Medium.ttf
           weight: 500
-        - asset: assets/font/Rubik-SemiBold.ttf
+        - asset: assets/font/Montserrat-SemiBold.ttf
           weight: 600
