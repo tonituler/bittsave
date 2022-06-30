@@ -9,7 +9,7 @@ import 'package:six_cash/view/base/custom_logo.dart';
 
 class AppbarSection extends StatelessWidget {
   final bool isLogin;
-  const AppbarSection({Key key,@required this.isLogin}) : super(key: key);
+  const AppbarSection({Key key, @required this.isLogin}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,29 +26,32 @@ class AppbarSection extends StatelessWidget {
             width: Dimensions.SMALL_LOGO,
           ),
           isLogin
-              ?Container(
-
-                decoration: BoxDecoration(
-                  color: Theme.of(context).secondaryHeaderColor,
-                  borderRadius: BorderRadius.circular(Dimensions.RADIUS_SIZE_EXTRA_LARGE),),
-                child: CustomInkWell(
-                  onTap: (){
-                    Get.toNamed(RouteHelper.getChoseLanguageRoute());
-                  },
-                  radius: Dimensions.RADIUS_SIZE_EXTRA_LARGE,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_DEFAULT, vertical: Dimensions.PADDING_SIZE_SMALL,),
-                    child: Text(
-                      'language'.tr,
-                      style: rubikRegular.copyWith(
-                        color: ColorResources.getPrimaryColor(),
-                        fontSize: Dimensions.FONT_SIZE_DEFAULT,
+              ? Container(
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).secondaryHeaderColor,
+                    borderRadius: BorderRadius.circular(Dimensions.RADIUS_SIZE_EXTRA_LARGE),
+                  ),
+                  child: CustomInkWell(
+                    onTap: () {
+                      Get.toNamed(RouteHelper.getChoseLanguageRoute());
+                    },
+                    radius: Dimensions.RADIUS_SIZE_EXTRA_LARGE,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: Dimensions.PADDING_SIZE_DEFAULT,
+                        vertical: Dimensions.PADDING_SIZE_SMALL,
+                      ),
+                      child: Text(
+                        'language'.tr,
+                        style: montserratRegular.copyWith(
+                          color: ColorResources.getPrimaryColor(),
+                          fontSize: Dimensions.FONT_SIZE_DEFAULT,
+                        ),
                       ),
                     ),
                   ),
-                ),
-              )
-          : Container(),
+                )
+              : Container(),
         ],
       ),
     );

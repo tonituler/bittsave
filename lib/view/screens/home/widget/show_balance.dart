@@ -12,16 +12,25 @@ class ShowBalance extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
       children: [
         profileController.userInfo != null
-        ?Text(PriceConverter.balanceWithSymbol(balance: profileController.userInfo.balance.toString()), style: rubikMedium.copyWith(color: ColorResources.whiteColor, fontSize: Dimensions.FONT_SIZE_OVER_LARGE,))
-        :Text(PriceConverter.balanceWithSymbol(balance: '0.0'), style: rubikMedium.copyWith(color: ColorResources.whiteColor, fontSize: Dimensions.FONT_SIZE_OVER_LARGE,)
-          ),
+            ? Text(PriceConverter.balanceWithSymbol(balance: profileController.userInfo.balance.toString()),
+                style: montserratMedium.copyWith(
+                  color: ColorResources.whiteColor,
+                  fontSize: Dimensions.FONT_SIZE_OVER_LARGE,
+                ))
+            : Text(PriceConverter.balanceWithSymbol(balance: '0.0'),
+                style: montserratMedium.copyWith(
+                  color: ColorResources.whiteColor,
+                  fontSize: Dimensions.FONT_SIZE_OVER_LARGE,
+                )),
         const SizedBox(
           height: Dimensions.PADDING_SIZE_EXTRA_SMALL,
         ),
-        Text('available_balance'.tr, style: rubikLight.copyWith(fontSize: Dimensions.FONT_SIZE_DEFAULT, color: ColorResources.whiteColor))
+        Text('available_balance'.tr, style: montserratLight.copyWith(fontSize: Dimensions.FONT_SIZE_DEFAULT, color: ColorResources.whiteColor))
       ],
     );
   }

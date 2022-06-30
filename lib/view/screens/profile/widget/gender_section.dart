@@ -6,13 +6,13 @@ import 'package:six_cash/util/styles.dart';
 import 'package:six_cash/view/screens/auth/other_info/widget/custom_gender_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 class GenderSection extends StatelessWidget {
   const GenderSection({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
-    return GetBuilder<EditProfileController>(builder: (controller){
+    return GetBuilder<EditProfileController>(builder: (controller) {
       return Container(
         width: double.infinity,
         padding: const EdgeInsets.only(
@@ -21,23 +21,19 @@ class GenderSection extends StatelessWidget {
           right: Dimensions.PADDING_SIZE_EXTRA_SMALL,
           bottom: Dimensions.PADDING_SIZE_DEFAULT,
         ),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(Dimensions.RADIUS_SIZE_SMALL),
-            color: Theme.of(context).cardColor,
-            boxShadow: [
-              BoxShadow(
-                color: ColorResources.getShadowColor().withOpacity(0.08),
-                blurRadius: 20,
-                offset: const Offset(0, 3),
-              )
-            ]
-        ),
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(Dimensions.RADIUS_SIZE_SMALL), color: Theme.of(context).cardColor, boxShadow: [
+          BoxShadow(
+            color: ColorResources.getShadowColor().withOpacity(0.08),
+            blurRadius: 20,
+            offset: const Offset(0, 3),
+          )
+        ]),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               'gender'.tr,
-              style: rubikMedium.copyWith(
+              style: montserratMedium.copyWith(
                 color: ColorResources.getBlackColor(),
                 fontSize: Dimensions.FONT_SIZE_LARGE,
               ),
@@ -52,8 +48,10 @@ class GenderSection extends StatelessWidget {
                 CustomGenderCard(
                   icon: Images.male,
                   text: 'Male',
-                  color: controller.gender.toLowerCase() == 'male' ? Theme.of(context).secondaryHeaderColor:ColorResources.genderDefaultColor.withOpacity(0.5),
-                  onTap: (){
+                  color: controller.gender.toLowerCase() == 'male'
+                      ? Theme.of(context).secondaryHeaderColor
+                      : ColorResources.genderDefaultColor.withOpacity(0.5),
+                  onTap: () {
                     controller.setGender('Male');
                   },
                 ),
@@ -61,8 +59,10 @@ class GenderSection extends StatelessWidget {
                 CustomGenderCard(
                   icon: Images.female,
                   text: 'Female',
-                  color: controller.gender.toLowerCase() == 'female' ? Theme.of(context).secondaryHeaderColor:ColorResources.genderDefaultColor.withOpacity(0.5),
-                  onTap: (){
+                  color: controller.gender.toLowerCase() == 'female'
+                      ? Theme.of(context).secondaryHeaderColor
+                      : ColorResources.genderDefaultColor.withOpacity(0.5),
+                  onTap: () {
                     controller.setGender('Female');
                   },
                 ),
@@ -70,8 +70,10 @@ class GenderSection extends StatelessWidget {
                 CustomGenderCard(
                   icon: Images.other,
                   text: 'Other',
-                  color: controller.gender.toLowerCase() == 'other' ? Theme.of(context).secondaryHeaderColor:ColorResources.genderDefaultColor.withOpacity(0.5),
-                  onTap: (){
+                  color: controller.gender.toLowerCase() == 'other'
+                      ? Theme.of(context).secondaryHeaderColor
+                      : ColorResources.genderDefaultColor.withOpacity(0.5),
+                  onTap: () {
                     controller.setGender('Other');
                   },
                 ),
@@ -81,6 +83,5 @@ class GenderSection extends StatelessWidget {
         ),
       );
     });
-
   }
 }

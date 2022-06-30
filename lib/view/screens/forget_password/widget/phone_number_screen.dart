@@ -1,4 +1,3 @@
-
 import 'package:phone_number/phone_number.dart';
 import 'package:six_cash/controller/auth_controller.dart';
 import 'package:six_cash/controller/forget_password_controller.dart';
@@ -13,8 +12,9 @@ import 'package:six_cash/view/base/custom_large_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:six_cash/view/base/custom_snackbar.dart';
+
 class FphoneNumberScreen extends StatefulWidget {
-  final String phoneNumber,countryCode;
+  final String phoneNumber, countryCode;
   const FphoneNumberScreen({Key key, this.phoneNumber, this.countryCode}) : super(key: key);
 
   @override
@@ -26,16 +26,14 @@ class _FphoneNumberScreenState extends State<FphoneNumberScreen> {
 
   @override
   void initState() {
-     super.initState();
-     Get.find<ForgetPassController>().setInitialCode(widget.countryCode);
-     phoneNumberController.text = widget.phoneNumber;
-
+    super.initState();
+    Get.find<ForgetPassController>().setInitialCode(widget.countryCode);
+    phoneNumberController.text = widget.phoneNumber;
   }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-
       child: Scaffold(
         appBar: CustomAppbar(
           title: 'forget_password_appbar'.tr,
@@ -58,11 +56,10 @@ class _FphoneNumberScreenState extends State<FphoneNumberScreen> {
                       height: Dimensions.PADDING_SIZE_EXTRA_LARGE,
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: Dimensions.PADDING_SIZE_EXTRA_LARGE),
+                      padding: const EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_EXTRA_LARGE),
                       child: Text(
                         'forget_pass_long_text'.tr,
-                        style: rubikRegular.copyWith(
+                        style: montserratRegular.copyWith(
                           color: ColorResources.getBlackColor(),
                           fontSize: Dimensions.FONT_SIZE_LARGE,
                         ),
@@ -74,8 +71,7 @@ class _FphoneNumberScreenState extends State<FphoneNumberScreen> {
                     ),
                     Container(
                       height: 52,
-                      margin: EdgeInsets.symmetric(
-                          horizontal: Dimensions.PADDING_SIZE_DEFAULT),
+                      margin: EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_DEFAULT),
                       child: Center(
                         child: TextField(
                           controller: phoneNumberController,
@@ -84,16 +80,14 @@ class _FphoneNumberScreenState extends State<FphoneNumberScreen> {
                           decoration: InputDecoration(
                             contentPadding: const EdgeInsets.only(bottom: 5),
                             focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(
-                                  Dimensions.RADIUS_SIZE_SMALL),
+                              borderRadius: BorderRadius.circular(Dimensions.RADIUS_SIZE_SMALL),
                               borderSide: BorderSide(
                                 color: ColorResources.getPrimaryColor(),
                                 width: 2,
                               ),
                             ),
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(
-                                  Dimensions.RADIUS_SIZE_SMALL),
+                              borderRadius: BorderRadius.circular(Dimensions.RADIUS_SIZE_SMALL),
                               borderSide: BorderSide(
                                 color: ColorResources.textFieldBorderColor,
                                 width: 1,
@@ -114,31 +108,32 @@ class _FphoneNumberScreenState extends State<FphoneNumberScreen> {
                 ),
               ),
             ),
-            GetBuilder<AuthController>(builder: (controller){
+            GetBuilder<AuthController>(builder: (controller) {
               return Container(
                 height: 110,
-                child: !controller.isLoading ? CustomLargeButton(
-                  backgroundColor: Theme.of(context).secondaryHeaderColor,
-                  text: 'Send_for_OTP'.tr,
-                  onTap: () async{
-                    String phoneNumber = Get.find<ForgetPassController>().countryCode + phoneNumberController.text;
-                    PhoneNumber number = await PhoneChecker.isNumberValid(phoneNumber);
-                    print('f number-------->: $number');
-                    if(number != null ){
-                      Get.find<ForgetPassController>().sendForOtpResponse(context: context,phoneNumber: phoneNumberController.text);
-                    }
-                    else{
-                      showCustomSnackBar('please_input_your_valid_number'.tr,isError: true);
-                    }
-                  },
-                ) : Center(child: CircularProgressIndicator(color: Theme.of(context).primaryColor),),
+                child: !controller.isLoading
+                    ? CustomLargeButton(
+                        backgroundColor: Theme.of(context).secondaryHeaderColor,
+                        text: 'Send_for_OTP'.tr,
+                        onTap: () async {
+                          String phoneNumber = Get.find<ForgetPassController>().countryCode + phoneNumberController.text;
+                          PhoneNumber number = await PhoneChecker.isNumberValid(phoneNumber);
+                          print('f number-------->: $number');
+                          if (number != null) {
+                            Get.find<ForgetPassController>().sendForOtpResponse(context: context, phoneNumber: phoneNumberController.text);
+                          } else {
+                            showCustomSnackBar('please_input_your_valid_number'.tr, isError: true);
+                          }
+                        },
+                      )
+                    : Center(
+                        child: CircularProgressIndicator(color: Theme.of(context).primaryColor),
+                      ),
               );
             }),
           ],
         ),
       ),
     );
-
   }
-
 }

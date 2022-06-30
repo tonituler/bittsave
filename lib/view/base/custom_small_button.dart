@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:six_cash/util/dimensions.dart';
 import 'package:six_cash/util/styles.dart';
@@ -22,16 +21,15 @@ class CustomSmallButton extends StatelessWidget {
     return TextButton(
       onPressed: onTap,
       style: TextButton.styleFrom(
-        padding: const EdgeInsets.symmetric(
-            vertical: Dimensions.PADDING_SIZE_DEFAULT),
+        padding: const EdgeInsets.symmetric(vertical: Dimensions.PADDING_SIZE_DEFAULT),
         backgroundColor: backgroundColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(Dimensions.RADIUS_SIZE_SMALL),
         ),
       ),
-      child:  Text(
+      child: Text(
         text,
-        style: rubikRegular.copyWith(
+        style: montserratRegular.copyWith(
           color: textColor,
           fontSize: textSize,
         ),

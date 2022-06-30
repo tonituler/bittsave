@@ -9,8 +9,10 @@ import 'package:six_cash/view/screens/transaction_money/widget/preview_contact_t
 class ForPersonWidget extends StatelessWidget {
   // final String phoneNumber;
   final ContactModel contactModel;
-  const ForPersonWidget({Key key, this.contactModel, }) : super(key: key);
-
+  const ForPersonWidget({
+    Key key,
+    this.contactModel,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,8 @@ class ForPersonWidget extends StatelessWidget {
         children: [
           Padding(
             padding: EdgeInsets.only(top: Dimensions.PADDING_SIZE_DEFAULT, left: Dimensions.PADDING_SIZE_LARGE, right: Dimensions.PADDING_SIZE_LARGE),
-            child: Text('for_person'.tr, style: rubikSemiBold.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE, color: ColorResources.getGreyBaseGray1())),
+            child: Text('for_person'.tr,
+                style: montserratSemiBold.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE, color: ColorResources.getGreyBaseGray1())),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -29,10 +32,7 @@ class ForPersonWidget extends StatelessWidget {
               Expanded(child: PreviewContactTile(contactModel: contactModel)),
             ],
           ),
-              
           Container(height: Dimensions.DIVIDER_SIZE_MEDIUM, color: ColorResources.BACKGROUND_COLOR),
-
-
         ],
       ),
     );

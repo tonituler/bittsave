@@ -17,8 +17,7 @@ import 'package:six_cash/view/screens/transaction_money/widget/transaction_money
 
 class FirstCardPortion extends StatelessWidget {
   final ProfileController profileController;
-  const FirstCardPortion({Key key, @required this.profileController})
-      : super(key: key);
+  const FirstCardPortion({Key key, @required this.profileController}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final profileController = Get.find<ProfileController>();
@@ -35,12 +34,9 @@ class FirstCardPortion extends StatelessWidget {
                 Container(
                   width: double.infinity,
                   height: Dimensions.ADD_MONEY_CARD,
-                  margin: const EdgeInsets.symmetric(
-                      horizontal: Dimensions.PADDING_SIZE_LARGE,
-                      vertical: Dimensions.PADDING_SIZE_LARGE),
+                  margin: const EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE, vertical: Dimensions.PADDING_SIZE_LARGE),
                   decoration: BoxDecoration(
-                    borderRadius:
-                        BorderRadius.circular(Dimensions.RADIUS_SIZE_LARGE),
+                    borderRadius: BorderRadius.circular(Dimensions.RADIUS_SIZE_LARGE),
                     color: Theme.of(context).cardColor,
                   ),
                   child: Row(
@@ -56,7 +52,7 @@ class FirstCardPortion extends StatelessWidget {
                           children: [
                             Text(
                               'your_balance'.tr,
-                              style: rubikLight.copyWith(
+                              style: montserratLight.copyWith(
                                 color: ColorResources.getBalanceTextColor(),
                                 fontSize: Dimensions.FONT_SIZE_LARGE,
                               ),
@@ -66,21 +62,15 @@ class FirstCardPortion extends StatelessWidget {
                             ),
                             profileController.userInfo != null
                                 ? Text(
-                                    PriceConverter.balanceWithSymbol(
-                                        balance: profileController
-                                            .userInfo.balance
-                                            .toString()),
-                                    style: rubikMedium.copyWith(
-                                      color:
-                                          ColorResources.getPrimaryTextColor(),
+                                    PriceConverter.balanceWithSymbol(balance: profileController.userInfo.balance.toString()),
+                                    style: montserratMedium.copyWith(
+                                      color: ColorResources.getPrimaryTextColor(),
                                       fontSize: Dimensions.FONT_SIZE_OVER_LARGE,
                                     ),
                                   )
-                                : Text(
-                                    PriceConverter.convertPrice(context, 0.00),
-                                    style: rubikMedium.copyWith(
-                                      color:
-                                          ColorResources.getPrimaryTextColor(),
+                                : Text(PriceConverter.convertPrice(context, 0.00),
+                                    style: montserratMedium.copyWith(
+                                      color: ColorResources.getPrimaryTextColor(),
                                       fontSize: Dimensions.FONT_SIZE_OVER_LARGE,
                                     )),
                           ],
@@ -90,34 +80,25 @@ class FirstCardPortion extends StatelessWidget {
                       Container(
                         height: Dimensions.ADD_MONEY_CARD,
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(
-                              Dimensions.RADIUS_SIZE_LARGE),
+                          borderRadius: BorderRadius.circular(Dimensions.RADIUS_SIZE_LARGE),
                           color: Theme.of(context).secondaryHeaderColor,
                         ),
                         child: CustomInkWell(
-                          onTap: () => Get.to(TransactionMoneyBalanceInput(
-                              transactionType: 'add_money')),
+                          onTap: () => Get.to(TransactionMoneyBalanceInput(transactionType: 'add_money')),
                           radius: Dimensions.RADIUS_SIZE_LARGE,
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: Dimensions.PADDING_SIZE_LARGE),
+                            padding: const EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                SizedBox(
-                                    height: 34,
-                                    child: Image.asset(Images.wolet_logo)),
+                                SizedBox(height: 34, child: Image.asset(Images.wolet_logo)),
                                 SizedBox(
                                   height: Dimensions.PADDING_SIZE_EXTRA_SMALL,
                                 ),
                                 Text(
                                   'add_money'.tr,
-                                  style: rubikRegular.copyWith(
-                                      fontSize: Dimensions.FONT_SIZE_DEFAULT,
-                                      color: Theme.of(context)
-                                          .textTheme
-                                          .bodyText1
-                                          .color),
+                                  style: montserratRegular.copyWith(
+                                      fontSize: Dimensions.FONT_SIZE_DEFAULT, color: Theme.of(context).textTheme.bodyText1.color),
                                 )
                               ],
                             ),
@@ -132,15 +113,13 @@ class FirstCardPortion extends StatelessWidget {
                 SizedBox(
                   height: Dimensions.TRANSACTION_TYPE_CARD_HEIGHT,
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: Dimensions.FONT_SIZE_EXTRA_SMALL),
+                    padding: const EdgeInsets.symmetric(horizontal: Dimensions.FONT_SIZE_EXTRA_SMALL),
                     child: Row(
                       children: [
                         Expanded(
                             child: InkWell(
                                 onTap: () {
-                                  Navigator.push(context,
-                                      MaterialPageRoute(builder: (context) {
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) {
                                     return const TabContrller();
                                   }));
                                 },
@@ -157,28 +136,19 @@ class FirstCardPortion extends StatelessWidget {
                                 image: Images.cashOut_logo,
                                 text: 'cash_out_'.tr,
                                 color: ColorResources.getCashOutCardColor(),
-                                onTap: () => Get.to(() =>
-                                    TransactionMoneyScreen(
-                                        fromEdit: false,
-                                        transactionType: 'cash_out')))),
+                                onTap: () => Get.to(() => TransactionMoneyScreen(fromEdit: false, transactionType: 'cash_out')))),
                         Expanded(
                             child: CustomCard(
                                 image: Images.requestMoneyLogo,
                                 text: 'request_money'.tr,
-                                color:
-                                    ColorResources.getRequestMoneyCardColor(),
-                                onTap: () => Get.to(() =>
-                                    TransactionMoneyScreen(
-                                        fromEdit: false,
-                                        transactionType: 'request_money')))),
+                                color: ColorResources.getRequestMoneyCardColor(),
+                                onTap: () => Get.to(() => TransactionMoneyScreen(fromEdit: false, transactionType: 'request_money')))),
                         Expanded(
                           child: CustomCard(
                               image: Images.request_list_image2,
                               text: 'requests'.tr,
                               color: ColorResources.getReferFriendCardColor(),
-                              onTap: () => Get.toNamed(
-                                  RouteHelper.getRequestedMoneyRoute(
-                                      from: 'other'))),
+                              onTap: () => Get.toNamed(RouteHelper.getRequestedMoneyRoute(from: 'other'))),
                         ),
                       ],
                     ),

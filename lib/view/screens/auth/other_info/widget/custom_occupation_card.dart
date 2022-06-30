@@ -46,7 +46,7 @@ class CustomOccupationrCard extends StatelessWidget {
               Text(
                 text,
                 textAlign: TextAlign.center,
-                style: rubikRegular.copyWith(
+                style: montserratRegular.copyWith(
                   color: ColorResources.getBlackColor(),
                   fontSize: Dimensions.FONT_SIZE_DEFAULT,
                 ),
@@ -60,12 +60,17 @@ class CustomOccupationrCard extends StatelessWidget {
           child: Visibility(
             visible: check,
             child: Container(
-              height: 16,width: 16,
+              height: 16,
+              width: 16,
               decoration: BoxDecoration(
                 color: ColorResources.getPrimaryColor(),
                 shape: BoxShape.circle,
               ),
-              child: Icon(Icons.check,color: Colors.white,size: 12,),
+              child: Icon(
+                Icons.check,
+                color: Colors.white,
+                size: 12,
+              ),
             ),
           ),
         ),

@@ -9,7 +9,7 @@ import 'package:six_cash/view/base/custom_ink_well.dart';
 
 class ScanButton extends StatelessWidget {
   final VoidCallback onTap;
-  const ScanButton({Key key,@required this.onTap}) : super(key: key);
+  const ScanButton({Key key, @required this.onTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,23 +23,26 @@ class ScanButton extends StatelessWidget {
         onTap: onTap,
         radius: Dimensions.RADIUS_SIZE_OVER_LARGE,
         child: DottedBorder(
-          strokeWidth: 1.0,
-          color: ColorResources.getPrimaryColor(),
-          borderType: BorderType.RRect,
-          radius: Radius.circular(Dimensions.RADIUS_SIZE_OVER_LARGE),
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_SMALL, vertical: Dimensions.PADDING_SIZE_SMALL),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Image.asset(Images.qrCode, width: Dimensions.PADDING_SIZE_DEFAULT),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_SMALL),
-                  child: Text('scan_qr_code'.tr, style: rubikRegular.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE, color: ColorResources.blackColor),),
-                )
-              ],
-            ),
-          )),
+            strokeWidth: 1.0,
+            color: ColorResources.getPrimaryColor(),
+            borderType: BorderType.RRect,
+            radius: Radius.circular(Dimensions.RADIUS_SIZE_OVER_LARGE),
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_SMALL, vertical: Dimensions.PADDING_SIZE_SMALL),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Image.asset(Images.qrCode, width: Dimensions.PADDING_SIZE_DEFAULT),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_SMALL),
+                    child: Text(
+                      'scan_qr_code'.tr,
+                      style: montserratRegular.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE, color: ColorResources.blackColor),
+                    ),
+                  )
+                ],
+              ),
+            )),
       ),
     );
   }

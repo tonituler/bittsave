@@ -1,23 +1,21 @@
 import 'package:flutter/material.dart';
 
-const rubikLight = TextStyle(
+const montserratLight = TextStyle(
   fontFamily: 'Montserrat',
   fontWeight: FontWeight.w300,
 );
 
-const rubikRegular = TextStyle(
+const montserratRegular = TextStyle(
   fontFamily: 'Montserrat',
   fontWeight: FontWeight.w400,
 );
 
-const rubikMedium = TextStyle(
+const montserratMedium = TextStyle(
   fontFamily: 'Montserrat',
   fontWeight: FontWeight.w500,
 );
 
-const rubikSemiBold = TextStyle(
+const montserratSemiBold = TextStyle(
   fontFamily: 'Montserrat',
   fontWeight: FontWeight.w600,
 );
-
-

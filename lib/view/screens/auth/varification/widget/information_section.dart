@@ -1,4 +1,3 @@
-
 import 'package:six_cash/controller/create_account_controller.dart';
 import 'package:six_cash/controller/varification_controller.dart';
 import 'package:six_cash/util/color_resources.dart';
@@ -22,11 +21,10 @@ class InformationSection extends StatelessWidget {
           width: Dimensions.BIG_LOGO,
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(
-              vertical: Dimensions.PADDING_SIZE_LARGE),
+          padding: const EdgeInsets.symmetric(vertical: Dimensions.PADDING_SIZE_LARGE),
           child: Text(
             'phone_number_verification'.tr,
-            style: rubikMedium.copyWith(
+            style: montserratMedium.copyWith(
               color: ColorResources.getBlackColor(),
               fontSize: Dimensions.FONT_SIZE_EXTRA_OVER_LARGE,
             ),
@@ -34,11 +32,10 @@ class InformationSection extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(
-              horizontal: Dimensions.PADDING_SIZE_EXTRA_OVER_LARGE),
+          padding: const EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_EXTRA_OVER_LARGE),
           child: Text(
             'we_have_send_the_code_verification_to_your_mobile_number'.tr,
-            style: rubikLight.copyWith(
+            style: montserratLight.copyWith(
               color: ColorResources.getBlackColor(),
               fontSize: Dimensions.FONT_SIZE_LARGE,
             ),
@@ -48,43 +45,43 @@ class InformationSection extends StatelessWidget {
         const SizedBox(
           height: Dimensions.PADDING_SIZE_EXTRA_EXTRA_LARGE,
         ),
-        GetBuilder<CreateAccountController>(builder: (controller)=>Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              controller.phoneNumber,
-              style: rubikRegular.copyWith(
-                color: ColorResources.getBlackColor(),
-                fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE,
-              ),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(
-              width: Dimensions.PADDING_SIZE_EXTRA_SMALL,
-            ),
-            InkWell(
-              // onTap: ()=> Get.back(),
-              onTap: (){
-                Get.back();
-                Get.find<VarificationController>().cancelTimer();
-                Get.find<VarificationController>().setVisibility(false);
-
-
-                // Get.offNamed(RouteHelper.getRegistrationRoute(phoneNumber: controller.phoneNumber.substring(4)));
-
-              },
-              child: Text(
-                'change_number'.tr,
-                style: rubikRegular.copyWith(
-                  decoration: TextDecoration.underline,
+        GetBuilder<CreateAccountController>(
+          builder: (controller) => Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                controller.phoneNumber,
+                style: montserratRegular.copyWith(
                   color: ColorResources.getBlackColor(),
-                  fontSize: Dimensions.FONT_SIZE_DEFAULT,
+                  fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE,
                 ),
                 textAlign: TextAlign.center,
               ),
-            ),
-          ],
-        ),),
+              const SizedBox(
+                width: Dimensions.PADDING_SIZE_EXTRA_SMALL,
+              ),
+              InkWell(
+                // onTap: ()=> Get.back(),
+                onTap: () {
+                  Get.back();
+                  Get.find<VarificationController>().cancelTimer();
+                  Get.find<VarificationController>().setVisibility(false);
+
+                  // Get.offNamed(RouteHelper.getRegistrationRoute(phoneNumber: controller.phoneNumber.substring(4)));
+                },
+                child: Text(
+                  'change_number'.tr,
+                  style: montserratRegular.copyWith(
+                    decoration: TextDecoration.underline,
+                    color: ColorResources.getBlackColor(),
+                    fontSize: Dimensions.FONT_SIZE_DEFAULT,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ],
+          ),
+        ),
       ],
     );
   }

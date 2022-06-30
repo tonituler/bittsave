@@ -18,12 +18,11 @@ class ProfileHeader extends StatelessWidget {
           color: Theme.of(context).canvasColor,
           width: double.infinity,
           child: Padding(
-            padding: const EdgeInsets.only(left: Dimensions.PADDING_SIZE_DEFAULT, top: 30.0, bottom: 8.0,right: Dimensions.PADDING_SIZE_DEFAULT),
-            child: Text(title,style: rubikMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE, color: ColorResources.getGreyBaseGray1())),
+            padding: const EdgeInsets.only(left: Dimensions.PADDING_SIZE_DEFAULT, top: 30.0, bottom: 8.0, right: Dimensions.PADDING_SIZE_DEFAULT),
+            child: Text(title, style: montserratMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE, color: ColorResources.getGreyBaseGray1())),
           ),
         ),
-        Divider(height: Dimensions.DIVIDER_SIZE_SMALL,color: ColorResources.getDividerColor()),
-
+        Divider(height: Dimensions.DIVIDER_SIZE_SMALL, color: ColorResources.getDividerColor()),
       ],
     );
   }

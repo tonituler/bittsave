@@ -18,11 +18,10 @@ class FinformationSection extends StatelessWidget {
           width: 70,
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(
-              vertical: Dimensions.PADDING_SIZE_LARGE),
+          padding: const EdgeInsets.symmetric(vertical: Dimensions.PADDING_SIZE_LARGE),
           child: Text(
             'Phone_Number_Verification'.tr,
-            style: rubikMedium.copyWith(
+            style: montserratMedium.copyWith(
               color: ColorResources.getBlackColor(),
               fontSize: Dimensions.FONT_SIZE_EXTRA_OVER_LARGE,
             ),
@@ -30,11 +29,10 @@ class FinformationSection extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(
-              horizontal: Dimensions.PADDING_SIZE_EXTRA_OVER_LARGE),
+          padding: const EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_EXTRA_OVER_LARGE),
           child: Text(
             'verification_long_text'.tr,
-            style: rubikLight.copyWith(
+            style: montserratLight.copyWith(
               color: ColorResources.getBlackColor(),
               fontSize: Dimensions.FONT_SIZE_LARGE,
             ),
@@ -47,18 +45,20 @@ class FinformationSection extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            phoneNumber != null ? Text(
-              phoneNumber,
-              style: rubikRegular.copyWith(
-                color: ColorResources.getBlackColor(),
-                fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE,
-              ),
-              textAlign: TextAlign.center,
-            ) : 'No number',
-           /*GetBuilder<ForgetPassController>(builder: (controller) =>  Text(
+            phoneNumber != null
+                ? Text(
+                    phoneNumber,
+                    style: montserratRegular.copyWith(
+                      color: ColorResources.getBlackColor(),
+                      fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE,
+                    ),
+                    textAlign: TextAlign.center,
+                  )
+                : 'No number',
+            /*GetBuilder<ForgetPassController>(builder: (controller) =>  Text(
              controller.countryCode + controller.phoneNumberController.text,
              // '09886755',
-             style: rubikRegular.copyWith(
+             style: montserratRegular.copyWith(
                color: ColorResources.getBlackColor(),
                fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE,
              ),
@@ -68,12 +68,12 @@ class FinformationSection extends StatelessWidget {
               width: Dimensions.PADDING_SIZE_EXTRA_SMALL,
             ),
             InkWell(
-              onTap: (){
+              onTap: () {
                 Get.back();
               },
               child: Text(
                 '(Change Number)',
-                style: rubikRegular.copyWith(
+                style: montserratRegular.copyWith(
                   color: ColorResources.getBlackColor(),
                   fontSize: Dimensions.FONT_SIZE_DEFAULT,
                 ),

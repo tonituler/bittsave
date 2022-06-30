@@ -2,12 +2,13 @@ import 'package:six_cash/util/color_resources.dart';
 import 'package:six_cash/util/dimensions.dart';
 import 'package:six_cash/util/styles.dart';
 import 'package:flutter/material.dart';
+
 class EditCustomTextField extends StatefulWidget {
   final TextEditingController controller;
   final TextInputType textInputType;
   final String hint;
   final String levelText;
-  const EditCustomTextField({Key key,this.controller,this.textInputType,this.hint,this.levelText}) : super(key: key);
+  const EditCustomTextField({Key key, this.controller, this.textInputType, this.hint, this.levelText}) : super(key: key);
 
   @override
   State<EditCustomTextField> createState() => _EditCustomTextFieldState();
@@ -21,10 +22,12 @@ class _EditCustomTextFieldState extends State<EditCustomTextField> {
       children: [
         Padding(
           padding: const EdgeInsets.only(left: Dimensions.PADDING_SIZE_EXTRA_SMALL),
-          child: Text(widget.levelText,
-          style: rubikMedium.copyWith(
-            fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE,
-          ),),
+          child: Text(
+            widget.levelText,
+            style: montserratMedium.copyWith(
+              fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE,
+            ),
+          ),
         ),
         const SizedBox(
           height: Dimensions.PADDING_SIZE_SMALL,
@@ -34,12 +37,11 @@ class _EditCustomTextFieldState extends State<EditCustomTextField> {
           keyboardType: widget.textInputType,
           textCapitalization: TextCapitalization.words,
           cursorColor: ColorResources.getPrimaryColor(),
-          style: rubikRegular.copyWith(
+          style: montserratRegular.copyWith(
             fontSize: Dimensions.FONT_SIZE_DEFAULT,
             // letterSpacing: 1.0,
           ),
           decoration: InputDecoration(
-
             contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 22),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(Dimensions.RADIUS_SIZE_SMALL),
@@ -56,7 +58,7 @@ class _EditCustomTextFieldState extends State<EditCustomTextField> {
               ),
             ),
             hintText: widget.hint,
-            hintStyle: rubikRegular.copyWith(
+            hintStyle: montserratRegular.copyWith(
               fontSize: 12,
               letterSpacing: 1.0,
             ),

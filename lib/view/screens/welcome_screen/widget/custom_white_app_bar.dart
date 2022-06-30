@@ -3,8 +3,8 @@ import 'package:six_cash/util/dimensions.dart';
 import 'package:six_cash/util/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
-class CustomWhiteAppbar extends StatelessWidget implements PreferredSizeWidget {
 
+class CustomWhiteAppbar extends StatelessWidget implements PreferredSizeWidget {
   final Function onTap;
   const CustomWhiteAppbar({this.onTap});
   @override
@@ -13,28 +13,38 @@ class CustomWhiteAppbar extends StatelessWidget implements PreferredSizeWidget {
       color: ColorResources.getWhiteColor(),
       padding: const EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE),
       child: Padding(
-        padding: const EdgeInsets.only(top:Dimensions.PADDING_SIZE_EXTRA_EXTRA_LARGE, bottom: Dimensions.PADDING_SIZE_LARGE),
+        padding: const EdgeInsets.only(top: Dimensions.PADDING_SIZE_EXTRA_EXTRA_LARGE, bottom: Dimensions.PADDING_SIZE_LARGE),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             InkWell(
               onTap: onTap,
               child: Container(
-                height: 40.0, width: 40.0,
+                height: 40.0,
+                width: 40.0,
                 decoration: BoxDecoration(
-                  border: Border.all(color: ColorResources.INNER_BORDER_COLOR,width: 0.5),
+                  border: Border.all(color: ColorResources.INNER_BORDER_COLOR, width: 0.5),
                   borderRadius: BorderRadius.circular(Dimensions.RADIUS_SIZE_SMALL),
                 ),
-                child: Icon(Icons.arrow_back_ios_new,size: 12.0, color: ColorResources.getPrimaryColor(),),
+                child: Icon(
+                  Icons.arrow_back_ios_new,
+                  size: 12.0,
+                  color: ColorResources.getPrimaryColor(),
+                ),
               ),
             ),
-            // Text(title,style: rubikMedium.copyWith(fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE, color: ColorResources.COLOR_WHITE) ,),
+            // Text(title,style: montserratMedium.copyWith(fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE, color: ColorResources.COLOR_WHITE) ,),
             Container(
-              height: 24.0, width: 62.0, alignment: Alignment.center,
+              height: 24.0,
+              width: 62.0,
+              alignment: Alignment.center,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(Dimensions.RADIUS_SIZE_LARGE), color: Theme.of(context).secondaryHeaderColor,
+                borderRadius: BorderRadius.circular(Dimensions.RADIUS_SIZE_LARGE),
+                color: Theme.of(context).secondaryHeaderColor,
               ),
-              child: Text('language'.tr,style: rubikRegular.copyWith(fontSize: Dimensions.FONT_SIZE_DEFAULT, color: ColorResources.COLOR_BLACK)),),
+              child:
+                  Text('language'.tr, style: montserratRegular.copyWith(fontSize: Dimensions.FONT_SIZE_DEFAULT, color: ColorResources.COLOR_BLACK)),
+            ),
           ],
         ),
       ),

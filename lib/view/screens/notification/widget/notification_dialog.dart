@@ -17,7 +17,6 @@ class NotificationDialog extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-
           Align(
             alignment: Alignment.centerRight,
             child: IconButton(
@@ -25,9 +24,9 @@ class NotificationDialog extends StatelessWidget {
               onPressed: () => Navigator.of(context).pop(),
             ),
           ),
-
           Container(
-            height: MediaQuery.of(context).size.width-130, width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.width - 130,
+            width: MediaQuery.of(context).size.width,
             margin: EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE),
             decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: Theme.of(context).primaryColor.withOpacity(0.20)),
             child: ClipRRect(
@@ -35,24 +34,27 @@ class NotificationDialog extends StatelessWidget {
               child: FadeInImage.assetNetwork(
                 placeholder: Images.placeholder,
                 image: '${Get.find<SplashController>().configModel.baseUrls.notificationImageUrl}/${notificationModel.image}',
-                height: MediaQuery.of(context).size.width-130, width: MediaQuery.of(context).size.width, fit: BoxFit.cover,
+                height: MediaQuery.of(context).size.width - 130,
+                width: MediaQuery.of(context).size.width,
+                fit: BoxFit.cover,
                 imageErrorBuilder: (c, o, s) => Image.asset(
-                  Images.placeholder, height: MediaQuery.of(context).size.width-130,
-                  width: MediaQuery.of(context).size.width, fit: BoxFit.cover,
+                  Images.placeholder,
+                  height: MediaQuery.of(context).size.width - 130,
+                  width: MediaQuery.of(context).size.width,
+                  fit: BoxFit.cover,
                 ),
               ),
             ),
           ),
           SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
-
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE),
-            child: Text(notificationModel.title, textAlign: TextAlign.center, style: rubikMedium.copyWith(color: Theme.of(context).primaryColor, fontSize: Dimensions.FONT_SIZE_LARGE))),
-
+              padding: EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE),
+              child: Text(notificationModel.title,
+                  textAlign: TextAlign.center,
+                  style: montserratMedium.copyWith(color: Theme.of(context).primaryColor, fontSize: Dimensions.FONT_SIZE_LARGE))),
           Padding(
-            padding: EdgeInsets.fromLTRB(20, 10, 20, 20),
-            child: Text(notificationModel.description, textAlign: TextAlign.center, style: rubikRegular)),
-
+              padding: EdgeInsets.fromLTRB(20, 10, 20, 20),
+              child: Text(notificationModel.description, textAlign: TextAlign.center, style: montserratRegular)),
         ],
       ),
     );

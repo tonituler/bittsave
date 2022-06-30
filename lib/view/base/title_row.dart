@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:six_cash/util/color_resources.dart';
@@ -11,7 +10,7 @@ class TitleRow extends StatelessWidget {
   final Function onTap;
   final Duration eventDuration;
   final bool isDetailsPage;
-  TitleRow({@required this.title,this.icon, this.onTap, this.eventDuration, this.isDetailsPage});
+  TitleRow({@required this.title, this.icon, this.onTap, this.eventDuration, this.isDetailsPage});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +23,7 @@ class TitleRow extends StatelessWidget {
     }
 
     return Row(children: [
-      Text(title, style: rubikRegular.copyWith(fontSize: Dimensions.FONT_SIZE_DEFAULT,color: ColorResources.getPrimaryTextColor())),
+      Text(title, style: montserratRegular.copyWith(fontSize: Dimensions.FONT_SIZE_DEFAULT, color: ColorResources.getPrimaryTextColor())),
       eventDuration == null
           ? Expanded(child: SizedBox.shrink())
           : Expanded(
@@ -38,21 +37,22 @@ class TitleRow extends StatelessWidget {
               Text(':', style: TextStyle(color: Theme.of(context).primaryColor)),
               TimerBox(time: seconds, isBorder: true),
             ])),
-
       onTap != null
           ? InkWell(
               onTap: onTap,
               child: Row(children: [
                 isDetailsPage == null
                     ? Text('VIEW_ALL'.tr,
-                        style: rubikRegular.copyWith(
+                        style: montserratRegular.copyWith(
                           color: ColorResources.getPrimaryTextColor(),
                           fontSize: Dimensions.FONT_SIZE_DEFAULT,
                         ))
                     : SizedBox.shrink(),
                 Padding(
-                  padding: EdgeInsets.only(left : Dimensions.PADDING_SIZE_SMALL,top:Dimensions.PADDING_SIZE_SMALL,bottom: Dimensions.PADDING_SIZE_SMALL),
-                  child: Icon(Icons.arrow_forward_ios,
+                  padding:
+                      EdgeInsets.only(left: Dimensions.PADDING_SIZE_SMALL, top: Dimensions.PADDING_SIZE_SMALL, bottom: Dimensions.PADDING_SIZE_SMALL),
+                  child: Icon(
+                    Icons.arrow_forward_ios,
                     color: isDetailsPage == null ? ColorResources.getPrimaryTextColor() : Theme.of(context).hintColor,
                     size: Dimensions.FONT_SIZE_SMALL,
                   ),
@@ -81,8 +81,9 @@ class TimerBox extends StatelessWidget {
         borderRadius: BorderRadius.circular(3),
       ),
       child: Center(
-        child: Text(time < 10 ? '0$time' : time.toString(),
-          style: rubikSemiBold.copyWith(
+        child: Text(
+          time < 10 ? '0$time' : time.toString(),
+          style: montserratSemiBold.copyWith(
             color: isBorder ? ColorResources.getPrimaryColor() : Theme.of(context).highlightColor,
             fontSize: Dimensions.FONT_SIZE_SMALL,
           ),

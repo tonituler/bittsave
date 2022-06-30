@@ -15,7 +15,16 @@ class CustomDialog extends StatelessWidget {
   final String onTapTrueText;
   final Function onTapFalse;
   final String onTapFalseText;
-  CustomDialog({this.isFailed = false, this.rotateAngle = 0, @required this.icon, @required this.title, @required this.description,@required this.onTapFalse,@required this.onTapTrue, this.onTapTrueText, this.onTapFalseText});
+  CustomDialog(
+      {this.isFailed = false,
+      this.rotateAngle = 0,
+      @required this.icon,
+      @required this.title,
+      @required this.description,
+      @required this.onTapFalse,
+      @required this.onTapTrue,
+      this.onTapTrueText,
+      this.onTapFalseText});
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +33,10 @@ class CustomDialog extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.all(Dimensions.PADDING_SIZE_LARGE),
         child: Stack(clipBehavior: Clip.none, children: [
-
           Positioned(
-            left: 0, right: 0, top: -55,
+            left: 0,
+            right: 0,
+            top: -55,
             child: Container(
               height: 80,
               width: 80,
@@ -35,29 +45,32 @@ class CustomDialog extends StatelessWidget {
               child: Transform.rotate(angle: rotateAngle, child: Icon(icon, size: 40, color: Colors.white)),
             ),
           ),
-
           Padding(
             padding: EdgeInsets.only(top: 40),
             child: Column(mainAxisSize: MainAxisSize.min, children: [
-              Text(title, style: rubikRegular.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
+              Text(title, style: montserratRegular.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
               SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-              Text(description, textAlign: TextAlign.center, style: rubikRegular),
+              Text(description, textAlign: TextAlign.center, style: montserratRegular),
               SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 0),
                 child: Row(
                   children: [
-
-                    Expanded(child: CustomButton(buttonText: onTapFalseText,color: ColorResources.getRedColor(), onTap: onTapFalse)),
-                    SizedBox(width: 10,),
-
-                    Expanded(child: CustomButton(buttonText: onTapTrueText, onTap: onTapTrue,color: ColorResources.getAcceptBtn(),)),
+                    Expanded(child: CustomButton(buttonText: onTapFalseText, color: ColorResources.getRedColor(), onTap: onTapFalse)),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Expanded(
+                        child: CustomButton(
+                      buttonText: onTapTrueText,
+                      onTap: onTapTrue,
+                      color: ColorResources.getAcceptBtn(),
+                    )),
                   ],
                 ),
               ),
             ]),
           ),
-
         ]),
       ),
     );

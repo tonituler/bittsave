@@ -23,24 +23,31 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 CustomInkWell(
-                  onTap: onTap == null ? () {
-                    Get.back();
-                  } : onTap,
+                  onTap: onTap == null
+                      ? () {
+                          Get.back();
+                        }
+                      : onTap,
                   radius: Dimensions.RADIUS_SIZE_SMALL,
                   child: Container(
-                    height: 40,width: 40,
+                    height: 40, width: 40,
                     // padding: const EdgeInsets.all(Dimensions.PADDING_SIZE_DEFAULT),
                     decoration: BoxDecoration(
                       border: Border.all(color: ColorResources.INNER_BORDER_COLOR, width: 0.5),
                       borderRadius: BorderRadius.circular(Dimensions.RADIUS_SIZE_SMALL),
                     ),
                     child: Center(
-                      child: Icon(Icons.arrow_back_ios_new, size: Dimensions.ARROW_ICON_SIZE, color: ColorResources.COLOR_WHITE,
+                      child: Icon(
+                        Icons.arrow_back_ios_new,
+                        size: Dimensions.ARROW_ICON_SIZE,
+                        color: ColorResources.COLOR_WHITE,
                       ),
                     ),
                   ),
                 ),
-                Text(title, style: rubikMedium.copyWith(fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE, color: ColorResources.COLOR_WHITE),
+                Text(
+                  title,
+                  style: montserratMedium.copyWith(fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE, color: ColorResources.COLOR_WHITE),
                 ),
                 SizedBox(),
               ],

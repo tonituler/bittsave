@@ -16,16 +16,13 @@ class TextSection extends StatelessWidget {
         horizontal: Dimensions.PADDING_SIZE_DEFAULT,
         vertical: Dimensions.PADDING_SIZE_SMALL,
       ),
-      decoration: BoxDecoration(
-          color: ColorResources.getWhiteColor(),
-          borderRadius: BorderRadius.circular(
-              Dimensions.RADIUS_SIZE_VERY_SMALL)),
+      decoration: BoxDecoration(color: ColorResources.getWhiteColor(), borderRadius: BorderRadius.circular(Dimensions.RADIUS_SIZE_VERY_SMALL)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             'take_a_selfie'.tr,
-            style: rubikRegular.copyWith(
+            style: montserratRegular.copyWith(
               color: ColorResources.getPrimaryColor(),
               fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE,
             ),
@@ -35,7 +32,7 @@ class TextSection extends StatelessWidget {
           ),
           Text(
             'place_your_face_inside_the_frame_camera_will_auto_capture_your_face_upon_eye_blinking'.tr,
-            style: rubikLight.copyWith(
+            style: montserratLight.copyWith(
               color: ColorResources.getOnboardGreyColor(),
               fontSize: Dimensions.FONT_SIZE_DEFAULT,
             ),

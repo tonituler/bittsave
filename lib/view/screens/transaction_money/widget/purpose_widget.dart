@@ -24,34 +24,44 @@ class PurposeWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE,vertical: Dimensions.PADDING_SIZE_SMALL),
-          child: Text('select_your_purpose'.tr,style: rubikRegular.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE),),
-        ),
-    GetBuilder<TransactionMoneyController>(
-      builder: (controller) {
-        return controller.isLoading ? CustomLoader(color: Theme.of(context).primaryColor) : Container(
-          height: 150,padding: localizationController.isLtr ?  EdgeInsets.only(left: Dimensions.PADDING_SIZE_DEFAULT) : EdgeInsets.only(right: Dimensions.PADDING_SIZE_DEFAULT),
-          child: ListView.builder(
-            physics: BouncingScrollPhysics(),
-            itemCount: controller.purposeList.length,scrollDirection: Axis.horizontal,
-            itemBuilder: (context, index) {
-              return Stack(
-                children: [
-                  PurposeItem(
-                    onTap: ()=> controller.itemSelect(index: index),
-                      image: controller.purposeList[index].logo, title: controller.purposeList[index].title,color: HexColor(controller.purposeList[index].color)),
-                  Visibility(
-                    visible: controller.selectedItem == index ? true : false,
-                    child: Positioned(top: Dimensions.PADDING_SIZE_DEFAULT, right: Dimensions.PADDING_SIZE_DEFAULT, child: Image.asset(Images.on_select, height: 12,width: 12)))
-                ],
-              );},
+          padding: const EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE, vertical: Dimensions.PADDING_SIZE_SMALL),
+          child: Text(
+            'select_your_purpose'.tr,
+            style: montserratRegular.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE),
           ),
-        );
-      }
-    )
-
-
-
+        ),
+        GetBuilder<TransactionMoneyController>(builder: (controller) {
+          return controller.isLoading
+              ? CustomLoader(color: Theme.of(context).primaryColor)
+              : Container(
+                  height: 150,
+                  padding: localizationController.isLtr
+                      ? EdgeInsets.only(left: Dimensions.PADDING_SIZE_DEFAULT)
+                      : EdgeInsets.only(right: Dimensions.PADDING_SIZE_DEFAULT),
+                  child: ListView.builder(
+                    physics: BouncingScrollPhysics(),
+                    itemCount: controller.purposeList.length,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
+                      return Stack(
+                        children: [
+                          PurposeItem(
+                              onTap: () => controller.itemSelect(index: index),
+                              image: controller.purposeList[index].logo,
+                              title: controller.purposeList[index].title,
+                              color: HexColor(controller.purposeList[index].color)),
+                          Visibility(
+                              visible: controller.selectedItem == index ? true : false,
+                              child: Positioned(
+                                  top: Dimensions.PADDING_SIZE_DEFAULT,
+                                  right: Dimensions.PADDING_SIZE_DEFAULT,
+                                  child: Image.asset(Images.on_select, height: 12, width: 12)))
+                        ],
+                      );
+                    },
+                  ),
+                );
+        })
       ],
     );
   }

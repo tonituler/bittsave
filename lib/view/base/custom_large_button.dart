@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:six_cash/util/color_resources.dart';
 import 'package:six_cash/util/dimensions.dart';
@@ -19,25 +18,24 @@ class CustomLargeButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:  EdgeInsets.only(
-          left: Dimensions.PADDING_SIZE_EXTRA_EXTRA_LARGE,
-          right: Dimensions.PADDING_SIZE_EXTRA_EXTRA_LARGE,
-          bottom: bottomPadding,
+      padding: EdgeInsets.only(
+        left: Dimensions.PADDING_SIZE_EXTRA_EXTRA_LARGE,
+        right: Dimensions.PADDING_SIZE_EXTRA_EXTRA_LARGE,
+        bottom: bottomPadding,
       ),
       child: TextButton(
         onPressed: onTap,
         style: TextButton.styleFrom(
           minimumSize: MediaQuery.of(context).size,
-          padding: const EdgeInsets.symmetric(
-              vertical: Dimensions.PADDING_SIZE_DEFAULT),
+          padding: const EdgeInsets.symmetric(vertical: Dimensions.PADDING_SIZE_DEFAULT),
           backgroundColor: backgroundColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(Dimensions.RADIUS_SIZE_SMALL),
           ),
         ),
-        child:  Text(
+        child: Text(
           text,
-          style: rubikRegular.copyWith(
+          style: montserratRegular.copyWith(
             color: ColorResources.getBlackColor(),
             fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE,
           ),

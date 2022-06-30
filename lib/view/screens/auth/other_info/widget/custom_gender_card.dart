@@ -7,7 +7,7 @@ class CustomGenderCard extends StatelessWidget {
   final String icon, text;
   final Color color;
   final Function onTap;
-  CustomGenderCard({this.icon, this.text, this.color,this.onTap});
+  CustomGenderCard({this.icon, this.text, this.color, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,7 @@ class CustomGenderCard extends StatelessWidget {
             ),
             Text(
               text,
-              style: rubikRegular.copyWith(
+              style: montserratRegular.copyWith(
                 color: ColorResources.getBlackColor(),
                 fontSize: Dimensions.FONT_SIZE_DEFAULT,
               ),

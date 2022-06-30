@@ -1,9 +1,9 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:six_cash/util/color_resources.dart';
 import 'package:six_cash/util/dimensions.dart';
 import 'package:six_cash/util/styles.dart';
+
 class AppbarHomeElement extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   const AppbarHomeElement({@required this.title});
@@ -18,11 +18,15 @@ class AppbarHomeElement extends StatelessWidget implements PreferredSizeWidget {
         children: [
           //SizedBox(height: 74.0),
 
-          Text(title, style: rubikSemiBold.copyWith(fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE,color: ColorResources.whiteColor),),
-          SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT,)
+          Text(
+            title,
+            style: montserratSemiBold.copyWith(fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE, color: ColorResources.whiteColor),
+          ),
+          SizedBox(
+            height: Dimensions.PADDING_SIZE_DEFAULT,
+          )
         ],
       ),
-      
     );
   }
 

@@ -8,8 +8,8 @@ import 'package:get/get.dart';
 
 class PasswordFieldsSection extends StatelessWidget {
   final TextEditingController passController, confirmPassController;
-   PasswordFieldsSection({Key key,@required this.passController,@required this.confirmPassController}) : super(key: key);
-   final FocusNode confirmFocus = FocusNode();
+  PasswordFieldsSection({Key key, @required this.passController, @required this.confirmPassController}) : super(key: key);
+  final FocusNode confirmFocus = FocusNode();
 
   @override
   Widget build(BuildContext context) {
@@ -31,12 +31,11 @@ class PasswordFieldsSection extends StatelessWidget {
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: Dimensions.RADIUS_SIZE_EXTRA_EXTRA_LARGE),
+                padding: const EdgeInsets.symmetric(horizontal: Dimensions.RADIUS_SIZE_EXTRA_EXTRA_LARGE),
                 child: Text(
                   'set_your_4_digit_PIN_for_future_login'.tr,
                   textAlign: TextAlign.center,
-                  style: rubikMedium.copyWith(
+                  style: montserratMedium.copyWith(
                     color: ColorResources.getPrimaryTextColor(),
                     fontSize: Dimensions.FONT_SIZE_EXTRA_OVER_LARGE,
                   ),
@@ -53,7 +52,6 @@ class PasswordFieldsSection extends StatelessWidget {
                 isIcon: false,
                 hint: 'set_your_PIN'.tr,
                 letterSpacing: 10.0,
-
               ),
               const SizedBox(
                 height: Dimensions.PADDING_SIZE_EXTRA_LARGE,
@@ -66,9 +64,7 @@ class PasswordFieldsSection extends StatelessWidget {
                 isPassword: true,
                 isIcon: false,
                 letterSpacing: 10.0,
-
               ),
-              
             ],
           ),
         ),

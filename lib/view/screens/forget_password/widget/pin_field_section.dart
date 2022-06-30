@@ -5,10 +5,11 @@ import 'package:six_cash/util/styles.dart';
 import 'package:six_cash/view/base/custom_password_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 class PinFieldSection extends StatefulWidget {
   final TextEditingController newPassController, confirmPassController;
 
-  const PinFieldSection({Key key,@required this.newPassController,@required this.confirmPassController}) : super(key: key);
+  const PinFieldSection({Key key, @required this.newPassController, @required this.confirmPassController}) : super(key: key);
 
   @override
   State<PinFieldSection> createState() => _PinFieldSectionState();
@@ -17,12 +18,11 @@ class PinFieldSection extends StatefulWidget {
 class _PinFieldSectionState extends State<PinFieldSection> {
   final FocusNode confirmFocus = FocusNode();
 
-   @override
+  @override
   Widget build(BuildContext context) {
-    return GetBuilder<ForgetPassController>(builder: (controller){
+    return GetBuilder<ForgetPassController>(builder: (controller) {
       return Container(
-        margin: const EdgeInsets.only(
-        ),
+        margin: const EdgeInsets.only(),
         padding: const EdgeInsets.symmetric(
           horizontal: Dimensions.PADDING_SIZE_EXTRA_EXTRA_LARGE,
           vertical: Dimensions.PADDING_SIZE_EXTRA_EXTRA_LARGE,
@@ -39,12 +39,11 @@ class _PinFieldSectionState extends State<PinFieldSection> {
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: Dimensions.RADIUS_SIZE_EXTRA_EXTRA_LARGE),
+                padding: const EdgeInsets.symmetric(horizontal: Dimensions.RADIUS_SIZE_EXTRA_EXTRA_LARGE),
                 child: Text(
                   'Set_new_4_digit_pin'.tr,
                   textAlign: TextAlign.center,
-                  style: rubikMedium.copyWith(
+                  style: montserratMedium.copyWith(
                     color: ColorResources.getPrimaryTextColor(),
                     fontSize: Dimensions.FONT_SIZE_EXTRA_OVER_LARGE,
                   ),
@@ -60,7 +59,6 @@ class _PinFieldSectionState extends State<PinFieldSection> {
                 isShowSuffixIcon: true,
                 isIcon: false,
                 hint: '＊＊＊＊',
-
                 letterSpacing: 10.0,
                 fontSize: 24.0,
               ),
@@ -77,7 +75,6 @@ class _PinFieldSectionState extends State<PinFieldSection> {
                 textAlign: TextAlign.start,
               ),
               const SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_OVER_LARGE),
-
             ],
           ),
         ),

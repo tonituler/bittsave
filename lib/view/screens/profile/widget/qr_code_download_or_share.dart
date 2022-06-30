@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -8,6 +7,7 @@ import 'package:six_cash/util/color_resources.dart';
 import 'package:six_cash/util/dimensions.dart';
 import 'package:six_cash/util/styles.dart';
 import 'package:six_cash/view/base/custom_logo.dart';
+
 class QrCodeDownloadOrShareScreen extends StatelessWidget {
   final String qrCode;
   final String phoneNumber;
@@ -27,15 +27,14 @@ class QrCodeDownloadOrShareScreen extends StatelessWidget {
               width: size.width,
               margin: const EdgeInsets.all(Dimensions.PADDING_SIZE_SMALL),
               decoration: BoxDecoration(
-                // color: ColorResources.containerColor,
-                color: Colors.white,
-                boxShadow: [
-                  BoxShadow(
-                    color: ColorResources.blackColor.withOpacity(0.25),
-                    blurRadius: 6,
-                  )
-                ]
-              ),
+                  // color: ColorResources.containerColor,
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      color: ColorResources.blackColor.withOpacity(0.25),
+                      blurRadius: 6,
+                    )
+                  ]),
               child: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -52,7 +51,7 @@ class QrCodeDownloadOrShareScreen extends StatelessWidget {
                         ),
                         Text(
                           '6Cash',
-                          style: rubikMedium.copyWith(
+                          style: montserratMedium.copyWith(
                             color: ColorResources.COLOR_PRIMARY,
                             fontSize: Dimensions.FONT_SIZE_OVER_OVER_LARGE,
                           ),
@@ -63,13 +62,13 @@ class QrCodeDownloadOrShareScreen extends StatelessWidget {
                     const SizedBox(
                       height: Dimensions.PADDING_SIZE_EXTRA_OVER_LARGE,
                     ),
-                    SvgPicture.string(qrCode,height: size.width*0.6,width: size.width*0.6),
+                    SvgPicture.string(qrCode, height: size.width * 0.6, width: size.width * 0.6),
                     const SizedBox(
                       height: Dimensions.PADDING_SIZE_OVER_LARGE,
                     ),
                     Text(
                       phoneNumber,
-                      style: rubikRegular.copyWith(
+                      style: montserratRegular.copyWith(
                         color: ColorResources.phoneNumberColor,
                         fontSize: Dimensions.FONT_SIZE_EXTRA_OVER_LARGE,
                       ),
@@ -81,8 +80,8 @@ class QrCodeDownloadOrShareScreen extends StatelessWidget {
                     Divider(
                       color: ColorResources.phoneNumberColor,
                       height: 1,
-                      endIndent: size.width*0.3,
-                      indent: size.width*0.3,
+                      endIndent: size.width * 0.3,
+                      indent: size.width * 0.3,
                     ),
                     const SizedBox(
                       height: Dimensions.PADDING_SIZE_SMALL,
@@ -90,15 +89,15 @@ class QrCodeDownloadOrShareScreen extends StatelessWidget {
                     Divider(
                       color: ColorResources.phoneNumberColor,
                       height: 1,
-                      endIndent: size.width*0.4,
-                      indent: size.width*0.4,
+                      endIndent: size.width * 0.4,
+                      indent: size.width * 0.4,
                     ),
                     const SizedBox(
                       height: Dimensions.PADDING_SIZE_DEFAULT,
                     ),
                     Text(
                       'scan_the_QR_code_to_send_money'.tr,
-                      style: rubikSemiBold.copyWith(
+                      style: montserratSemiBold.copyWith(
                         color: ColorResources.phoneNumberColor,
                         fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE,
                       ),
@@ -111,12 +110,11 @@ class QrCodeDownloadOrShareScreen extends StatelessWidget {
                       height: 30,
                       width: double.infinity,
                       decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: ColorResources.ssColor,
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                        )
-                      ),
+                          gradient: LinearGradient(
+                        colors: ColorResources.ssColor,
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                      )),
                     )
                   ],
                 ),

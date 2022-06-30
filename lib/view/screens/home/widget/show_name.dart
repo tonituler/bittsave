@@ -26,7 +26,7 @@ class ShowName extends StatelessWidget {
                           textAlign: TextAlign.start,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-                          style: rubikLight.copyWith(
+                          style: montserratLight.copyWith(
                             fontSize: Dimensions.FONT_SIZE_OVER_LARGE,
                             color: ColorResources.blackColor,
                             fontWeight: FontWeight.w400,
@@ -37,7 +37,7 @@ class ShowName extends StatelessWidget {
                           textAlign: TextAlign.start,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-                          style: rubikLight.copyWith(
+                          style: montserratLight.copyWith(
                             fontSize: Dimensions.FONT_SIZE_LARGE,
                             color: ColorResources.blackColor.withOpacity(0.5),
                           ),
@@ -46,12 +46,12 @@ class ShowName extends StatelessWidget {
                     ),
                   )
                 : Text('hi_user'.tr,
-                    style: rubikLight.copyWith(fontSize: Dimensions.FONT_SIZE_OVER_LARGE, color: ColorResources.whiteColor.withOpacity(0.7)))),
+                    style: montserratLight.copyWith(fontSize: Dimensions.FONT_SIZE_OVER_LARGE, color: ColorResources.whiteColor.withOpacity(0.7)))),
         GetBuilder<HomeController>(builder: (controller) {
           return Text(
             // '${controller.greetingMessage()}',
             'Hey, You have a great day',
-            style: rubikRegular.copyWith(
+            style: montserratRegular.copyWith(
               fontSize: Dimensions.FONT_SIZE_DEFAULT,
               color: ColorResources.blackColor.withOpacity(0.6),
             ),

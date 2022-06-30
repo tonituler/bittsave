@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class WelcomeScreen extends StatefulWidget {
-  final String phoneNumber,countryCode;
+  final String phoneNumber, countryCode;
   const WelcomeScreen({Key key, this.phoneNumber, this.countryCode}) : super(key: key);
 
   @override
@@ -20,10 +20,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   void initState() {
     Future.delayed(Duration(seconds: 3), () {
       ///TODO:
-      Get.offAllNamed(RouteHelper.getLoginRoute(countryCode: widget.countryCode,phoneNumber: widget.phoneNumber));
+      Get.offAllNamed(RouteHelper.getLoginRoute(countryCode: widget.countryCode, phoneNumber: widget.phoneNumber));
     });
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
@@ -37,10 +38,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         decoration: BoxDecoration(
           color: ColorResources.getWhiteColor(),
           borderRadius: BorderRadius.only(
-            bottomLeft:
-                Radius.circular(Dimensions.RADIUS_SIZE_EXTRA_EXTRA_LARGE),
-            bottomRight:
-                Radius.circular(Dimensions.RADIUS_SIZE_EXTRA_EXTRA_LARGE),
+            bottomLeft: Radius.circular(Dimensions.RADIUS_SIZE_EXTRA_EXTRA_LARGE),
+            bottomRight: Radius.circular(Dimensions.RADIUS_SIZE_EXTRA_EXTRA_LARGE),
           ),
         ),
         child: Column(
@@ -53,29 +52,29 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             const SizedBox(
               height: Dimensions.PADDING_SIZE_EXTRA_LARGE,
             ),
-             Text(
-                'welcome_to'.tr,
-                textAlign: TextAlign.center,
-                style: rubikMedium.copyWith(
-                  color: ColorResources.getPrimaryTextColor(),
-                  fontSize: Dimensions.FONT_SIZE_OVER_OVER_LARGE,
-                ),
+            Text(
+              'welcome_to'.tr,
+              textAlign: TextAlign.center,
+              style: montserratMedium.copyWith(
+                color: ColorResources.getPrimaryTextColor(),
+                fontSize: Dimensions.FONT_SIZE_OVER_OVER_LARGE,
               ),
-              const SizedBox(
+            ),
+            const SizedBox(
               height: Dimensions.PADDING_SIZE_EXTRA_SMALL,
             ),
-              const SizedBox(
+            const SizedBox(
               height: Dimensions.PADDING_SIZE_OVER_LARGE,
             ),
-             Text(
-                'start_exploring_the_amazing_ways_to_take_your_lifestyle_upward'.tr,
-                textAlign: TextAlign.center,
-                style: rubikLight.copyWith(
-                  color: ColorResources.getBlackColor(),
-                  fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE,
-                ),
+            Text(
+              'start_exploring_the_amazing_ways_to_take_your_lifestyle_upward'.tr,
+              textAlign: TextAlign.center,
+              style: montserratLight.copyWith(
+                color: ColorResources.getBlackColor(),
+                fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE,
               ),
-               const SizedBox(
+            ),
+            const SizedBox(
               height: Dimensions.PADDING_SIZE_OVER_LARGE,
             ),
           ],
