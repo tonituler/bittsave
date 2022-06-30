@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:six_cash/util/color_resources.dart';
 import 'package:six_cash/util/dimensions.dart';
-import 'package:six_cash/view/new_screens/wallet_tabs/funding_usd_wallet_page.dart';
+import 'package:six_cash/view/screens/home/funding_usd_wallet_page.dart';
 import 'package:six_cash/view/screens/wallet/widget/BTCWallet.dart';
 
 class USDWalletScreen extends StatefulWidget {
@@ -28,23 +28,23 @@ class _USDWalletScreenState extends State<USDWalletScreen> {
               padding: const EdgeInsets.only(bottom: 10.0, top: 20, left: 8),
               child: BoldTextTitle(
                 data: 'USD Wallet',
-                // fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE,
               ),
             ),
             // SizedBox(),
             Padding(
-              padding: const EdgeInsets.only(left: 8.0, bottom: 40),
+              padding: const EdgeInsets.only(left: 8.0, bottom: 25),
               child: Text(
                 'Swipe left to view your BTC wallet.',
                 textAlign: TextAlign.left,
-                style: TextStyle(
-                    color: Colors.grey,
-                    fontWeight: FontWeight.w300,
-                    fontSize: Dimensions.FONT_SIZE_DEFAULT),
+               style: TextStyle(
+                  color: Colors.grey,
+                  fontWeight: FontWeight.w300,
+                  fontSize: Dimensions.FONT_SIZE_DEFAULT,
+                ),
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 10, right: 20, left: 5, bottom: 20),
+              padding: EdgeInsets.only(top: 10, right: 10, left: 5, bottom: 10),
               child: PhysicalModel(
                 elevation: 8,
                 color: Colors.pink,
@@ -60,10 +60,7 @@ class _USDWalletScreenState extends State<USDWalletScreen> {
                         children: [
                           Text(
                             'USD',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE,
-                                fontWeight: FontWeight.w500),
+                            style: TextStyle(color: Colors.white, fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE, fontWeight: FontWeight.w500),
                           ),
                           Spacer(),
                           Image.asset(
@@ -79,10 +76,7 @@ class _USDWalletScreenState extends State<USDWalletScreen> {
                         padding: const EdgeInsets.symmetric(vertical: 5.0),
                         child: Text(
                           '\$0.00',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w600,
-                              fontSize: Dimensions.FONT_SIZE_EXTRA_OVER_LARGE),
+                          style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600, fontSize: Dimensions.FONT_SIZE_EXTRA_OVER_LARGE),
                         ),
                       ),
                     ],
@@ -108,8 +102,7 @@ class _USDWalletScreenState extends State<USDWalletScreen> {
                   ),
                   WalletIcons(
                     ontap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) {
                         return FundingUsdWallet();
                       }));
                     },
@@ -133,7 +126,11 @@ class _USDWalletScreenState extends State<USDWalletScreen> {
             Text(
               'Recent Transactions',
               textAlign: TextAlign.left,
-              style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w400, fontSize: Dimensions.FONT_SIZE_EXTRA_OVER_LARGE),
+              style: TextStyle(
+                color: Colors.grey,
+                fontWeight: FontWeight.w300,
+                fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE - 2,
+              ),
             ),
           ],
         ),

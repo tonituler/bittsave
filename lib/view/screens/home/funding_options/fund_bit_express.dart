@@ -1,9 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:six_cash/util/dimensions.dart';
-import 'package:six_cash/view/new_screens/wallet_tabs/funding_options/bank_transfer_page.dart';
-import '../funding_usd_wallet_page.dart';
+import 'package:six_cash/view/screens/home/funding_options/bank_transfer_page.dart';
+import 'package:six_cash/view/screens/home/funding_usd_wallet_page.dart';
 
 const kLightTextStyle = TextStyle(
   color: Colors.pinkAccent,

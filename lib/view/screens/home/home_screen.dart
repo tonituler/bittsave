@@ -13,6 +13,8 @@ import 'package:six_cash/controller/websitelink_controller.dart';
 import 'package:six_cash/util/color_resources.dart';
 import 'package:six_cash/util/dimensions.dart';
 import 'package:six_cash/util/styles.dart';
+import 'package:six_cash/view/loan_page/loan_page.dart';
+import 'package:six_cash/view/screens/home/funding_usd_wallet_page.dart';
 import 'package:six_cash/view/screens/home/widget/app_bar.dart';
 import 'package:six_cash/view/screens/home/widget/bottom_sheet/expandable_contant.dart';
 import 'package:six_cash/view/screens/home/widget/bottom_sheet/persistent_header.dart';
@@ -21,8 +23,6 @@ import 'package:six_cash/view/screens/home/widget/linked_website_portion.dart';
 import 'package:six_cash/view/screens/home/widget/secend_card_portion.dart';
 import 'package:six_cash/view/screens/home/widget/shimmer/web_site_shimmer.dart';
 import 'package:six_cash/view/screens/home/widget/third_card_portion.dart';
-
-import '../../new_screens/loanPage/loan_page.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key key}) : super(key: key);
@@ -223,13 +223,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       Container(
-                                        height: 20,
-                                        width: 20,
-                                        decoration: BoxDecoration(color: ColorResources.whiteColor, borderRadius: BorderRadius.circular(5)),
-                                        padding: EdgeInsets.all(2),
+                                        height: 30,
+                                        width: 30,
+                                        padding: EdgeInsets.all(0),
                                         child: Image.asset(
-                                          "assets/image/CurrencyDollar.png",
-                                          // color: ColorResources.primaryColor,
+                                          "assets/image/dollar_coin.png",
+                                          height: 30,
+                                          width: 30,
                                         ),
                                       ),
                                       const SizedBox(
@@ -272,9 +272,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                             maxLines: 1,
                                             overflow: TextOverflow.ellipsis,
                                             style: montserratLight.copyWith(
-                                                fontSize: Dimensions.FONT_SIZE_OVER_LARGE,
-                                                color: ColorResources.whiteColor,
-                                                fontWeight: FontWeight.w400),
+                                              fontSize: Dimensions.FONT_SIZE_OVER_LARGE - 1,
+                                              color: ColorResources.whiteColor,
+                                              fontWeight: FontWeight.w600,
+                                            ),
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.only(
@@ -323,13 +324,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       Container(
-                                        height: 20,
-                                        width: 20,
-                                        decoration: BoxDecoration(color: ColorResources.whiteColor, borderRadius: BorderRadius.circular(5)),
-                                        padding: EdgeInsets.all(2),
+                                        height: 30,
+                                        width: 30,
+                                        padding: EdgeInsets.all(0),
                                         child: Image.asset(
-                                          "assets/image/CurrencyBtc.png",
-                                          // color: ColorResources.blackColor,
+                                          "assets/image/btc_coin.png",
+                                          height: 30,
+                                          width: 30,
                                         ),
                                       ),
                                       const SizedBox(
@@ -372,9 +373,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                             maxLines: 1,
                                             overflow: TextOverflow.ellipsis,
                                             style: montserratLight.copyWith(
-                                                fontSize: Dimensions.FONT_SIZE_OVER_LARGE,
+                                                fontSize: Dimensions.FONT_SIZE_OVER_LARGE - 1,
                                                 color: ColorResources.whiteColor,
-                                                fontWeight: FontWeight.w400),
+                                                fontWeight: FontWeight.w600),
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.only(
@@ -393,14 +394,17 @@ class _HomeScreenState extends State<HomeScreen> {
                                           ),
                                         ],
                                       ),
-                                      Text(
-                                        '      Satoshis',
-                                        textAlign: TextAlign.center,
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: montserratLight.copyWith(
-                                          fontSize: Dimensions.FONT_SIZE_DEFAULT,
-                                          color: ColorResources.whiteColor,
+                                      Padding(
+                                        padding: const EdgeInsets.only(left: 10),
+                                        child: Text(
+                                          '      Satoshis',
+                                          textAlign: TextAlign.center,
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: montserratLight.copyWith(
+                                            fontSize: Dimensions.FONT_SIZE_DEFAULT,
+                                            color: ColorResources.whiteColor,
+                                          ),
                                         ),
                                       ),
                                     ],
@@ -417,16 +421,24 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          savingsItems(image: "deposit.png", label: "Deposit"),
-                          savingsItems(image: "save_now.png", label: "Save Now"),
-                          GestureDetector(
-                              onTap: () {
-                                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                                  return LoanApplication();
-                                }));
-                              },
-                              child: savingsItems(image: "loan.png", label: "Loan")),
-                          savingsItems(image: "request.png", label: "Request"),
+                          InkWell(
+                            onTap: () {
+                              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                                return FundingUsdWallet();
+                              }));
+                            },
+                            child: savingsItems(image: "credit_card_red.png", label: "Deposit"),
+                          ),
+                          savingsItems(image: "open_folder_add.png", label: "Save Now"),
+                          InkWell(
+                            onTap: () {
+                              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                                return LoanApplication();
+                              }));
+                            },
+                            child: savingsItems(image: "grid_04.png", label: "Loan"),
+                          ),
+                          savingsItems(image: "grid_03.png", label: "Request"),
                         ],
                       ),
                     ),
@@ -440,10 +452,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: [
                           Image.asset(
                             "assets/image/verify_dentity_icon.png",
-                            height: 20,
+                            height: 15,
                           ),
                           SizedBox(
-                            width: 15,
+                            width: 20,
                           ),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,

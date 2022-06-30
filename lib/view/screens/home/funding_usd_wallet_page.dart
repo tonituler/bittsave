@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:six_cash/util/color_resources.dart';
 import 'package:six_cash/util/dimensions.dart';
-import 'package:six_cash/view/new_screens/wallet_tabs/funding_options/fund_bit_express.dart';
-import 'package:six_cash/view/new_screens/wallet_tabs/funding_options/request_from_a_riend/bitsave_user_request.dart';
-import 'package:six_cash/view/new_screens/wallet_tabs/funding_options/request_from_a_riend/friend_identity.dart';
+import 'package:six_cash/view/screens/home/funding_options/fund_bit_express.dart';
+import 'package:six_cash/view/screens/home/funding_options/request_from_a_riend/bitsave_user_request.dart';
+import 'package:six_cash/view/screens/home/funding_options/request_from_a_riend/friend_identity.dart';
 
 class FundingUsdWallet extends StatefulWidget {
   const FundingUsdWallet({Key key}) : super(key: key);
@@ -133,7 +133,7 @@ class BoldTextTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       data,
-      style: TextStyle(color: Colors.black, fontWeight: FontWeight.w600, fontSize: fontSize ?? 30),
+      style: TextStyle(color: Colors.black, fontWeight: FontWeight.w400, fontSize: fontSize ?? 22),
     );
   }
 }

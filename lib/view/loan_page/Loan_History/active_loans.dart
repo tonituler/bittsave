@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:six_cash/view/new_screens/wallet_tabs/funding_options/request_from_a_riend/friend_identity.dart';
-
-import '../../wallet_tabs/funding_usd_wallet_page.dart';
-
+import 'package:six_cash/view/screens/home/funding_options/request_from_a_riend/friend_identity.dart';
+import 'package:six_cash/view/screens/home/funding_usd_wallet_page.dart';
 class ActiveLoans extends StatefulWidget {
   const ActiveLoans({Key key}) : super(key: key);
 

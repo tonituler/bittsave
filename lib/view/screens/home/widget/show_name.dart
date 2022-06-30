@@ -18,7 +18,7 @@ class ShowName extends StatelessWidget {
         GetBuilder<ProfileController>(
             builder: (controller) => controller.userInfo != null
                 ? Container(
-                    width: MediaQuery.of(context).size.width * 0.5,
+                    width: MediaQuery.of(context).size.width * 0.8,
                     child: Row(
                       children: [
                         Text(

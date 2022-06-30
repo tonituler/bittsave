@@ -1,10 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:six_cash/util/color_resources.dart';
 import 'package:six_cash/util/dimensions.dart';
-import 'package:six_cash/view/new_screens/wallet_tabs/funding_options/fund_bit_express.dart';
+import 'package:six_cash/view/screens/home/funding_options/fund_bit_express.dart';
 
-import '../funding_usd_wallet_page.dart';
+import '../../../screens/home/funding_usd_wallet_page.dart';
 
 class PartnersInformation extends StatefulWidget {
   const PartnersInformation({Key key}) : super(key: key);

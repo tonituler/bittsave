@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:six_cash/util/dimensions.dart';
-import 'package:six_cash/view/new_screens/wallet_tabs/funding_options/partner_information.dart';
-import 'package:six_cash/view/new_screens/wallet_tabs/funding_usd_wallet_page.dart';
+import 'package:six_cash/view/screens/home/funding_options/partner_information.dart';
+import 'package:six_cash/view/screens/home/funding_usd_wallet_page.dart';
 
 class BankTransferPage extends StatefulWidget {
   const BankTransferPage({Key key}) : super(key: key);
@@ -22,8 +22,7 @@ class _BankTransferPageState extends State<BankTransferPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 16.0, horizontal: 8),
+                padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 8),
                 child: BackButtons(),
               ),
               Padding(
@@ -38,16 +37,20 @@ class _BankTransferPageState extends State<BankTransferPage> {
               ),
               getFunds(
                 ontap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return PartnersInformation();
-                  },),);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return PartnersInformation();
+                      },
+                    ),
+                  );
                 },
                 widget: Container(
                   child: Image.asset('assets/newImages/TelegramLogo.png'),
                 ),
                 title: 'Bank Transfer',
-                subTitle:
-                    'you will be requied to make a Bank\ntransfer to your deposit.',
+                subTitle: 'you will be requied to make a Bank\ntransfer to your deposit.',
               )
             ],
           ),

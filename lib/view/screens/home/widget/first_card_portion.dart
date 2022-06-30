@@ -9,7 +9,7 @@ import 'package:six_cash/util/images.dart';
 import 'package:six_cash/util/styles.dart';
 import 'package:six_cash/view/base/custom_ink_well.dart';
 import 'package:six_cash/view/new_screens/tab_controller.dart';
-import 'package:six_cash/view/new_screens/wallet_tabs/funding_usd_wallet_page.dart';
+import 'package:six_cash/view/screens/home/funding_usd_wallet_page.dart';
 import 'package:six_cash/view/screens/home/widget/banner_view.dart';
 import 'package:six_cash/view/screens/home/widget/custom_card.dart';
 import 'package:six_cash/view/screens/transaction_money/transaction_money_screen.dart';

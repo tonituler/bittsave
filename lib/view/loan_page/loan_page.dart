@@ -1,10 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:six_cash/view/new_screens/loanPage/Loan_History/no_active_loans.dart';
-import 'package:six_cash/view/new_screens/loanPage/howToBeFunded.dart';
-import 'package:six_cash/view/new_screens/wallet_tabs/funding_options/request_from_a_riend/bitsave_user_request.dart';
-import 'package:six_cash/view/new_screens/wallet_tabs/funding_options/request_from_a_riend/friend_identity.dart';
-import 'package:six_cash/view/new_screens/wallet_tabs/funding_usd_wallet_page.dart';
+import 'package:six_cash/view/loan_page/Loan_History/no_active_loans.dart';
+import 'package:six_cash/view/loan_page/howToBeFunded.dart';
+import 'package:six_cash/view/screens/home/funding_options/request_from_a_riend/bitsave_user_request.dart';
+import 'package:six_cash/view/screens/home/funding_options/request_from_a_riend/friend_identity.dart';
+import 'package:six_cash/view/screens/home/funding_usd_wallet_page.dart';
 
 bool _show = false;
 bool _showBtSheet = false;

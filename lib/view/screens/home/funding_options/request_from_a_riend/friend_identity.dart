@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:six_cash/view/new_screens/wallet_tabs/funding_options/fund_bit_express.dart';
-import 'package:six_cash/view/new_screens/wallet_tabs/funding_options/request_from_a_riend/request_successful_page.dart';
+import 'package:six_cash/view/screens/home/funding_options/fund_bit_express.dart';
+import 'package:six_cash/view/screens/home/funding_options/request_from_a_riend/request_successful_page.dart';
 
-import '../../funding_usd_wallet_page.dart';
+import '../../../../screens/home/funding_usd_wallet_page.dart';
 import 'bitsave_user_request.dart';
 
 class FriendsIdentity extends StatefulWidget {
