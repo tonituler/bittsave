@@ -157,6 +157,7 @@ class BackGroundColr extends StatelessWidget {
             Color.fromARGB(0, 244, 235, 238),
             Colors.grey[50]
           ])),
+      width: double.infinity,
       child: child,
     );
   }

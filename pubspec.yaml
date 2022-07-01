@@ -32,6 +32,7 @@ dependencies:
   smooth_page_indicator: ^1.0.0+2
   image_picker: ^0.8.4+4
   country_code_picker: ^2.0.2
+  flutter_onboarding_slider: ^1.0.7
   # camera: 0.9.4+21
   # camera: 0.9.8+1
   # camera: ^0.9.4+21
