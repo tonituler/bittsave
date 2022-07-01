@@ -19,7 +19,7 @@ class _FundingUsdWalletState extends State<FundingUsdWallet> {
   Widget build(BuildContext context) {
     return BackGroundColr(
       child: Scaffold(
-         appBar: AppBar(
+        appBar: AppBar(
           leading: BackButtons(),
           backgroundColor: Colors.transparent,
           elevation: 0,
@@ -43,11 +43,15 @@ class _FundingUsdWalletState extends State<FundingUsdWallet> {
                   child: Text(
                     'We have rebranding the methods of depositing USD into your wallet.',
                     textAlign: TextAlign.left,
-                    style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w300, fontSize: Dimensions.FONT_SIZE_DEFAULT),
+                    style: TextStyle(
+                        color: Colors.grey,
+                        fontWeight: FontWeight.w300,
+                        fontSize: Dimensions.FONT_SIZE_DEFAULT),
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 10, right: 20, left: 5, bottom: 40),
+                  padding:
+                      EdgeInsets.only(top: 10, right: 20, left: 5, bottom: 40),
                   child: PhysicalModel(
                     elevation: 8,
                     color: Colors.pink,
@@ -80,7 +84,9 @@ class _FundingUsdWalletState extends State<FundingUsdWallet> {
                               )
                             ],
                           ),
-                          SizedBox(height: 10.h,),
+                          SizedBox(
+                            height: 10.h,
+                          ),
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 5.0),
                             child: Text(
@@ -112,9 +118,11 @@ class _FundingUsdWalletState extends State<FundingUsdWallet> {
                     size: 25,
                   ),
                   title: "BitXpress",
-                  subTitle: 'Fund your USD wallet using our \nexternal partners and assoiciates',
+                  subTitle:
+                      'Fund your USD wallet using our \nexternal partners and assoiciates',
                   ontap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
                       return const FundBitExpress();
                     }));
                   },
@@ -124,7 +132,8 @@ class _FundingUsdWalletState extends State<FundingUsdWallet> {
                 ),
                 getFunds(
                   ontap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
                       return BittSaveUserRequest();
                     }));
                   },
@@ -134,7 +143,8 @@ class _FundingUsdWalletState extends State<FundingUsdWallet> {
                     size: 25,
                   ),
                   title: 'Request from a friend ',
-                  subTitle: 'Fund your USD wallet by requesting\nfund from bitsave users.',
+                  subTitle:
+                      'Fund your USD wallet by requesting\nfund from bitsave users.',
                 )
               ],
             ),
@@ -154,7 +164,10 @@ class BoldTextTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       data,
-      style: TextStyle(color: Colors.black, fontWeight: FontWeight.w400, fontSize: fontSize ?? 22),
+      style: TextStyle(
+          color: Colors.black,
+          fontWeight: FontWeight.w400,
+          fontSize: fontSize ?? 22),
     );
   }
 }
@@ -172,10 +185,13 @@ class BackButtons extends StatelessWidget {
       },
       splashColor: Colors.transparent,
       overlayColor: MaterialStateProperty.all(Colors.transparent),
-      child: Icon(
-        Icons.arrow_back_ios_outlined,
-        color: ColorResources.primaryColor,
-        size: 30,
+      child: Container(
+        padding: const EdgeInsets.only(top: 10, bottom: 20),
+        child: Icon(
+          Icons.arrow_back_ios_outlined,
+          color: ColorResources.primaryColor,
+          size: 20,
+        ),
       ),
     );
   }
@@ -197,18 +213,24 @@ class getFunds extends StatelessWidget {
       leading: Container(
         width: 38,
         height: 38,
-        decoration: BoxDecoration(color: Colors.pink, borderRadius: BorderRadius.circular(10)),
+        decoration: BoxDecoration(
+            color: Colors.pink, borderRadius: BorderRadius.circular(10)),
         child: widget,
       ),
       title: Text(
         title,
-        style: TextStyle(fontWeight: FontWeight.w400, fontSize: Dimensions.FONT_SIZE_DEFAULT),
+        style: TextStyle(
+            fontWeight: FontWeight.w400,
+            fontSize: Dimensions.FONT_SIZE_DEFAULT),
       ),
       subtitle: Text(
         subTitle,
         maxLines: 2,
         overflow: TextOverflow.ellipsis,
-        style: TextStyle(fontWeight: FontWeight.w300, fontSize: Dimensions.FONT_SIZE_DEFAULT - 1, color: Colors.grey),
+        style: TextStyle(
+            fontWeight: FontWeight.w300,
+            fontSize: Dimensions.FONT_SIZE_DEFAULT - 1,
+            color: Colors.grey),
       ),
       trailing: Icon(
         CupertinoIcons.forward,
