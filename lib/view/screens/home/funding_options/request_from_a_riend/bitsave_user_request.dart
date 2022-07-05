@@ -29,10 +29,14 @@ class _BittSaveUserRequestState extends State<BittSaveUserRequest> {
                 data: 'Request from Bittsave\nUser',
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 30.0, left: 12, bottom: 100),
+                padding:
+                    const EdgeInsets.only(top: 30.0, left: 12, bottom: 100),
                 child: Text(
                   'Request from  Bittsave\nUser',
-                  style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: Dimensions.FONT_SIZE_EXTRA_OVER_LARGE),
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: Dimensions.FONT_SIZE_EXTRA_OVER_LARGE),
                 ),
               ),
               Padding(
@@ -68,19 +72,23 @@ class _BittSaveUserRequestState extends State<BittSaveUserRequest> {
                       //   fontSize: 12.sp,
                       // ),
                       border: OutlineInputBorder(
-                        borderSide: BorderSide(color: ColorResources.primaryColor, width: 1),
+                        borderSide: BorderSide(
+                            color: ColorResources.primaryColor, width: 1),
                         borderRadius: BorderRadius.circular(10),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: ColorResources.primaryColor, width: 1),
+                        borderSide: BorderSide(
+                            color: ColorResources.primaryColor, width: 1),
                         borderRadius: BorderRadius.circular(10),
                       ),
                       errorBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: ColorResources.primaryColor, width: 1),
+                        borderSide: BorderSide(
+                            color: ColorResources.primaryColor, width: 1),
                         borderRadius: BorderRadius.circular(10),
                       ),
                       enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: ColorResources.primaryColor, width: 1),
+                        borderSide: BorderSide(
+                            color: ColorResources.primaryColor, width: 1),
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
@@ -112,16 +120,18 @@ class _BittSaveUserRequestState extends State<BittSaveUserRequest> {
   }
 }
 
-  Widget InnerContainer({double height, Color col, double data, String text, TextStyle style, Widget widget}) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Container(
-        height: 50,
-        width: double.infinity,
-        decoration: BoxDecoration(color: col, borderRadius: BorderRadius.circular(data)),
-        child: Center(
-          child: widget,
-        ),
+Widget InnerContainer(
+    {double height, Color col, double data, TextStyle style, Widget widget}) {
+  return Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: Container(
+      height: 50,
+      width: double.infinity,
+      decoration:
+          BoxDecoration(color: col, borderRadius: BorderRadius.circular(data)),
+      child: Center(
+        child: widget,
       ),
-    );
-  }
+    ),
+  );
+}

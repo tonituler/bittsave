@@ -23,7 +23,8 @@ import 'package:six_cash/view/screens/home/widget/linked_website_portion.dart';
 import 'package:six_cash/view/screens/home/widget/secend_card_portion.dart';
 import 'package:six_cash/view/screens/home/widget/shimmer/web_site_shimmer.dart';
 import 'package:six_cash/view/screens/home/widget/third_card_portion.dart';
-import 'package:six_cash/view/screens/onboarding/new_screens/1screen.dart';
+
+import '../onboarding/onboarding_login_signUp/newOnBoarding.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key key}) : super(key: key);
