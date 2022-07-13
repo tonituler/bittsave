@@ -20,16 +20,15 @@ class IndicatorSection extends StatelessWidget {
         count: AppConstants.onboardList.length,
         curve: Curves.easeOutSine,
         effect: CustomizableEffect(
-
           dotDecoration: DotDecoration(
-            height: 6,
-            width: 6,
+            height: 4,
+            width: 30,
             borderRadius: BorderRadius.circular(5),
-            color: ColorResources.getPrimaryTextColor().withOpacity(0.2),
+            color: ColorResources.getGreyColor().withOpacity(0.4),
           ),
           activeDotDecoration: DotDecoration(
-            height: 5,
-            width: 16,
+            height: 4,
+            width: 30,
             borderRadius: BorderRadius.all(Radius.circular(5)),
             color: ColorResources.getPrimaryTextColor(),
 

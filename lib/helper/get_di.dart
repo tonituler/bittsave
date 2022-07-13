@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:six_cash/controller/banner_controller.dart';
 import 'package:six_cash/controller/create_account_controller.dart';
+import 'package:six_cash/controller/deposit_controller.dart';
 import 'package:six_cash/controller/edit_profile_controller.dart';
 import 'package:six_cash/controller/faq_controller.dart';
 import 'package:six_cash/controller/forget_password_controller.dart';
@@ -78,6 +79,7 @@ Future<Map<String, Map<String, String>>> init() async {
 
   Get.lazyPut(() => MenuController());
   Get.lazyPut(() => AuthController(authRepo: Get.find()));
+  Get.lazyPut(() => DepositController(transacRepo: Get.find()));
   Get.lazyPut(() => HomeController());
   Get.lazyPut(() => CreateAccountController());
   Get.lazyPut(() => VarificationController(authRepo: Get.find()));

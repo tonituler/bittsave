@@ -70,7 +70,17 @@ class TransactionRepo {
     }
   }
 
+  Future<Response>  depositRequest({@required double amount}) async {
+    return await apiClient.postData(AppConstants.CUSTOMER_DEPOSIT_REQUEST, {'amount': amount});
+  }
 
+  Future<Response>  findAgent() async {
+    return await apiClient.getData(AppConstants.CUSTOMER_FIND_AGENT);
+  }
+
+  Future<Response>  confirmDeposit({@required int depositId}) async {
+    return await apiClient.postData(AppConstants.CUSTOMER_DEPOSIT_CONFIRMATION, {'id' : depositId});
+  }
 
 
 }

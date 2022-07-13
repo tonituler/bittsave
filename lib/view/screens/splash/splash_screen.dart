@@ -57,11 +57,13 @@ class _SplashScreenState extends State<SplashScreen> {
     Get.find<SplashController>().getConfigData().then((value) {
       if(value.isOk)
       Timer(Duration(seconds: 1), () async {
-        Get.find<SplashController>().initSharedData().then((value) {
-          (Get.find<AuthController>().getCustomerName().isNotEmpty && (Get.find<SplashController>().configModel.companyName != null))?
-          Get.offNamed(RouteHelper.getLoginRoute(countryCode: Get.find<AuthController>().getCustomerCountryCode(),phoneNumber: Get.find<AuthController>().getCustomerNumber())) :
-          Get.offNamed(RouteHelper.getChoseLoginRegRoute());
-        });
+        // Get.find<SplashController>().initSharedData().then((value) {
+        //   (Get.find<AuthController>().getCustomerName().isNotEmpty && (Get.find<SplashController>().configModel.companyName != null))?
+        //   Get.offNamed(RouteHelper.getLoginRoute(countryCode: Get.find<AuthController>().getCustomerCountryCode(),phoneNumber: Get.find<AuthController>().getCustomerNumber())) :
+        //   Get.offNamed(RouteHelper.getChoseLoginRegRoute());
+        // });
+
+        Get.offNamed(RouteHelper.getChoseLoginRegRoute());
 
       });
     });

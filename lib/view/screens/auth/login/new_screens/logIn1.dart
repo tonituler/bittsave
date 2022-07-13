@@ -47,7 +47,7 @@ class _LogIn1State extends State<LogIn1> {
                           Expanded(
                             flex: 2,
                             child: TextField(
-                              scribbleEnabled: true,
+                              // scribbleEnabled: true,
                               textAlign: TextAlign.start,
                               enableSuggestions: true,
                               style: TextStyle(fontSize: 20),

@@ -20,11 +20,15 @@ class _OnbardingState extends State<Onbarding> {
         finishButtonText: 'Get Started',
         finishButtonColor: Colors.pink,
         onFinish: () {
-          Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) {
-            return LogIn1();
-            // return TestApp();
-          }));
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) {
+                return LogIn1();
+                // return TestApp();
+              },
+            ),
+          );
         },
         background: [
           Image.asset('assets/newImages/1Image.png'),
@@ -45,10 +49,7 @@ class _OnbardingState extends State<Onbarding> {
                   Center(
                     child: Text(
                       'Secure Payment',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 20),
+                      style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500, fontSize: 20),
                     ),
                   ),
                   SizedBox(
@@ -57,10 +58,7 @@ class _OnbardingState extends State<Onbarding> {
                   Text(
                     'Our unique payment encryption technology will protect your funds',
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.grey,
-                        fontWeight: FontWeight.w400),
+                    style: TextStyle(fontSize: 12, color: Colors.grey, fontWeight: FontWeight.w400),
                   ),
                 ],
               ),
@@ -77,10 +75,7 @@ class _OnbardingState extends State<Onbarding> {
                   Center(
                     child: Text(
                       'Add any accounts',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 20),
+                      style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500, fontSize: 20),
                     ),
                   ),
                   SizedBox(
@@ -89,10 +84,7 @@ class _OnbardingState extends State<Onbarding> {
                   Text(
                     'You can add any account, card or crypto wallet to the app and make payments',
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.grey,
-                        fontWeight: FontWeight.w400),
+                    style: TextStyle(fontSize: 12, color: Colors.grey, fontWeight: FontWeight.w400),
                   ),
                 ],
               ),
@@ -109,10 +101,7 @@ class _OnbardingState extends State<Onbarding> {
                   Center(
                     child: Text(
                       'Custom card',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 20),
+                      style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500, fontSize: 20),
                     ),
                   ),
                   SizedBox(
@@ -121,10 +110,7 @@ class _OnbardingState extends State<Onbarding> {
                   Text(
                     'You can issue a card without leaving your home. Physical and online cards are available in the application.',
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.grey,
-                        fontWeight: FontWeight.w400),
+                    style: TextStyle(fontSize: 12, color: Colors.grey, fontWeight: FontWeight.w400),
                   ),
                 ],
               ),

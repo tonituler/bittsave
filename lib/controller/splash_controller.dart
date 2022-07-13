@@ -28,7 +28,6 @@ class SplashController extends GetxController implements GetxService{
       //Get.showSnackbar(GetBar(title: 'response', message: '${_response.body}'));
      _configModel =  ConfigModel.fromJson(_response.body);
      update();
-
     }
     return _response;
   }
