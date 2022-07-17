@@ -154,21 +154,27 @@ class _LoginScreenState extends State<LoginScreen> {
                                       return controller.getCustomerQrCode().isNotEmpty
                                           ? InkWell(
                                               onTap: () {
-                                                Navigator.of(context).push(HeroDialogRoute(builder: (context) {
-                                                  return LoginQrPopupCard();
-                                                }));
+                                                Navigator.of(context).push(
+                                                  HeroDialogRoute(
+                                                    builder: (context) {
+                                                      return LoginQrPopupCard();
+                                                    },
+                                                  ),
+                                                );
                                               },
                                               child: Hero(
-                                                  tag: _heroQrTag,
-                                                  createRectTween: (begin, end) {
-                                                    return CustomRectTween(begin: begin, end: end);
-                                                  },
-                                                  child: Container(
-                                                      padding: const EdgeInsets.all(2),
-                                                      color: ColorResources.whiteColor,
-                                                      child: SvgPicture.string(
-                                                        controller.getCustomerQrCode(),
-                                                      ))),
+                                                tag: _heroQrTag,
+                                                createRectTween: (begin, end) {
+                                                  return CustomRectTween(begin: begin, end: end);
+                                                },
+                                                child: Container(
+                                                  padding: const EdgeInsets.all(2),
+                                                  color: ColorResources.whiteColor,
+                                                  child: SvgPicture.string(
+                                                    controller.getCustomerQrCode(),
+                                                  ),
+                                                ),
+                                              ),
                                             )
                                           : Container();
                                     }),

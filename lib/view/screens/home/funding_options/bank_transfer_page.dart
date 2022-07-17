@@ -60,7 +60,17 @@ class _BankTransferPageState extends State<BankTransferPage> {
                     ontap: () async {
                       Response response = await controller.depositRequest(widget.amountInDolar);
                       if (response.body["message"] == "success") {
-                         Get.offAllNamed(RouteHelper.getNavBarRoute(), arguments: true);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return PartnersInformation(
+                                amountInDolar: widget.amountInDolar,
+                                amountInNaira: widget.amountInNaira,
+                              );
+                            },
+                          ),
+                        );
                       }
                     },
                     widget: Container(

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:phone_number/phone_number.dart';
 import 'package:six_cash/controller/image_controller.dart';
+import 'package:six_cash/controller/profile_screen_controller.dart';
 import 'package:six_cash/controller/selfie_controller.dart';
 import 'package:six_cash/controller/splash_controller.dart';
 import 'package:six_cash/controller/varification_controller.dart';
@@ -20,10 +21,13 @@ class DepositController extends GetxController implements GetxService {
   final TransactionRepo transacRepo;
   DepositController({@required this.transacRepo});
   bool _isLoading = false;
+  bool _isInitLoading = false;
   bool _isVerifying = false;
   AgentModel _depositAgent;
+  Map<String, dynamic> funderInfo;
 
   bool get isLoading => _isLoading;
+  bool get isInitLoading => _isInitLoading;
   bool get isVerifying => _isVerifying;
   AgentModel get depositAgent => _depositAgent;
 
@@ -46,23 +50,23 @@ class DepositController extends GetxController implements GetxService {
   }
 
   Future<Response> findAgent() async {
-    _isLoading = true;
+    _isInitLoading = true;
 
     // update();
     Response response = await transacRepo.findAgent();
     print("here");
     if (response.statusCode == 200) {
-      _isLoading = false;
+      _isInitLoading = false;
       _depositAgent = AgentModel.fromJson(response.body);
     } else {
-      _isLoading = false;
+      _isInitLoading = false;
       ApiChecker.checkApi(response);
     }
     update();
     return response;
   }
 
-  Future<Response> confirmDeposit(int depositId) async {
+  Future<Response> confirmDeposit(String depositId) async {
     _isLoading = true;
     update();
     Response response = await transacRepo.confirmDeposit(depositId: depositId);
@@ -78,6 +82,47 @@ class DepositController extends GetxController implements GetxService {
     }
     update();
     return response;
+  }
+
+  Future<Response> fundRequest(Map<String, dynamic> credentials) async {
+    _isLoading = true;
+    update();
+    Response response = await transacRepo.fundRequest(credentials);
+    if (response.statusCode == 200) {
+      // print(response.body);
+      _isLoading = false;
+      update();
+    } else {
+      print("response.hasError");
+      print(response.bodyString);
+      _isLoading = false;
+      ApiChecker.checkApi(response);
+    }
+    update();
+    return response;
+  }
+
+  Future<Response> checkCustomerUsername({@required String username}) async {
+    Response _response;
+    if (username == Get.find<ProfileController>().userInfo.username) {
+      //todo set message
+      showCustomSnackBar('Please_enter_a_different_customer_number'.tr);
+    } else {
+      _isInitLoading = true;
+      funderInfo = null;
+      update();
+      Response response = await transacRepo.checkCustomerUsername(username: username);
+      if (response.statusCode == 200) {
+        funderInfo = response.body["data"];
+        _isInitLoading = false;
+      } else {
+        _isInitLoading = false;
+        ApiChecker.checkApi(response);
+      }
+      update();
+      _response = response;
+    }
+    return _response;
   }
 
   //   /// Camera permission......

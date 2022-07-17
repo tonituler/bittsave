@@ -95,9 +95,9 @@ class _FundBitExpressState extends State<FundBitExpress> {
                                 keyboardType: TextInputType.number,
                                 onChanged: (String value) {
                                   // print(usdToNgn);
-                                  if (value != "" && usdToNgn != null && usdToNgn != "") {
+                                  if (value.trim() != "" && usdToNgn != null && usdToNgn != "") {
                                     try {
-                                      double val = double.parse(value);
+                                      double val = double.parse(value.trim());
                                       double uToN = double.parse(usdToNgn);
                                       amountInNaira = val * uToN;
                                       amountInDolar = val;

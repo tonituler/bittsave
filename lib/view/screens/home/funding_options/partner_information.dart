@@ -7,6 +7,7 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:six_cash/app/extensions.dart';
 import 'package:six_cash/controller/deposit_controller.dart';
 import 'package:six_cash/helper/price_converter.dart';
+import 'package:six_cash/helper/route_helper.dart';
 import 'package:six_cash/util/color_resources.dart';
 import 'package:six_cash/util/dimensions.dart';
 import 'package:six_cash/view/base/balance_input_shimmer.dart';
@@ -27,8 +28,7 @@ class PartnersInformation extends StatefulWidget {
 }
 
 class _PartnersInformationState extends State<PartnersInformation> {
-  // int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 30 * 60;
-  int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 30 * 2;
+  int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 30 * 60;
 
   @override
   void initState() {
@@ -62,7 +62,7 @@ class _PartnersInformationState extends State<PartnersInformation> {
               ),
             ),
             GetBuilder<DepositController>(builder: (controller) {
-              if (controller.isLoading) {
+              if (controller.isInitLoading) {
                 return Container(
                   height: 200.h,
                   child: Center(
@@ -106,7 +106,7 @@ class _PartnersInformationState extends State<PartnersInformation> {
                               "Be sure to confirm that you've   paid the exact amount into the provided payment channel before clicking the button below."),
                       SizedBox(height: 8),
                       Padding(
-                        padding: const EdgeInsets.only(top: 16.0),
+                        padding: const EdgeInsets.only(top: 16.0, bottom: 5),
                         child: Center(
                           child: CountdownTimer(
                             endTime: endTime,
@@ -139,29 +139,20 @@ class _PartnersInformationState extends State<PartnersInformation> {
                               textColor: Colors.white,
                               buttonColor: ColorResources.primaryColor,
                               fontSize: 18.sp,
-                              busy: false,
+                              busy: controller.isLoading,
                               fontWeight: FontWeight.w400,
                               height: 54.h,
                               onTap: () async {
-                                Response response = await controller.confirmDeposit(controller.depositAgent.id);
+                                Response response = await controller.confirmDeposit(controller.depositAgent.id.toString());
                                 if (response.body["message"] == "success") {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) {
-                                        return PartnersInformation(
-                                          amountInDolar: widget.amountInDolar,
-                                          amountInNaira: widget.amountInNaira,
-                                        );
-                                      },
-                                    ),
-                                  );
+                                  Get.offAllNamed(RouteHelper.getNavBarRoute(), arguments: true);
                                 }
                               },
                             );
                           },
                         ),
                       ),
+                      SizedBox(height: 30.h,)
                     ],
                   ),
                 ),
