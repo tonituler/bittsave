@@ -9,7 +9,6 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:six_cash/controller/localization_controller.dart';
 import 'package:six_cash/controller/theme_controller.dart';
-import 'package:six_cash/helper/notification_helper.dart';
 import 'package:six_cash/helper/route_helper.dart';
 import 'package:six_cash/theme/dark_theme.dart';
 import 'package:six_cash/theme/light_theme.dart';
@@ -40,38 +39,40 @@ Future<void> main() async {
       // await NotificationHelper.initialize(flutterLocalNotificationsPlugin);
       // FirebaseMessaging.onBackgroundMessage(myBackgroundMessageHandler);
     }
-  }catch(e) {}
+  } catch (e) {}
 
   runApp(MyApp(languages: _languages, orderID: _orderID));
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(statusBarColor: Colors.transparent.withOpacity(0.3)));
-
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent.withOpacity(0.3)));
 }
 
 class MyApp extends StatelessWidget {
   final Map<String, Map<String, String>> languages;
   final int orderID;
   MyApp({@required this.languages, @required this.orderID});
-
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<ThemeController>(builder: (themeController) {
-      return GetBuilder<LocalizationController>(builder: (localizeController) {
-        return GetMaterialApp(
-          title: AppConstants.APP_NAME,
-          debugShowCheckedModeBanner: false,
-          navigatorKey: Get.key,
-          theme: themeController.darkTheme ? dark : light,
-          locale: localizeController.locale,
-          translations: Messages(languages: languages),
-          fallbackLocale: Locale(AppConstants.languages[0].languageCode, AppConstants.languages[0].countryCode),
-          initialRoute: RouteHelper.getSplashRoute(),
-          getPages: RouteHelper.routes,
-          defaultTransition: Transition.topLevel,
-          transitionDuration: Duration(milliseconds: 500),
+    return GetBuilder<ThemeController>(
+      builder: (themeController) {
+        return GetBuilder<LocalizationController>(
+          builder: (localizeController) {
+            return GetMaterialApp(
+              title: AppConstants.APP_NAME,
+              debugShowCheckedModeBanner: false,
+              navigatorKey: Get.key,
+              theme: themeController.darkTheme ? dark : light,
+              locale: localizeController.locale,
+              translations: Messages(languages: languages),
+              fallbackLocale: Locale(AppConstants.languages[0].languageCode,
+                  AppConstants.languages[0].countryCode),
+              initialRoute: RouteHelper.getSplashRoute(),
+              getPages: RouteHelper.routes,
+              defaultTransition: Transition.topLevel,
+              transitionDuration: Duration(milliseconds: 500),
+            );
+          },
         );
       },
-      );
-    },
     );
   }
 }

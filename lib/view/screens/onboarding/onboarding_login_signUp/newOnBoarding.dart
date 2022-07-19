@@ -29,6 +29,10 @@ class _OnbardingState extends State<Onbarding> {
               },
             ),
           );
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
+            return LogIn1();
+            // return TestApp();
+          }));
         },
         background: [
           Image.asset('assets/newImages/1Image.png'),
@@ -110,7 +114,11 @@ class _OnbardingState extends State<Onbarding> {
                   Text(
                     'You can issue a card without leaving your home. Physical and online cards are available in the application.',
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 12, color: Colors.grey, fontWeight: FontWeight.w400),
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Colors.grey,
+                      fontWeight: FontWeight.w400,
+                    ),
                   ),
                 ],
               ),

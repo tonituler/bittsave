@@ -103,7 +103,7 @@ class _FundingUsdWalletState extends State<FundingUsdWallet> {
                             style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.w300,
-                              fontSize: 18.sp,
+                              fontSize: 14.sp,
                             ),
                           )
                         ],
