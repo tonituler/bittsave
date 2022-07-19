@@ -63,6 +63,8 @@ class _SplashScreenState extends State<SplashScreen> {
           Get.offNamed(RouteHelper.getChoseLoginRegRoute());
         });
 
+        Get.offNamed(RouteHelper.getChoseLoginRegRoute());
+
       });
     });
   }

@@ -90,6 +90,8 @@ class RouteHelper {
   static const String support = '/support';
   static const String chose_language_screen = '/chose_language_screen';
   static const String qr_code_download_or_share = '/qr_code_download_or_share';
+  
+  static const String partner_info = '/partner_info';
 
   static getSplashRoute() => '$splash';
   static String getHomeRoute(String name) => '$home?name=$name';
@@ -121,6 +123,7 @@ class RouteHelper {
   static  getFVeryficationRoute({@required String phoneNumber}) => '$f_verification_screen?phone-number=$phoneNumber';
 
   static getSupportRoute() => '$support';
+  // static getPartnerInfo({@required }) => '$partner_info';
   static getCashOutConfirmationRoute({@required String inputBalanceText}) => '$cash_out_confirmation?input-balance=$inputBalanceText';
   static  getShareStatementRoute({ @required String amount,  @required String transactionType, @required ContactModel contactModel}) {
     String _data =  base64Url.encode(utf8.encode(jsonEncode(contactModel.toJson())));

@@ -50,6 +50,11 @@ class AppConstants {
   static const String CHECK_CUSTOMER_URI = '/api/v1/check-customer';
   static const String CHECK_AGENT_URI = '/api/v1/check-agent';
   static const String WON_REQUESTED_MONEY = '/api/v1/customer/get-own-requested-money';
+  
+
+  static const String CUSTOMER_DEPOSIT_REQUEST = '/api/v1/customer/deposit-request';
+  static const String CUSTOMER_FIND_AGENT = '/api/v1/customer/get-deposit-request';
+  static const String CUSTOMER_DEPOSIT_CONFIRMATION = '/api/v1/customer/deposit-request/confirm';
 
   // Shared Key
   static const String THEME = 'theme';
@@ -100,8 +105,8 @@ class AppConstants {
   ];
 
   static  List<OnboardModel> onboardList = [
-    OnboardModel(Images.onboard_image_1, Images.onboard_background_1, 'on_boarding_title_1'.tr, 'on_boarding_sub_title_1'.tr),
-    OnboardModel(Images.onboard_image_2, Images.onboard_background_2, 'on_boarding_title_2'.tr, 'on_boarding_sub_title_2'.tr),
-    OnboardModel(Images.onboard_image_3, Images.onboard_background_3, 'on_boarding_title_3'.tr, 'on_boarding_sub_title_3'.tr),
+    OnboardModel(Images.onboard_image_1, Images.onboard_background_1, "Secure Payment", "Our unique payment encryption technology will protect your funds"),
+    OnboardModel(Images.onboard_image_3, Images.onboard_background_3, "Add any accounts", "You can add any account, card or crypto wallet to the app and make payments"),
+    OnboardModel(Images.onboard_image_2, Images.onboard_background_2, "Custom card", "You can issue a card without leaving your home. Physical and online cards are available in the application."),
   ];
 }

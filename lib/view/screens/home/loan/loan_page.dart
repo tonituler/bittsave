@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:six_cash/view/loan_page/Loan_History/no_active_loans.dart';
-import 'package:six_cash/view/loan_page/howToBeFunded.dart';
+import 'package:six_cash/app/extensions.dart';
 import 'package:six_cash/view/screens/home/funding_options/request_from_a_riend/bitsave_user_request.dart';
 import 'package:six_cash/view/screens/home/funding_options/request_from_a_riend/friend_identity.dart';
 import 'package:six_cash/view/screens/home/funding_usd_wallet_page.dart';
+import 'package:six_cash/view/screens/home/loan/history/no_active_loans.dart';
+import 'package:six_cash/view/screens/home/loan/howToBeFunded.dart';
 
 bool _show = false;
 bool _showBtSheet = false;
@@ -21,113 +22,109 @@ class _LoanApplicationState extends State<LoanApplication> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        bottomSheet: _bottomSheet(),
+        // bottomSheet: _bottomSheet(),
         body: Stack(
-          children: [
-            BackGroundColr(
-              child: Container(
-                padding: EdgeInsets.only(left: 16, right: 16, top: 35),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        BackGroundColr(
+          child: Container(
+            padding: EdgeInsets.only(left: 16, right: 16, top: 35),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                BackButtons(),
+                BoldTextTitle(
+                  data: 'Apply for a Loan',
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10.0),
+                  child: Text(
+                    'Taking out a loan means you can put your plans into action much earlier',
+                    style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w300),
+                  ),
+                ),
+                Row(
                   children: [
-                    BackButtons(),
-                    BoldTextTitle(
-                      data: 'Apply for a Loan',
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10.0),
-                      child: Text(
-                        'Taking out a loan means you can put your plans into action much earlier',
-                        style: TextStyle(
-                            color: Colors.grey, fontWeight: FontWeight.w300),
+                    Expanded(
+                      child: Cont32(
+                        onTap: () {
+                          setState(() {
+                            _showLoanApk = true;
+                          });
+                        },
+                        title: 'Take a\nLoan',
+                        subtitle: 'Borrow money\nto meet your\nneeds',
+                        avatar: Image.asset(
+                          'assets/newImages/Radar 02.png',
+                          width: 60,
+                        ),
                       ),
                     ),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Cont32(
-                            onTap: () {
-                              setState(() {
-                                _showLoanApk = true;
-                              });
-                            },
-                            title: 'Take a\nLoan',
-                            subtitle: 'Borrow money\nto meet your\nneeds',
-                            avatar: Image.asset(
-                              'assets/newImages/Radar 02.png',
-                              width: 60,
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: 7),
-                        Expanded(
-                          child: Cont32(
-                            onTap: () {
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (context) {
-                                return NoActiveLoans();
-                              }));
-                            },
-                            title: 'Your Loan\nHistory',
-                            subtitle:
-                                'Monitor and know\nthe status of your\nloan today',
-                            avatar: Image.asset(
-                              'assets/newImages/Radar 01.png',
-                              width: 60,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 80.0),
-                      child: Text(
-                        'Try our loan calculator to get estimates and secure the best option for your needs and wants',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.w400),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        // _bottomSheet();
-                        setState(() {
-                          _showBtSheet = true;
-                        });
-                      },
-                      child: Container(
-                        margin: EdgeInsets.symmetric(vertical: 20),
-                        height: 55,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            border: Border.all(width: 0.2, color: Colors.pink),
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(12)),
-                        child: Center(
-                          child: Text(
-                            'Loan Calculator',
-                            style: TextStyle(
-                                color: Colors.pink,
-                                fontWeight: FontWeight.w400),
-                            textAlign: TextAlign.center,
-                          ),
+                    SizedBox(width: 7),
+                    Expanded(
+                      child: Cont32(
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) {
+                            return NoActiveLoans();
+                          }));
+                        },
+                        title: 'Your Loan\nHistory',
+                        subtitle: 'Monitor and know\nthe status of your\nloan today',
+                        avatar: Image.asset(
+                          'assets/newImages/Radar 01.png',
+                          width: 60,
                         ),
                       ),
                     ),
                   ],
                 ),
-              ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 80.0),
+                  child: Text(
+                    'Try our loan calculator to get estimates and secure the best option for your needs and wants',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      _showBtSheet = true;
+                    });
+                    showBottomSheetMethod();
+                  },
+                  child: Container(
+                    margin: EdgeInsets.symmetric(vertical: 20),
+                    height: 55,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        border: Border.all(width: 0.2, color: Colors.pink), color: Colors.white, borderRadius: BorderRadius.circular(12)),
+                    child: Center(
+                      child: Text(
+                        'Loan Calculator',
+                        style: TextStyle(
+                          color: Colors.pink,
+                          fontWeight: FontWeight.w400,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
-            _show == false ? Container() : AlertDialog(),
-            _showSummaryOfLoan == false ? Container() : AlertDialog(),
-          ],
-        ));
+          ),
+        ),
+        _show == false ? Container() : AlertDialog(),
+        _showSummaryOfLoan == false ? Container() : AlertDialog(),
+      ],
+    ));
   }
 
   Widget _bottomSheet() {
     if (_showBtSheet) {
       return BottomSheet(
           onClosing: () {},
+          backgroundColor: Colors.black,
           builder: (context) {
             return Container(
                 color: Colors.grey[50],
@@ -136,81 +133,83 @@ class _LoanApplicationState extends State<LoanApplication> {
                   padding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(20),
-                          topLeft: Radius.circular(20))),
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(topRight: Radius.circular(20), topLeft: Radius.circular(20)),
+                  ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Row(
-                        children: [
-                          Text(
-                            'Loan Calculator',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w400, fontSize: 23),
-                          ),
-                          Spacer(),
-                          GestureDetector(
-                            onTap: () {
-                              // Navigator.pop(context);
-                              setState(() {
-                                _showBtSheet = false;
-                              });
-                            },
-                            child: CircleAvatar(
+                      Container(
+                        child: Row(
+                          children: [
+                            Text(
+                              'Loan Calculator',
+                              style: TextStyle(fontWeight: FontWeight.w400, fontSize: 23),
+                            ),
+                            Spacer(),
+                            GestureDetector(
+                              onTap: () {
+                                // Navigator.pop(context);
+                                setState(() {
+                                  _showBtSheet = false;
+                                });
+                              },
+                              child: CircleAvatar(
                                 backgroundColor: Colors.pink,
                                 radius: 14,
                                 child: Icon(
                                   Icons.clear,
                                   size: 20,
                                   color: Colors.white,
-                                )),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 5),
-                      TextFld(kTextField.copyWith(
-                        hintText: 'Loan Amount',
-                      )),
-                      SelectTxt('Select a repayment period'),
-                      TextFld(kTextField.copyWith(
-                          suffixIcon: Icon(
-                        Icons.keyboard_arrow_down_rounded,
-                        color: Colors.pink,
-                      ))),
-                      SelectTxt('Select a loan to value'),
-                      TextFld(kTextField.copyWith(
-                          suffixIcon: Icon(Icons.keyboard_arrow_down_rounded,
-                              color: Colors.pink))),
-                      SelectTxt('Select a repayment'),
-                      TextFld(kTextField.copyWith(
-                          suffixIcon: Icon(Icons.keyboard_arrow_down_rounded,
-                              color: Colors.pink))),
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            _showBtSheet = false;
-                            _show = true;
-                          });
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 5, vertical: 10),
-                          child: Container(
-                            decoration: BoxDecoration(
-                                color: Colors.pink,
-                                borderRadius: BorderRadius.circular(20)),
-                            height: 50,
-                            width: double.infinity,
-                            child: Center(
-                                child: Text(
-                              'Calculate Loan',
-                              style: TextStyle(color: Colors.white),
-                            )),
-                          ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
+                      SizedBox(height: 20),
+                      Expanded(
+                        child: SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              TextFld(kTextField.copyWith(
+                                hintText: 'Loan Amount',
+                              )),
+                              SelectTxt('Select a repayment period'),
+                              TextFld(kTextField.copyWith(
+                                  suffixIcon: Icon(
+                                Icons.keyboard_arrow_down_rounded,
+                                color: Colors.pink,
+                              ))),
+                              SelectTxt('Select a loan to value'),
+                              TextFld(kTextField.copyWith(suffixIcon: Icon(Icons.keyboard_arrow_down_rounded, color: Colors.pink))),
+                              SelectTxt('Select a repayment'),
+                              TextFld(kTextField.copyWith(suffixIcon: Icon(Icons.keyboard_arrow_down_rounded, color: Colors.pink))),
+                              GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    _showBtSheet = false;
+                                    _show = true;
+                                  });
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+                                  child: Container(
+                                    decoration: BoxDecoration(color: Colors.pink, borderRadius: BorderRadius.circular(20)),
+                                    height: 50,
+                                    width: double.infinity,
+                                    child: Center(
+                                        child: Text(
+                                      'Calculate Loan',
+                                      style: TextStyle(color: Colors.white),
+                                    )),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      )
                     ],
                   ),
                 ));
@@ -226,10 +225,7 @@ class _LoanApplicationState extends State<LoanApplication> {
                   padding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(20),
-                          topLeft: Radius.circular(20))),
+                      color: Colors.white, borderRadius: BorderRadius.only(topRight: Radius.circular(20), topLeft: Radius.circular(20))),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -237,8 +233,7 @@ class _LoanApplicationState extends State<LoanApplication> {
                         children: [
                           Text(
                             'Loan Application',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w400, fontSize: 23),
+                            style: TextStyle(fontWeight: FontWeight.w400, fontSize: 23),
                           ),
                           Spacer(),
                           GestureDetector(
@@ -270,13 +265,9 @@ class _LoanApplicationState extends State<LoanApplication> {
                         color: Colors.pink,
                       ))),
                       SelectTxt('Select a loan to value'),
-                      TextFld(kTextField.copyWith(
-                          suffixIcon: Icon(Icons.keyboard_arrow_down_rounded,
-                              color: Colors.pink))),
+                      TextFld(kTextField.copyWith(suffixIcon: Icon(Icons.keyboard_arrow_down_rounded, color: Colors.pink))),
                       SelectTxt('Select a repayment'),
-                      TextFld(kTextField.copyWith(
-                          suffixIcon: Icon(Icons.keyboard_arrow_down_rounded,
-                              color: Colors.pink))),
+                      TextFld(kTextField.copyWith(suffixIcon: Icon(Icons.keyboard_arrow_down_rounded, color: Colors.pink))),
                       GestureDetector(
                         onTap: () {
                           setState(() {
@@ -285,12 +276,9 @@ class _LoanApplicationState extends State<LoanApplication> {
                           });
                         },
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 5, vertical: 10),
+                          padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
                           child: Container(
-                            decoration: BoxDecoration(
-                                color: Colors.pink,
-                                borderRadius: BorderRadius.circular(20)),
+                            decoration: BoxDecoration(color: Colors.pink, borderRadius: BorderRadius.circular(20)),
                             height: 50,
                             width: double.infinity,
                             child: Center(
@@ -323,9 +311,7 @@ class _LoanApplicationState extends State<LoanApplication> {
                   height: 400,
                   width: 300,
                   decoration: BoxDecoration(
-                      color: Colors.grey[50],
-                      border: Border.all(color: Colors.black26, width: 0.2),
-                      borderRadius: BorderRadius.circular(20)),
+                      color: Colors.grey[50], border: Border.all(color: Colors.black26, width: 0.2), borderRadius: BorderRadius.circular(20)),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -364,9 +350,7 @@ class _LoanApplicationState extends State<LoanApplication> {
                             col: Colors.pink,
                             widget: Text(
                               'Close',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w500),
+                              style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
                             ),
                           ),
                         ),
@@ -410,9 +394,7 @@ class _LoanApplicationState extends State<LoanApplication> {
                     height: 400,
                     width: 300,
                     decoration: BoxDecoration(
-                        color: Colors.grey[50],
-                        border: Border.all(color: Colors.black26, width: 0.2),
-                        borderRadius: BorderRadius.circular(20)),
+                        color: Colors.grey[50], border: Border.all(color: Colors.black26, width: 0.2), borderRadius: BorderRadius.circular(20)),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -444,8 +426,7 @@ class _LoanApplicationState extends State<LoanApplication> {
                           onTap: () {
                             setState(() {
                               _showSummaryOfLoan = false;
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (context) {
+                              Navigator.push(context, MaterialPageRoute(builder: (context) {
                                 return HowToBeFunded();
                               }));
                             });
@@ -455,9 +436,7 @@ class _LoanApplicationState extends State<LoanApplication> {
                               col: Colors.pink,
                               widget: Text(
                                 'Close',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w500),
+                                style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
                               ),
                             ),
                           ),
@@ -534,14 +513,32 @@ class _LoanApplicationState extends State<LoanApplication> {
   }
 
   static const kTextField = InputDecoration(
-      hintText: 'Choose a value',
-      hintStyle: TextStyle(
-          color: Colors.pink, fontWeight: FontWeight.w300, fontSize: 16));
+    hintText: 'Choose a value',
+    hintStyle: TextStyle(color: Colors.pink, fontWeight: FontWeight.w300, fontSize: 16),
+  );
+
+  showBottomSheetMethod() {
+    showModalBottomSheet(
+        isScrollControlled: true,
+        context: context,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20.h),
+          topRight: Radius.circular(20.h),
+        )),
+        builder: (context) {
+          return Container(
+            height: 600.h,
+            child: SingleChildScrollView(
+              child: _bottomSheet(),
+            ),
+          );
+        });
+  }
 }
 
 class Cont32 extends StatelessWidget {
-  const Cont32({Key key, this.title, this.subtitle, this.avatar, this.onTap})
-      : super(key: key);
+  const Cont32({Key key, this.title, this.subtitle, this.avatar, this.onTap}) : super(key: key);
   final String title;
   final String subtitle;
   final Widget avatar;
@@ -561,9 +558,7 @@ class Cont32 extends StatelessWidget {
           child: Container(
             width: 150,
             height: 200,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16),
-                border: Border.all(width: 0.5, color: Colors.pink)),
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), border: Border.all(width: 0.5, color: Colors.pink)),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -575,8 +570,7 @@ class Cont32 extends StatelessWidget {
                       child: Text(
                         title,
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 20),
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                       ),
                     ),
                     Padding(
@@ -590,8 +584,7 @@ class Cont32 extends StatelessWidget {
                 ),
                 Spacer(),
                 Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 12.0, vertical: 14),
+                  padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 14),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [

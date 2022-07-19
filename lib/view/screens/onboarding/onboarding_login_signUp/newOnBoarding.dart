@@ -20,6 +20,15 @@ class _OnbardingState extends State<Onbarding> {
         finishButtonText: 'Get Started',
         finishButtonColor: Colors.pink,
         onFinish: () {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) {
+                return LogIn1();
+                // return TestApp();
+              },
+            ),
+          );
           Navigator.pushReplacement(context,
               MaterialPageRoute(builder: (context) {
             return LogIn1();
@@ -45,10 +54,14 @@ class _OnbardingState extends State<Onbarding> {
                   Center(
                     child: Text(
                       'Secure Payment',
+<<<<<<< HEAD
                       style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.w500,
                           fontSize: 20),
+=======
+                      style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500, fontSize: 20),
+>>>>>>> origin/staging2
                     ),
                   ),
                   SizedBox(
@@ -57,10 +70,14 @@ class _OnbardingState extends State<Onbarding> {
                   Text(
                     'Our unique payment encryption technology will protect your funds',
                     textAlign: TextAlign.center,
+<<<<<<< HEAD
                     style: TextStyle(
                         fontSize: 12,
                         color: Colors.grey,
                         fontWeight: FontWeight.w400),
+=======
+                    style: TextStyle(fontSize: 12, color: Colors.grey, fontWeight: FontWeight.w400),
+>>>>>>> origin/staging2
                   ),
                 ],
               ),
@@ -77,10 +94,14 @@ class _OnbardingState extends State<Onbarding> {
                   Center(
                     child: Text(
                       'Add any accounts',
+<<<<<<< HEAD
                       style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.w500,
                           fontSize: 20),
+=======
+                      style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500, fontSize: 20),
+>>>>>>> origin/staging2
                     ),
                   ),
                   SizedBox(
@@ -89,10 +110,14 @@ class _OnbardingState extends State<Onbarding> {
                   Text(
                     'You can add any account, card or crypto wallet to the app and make payments',
                     textAlign: TextAlign.center,
+<<<<<<< HEAD
                     style: TextStyle(
                         fontSize: 12,
                         color: Colors.grey,
                         fontWeight: FontWeight.w400),
+=======
+                    style: TextStyle(fontSize: 12, color: Colors.grey, fontWeight: FontWeight.w400),
+>>>>>>> origin/staging2
                   ),
                 ],
               ),
@@ -109,10 +134,14 @@ class _OnbardingState extends State<Onbarding> {
                   Center(
                     child: Text(
                       'Custom card',
+<<<<<<< HEAD
                       style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.w500,
                           fontSize: 20),
+=======
+                      style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500, fontSize: 20),
+>>>>>>> origin/staging2
                     ),
                   ),
                   SizedBox(
@@ -121,10 +150,14 @@ class _OnbardingState extends State<Onbarding> {
                   Text(
                     'You can issue a card without leaving your home. Physical and online cards are available in the application.',
                     textAlign: TextAlign.center,
+<<<<<<< HEAD
                     style: TextStyle(
                         fontSize: 12,
                         color: Colors.grey,
                         fontWeight: FontWeight.w400),
+=======
+                    style: TextStyle(fontSize: 12, color: Colors.grey, fontWeight: FontWeight.w400),
+>>>>>>> origin/staging2
                   ),
                 ],
               ),
