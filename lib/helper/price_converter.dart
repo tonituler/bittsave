@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
+import 'package:intl/intl.dart';
 import 'package:six_cash/controller/profile_screen_controller.dart';
 import 'package:six_cash/controller/splash_controller.dart';
+
 class PriceConverter {
+  static final formatter = new NumberFormat("#,##0.00", "en_US");
+
   static String convertPrice(BuildContext context, double price, {double discount, String discountType}) {
-    if(discount != null && discountType != null){
-      if(discountType == 'amount') {
+    if (discount != null && discountType != null) {
+      if (discountType == 'amount') {
         price = price - discount;
-      }else if(discountType == 'percent') {
+      } else if (discountType == 'percent') {
         price = price - ((discount / 100) * price);
       }
     }
@@ -16,9 +20,9 @@ class PriceConverter {
   }
 
   static double convertWithDiscount(BuildContext context, double price, double discount, String discountType) {
-    if(discountType == 'amount') {
+    if (discountType == 'amount') {
       price = price - discount;
-    }else if(discountType == 'percent') {
+    } else if (discountType == 'percent') {
       price = price - ((discount / 100) * price);
     }
     return price;
@@ -26,9 +30,9 @@ class PriceConverter {
 
   static double calculation(double amount, double discount, String type, int quantity) {
     double calculatedAmount = 0;
-    if(type == 'amount') {
+    if (type == 'amount') {
       calculatedAmount = discount * quantity;
-    }else if(type == 'percent') {
+    } else if (type == 'percent') {
       calculatedAmount = (discount / 100) * (amount * quantity);
     }
     return calculatedAmount;
@@ -38,44 +42,50 @@ class PriceConverter {
     return '$discount${discountType == 'percent' ? '%' : '\$'} OFF';
   }
 
-  static double withCashOutCharge(double amount){
-   return (amount * Get.find<SplashController>().configModel.cashOutChargePercent) / 100 + amount;
+  static double withCashOutCharge(double amount) {
+    return (amount * Get.find<SplashController>().configModel.cashOutChargePercent) / 100 + amount;
   }
 
-  static double withSendMoneyCharge(double amount){
+  static double withSendMoneyCharge(double amount) {
     return amount + Get.find<SplashController>().configModel.sendMoneyChargeFlat;
   }
 
-  static String availableBalance(){
+  static String availableBalance() {
     String _currencySymbol = Get.find<SplashController>().configModel.currencySymbol;
     String _currentBalance = Get.find<ProfileController>().userInfo.balance.toStringAsFixed(2);
-    return Get.find<SplashController>().configModel.currencyPosition == 'left' ?  '$_currencySymbol$_currentBalance' : '$_currentBalance$_currencySymbol';
-
+    return Get.find<SplashController>().configModel.currencyPosition == 'left'
+        ? '$_currencySymbol$_currentBalance'
+        : '$_currentBalance$_currencySymbol';
   }
-  static String newBalanceWithDebit({@required double inputBalance, @required double charge}){
+
+  static String newBalanceWithDebit({@required double inputBalance, @required double charge}) {
     String _currencySymbol = Get.find<SplashController>().configModel.currencySymbol;
-    String _currentBalance = (Get.find<ProfileController>().userInfo.balance - (inputBalance+charge)).toStringAsFixed(2);
-    return Get.find<SplashController>().configModel.currencyPosition == 'left' ?  '$_currencySymbol$_currentBalance' : '$_currentBalance$_currencySymbol';
-
+    String _currentBalance = (Get.find<ProfileController>().userInfo.balance - (inputBalance + charge)).toStringAsFixed(2);
+    return Get.find<SplashController>().configModel.currencyPosition == 'left'
+        ? '$_currencySymbol$_currentBalance'
+        : '$_currentBalance$_currencySymbol';
   }
 
-  static String newBalanceWithCredit({@required double inputBalance}){
+  static String newBalanceWithCredit({@required double inputBalance}) {
     String _currencySymbol = Get.find<SplashController>().configModel.currencySymbol;
     String _currentBalance = (Get.find<ProfileController>().userInfo.balance + inputBalance).toStringAsFixed(2);
-    return Get.find<SplashController>().configModel.currencyPosition == 'left' ?  '$_currencySymbol$_currentBalance' : '$_currentBalance$_currencySymbol';
-
+    return Get.find<SplashController>().configModel.currencyPosition == 'left'
+        ? '$_currencySymbol$_currentBalance'
+        : '$_currentBalance$_currencySymbol';
   }
 
-  static String balanceInputHint(){
+  static String balanceInputHint() {
     String _currencySymbol = Get.find<SplashController>().configModel.currencySymbol;
     String _balance = '0';
-    return Get.find<SplashController>().configModel.currencyPosition == 'left' ?  '$_currencySymbol$_balance' : '$_balance$_currencySymbol';
-
+    return Get.find<SplashController>().configModel.currencyPosition == 'left' ? '$_currencySymbol$_balance' : '$_balance$_currencySymbol';
   }
-  static String balanceWithSymbol({String balance}){
+
+  static String balanceWithSymbol({String balance}) {
     String _currencySymbol = Get.find<SplashController>().configModel.currencySymbol;
-    return Get.find<SplashController>().configModel.currencyPosition == 'left' ?  '$_currencySymbol$balance' : '$balance$_currencySymbol';
+    return Get.find<SplashController>().configModel.currencyPosition == 'left' ? '$_currencySymbol$balance' : '$balance$_currencySymbol';
+  }
 
-
+  static String priceFormater({double balance}) {
+    return '${formatter.format(balance)}';
   }
 }

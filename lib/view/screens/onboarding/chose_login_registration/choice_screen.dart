@@ -11,6 +11,7 @@ import 'package:six_cash/view/screens/onboarding/chose_login_registration/widget
 
 class ChoiceScreen extends StatelessWidget {
   ChoiceScreen({Key key}) : super(key: key);
+  PageController pageContoller = PageController();
 
   @override
   Widget build(BuildContext context) {
@@ -28,11 +29,13 @@ class ChoiceScreen extends StatelessWidget {
                   child: PageView.builder(
                       itemCount: AppConstants.onboardList.length,
                       scrollDirection: Axis.horizontal,
+                      controller: pageContoller,
                       onPageChanged: (page) {
                         Get.find<AuthController>().change(page);
                       },
                       itemBuilder: (context, index) {
                         return Container(
+                          padding: EdgeInsets.only(top: 50),
                           child: Column(
                             children: [
                               Container(
@@ -40,17 +43,17 @@ class ChoiceScreen extends StatelessWidget {
                                 width: size.width,
                                 child: Stack(
                                   children: [
-                                    SizedBox(
-                                        width: double.infinity,
-                                        child: Image.asset(
-                                          AppConstants.onboardList[index].backgroundImage,
-                                          fit: BoxFit.fitWidth,
-                                        )),
                                     Align(
-                                        alignment: Alignment.bottomCenter,
-                                        child: SizedBox(
-                                            height: MediaQuery.of(context).size.width * 0.6,
-                                            child: Image.asset(AppConstants.onboardList[index].image, fit: BoxFit.fitHeight)))
+                                      alignment: Alignment.bottomCenter,
+                                      child: SizedBox(
+                                        width: MediaQuery.of(context).size.width,
+                                        // height: MediaQuery.of(context).size.height * 0.7,
+                                        child: Image.asset(
+                                          AppConstants.onboardList[index].image,
+                                          fit: BoxFit.fitWidth,
+                                        ),
+                                      ),
+                                    )
                                   ],
                                 ),
                               ),
@@ -80,8 +83,8 @@ class ChoiceScreen extends StatelessWidget {
                                         maxLines: 2,
                                         overflow: TextOverflow.ellipsis,
                                         style: montserratMedium.copyWith(
-                                          color: ColorResources.getOnboardGreyColor(),
-                                          fontSize: Dimensions.FONT_SIZE_LARGE,
+                                          color: ColorResources.getOnboardGreyColor().withOpacity(0.5),
+                                          fontSize: Dimensions.FONT_SIZE_DEFAULT - 2,
                                         ),
                                         textAlign: TextAlign.center,
                                       ),
@@ -89,32 +92,42 @@ class ChoiceScreen extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              const SizedBox(height: Dimensions.PADDING_SIZE_OVER_LARGE),
+                              const SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
                             ],
                           ),
                         );
                       }),
                 ),
                 IndicatorSection(),
-                const SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
+                const SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_OVER_LARGE),
               ],
             ),
           ),
           Container(
             padding: const EdgeInsets.only(
                 left: Dimensions.PADDING_SIZE_DEFAULT, right: Dimensions.PADDING_SIZE_DEFAULT, bottom: Dimensions.PADDING_SIZE_EXTRA_EXTRA_LARGE),
-            child: Row(
-              children: [
-                Expanded(
-                  child: CustomSmallButton(
-                    onTap: () => Get.toNamed(RouteHelper.getRegistrationRoute()),
-                    backgroundColor: Theme.of(context).secondaryHeaderColor,
-                    text: 'login_registration'.tr,
-                    textColor: ColorResources.getBlackColor(),
+            child: GetBuilder<AuthController>(builder: (controller) {
+              return Row(
+                children: [
+                  Expanded(
+                    child: CustomSmallButton(
+                      onTap: () {
+                        if (controller.page < 2) {
+                          int nextPage = controller.page + 1;
+                          controller.change(nextPage);
+                          pageContoller.animateToPage(nextPage, curve: Curves.easeInOut, duration: Duration(milliseconds: 400));
+                        } else {
+                          Get.toNamed(RouteHelper.getRegistrationRoute());
+                        }
+                      },
+                      backgroundColor: ColorResources.primaryColor,
+                      text: (controller.page < 2) ? "Continue" : "Get Started",
+                      textColor: ColorResources.whiteColor,
+                    ),
                   ),
-                ),
-              ],
-            ),
+                ],
+              );
+            }),
           )
         ],
       ),

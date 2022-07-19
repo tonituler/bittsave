@@ -32,6 +32,12 @@ class TransactionRepo {
   Future<Response>  checkCustomerNumber({@required String phoneNumber}) async {
     return await apiClient.postData(AppConstants.CHECK_CUSTOMER_URI, {'phone' : phoneNumber});
   }
+
+  Future<Response>  checkCustomerUsername({@required String username}) async {
+    return await apiClient.postData(AppConstants.CHECK_CUSTOMER_URI, {'username' : username});
+  }
+
+
   Future<Response>  checkAgentNumber({@required String phoneNumber}) async {
     return await apiClient.postData(AppConstants.CHECK_AGENT_URI, {'phone' : phoneNumber});
   }
@@ -70,7 +76,19 @@ class TransactionRepo {
     }
   }
 
+  Future<Response>  depositRequest({@required double amount}) async {
+    return await apiClient.postData(AppConstants.CUSTOMER_DEPOSIT_REQUEST, {'amount': amount});
+  }
 
+  Future<Response>  findAgent() async {
+    return await apiClient.getData(AppConstants.CUSTOMER_FIND_AGENT);
+  }
 
+  Future<Response>  confirmDeposit({@required String depositId}) async {
+    return await apiClient.postData(AppConstants.CUSTOMER_DEPOSIT_CONFIRMATION, {'id' : depositId});
+  }
 
+  Future<Response>  fundRequest(Map<String, dynamic> credentials) async {
+    return await apiClient.postData(AppConstants.CUSTOMER_REQUEST_MONEY, credentials);
+  }
 }

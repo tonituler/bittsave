@@ -20,6 +20,15 @@ class _OnbardingState extends State<Onbarding> {
         finishButtonText: 'Get Started',
         finishButtonColor: Colors.pink,
         onFinish: () {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) {
+                return LogIn1();
+                // return TestApp();
+              },
+            ),
+          );
           Navigator.pushReplacement(context,
               MaterialPageRoute(builder: (context) {
             return LogIn1();

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:six_cash/view/screens/deshboard/nav_bar.dart';
 import 'package:six_cash/view/screens/home/funding_options/request_from_a_riend/friend_identity.dart';
+import 'package:six_cash/view/screens/home/home_screen.dart';
 
 import '../../../home/funding_options/request_from_a_riend/bitsave_user_request.dart';
 
@@ -39,8 +39,8 @@ class _LastRegPageState extends State<LastRegPage> {
             SizedBox(height: 200),
             InkWell(
               onTap: () {
-                Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) => NavBarScreen()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => HomeScreen()));
               },
               child: Container(
                 margin: EdgeInsets.symmetric(horizontal: 10),

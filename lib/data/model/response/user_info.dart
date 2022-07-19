@@ -7,6 +7,7 @@ UserInfo userInfoFromJson(String str) => UserInfo.fromJson(json.decode(str));
 
 class UserInfo {
   UserInfo({
+    this.username,
     this.fName,
     this.lName,
     this.phone,
@@ -22,6 +23,7 @@ class UserInfo {
     this.qrCode,
   });
 
+  String username;
   String fName;
   String lName;
   String phone;
@@ -37,6 +39,7 @@ class UserInfo {
   String qrCode;
 
   factory UserInfo.fromJson(Map<String, dynamic> json) => UserInfo(
+    username: json["username"],
     fName: json["f_name"],
     lName: json["l_name"],
     phone: json["phone"],

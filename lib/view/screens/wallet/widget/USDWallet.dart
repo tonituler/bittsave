@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:six_cash/util/color_resources.dart';
 import 'package:six_cash/util/dimensions.dart';
 import 'package:six_cash/view/screens/home/funding_usd_wallet_page.dart';
+import 'package:six_cash/view/screens/wallet/send_usd.dart';
 import 'package:six_cash/view/screens/wallet/widget/BTCWallet.dart';
+import 'package:six_cash/view/screens/wallet/widget/WithDraw.dart';
 
 class USDWalletScreen extends StatefulWidget {
   const USDWalletScreen({Key key}) : super(key: key);
@@ -36,7 +38,7 @@ class _USDWalletScreenState extends State<USDWalletScreen> {
               child: Text(
                 'Swipe left to view your BTC wallet.',
                 textAlign: TextAlign.left,
-               style: TextStyle(
+                style: TextStyle(
                   color: Colors.grey,
                   fontWeight: FontWeight.w300,
                   fontSize: Dimensions.FONT_SIZE_DEFAULT,
@@ -60,7 +62,10 @@ class _USDWalletScreenState extends State<USDWalletScreen> {
                         children: [
                           Text(
                             'USD',
-                            style: TextStyle(color: Colors.white, fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE, fontWeight: FontWeight.w500),
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE,
+                                fontWeight: FontWeight.w500),
                           ),
                           Spacer(),
                           Image.asset(
@@ -76,7 +81,10 @@ class _USDWalletScreenState extends State<USDWalletScreen> {
                         padding: const EdgeInsets.symmetric(vertical: 5.0),
                         child: Text(
                           '\$0.00',
-                          style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600, fontSize: Dimensions.FONT_SIZE_EXTRA_OVER_LARGE),
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600,
+                              fontSize: Dimensions.FONT_SIZE_EXTRA_OVER_LARGE),
                         ),
                       ),
                     ],
@@ -91,18 +99,29 @@ class _USDWalletScreenState extends State<USDWalletScreen> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   WalletIcons(
-                    ontap: () {},
+                    ontap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return SendUsd();
+                      }));
+                    },
                     icon: "CaretCircleUp.png",
                     label: "Send",
                   ),
                   WalletIcons(
-                    ontap: () {},
+                    ontap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => WithDrawPaymentOptions()));
+                    },
                     icon: "Compass.png",
                     label: "Withdraw",
                   ),
                   WalletIcons(
                     ontap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
                         return FundingUsdWallet();
                       }));
                     },

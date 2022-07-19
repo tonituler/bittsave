@@ -7,9 +7,9 @@ class Images {
    static const String logo = 'assets/image/logo.png';
   static const String avatar = 'assets/image/avatar.jpg';
 
-  static const String onboard_image_2 = 'assets/image/onboard_image_2.png';
-  static const String onboard_image_3 = 'assets/image/onboard_image_3.png';
-  static const String onboard_image_1 = 'assets/image/onboard_image_1.png';
+  static const String onboard_image_2 = 'assets/newImages/3rdImage.png';
+  static const String onboard_image_3 = 'assets/newImages/2ndImage.png';
+  static const String onboard_image_1 = 'assets/newImages/1Image.png';
 
   static const String onboard_background_1 = 'assets/image/onboard_background_1.png';
   static const String onboard_background_2 = 'assets/image/onboard_background_2.png';
