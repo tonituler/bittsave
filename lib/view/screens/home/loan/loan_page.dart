@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:six_cash/app/extensions.dart';
+import 'package:six_cash/controller/loan_controller.dart';
+import 'package:six_cash/util/color_resources.dart';
+import 'package:six_cash/view/base/buttons.dart';
+import 'package:six_cash/view/base/custom_drop_down.dart';
 import 'package:six_cash/view/screens/home/funding_options/request_from_a_riend/bitsave_user_request.dart';
 import 'package:six_cash/view/screens/home/funding_options/request_from_a_riend/friend_identity.dart';
 import 'package:six_cash/view/screens/home/funding_usd_wallet_page.dart';
@@ -7,8 +13,6 @@ import 'package:six_cash/view/screens/home/loan/history/no_active_loans.dart';
 import 'package:six_cash/view/screens/home/loan/howToBeFunded.dart';
 
 bool _show = false;
-bool _showBtSheet = false;
-bool _showLoanApk = false;
 bool _showSummaryOfLoan = false;
 
 class LoanApplication extends StatefulWidget {
@@ -22,7 +26,6 @@ class _LoanApplicationState extends State<LoanApplication> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // bottomSheet: _bottomSheet(),
         body: Stack(
       children: [
         BackGroundColr(
@@ -47,9 +50,7 @@ class _LoanApplicationState extends State<LoanApplication> {
                     Expanded(
                       child: Cont32(
                         onTap: () {
-                          setState(() {
-                            _showLoanApk = true;
-                          });
+                          bottomLoanApkSheet();
                         },
                         title: 'Take a\nLoan',
                         subtitle: 'Borrow money\nto meet your\nneeds',
@@ -87,10 +88,7 @@ class _LoanApplicationState extends State<LoanApplication> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    setState(() {
-                      _showBtSheet = true;
-                    });
-                    showBottomSheetMethod();
+                    bottomLoanCalculationSheet();
                   },
                   child: Container(
                     margin: EdgeInsets.symmetric(vertical: 20),
@@ -120,357 +118,366 @@ class _LoanApplicationState extends State<LoanApplication> {
     ));
   }
 
-  Widget _bottomSheet() {
-    if (_showBtSheet) {
-      return BottomSheet(
-          onClosing: () {},
-          backgroundColor: Colors.black,
-          builder: (context) {
-            return Container(
-                color: Colors.grey[50],
-                child: Container(
-                  height: MediaQuery.of(context).size.height / 1.48,
-                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-                  alignment: Alignment.center,
+  Widget bottomLoanCalculationSheet() {
+    showModalBottomSheet(
+      isScrollControlled: true,
+      context: context,
+      isDismissible: false,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20.h),
+          topRight: Radius.circular(20.h),
+        ),
+      ),
+      builder: (context) {
+        return Container(
+          height: 600.h,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20.h),
+              topRight: Radius.circular(20.h),
+            ),
+          ),
+          child: SingleChildScrollView(
+            child: GetBuilder<LoanController>(
+              builder: (controller) {
+                return Container(
+                  padding: EdgeInsets.only(top: 10),
                   decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(topRight: Radius.circular(20), topLeft: Radius.circular(20)),
+                    color: Colors.grey[50],
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(20.h),
+                      topRight: Radius.circular(20.h),
+                    ),
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        child: Row(
-                          children: [
-                            Text(
-                              'Loan Calculator',
-                              style: TextStyle(fontWeight: FontWeight.w400, fontSize: 23),
-                            ),
-                            Spacer(),
-                            GestureDetector(
-                              onTap: () {
-                                // Navigator.pop(context);
-                                setState(() {
-                                  _showBtSheet = false;
-                                });
-                              },
-                              child: CircleAvatar(
-                                backgroundColor: Colors.pink,
-                                radius: 14,
-                                child: Icon(
-                                  Icons.clear,
-                                  size: 20,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: 20),
-                      Expanded(
-                        child: SingleChildScrollView(
-                          child: Column(
+                  child: Container(
+                    height: MediaQuery.of(context).size.height / 1.48,
+                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(topRight: Radius.circular(20), topLeft: Radius.circular(20)),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          child: Row(
                             children: [
-                              TextFld(kTextField.copyWith(
-                                hintText: 'Loan Amount',
-                              )),
-                              SelectTxt('Select a repayment period'),
-                              TextFld(kTextField.copyWith(
-                                  suffixIcon: Icon(
-                                Icons.keyboard_arrow_down_rounded,
-                                color: Colors.pink,
-                              ))),
-                              SelectTxt('Select a loan to value'),
-                              TextFld(kTextField.copyWith(suffixIcon: Icon(Icons.keyboard_arrow_down_rounded, color: Colors.pink))),
-                              SelectTxt('Select a repayment'),
-                              TextFld(kTextField.copyWith(suffixIcon: Icon(Icons.keyboard_arrow_down_rounded, color: Colors.pink))),
+                              Text(
+                                'Loan Calculator',
+                                style: TextStyle(fontWeight: FontWeight.w400, fontSize: 23),
+                              ),
+                              Spacer(),
                               GestureDetector(
                                 onTap: () {
-                                  setState(() {
-                                    _showBtSheet = false;
-                                    _show = true;
-                                  });
+                                  Navigator.pop(context);
                                 },
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
-                                  child: Container(
-                                    decoration: BoxDecoration(color: Colors.pink, borderRadius: BorderRadius.circular(20)),
-                                    height: 50,
-                                    width: double.infinity,
-                                    child: Center(
-                                        child: Text(
-                                      'Calculate Loan',
-                                      style: TextStyle(color: Colors.white),
-                                    )),
+                                child: CircleAvatar(
+                                  backgroundColor: Colors.pink,
+                                  radius: 14,
+                                  child: Icon(
+                                    Icons.clear,
+                                    size: 20,
+                                    color: Colors.white,
                                   ),
                                 ),
                               ),
                             ],
                           ),
                         ),
-                      )
-                    ],
-                  ),
-                ));
-          });
-    } else if (_showLoanApk) {
-      return BottomSheet(
-          onClosing: () {},
-          builder: (context) {
-            return Container(
-                color: Colors.grey[50],
-                child: Container(
-                  height: MediaQuery.of(context).size.height / 1.48,
-                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                      color: Colors.white, borderRadius: BorderRadius.only(topRight: Radius.circular(20), topLeft: Radius.circular(20))),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Text(
-                            'Loan Application',
-                            style: TextStyle(fontWeight: FontWeight.w400, fontSize: 23),
-                          ),
-                          Spacer(),
-                          GestureDetector(
-                            onTap: () {
-                              // Navigator.pop(context);
-                              setState(() {
-                                _showLoanApk = false;
-                              });
-                            },
-                            child: CircleAvatar(
-                                backgroundColor: Colors.pink,
-                                radius: 14,
-                                child: Icon(
-                                  Icons.clear,
-                                  size: 20,
-                                  color: Colors.white,
+                        SizedBox(height: 20),
+                        Expanded(
+                          child: SingleChildScrollView(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                TextFld(kTextField.copyWith(
+                                  hintText: 'Loan Amount',
                                 )),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 5),
-                      TextFld(kTextField.copyWith(
-                        hintText: 'Loan Amount',
-                      )),
-                      SelectTxt('Select a repayment period'),
-                      TextFld(kTextField.copyWith(
-                          suffixIcon: Icon(
-                        Icons.keyboard_arrow_down_rounded,
-                        color: Colors.pink,
-                      ))),
-                      SelectTxt('Select a loan to value'),
-                      TextFld(kTextField.copyWith(suffixIcon: Icon(Icons.keyboard_arrow_down_rounded, color: Colors.pink))),
-                      SelectTxt('Select a repayment'),
-                      TextFld(kTextField.copyWith(suffixIcon: Icon(Icons.keyboard_arrow_down_rounded, color: Colors.pink))),
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            _showLoanApk = false;
-                            _showSummaryOfLoan = true;
-                          });
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
-                          child: Container(
-                            decoration: BoxDecoration(color: Colors.pink, borderRadius: BorderRadius.circular(20)),
-                            height: 50,
-                            width: double.infinity,
-                            child: Center(
-                                child: Text(
-                              'Continue',
-                              style: TextStyle(color: Colors.white),
-                            )),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ));
-          });
-    } else {
-      return null;
-    }
-  }
-
-  Widget AlertDialog() {
-    if (_show == true) {
-      return Container(
-        color: Colors.white70,
-        child: Center(
-          child: Stack(
-            children: [
-              Center(
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
-                  height: 400,
-                  width: 300,
-                  decoration: BoxDecoration(
-                      color: Colors.grey[50], border: Border.all(color: Colors.black26, width: 0.2), borderRadius: BorderRadius.circular(20)),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(height: 20),
-                      BoldTextTitle(
-                        data: 'Loan Calculator Result',
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
-                        child: Text(
-                          'Summary from loan calculator',
-                          style: TextStyle(fontSize: 12),
-                        ),
-                      ),
-                      SizedBox(height: 20),
-                      subText('Total Payback'),
-                      titleText('\$301.00'),
-                      SizedBox(height: 16),
-                      subText('Loan Amount'),
-                      titleText('\$250.00'),
-                      SizedBox(height: 16),
-                      subText('Monthly Payback'),
-                      titleText('\$300.00'),
-                      SizedBox(height: 16),
-                      subText('Collateral Volume'),
-                      titleText('\$0.93939399 BTC.00'),
-                      SizedBox(height: 8),
-                      InkWell(
-                        onTap: () {
-                          setState(() {
-                            _show = false;
-                          });
-                        },
-                        child: Container(
-                          child: InnerContainer(
-                            col: Colors.pink,
-                            widget: Text(
-                              'Close',
-                              style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
+                                CustomDropDownButton(
+                                  title: 'Select a repayment period',
+                                  hintText: 'Choose a value',
+                                  value: "NO",
+                                  busy: false,
+                                  onChanged: (a) {
+                                    // mechanicType = a;
+                                    // setState(() {});
+                                  },
+                                  list: ["NO", "YES"],
+                                ),
+                                CustomDropDownButton(
+                                  title: 'Select a loan to value',
+                                  hintText: 'Choose a value',
+                                  value: "NO",
+                                  busy: false,
+                                  onChanged: (a) {
+                                    // mechanicType = a;
+                                    // setState(() {});
+                                  },
+                                  list: ["NO", "YES"],
+                                ),
+                                CustomDropDownButton(
+                                  title: 'Select a repayment',
+                                  hintText: 'Choose a value',
+                                  value: "NO",
+                                  busy: false,
+                                  onChanged: (a) {
+                                    // mechanicType = a;
+                                    // setState(() {});
+                                  },
+                                  list: ["NO", "YES"],
+                                ),
+                                SizedBox(
+                                  height: 40.h,
+                                ),
+                                Container(
+                                  height: 50,
+                                  width: MediaQuery.of(context).size.width,
+                                  padding: EdgeInsets.symmetric(horizontal: 5.w),
+                                  child: buttonWithBorder(
+                                    'Calculate Loan',
+                                    textColor: Colors.white,
+                                    buttonColor: ColorResources.primaryColor,
+                                    fontSize: 18.sp,
+                                    busy: controller.isLoading,
+                                    fontWeight: FontWeight.w400,
+                                    height: 54.h,
+                                    onTap: () async {
+                                      Navigator.pop(context);
+                                      setState(() {
+                                        _show = true;
+                                      });
+                                      _showDialog();
+                                    },
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Positioned(
-                top: 160,
-                right: 20,
-                child: Center(
-                  child: InkWell(
-                    onTap: () {
-                      setState(() {
-                        _show = false;
-                      });
-                    },
-                    child: CircleAvatar(
-                      radius: 25,
-                      backgroundColor: Colors.pink,
-                      child: Icon(Icons.clear, color: Colors.white),
+                        )
+                      ],
                     ),
                   ),
-                ),
-              ),
-            ],
+                );
+              },
+            ),
           ),
+        );
+      },
+    );
+  }
+
+  Widget bottomLoanApkSheet() {
+    showModalBottomSheet(
+      isScrollControlled: true,
+      context: context,
+      // isDismissible: false,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20.h),
+          topRight: Radius.circular(20.h),
         ),
-      );
-    } else if (_showSummaryOfLoan = true) {
-      {
+      ),
+      builder: (context) {
         return Container(
-          color: Colors.white70,
-          child: Center(
-            child: Stack(
-              children: [
-                Center(
-                  child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    height: 400,
-                    width: 300,
-                    decoration: BoxDecoration(
-                        color: Colors.grey[50], border: Border.all(color: Colors.black26, width: 0.2), borderRadius: BorderRadius.circular(20)),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+          height: 600.h,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20.h),
+              topRight: Radius.circular(20.h),
+            ),
+          ),
+          child: SingleChildScrollView(
+            child: Container(
+              color: Colors.grey[50],
+              child: Container(
+                height: MediaQuery.of(context).size.height / 1.48,
+                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                alignment: Alignment.center,
+                decoration:
+                    BoxDecoration(color: Colors.white, borderRadius: BorderRadius.only(topRight: Radius.circular(20), topLeft: Radius.circular(20))),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
                       children: [
-                        SizedBox(height: 20),
-                        BoldTextTitle(
-                          data: 'Summary of your Loan',
+                        Text(
+                          'Loan Application',
+                          style: TextStyle(fontWeight: FontWeight.w400, fontSize: 23),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
-                          child: Text(
-                            'Before you continue kindly review your payback',
-                            style: TextStyle(fontSize: 12),
-                          ),
-                        ),
-                        SizedBox(height: 20),
-                        subText('Total Payback'),
-                        titleText('\$301.00'),
-                        SizedBox(height: 16),
-                        subText('Loan Amount'),
-                        titleText('\$250.00'),
-                        SizedBox(height: 16),
-                        subText('Monthly Payback'),
-                        titleText('\$300.00'),
-                        SizedBox(height: 16),
-                        subText('Collateral Volume'),
-                        titleText('\$0.93939399 BTC.00'),
-                        SizedBox(height: 8),
-                        InkWell(
+                        Spacer(),
+                        GestureDetector(
                           onTap: () {
-                            setState(() {
-                              _showSummaryOfLoan = false;
-                              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                                return HowToBeFunded();
-                              }));
-                            });
+                            Navigator.pop(context);
                           },
-                          child: Container(
-                            child: InnerContainer(
-                              col: Colors.pink,
-                              widget: Text(
-                                'Close',
-                                style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
-                              ),
+                          child: CircleAvatar(
+                            backgroundColor: Colors.pink,
+                            radius: 14,
+                            child: Icon(
+                              Icons.clear,
+                              size: 20,
+                              color: Colors.white,
                             ),
                           ),
                         ),
                       ],
                     ),
-                  ),
-                ),
-                Positioned(
-                  top: 160,
-                  right: 20,
-                  child: Center(
-                    child: InkWell(
+                    SizedBox(height: 5),
+                    TextFld(kTextField.copyWith(
+                      hintText: 'Loan Amount',
+                    )),
+                    SelectTxt('Select a repayment period'),
+                    TextFld(kTextField.copyWith(
+                        suffixIcon: Icon(
+                      Icons.keyboard_arrow_down_rounded,
+                      color: Colors.pink,
+                    ))),
+                    SelectTxt('Select a loan to value'),
+                    TextFld(kTextField.copyWith(suffixIcon: Icon(Icons.keyboard_arrow_down_rounded, color: Colors.pink))),
+                    SelectTxt('Select a repayment'),
+                    TextFld(kTextField.copyWith(suffixIcon: Icon(Icons.keyboard_arrow_down_rounded, color: Colors.pink))),
+                    GestureDetector(
                       onTap: () {
                         setState(() {
-                          _showSummaryOfLoan = false;
+                          _showSummaryOfLoan = true;
                         });
                       },
-                      child: CircleAvatar(
-                        radius: 25,
-                        backgroundColor: Colors.pink,
-                        child: Icon(Icons.clear, color: Colors.white),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+                        child: Container(
+                          decoration: BoxDecoration(color: Colors.pink, borderRadius: BorderRadius.circular(20)),
+                          height: 50,
+                          width: double.infinity,
+                          child: Center(
+                              child: Text(
+                            'Continue',
+                            style: TextStyle(color: Colors.white),
+                          )),
+                        ),
                       ),
                     ),
-                  ),
+                  ],
                 ),
-              ],
+              ),
             ),
           ),
         );
-      }
-    } else {
-      return null;
-    }
+      },
+    );
+  }
+
+  Widget _showDialog() {
+    Widget widget  = Container(
+      color: Colors.transparent,
+      child: Stack(
+        children: [
+          Center(
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              height: 450,
+              width: 400,
+              decoration: BoxDecoration(
+                color: Colors.grey[50],
+                border: Border.all(color: Colors.black26, width: 0.2),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 20),
+                  BoldTextTitle(
+                    data: 'Loan Calculator Result',
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8.0),
+                    child: Text(
+                      'Summary from loan calculator',
+                      style: TextStyle(fontSize: 12),
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  subText('Total Payback'),
+                  titleText('\$301.00'),
+                  SizedBox(height: 16),
+                  subText('Loan Amount'),
+                  titleText('\$250.00'),
+                  SizedBox(height: 16),
+                  subText('Monthly Payback'),
+                  titleText('\$300.00'),
+                  SizedBox(height: 16),
+                  subText('Collateral Volume'),
+                  titleText('\$0.93939399 BTC.00'),
+                  SizedBox(height: 8),
+                  Container(
+                    height: 50,
+                    width: MediaQuery.of(context).size.width,
+                    padding: EdgeInsets.symmetric(horizontal: 5.w),
+                    child: buttonWithBorder(
+                      'Continue',
+                      textColor: Colors.white,
+                      buttonColor: ColorResources.primaryColor,
+                      fontSize: 18.sp,
+                      busy: false,
+                      fontWeight: FontWeight.w400,
+                      height: 54.h,
+                      onTap: () async {
+                        Navigator.pop(context);
+                        setState(() {
+                          _show = false;
+                        });
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return HowToBeFunded();
+                            },
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Positioned(
+            top: -2,
+            right: -2,
+            child: Center(
+              child: InkWell(
+                onTap: () {
+                  Navigator.pop(context);
+                  setState(() {
+                    _show = false;
+                  });
+                },
+                child: CircleAvatar(
+                  radius: 25,
+                  backgroundColor: Colors.pink,
+                  child: Icon(Icons.clear, color: Colors.white),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+
+    showDialog<AlertDialog>(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) => AlertDialog(
+        content: Container(
+          height: 430,
+          child: widget,
+          color: Colors.transparent,
+        ),
+        insetPadding: EdgeInsets.symmetric(horizontal: 0),
+        backgroundColor: Colors.transparent,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      ),
+    );
   }
 
   Widget titleText(text) {
@@ -516,25 +523,6 @@ class _LoanApplicationState extends State<LoanApplication> {
     hintText: 'Choose a value',
     hintStyle: TextStyle(color: Colors.pink, fontWeight: FontWeight.w300, fontSize: 16),
   );
-
-  showBottomSheetMethod() {
-    showModalBottomSheet(
-        isScrollControlled: true,
-        context: context,
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(20.h),
-          topRight: Radius.circular(20.h),
-        )),
-        builder: (context) {
-          return Container(
-            height: 600.h,
-            child: SingleChildScrollView(
-              child: _bottomSheet(),
-            ),
-          );
-        });
-  }
 }
 
 class Cont32 extends StatelessWidget {

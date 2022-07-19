@@ -7,6 +7,7 @@ import 'package:six_cash/controller/faq_controller.dart';
 import 'package:six_cash/controller/forget_password_controller.dart';
 import 'package:six_cash/controller/bootom_slider_controller.dart';
 import 'package:six_cash/controller/add_money_controller.dart';
+import 'package:six_cash/controller/loan_controller.dart';
 import 'package:six_cash/controller/menu_controller.dart';
 import 'package:six_cash/controller/notification_controller.dart';
 import 'package:six_cash/controller/qr_code_scanner_controller.dart';
@@ -80,6 +81,7 @@ Future<Map<String, Map<String, String>>> init() async {
   Get.lazyPut(() => MenuController());
   Get.lazyPut(() => AuthController(authRepo: Get.find()));
   Get.lazyPut(() => DepositController(transacRepo: Get.find()));
+  Get.lazyPut(() => LoanController(transacRepo: Get.find()));
   Get.lazyPut(() => HomeController());
   Get.lazyPut(() => CreateAccountController());
   Get.lazyPut(() => VarificationController(authRepo: Get.find()));
