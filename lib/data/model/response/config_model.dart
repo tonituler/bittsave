@@ -34,7 +34,13 @@ class ConfigModel {
     this.loanCommissionUsd,
     this.usdToNgn,
     this.buyBtcRate,
-    this.sellBtcRate
+    this.sellBtcRate,
+    this.loanPeriod,
+    this.loanToValueOptions,
+    this.loanRepaymentOption,
+    this.loanCreditType,
+    this.planPeriod,
+    this.planFrequency,
   });
 
   String companyName;
@@ -64,6 +70,13 @@ class ConfigModel {
   String usdToNgn;
   String buyBtcRate;
   String sellBtcRate;
+  
+  List<Map<String, dynamic>> loanPeriod;
+  List<Map<String, dynamic>> loanToValueOptions;
+  List<Map<String, dynamic>> loanRepaymentOption;
+  List<Map<String, dynamic>> loanCreditType;
+  List<Map<String, dynamic>> planPeriod;
+  List<Map<String, dynamic>> planFrequency;
 
   factory ConfigModel.fromJson(Map<String, dynamic> json) => ConfigModel(
     companyName: json["company_name"],
@@ -93,6 +106,12 @@ class ConfigModel {
     usdToNgn: json["usd_ngn"].toString(),
     buyBtcRate: json["buy_btc_rate"].toString(),
     sellBtcRate: json["sell_btc_rate"].toString(),
+    loanPeriod: List<Map<String, dynamic>>.from(json["loan_period"]),
+    loanToValueOptions: List<Map<String, dynamic>>.from(json["loan_to_value_options"]),
+    loanRepaymentOption: List<Map<String, dynamic>>.from(json["loan_repayment_option"]),
+    loanCreditType: List<Map<String, dynamic>>.from(json["loan_credit_type"]),
+    planPeriod: List<Map<String, dynamic>>.from(json["plan_period"]),
+    planFrequency: List<Map<String, dynamic>>.from(json["plan_frequency"]),
   );
 }
 

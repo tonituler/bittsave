@@ -13,26 +13,30 @@ class StartSavingPage extends StatefulWidget {
 class _StartSavingPageState extends State<StartSavingPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: BackGroundColr(
-            child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 12),
+    return BackGroundColr(
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          leading: BackButtons(),
+          backgroundColor: Colors.white.withOpacity(0),
+          elevation: 0,
+        ),
+        body: Container(
+          padding: EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              BackButtons(),
-              Text('Choose your plan',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 22)),
+              Text(
+                'Choose your plan',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 22,
+                ),
+              ),
               SizedBox(height: 8),
               Text('We have a plan for you that will meet your goals',
-                  style: TextStyle(
-                      color: Colors.grey,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 15)),
+                  style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w400, fontSize: 15)),
               InkWell(
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
@@ -44,10 +48,8 @@ class _StartSavingPageState extends State<StartSavingPage> {
                   padding: EdgeInsets.symmetric(horizontal: 12, vertical: 15),
                   height: 200,
                   width: double.infinity,
-                  decoration: BoxDecoration(
-                      color: Colors.white60,
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(color: Colors.pink, width: 1)),
+                  decoration:
+                      BoxDecoration(color: Colors.white60, borderRadius: BorderRadius.circular(20), border: Border.all(color: Colors.pink, width: 1)),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -58,8 +60,7 @@ class _StartSavingPageState extends State<StartSavingPage> {
                       )),
                       Text(
                         'Bitcoin Savings',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w500, fontSize: 18),
+                        style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
                       ),
                       SizedBox(height: 10),
                       Text(
@@ -74,7 +75,7 @@ class _StartSavingPageState extends State<StartSavingPage> {
               ),
             ],
           ),
-        )),
+        ),
       ),
     );
   }

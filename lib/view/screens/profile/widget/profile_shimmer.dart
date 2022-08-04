@@ -8,17 +8,21 @@ class ProfileShimmer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final  size = MediaQuery.of(context).size;
+    final size = MediaQuery.of(context).size;
     return Container(
-      color: ColorResources.getWhiteAndBlack(),
-      child: Shimmer.fromColors(baseColor: ColorResources.shimmerBaseColor, highlightColor:  ColorResources.shimmerLightColor,
-          child : Container(
-
-            padding: const EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_SMALL, vertical: Dimensions.PADDING_SIZE_DEFAULT),
-            child: ListTile(
-              leading: CircleAvatar(maxRadius: Dimensions.RADIUS_PROFILE_AVATAR),
-
-              title:  Column(
+      // color: ColorResources.getWhiteAndBlack(),
+      color: Colors.transparent,
+      child: Shimmer.fromColors(
+        baseColor: ColorResources.shimmerBaseColor,
+        highlightColor: ColorResources.shimmerLightColor,
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_SMALL, vertical: Dimensions.PADDING_SIZE_DEFAULT),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              CircleAvatar(maxRadius: Dimensions.RADIUS_PROFILE_AVATAR),
+              SizedBox(height: 10,),
+              Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -27,15 +31,10 @@ class ProfileShimmer extends StatelessWidget {
                   Container(color: Colors.red, height: Dimensions.PADDING_SIZE_EXTRA_SMALL, width: size.width * 0.5),
                 ],
               ),
-            ),
+            ],
           ),
+        ),
       ),
     );
   }
 }
-
-
-
-
-
-

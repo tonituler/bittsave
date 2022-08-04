@@ -14,64 +14,65 @@ class MyPlans extends StatefulWidget {
 class _MyPlansState extends State<MyPlans> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: BackGroundColr(
-          child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 10, bottom: 20),
-                  child: BackButtons(),
+    return BackGroundColr(
+      child: Scaffold(
+         backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          leading: BackButtons(),
+          backgroundColor: Colors.white.withOpacity(0),
+          elevation: 0,
+        ),
+        body: Container(
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'My Plans',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 22,
                 ),
-                Text('My Plans',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 22)),
-                SizedBox(height: 8),
-                Text('Check how your savings is gaining',
-                    style: TextStyle(
-                        color: Colors.grey,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 15)),
-                SizedBox(height: 70),
-                Center(
-                  child: Image.asset(
-                    'assets/newImages/Take a Loan.png',
-                    scale: 0.7,
-                  ),
+              ),
+              SizedBox(height: 8),
+              Text('Check how your savings is gaining', style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w400, fontSize: 15)),
+              SizedBox(height: 70),
+              Center(
+                child: Image.asset(
+                  'assets/newImages/Take a Loan.png',
+                  scale: 0.7,
                 ),
-                SizedBox(height: 40),
-                Center(
-                  child: Text(
-                    'No active plans',
-                    style: TextStyle(fontSize: 23, fontWeight: FontWeight.w600),
-                  ),
+              ),
+              SizedBox(height: 40),
+              Center(
+                child: Text(
+                  'No active plans',
+                  style: TextStyle(fontSize: 23, fontWeight: FontWeight.w600),
                 ),
-                SizedBox(height: 7),
-                Center(
-                  child: Text(
-                    'you\'ve not created a plan, but thats about to change. Just tap the button below',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
-                  ),
+              ),
+              SizedBox(height: 7),
+              Center(
+                child: Text(
+                  'you\'ve not created a plan, but thats about to change. Just tap the button below',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
                 ),
-                SizedBox(height: 20),
-                newContTap(
-                  col: Colors.pink,
-                  text: 'Create a plan',
-                  ontap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => StartSavingPage()));
-                  },
-                ),
-              ],
-            ),
+              ),
+              SizedBox(height: 20),
+              newContTap(
+                col: Colors.pink,
+                text: 'Create a plan',
+                ontap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => StartSavingPage(),
+                    ),
+                  );
+                },
+              ),
+            ],
           ),
         ),
       ),

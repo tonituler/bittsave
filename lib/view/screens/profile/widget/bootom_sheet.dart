@@ -51,7 +51,10 @@ class ProfileQRCodeBottomSheet extends StatelessWidget {
               return Center(
                 child: Container(
                   padding: const EdgeInsets.all(50.0),
-                  decoration: BoxDecoration(shape: BoxShape.circle, color: Theme.of(context).secondaryHeaderColor),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    // color: Theme.of(context).secondaryHeaderColor,
+                  ),
                   child: SvgPicture.string(controller.userInfo.qrCode, height: size.width * 0.4, width: size.width * 0.4),
                 ),
               );

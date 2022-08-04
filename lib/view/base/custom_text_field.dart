@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:six_cash/util/color_resources.dart';
@@ -17,6 +16,7 @@ class CustomTextField extends StatefulWidget {
   final bool isCountryPicker;
   final bool isShowBorder;
   final bool isIcon;
+  final bool readOnly;
   final bool isShowSuffixIcon;
   final bool isShowPrefixIcon;
   final Function onTap;
@@ -40,6 +40,7 @@ class CustomTextField extends StatefulWidget {
       this.maxLines = 1,
       this.onSuffixTap,
       this.fillColor,
+      this.readOnly,
       this.onSubmit,
       this.onChanged,
       this.capitalization = TextCapitalization.none,
@@ -74,6 +75,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
       textCapitalization: widget.capitalization,
       enabled: widget.isEnabled,
       autofocus: false,
+      readOnly: widget.readOnly ?? false,
       //onChanged: widget.isSearch ? widget.languageProvider.searchLanguage : null,
       obscureText: widget.isPassword ? _obscureText : false,
       inputFormatters: widget.inputType == TextInputType.phone ? <TextInputFormatter>[FilteringTextInputFormatter.allow(RegExp('[0-9+]'))] : null,
@@ -88,10 +90,12 @@ class _CustomTextFieldState extends State<CustomTextField> {
         fillColor: widget.fillColor != null ? widget.fillColor : Theme.of(context).highlightColor,
         hintStyle: Theme.of(context).textTheme.headline2.copyWith(fontSize: Dimensions.FONT_SIZE_SMALL, color: ColorResources.COLOR_GREY_CHATEAU),
         filled: true,
-        prefixIcon: widget.isShowPrefixIcon ? Padding(
-          padding: const EdgeInsets.only(left: Dimensions.PADDING_SIZE_LARGE, right: Dimensions.PADDING_SIZE_SMALL),
-          child: Image.asset(widget.prefixIconUrl),
-        ) : SizedBox.shrink(),
+        prefixIcon: widget.isShowPrefixIcon
+            ? Padding(
+                padding: const EdgeInsets.only(left: Dimensions.PADDING_SIZE_LARGE, right: Dimensions.PADDING_SIZE_SMALL),
+                child: Image.asset(widget.prefixIconUrl),
+              )
+            : SizedBox.shrink(),
         prefixIconConstraints: BoxConstraints(minWidth: 23, maxHeight: 20),
         suffixIcon: widget.isShowSuffixIcon
             ? widget.isPassword

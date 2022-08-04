@@ -19,13 +19,14 @@ class UserInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Theme.of(context).cardColor,
+      // color: Theme.of(context).cardColor,
+      color: Colors.transparent,
       padding: EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE, vertical: Dimensions.PADDING_SIZE_LARGE),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           profileController.userInfo != null
-              ? Row(
+              ? Column(
                   children: [
                     Container(
                       width: Dimensions.SIZE_PROFILE_AVATAR,
@@ -46,7 +47,7 @@ class UserInfo extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(width: Dimensions.PADDING_SIZE_SMALL),
+                    SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -55,7 +56,7 @@ class UserInfo extends StatelessWidget {
                           width: MediaQuery.of(context).size.width * 0.5,
                           child: Text('${profileController.userInfo.fName} ${profileController.userInfo.lName}',
                               style: montserratMedium.copyWith(color: ColorResources.getBlackColor(), fontSize: Dimensions.FONT_SIZE_LARGE),
-                              textAlign: TextAlign.start,
+                              textAlign: TextAlign.center,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis),
                         ),
@@ -64,7 +65,7 @@ class UserInfo extends StatelessWidget {
                           child: Text(
                             '${profileController.userInfo.phone}',
                             style: montserratMedium.copyWith(color: ColorResources.getGreyBaseGray1(), fontSize: Dimensions.FONT_SIZE_LARGE),
-                            textAlign: TextAlign.start,
+                            textAlign: TextAlign.center,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                           ),
@@ -83,7 +84,10 @@ class UserInfo extends StatelessWidget {
                 builder: (context) => ProfileQRCodeBottomSheet()),
             child: GetBuilder<ProfileController>(builder: (controller) {
               return Container(
-                decoration: BoxDecoration(shape: BoxShape.circle, color: Theme.of(context).secondaryHeaderColor),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  // color: Theme.of(context).secondaryHeaderColor,
+                ),
                 padding: EdgeInsets.all(10.0),
                 child: SvgPicture.string(
                   controller.userInfo.qrCode,

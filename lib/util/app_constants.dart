@@ -56,6 +56,13 @@ class AppConstants {
   static const String CUSTOMER_FIND_AGENT = '/api/v1/customer/get-deposit-request';
   static const String CUSTOMER_DEPOSIT_CONFIRMATION = '/api/v1/customer/deposit-request/confirm';
 
+
+  static const String LOAN_CALCULATOR = '/api/v1/customer/loan-calculator';
+  static const String LOAN_APPLY = '/api/v1/customer/apply-loan';
+  static const String LOAN_CHECK = '/api/v1/customer/check-loan';
+  static const String LOAN_LIST = '/api/v1/customer/list-loan';
+  static const String LOAN_PAY = '/api/v1/customer/pay-loan';
+
   // Shared Key
   static const String THEME = 'theme';
   static const String TOKEN = 'token';

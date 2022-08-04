@@ -1,4 +1,4 @@
-package com.u6amtech.six_cash
+package com.bittsave.app
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -35,17 +35,12 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   bool isFirst = true;
   Future<void> _loadData(BuildContext context, bool reload) async {
-    await Get.find<ProfileController>()
-        .profileData(loading: true)
-        .then((value) {
+    await Get.find<ProfileController>().profileData(loading: true).then((value) {
       if (value.isOk) {
         Get.find<BannerController>().getBannerList(reload);
-        Get.find<RequestedMoneyController>()
-            .getRequestedMoneyList(1, context, reload: reload);
-        Get.find<RequestedMoneyController>()
-            .getOwnRequestedMoneyList(1, reload: reload);
-        Get.find<TransactionHistoryController>()
-            .getTransactionData(1, reload: reload);
+        Get.find<RequestedMoneyController>().getRequestedMoneyList(1, context, reload: reload);
+        Get.find<RequestedMoneyController>().getOwnRequestedMoneyList(1, reload: reload);
+        Get.find<TransactionHistoryController>().getTransactionData(1, reload: reload);
         Get.find<WebsiteLinkController>().getWebsiteList();
         Get.find<NotificationController>().getNotificationList();
         Get.find<TransactionMoneyController>().getPurposeList();
@@ -87,10 +82,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       margin: EdgeInsets.all(20),
                       padding: EdgeInsets.all(20),
                       width: double.infinity,
-                      height: 200,
-                      decoration: BoxDecoration(
-                          color: ColorResources.primaryColor,
-                          borderRadius: BorderRadius.circular(20)),
+                      height: 210,
+                      decoration: BoxDecoration(color: ColorResources.primaryColor, borderRadius: BorderRadius.circular(20)),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -101,9 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: montserratLight.copyWith(
-                              fontSize: Dimensions.FONT_SIZE_DEFAULT,
-                              color: ColorResources.whiteColor,
-                            ),
+                                fontSize: Dimensions.FONT_SIZE_DEFAULT, color: ColorResources.whiteColor, fontWeight: FontWeight.bold),
                           ),
                           Text(
                             '\$0.00',
@@ -111,9 +102,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: montserratLight.copyWith(
-                                fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE,
-                                color: ColorResources.whiteColor,
-                                fontWeight: FontWeight.w600),
+                                fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE, color: ColorResources.whiteColor, fontWeight: FontWeight.w600),
                           ),
                           Text(
                             '0.00000000 BTC',
@@ -121,22 +110,17 @@ class _HomeScreenState extends State<HomeScreen> {
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: montserratLight.copyWith(
-                              fontSize: Dimensions.FONT_SIZE_LARGE,
-                              color: ColorResources.whiteColor,
-                            ),
+                                fontSize: Dimensions.FONT_SIZE_LARGE - 2, color: ColorResources.whiteColor, fontWeight: FontWeight.w500),
                           ),
                           Container(
                             padding: EdgeInsets.all(5),
                             height: 40,
-                            decoration: BoxDecoration(
-                                color: ColorResources.COLOR_WHITE,
-                                borderRadius: BorderRadius.circular(10)),
+                            decoration: BoxDecoration(color: ColorResources.COLOR_WHITE, borderRadius: BorderRadius.circular(10)),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Text(
@@ -162,12 +146,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ],
                                 ),
                                 Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Text(
-                                      '\$30,000.00',
+                                      '\$0.00',
                                       textAlign: TextAlign.start,
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
@@ -177,7 +160,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ),
                                     ),
                                     Text(
-                                      'BTC Price',
+                                      'Invested',
                                       textAlign: TextAlign.start,
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
@@ -189,12 +172,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ],
                                 ),
                                 Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Text(
-                                      '\$30,000.00',
+                                      '0.00%',
                                       textAlign: TextAlign.start,
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
@@ -204,7 +186,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ),
                                     ),
                                     Text(
-                                      'BTC Price',
+                                      'Returns',
                                       textAlign: TextAlign.start,
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
@@ -231,13 +213,10 @@ class _HomeScreenState extends State<HomeScreen> {
                               margin: EdgeInsets.all(5),
                               padding: EdgeInsets.all(20),
                               height: 180,
-                              decoration: BoxDecoration(
-                                  color: ColorResources.primaryColor,
-                                  borderRadius: BorderRadius.circular(20)),
+                              decoration: BoxDecoration(color: ColorResources.primaryColor, borderRadius: BorderRadius.circular(20)),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
@@ -256,8 +235,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         width: 5,
                                       ),
                                       Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           Text(
                                             'USD',
@@ -265,11 +243,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             maxLines: 1,
                                             overflow: TextOverflow.ellipsis,
                                             style: montserratLight.copyWith(
-                                                fontSize:
-                                                    Dimensions.FONT_SIZE_SMALL,
-                                                color:
-                                                    ColorResources.whiteColor,
-                                                fontWeight: FontWeight.bold),
+                                                fontSize: Dimensions.FONT_SIZE_SMALL, color: ColorResources.whiteColor, fontWeight: FontWeight.bold),
                                           ),
                                           Text(
                                             'Wallet',
@@ -277,8 +251,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             maxLines: 1,
                                             overflow: TextOverflow.ellipsis,
                                             style: montserratLight.copyWith(
-                                              fontSize:
-                                                  Dimensions.FONT_SIZE_SMALL,
+                                              fontSize: Dimensions.FONT_SIZE_SMALL,
                                               color: ColorResources.whiteColor,
                                             ),
                                           ),
@@ -287,12 +260,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ],
                                   ),
                                   Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.end,
+                                        crossAxisAlignment: CrossAxisAlignment.end,
                                         children: [
                                           Text(
                                             '\$ 3,753',
@@ -300,9 +271,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             maxLines: 1,
                                             overflow: TextOverflow.ellipsis,
                                             style: montserratLight.copyWith(
-                                              fontSize: Dimensions
-                                                      .FONT_SIZE_OVER_LARGE -
-                                                  1,
+                                              fontSize: Dimensions.FONT_SIZE_OVER_LARGE - 1,
                                               color: ColorResources.whiteColor,
                                               fontWeight: FontWeight.w600,
                                             ),
@@ -317,10 +286,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                               maxLines: 1,
                                               overflow: TextOverflow.ellipsis,
                                               style: montserratLight.copyWith(
-                                                fontSize:
-                                                    Dimensions.FONT_SIZE_SMALL,
-                                                color:
-                                                    ColorResources.whiteColor,
+                                                fontSize: Dimensions.FONT_SIZE_SMALL,
+                                                color: ColorResources.whiteColor,
                                               ),
                                             ),
                                           ),
@@ -332,8 +299,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         maxLines: 1,
                                         overflow: TextOverflow.ellipsis,
                                         style: montserratLight.copyWith(
-                                          fontSize:
-                                              Dimensions.FONT_SIZE_DEFAULT,
+                                          fontSize: Dimensions.FONT_SIZE_DEFAULT,
                                           color: ColorResources.whiteColor,
                                         ),
                                       ),
@@ -348,13 +314,10 @@ class _HomeScreenState extends State<HomeScreen> {
                               margin: EdgeInsets.all(5),
                               padding: EdgeInsets.all(20),
                               height: 180,
-                              decoration: BoxDecoration(
-                                  color: ColorResources.blackColor,
-                                  borderRadius: BorderRadius.circular(20)),
+                              decoration: BoxDecoration(color: ColorResources.blackColor, borderRadius: BorderRadius.circular(20)),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
@@ -373,8 +336,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         width: 5,
                                       ),
                                       Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           Text(
                                             'BTC',
@@ -382,11 +344,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             maxLines: 1,
                                             overflow: TextOverflow.ellipsis,
                                             style: montserratLight.copyWith(
-                                                fontSize:
-                                                    Dimensions.FONT_SIZE_SMALL,
-                                                color:
-                                                    ColorResources.whiteColor,
-                                                fontWeight: FontWeight.bold),
+                                                fontSize: Dimensions.FONT_SIZE_SMALL, color: ColorResources.whiteColor, fontWeight: FontWeight.bold),
                                           ),
                                           Text(
                                             'Wallet',
@@ -394,8 +352,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             maxLines: 1,
                                             overflow: TextOverflow.ellipsis,
                                             style: montserratLight.copyWith(
-                                              fontSize:
-                                                  Dimensions.FONT_SIZE_SMALL,
+                                              fontSize: Dimensions.FONT_SIZE_SMALL,
                                               color: ColorResources.whiteColor,
                                             ),
                                           ),
@@ -404,12 +361,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ],
                                   ),
                                   Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.end,
+                                        crossAxisAlignment: CrossAxisAlignment.end,
                                         children: [
                                           Text(
                                             'BTC 0.00',
@@ -417,11 +372,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                             maxLines: 1,
                                             overflow: TextOverflow.ellipsis,
                                             style: montserratLight.copyWith(
-                                                fontSize: Dimensions
-                                                        .FONT_SIZE_OVER_LARGE -
-                                                    1,
-                                                color:
-                                                    ColorResources.whiteColor,
+                                                fontSize: Dimensions.FONT_SIZE_OVER_LARGE - 1,
+                                                color: ColorResources.whiteColor,
                                                 fontWeight: FontWeight.w600),
                                           ),
                                           Padding(
@@ -434,26 +386,22 @@ class _HomeScreenState extends State<HomeScreen> {
                                               maxLines: 1,
                                               overflow: TextOverflow.ellipsis,
                                               style: montserratLight.copyWith(
-                                                fontSize:
-                                                    Dimensions.FONT_SIZE_SMALL,
-                                                color:
-                                                    ColorResources.whiteColor,
+                                                fontSize: Dimensions.FONT_SIZE_SMALL,
+                                                color: ColorResources.whiteColor,
                                               ),
                                             ),
                                           ),
                                         ],
                                       ),
                                       Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 10),
+                                        padding: const EdgeInsets.only(left: 10),
                                         child: Text(
                                           '      Satoshis',
                                           textAlign: TextAlign.center,
                                           maxLines: 1,
                                           overflow: TextOverflow.ellipsis,
                                           style: montserratLight.copyWith(
-                                            fontSize:
-                                                Dimensions.FONT_SIZE_DEFAULT,
+                                            fontSize: Dimensions.FONT_SIZE_DEFAULT,
                                             color: ColorResources.whiteColor,
                                           ),
                                         ),
@@ -468,62 +416,59 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 20, horizontal: 10),
+                      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           InkWell(
                             onTap: () {
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (context) {
+                              Navigator.push(context, MaterialPageRoute(builder: (context) {
                                 return FundingUsdWallet();
                               }));
                             },
                             child: savingsItems(
-                                image: "credit_card_red.png", label: "Deposit"),
+                              image: "credit_card_red.png",
+                              label: "Deposit",
+                            ),
                           ),
                           InkWell(
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => MyPlans()));
-                              },
-                              child: savingsItems(
-                                  image: "open_folder_add.png",
-                                  label: "Save Now")),
+                            onTap: () {
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => MyPlans()));
+                            },
+                            child: savingsItems(
+                              image: "open_folder_add.png",
+                              label: "Save Now",
+                            ),
+                          ),
                           InkWell(
                             onTap: () {
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (context) {
+                              Navigator.push(context, MaterialPageRoute(builder: (context) {
                                 return LoanApplication();
                               }));
                             },
                             child: savingsItems(
-                                image: "grid_04.png", label: "Loan"),
+                              image: "grid_04.png",
+                              label: "Loan",
+                            ),
                           ),
                           InkWell(
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => Onbarding()));
-                              },
-                              child: savingsItems(
-                                  image: "grid_03.png", label: "Request")),
+                            onTap: () {
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => Onbarding()));
+                            },
+                            child: savingsItems(
+                              image: "grid_03.png",
+                              label: "Request",
+                            ),
+                          ),
                         ],
                       ),
                     ),
                     Container(
                       margin: EdgeInsets.all(20),
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                       width: double.infinity,
                       height: 60,
-                      decoration: BoxDecoration(
-                          color: ColorResources.primaryColor,
-                          borderRadius: BorderRadius.circular(10)),
+                      decoration: BoxDecoration(color: ColorResources.primaryColor, borderRadius: BorderRadius.circular(10)),
                       child: Row(
                         children: [
                           Image.asset(
@@ -554,8 +499,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 overflow: TextOverflow.ellipsis,
                                 style: montserratLight.copyWith(
                                   fontSize: Dimensions.FONT_SIZE_SMALL,
-                                  color: ColorResources.whiteColor
-                                      .withOpacity(0.6),
+                                  color: ColorResources.whiteColor.withOpacity(0.6),
                                 ),
                               ),
                             ],
@@ -567,24 +511,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     requestCard(status: "Pending Payment"),
                     splashController.configModel.themeIndex == '1'
                         ? GetBuilder<ProfileController>(
-                            builder: (profile) =>
-                                FirstCardPortion(profileController: profile),
+                            builder: (profile) => FirstCardPortion(profileController: profile),
                           )
                         : splashController.configModel.themeIndex == '2'
                             ? SecondCardPortion()
                             : splashController.configModel.themeIndex == '3'
                                 ? ThirdCardPortion()
-                                : GetBuilder<ProfileController>(
-                                    builder: (profile) => FirstCardPortion(
-                                        profileController: profile)),
+                                : GetBuilder<ProfileController>(builder: (profile) => FirstCardPortion(profileController: profile)),
                     SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
-                    GetBuilder<WebsiteLinkController>(
-                        builder: (websiteLinkController) {
+                    GetBuilder<WebsiteLinkController>(builder: (websiteLinkController) {
                       return websiteLinkController.isLoading
                           ? WebSiteShimmer()
                           : websiteLinkController.websiteList.length > 0
-                              ? LinkedWebsite(
-                                  websiteLinkController: websiteLinkController)
+                              ? LinkedWebsite(websiteLinkController: websiteLinkController)
                               : SizedBox();
                     }),
                     const SizedBox(height: 80),
@@ -606,9 +545,7 @@ class _HomeScreenState extends State<HomeScreen> {
       margin: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
       padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       width: double.infinity,
-      decoration: BoxDecoration(
-          color: Colors.grey.withOpacity(0.2),
-          borderRadius: BorderRadius.circular(10)),
+      decoration: BoxDecoration(color: Colors.grey.withOpacity(0.2), borderRadius: BorderRadius.circular(10)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -617,9 +554,7 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               Container(
                 padding: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-                decoration: BoxDecoration(
-                    color: ColorResources.blackColor,
-                    borderRadius: BorderRadius.circular(5)),
+                decoration: BoxDecoration(color: ColorResources.blackColor, borderRadius: BorderRadius.circular(5)),
                 child: Text(
                   status,
                   textAlign: TextAlign.start,
@@ -714,11 +649,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Container(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 4, horizontal: 10),
-                        decoration: BoxDecoration(
-                            color: ColorResources.blackColor,
-                            borderRadius: BorderRadius.circular(10)),
+                        padding: EdgeInsets.symmetric(vertical: 4, horizontal: 10),
+                        decoration: BoxDecoration(color: ColorResources.blackColor, borderRadius: BorderRadius.circular(10)),
                         child: Text(
                           'Accept',
                           textAlign: TextAlign.start,
@@ -734,13 +666,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         width: 10,
                       ),
                       Container(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 4, horizontal: 15),
+                        padding: EdgeInsets.symmetric(vertical: 4, horizontal: 15),
                         decoration: BoxDecoration(
                             color: ColorResources.whiteColor,
                             borderRadius: BorderRadius.circular(10),
-                            border: Border.all(
-                                color: ColorResources.blackColor, width: 1)),
+                            border: Border.all(color: ColorResources.blackColor, width: 1)),
                         child: Text(
                           'Deny',
                           textAlign: TextAlign.start,
@@ -761,11 +691,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Container(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 4, horizontal: 10),
-                        decoration: BoxDecoration(
-                            color: ColorResources.blackColor,
-                            borderRadius: BorderRadius.circular(10)),
+                        padding: EdgeInsets.symmetric(vertical: 4, horizontal: 10),
+                        decoration: BoxDecoration(color: ColorResources.blackColor, borderRadius: BorderRadius.circular(10)),
                         child: Text(
                           'Paid',
                           textAlign: TextAlign.start,

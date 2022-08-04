@@ -16,6 +16,8 @@ import 'package:six_cash/util/images.dart';
 import 'package:six_cash/view/base/custom_app_bar.dart';
 import 'package:six_cash/view/base/custom_small_button.dart';
 import 'package:six_cash/view/screens/auth/other_info/widget/input_section.dart';
+import 'package:six_cash/view/screens/home/funding_options/request_from_a_riend/friend_identity.dart';
+import 'package:six_cash/view/screens/home/funding_usd_wallet_page.dart';
 import 'package:six_cash/view/screens/profile/widget/gender_section.dart';
 
 class EditProfileScreen extends StatefulWidget {
@@ -26,180 +28,218 @@ class EditProfileScreen extends StatefulWidget {
 }
 
 class _EditProfileScreenState extends State<EditProfileScreen> {
-
-  TextEditingController occupationTextController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
   TextEditingController firstNameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
+  TextEditingController usernameController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
     ProfileController profileController = Get.find<ProfileController>();
-    occupationTextController.text = profileController.userInfo.occupation ?? '';
+    phoneController.text = profileController.userInfo.phone ?? '';
     firstNameController.text = profileController.userInfo.fName ?? '';
     lastNameController.text = profileController.userInfo.lName ?? '';
     emailController.text = profileController.userInfo.email ?? '';
-    Get.find<EditProfileController>().setGender(profileController.userInfo.gender ?? 'Male') ;
-    Get.find<EditProfileController>().setImage(profileController.userInfo.image ?? '') ;
+    usernameController.text = profileController.userInfo.username ?? '';
+    Get.find<EditProfileController>().setGender(profileController.userInfo.gender ?? 'Male');
+    Get.find<EditProfileController>().setImage(profileController.userInfo.image ?? '');
   }
+
   @override
   Widget build(BuildContext context) {
-   return GetBuilder<EditProfileController>(builder: (controller) {
+    return GetBuilder<EditProfileController>(builder: (controller) {
+      return ModalProgressHUD(
+        inAsyncCall: controller.isLoading,
+        progressIndicator: CircularProgressIndicator(color: Theme.of(context).primaryColor),
+        child: WillPopScope(
+          onWillPop: () => _onWillPop(context),
+          child: BackGroundColr(
+            child: Scaffold(
+              backgroundColor: Colors.transparent,
+              appBar: AppBar(
+                leading: BackButtons(),
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+              ),
+              // appBar: CustomAppbar(
+              //   title: 'edit_profile'.tr, onTap: (){
+              //    if(Get.find<ImageController>().getImage != null){
+              //      Get.find<ImageController>().removeImage();
+              //    }
 
-    return ModalProgressHUD(
-      inAsyncCall: controller.isLoading,
-      progressIndicator: CircularProgressIndicator(color: Theme.of(context).primaryColor),
-      child: WillPopScope(
-        onWillPop: ()=> _onWillPop(context),
-        child: Scaffold(
-          appBar: CustomAppbar(title: 'edit_profile'.tr, onTap: (){
-             if(Get.find<ImageController>().getImage != null){
-               Get.find<ImageController>().removeImage();
-             }
-
-            Get.back();
-          },),
-          body: Column(
-            children: [
-              Expanded(
-                child: SingleChildScrollView(
+              //   Get.back();
+              // },),
+              body: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Container(
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        const SizedBox(
-                          height: Dimensions.PADDING_SIZE_LARGE,
-                        ),
-                         Stack(
-                           clipBehavior: Clip.none, children: [
-                               GetBuilder<ImageController>(builder: (imageController){
-                                 return imageController.getImage == null ?
-                                     GetBuilder<ProfileController>(builder: (proController){
-                                       return Container( height: 100,width: 100,
-                                         decoration: BoxDecoration( borderRadius: BorderRadius.circular(100)),
-                                         child: ClipRRect(
-                                           borderRadius: BorderRadius.circular(100),
-                                           child: FadeInImage.assetNetwork(
-                                               imageErrorBuilder: (c, o, s) => Image.asset(Images.avatar, fit: BoxFit.cover),
-                                               placeholder: Images.avatar,
-                                               height: 100, width: 100,
-                                               fit: BoxFit.cover,
-                                               image : '${Get.find<SplashController>().configModel.baseUrls.customerImageUrl}/${proController.userInfo.image}'),
-                                         ),
-                                       );
-                                     })
-                                     :  Container(
-                                   height: 100,width: 100,
-                                   decoration: BoxDecoration(
-                                       shape: BoxShape.circle,
-                                       border: Border.all(color: ColorResources.getPrimaryTextColor(),width: 2),
-                                       image: DecorationImage(
-                                         fit: BoxFit.cover,
-                                         image:FileImage(
-                                           File(imageController.getImage.path),
-                                         ),
-                                       )
-                                   ),
-                                 );
-                               },),
-
-
-                              Positioned(
-                                bottom: 5,
-                                right: -5,
-                                  child: InkWell(
-                                    onTap: ()=> Get.find<AuthController>().requestCameraPermission(fromEditProfile: true),
-                                    child: Container(
-                                      padding: const EdgeInsets.all(5),
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: Theme.of(context).cardColor,
-                                          boxShadow: [
-                                            BoxShadow(
-                                              color: ColorResources.getShadowColor().withOpacity(0.08),
-                                              blurRadius: 20,
-                                              offset: const Offset(0, 3),
-                                            )
-                                          ]
-                                      ),
-                                      child: Icon(Icons.camera_alt,size: 24,),
-
-                                    ),
-                                  ),
-
-                              )
-                            ],
-                          ),
-                        const SizedBox(
-                          height: Dimensions.PADDING_SIZE_LARGE,
-                        ),
-
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE),
-                          child: GenderSection(),
+                          padding: const EdgeInsets.only(left: 20.0),
+                          child: BoldTextTitle(
+                            data: 'Profile Setting',
+                          ),
                         ),
-
-                        InputSection(
-                          occupationController: occupationTextController,
-                          fNameController: firstNameController,
-                          lNameController: lastNameController,
-                          emailController: emailController,
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20.0),
+                          child: Text(
+                            'Edit your profile details here.',
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                              color: Colors.grey,
+                              fontWeight: FontWeight.w300,
+                            ),
+                          ),
                         ),
                       ],
                     ),
                   ),
-
-              ),
-              Container(
-                padding: const EdgeInsets.only(left: Dimensions.PADDING_SIZE_DEFAULT, right: Dimensions.PADDING_SIZE_DEFAULT, bottom: Dimensions.PADDING_SIZE_DEFAULT),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: CustomSmallButton(
-                        onTap: () {
-                          _saveProfile(controller);
-                        },
-                        backgroundColor: Theme.of(context).secondaryHeaderColor,
-                        text: 'save'.tr,
-                        textColor: ColorResources.getBlackColor(),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          const SizedBox(
+                            height: Dimensions.PADDING_SIZE_LARGE,
+                          ),
+                          Stack(
+                            clipBehavior: Clip.none,
+                            children: [
+                              GetBuilder<ImageController>(
+                                builder: (imageController) {
+                                  return imageController.getImage == null
+                                      ? GetBuilder<ProfileController>(builder: (proController) {
+                                          return Container(
+                                            height: 100,
+                                            width: 100,
+                                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(100)),
+                                            child: ClipRRect(
+                                              borderRadius: BorderRadius.circular(100),
+                                              child: FadeInImage.assetNetwork(
+                                                  imageErrorBuilder: (c, o, s) => Image.asset(Images.avatar, fit: BoxFit.cover),
+                                                  placeholder: Images.avatar,
+                                                  height: 100,
+                                                  width: 100,
+                                                  fit: BoxFit.cover,
+                                                  image:
+                                                      '${Get.find<SplashController>().configModel.baseUrls.customerImageUrl}/${proController.userInfo.image}'),
+                                            ),
+                                          );
+                                        })
+                                      : Container(
+                                          height: 100,
+                                          width: 100,
+                                          decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              border: Border.all(color: ColorResources.getPrimaryTextColor(), width: 2),
+                                              image: DecorationImage(
+                                                fit: BoxFit.cover,
+                                                image: FileImage(
+                                                  File(imageController.getImage.path),
+                                                ),
+                                              )),
+                                        );
+                                },
+                              ),
+                              Positioned(
+                                bottom: 5,
+                                right: -5,
+                                child: InkWell(
+                                  onTap: () => Get.find<AuthController>().requestCameraPermission(fromEditProfile: true),
+                                  child: Container(
+                                    padding: const EdgeInsets.all(5),
+                                    decoration: BoxDecoration(shape: BoxShape.circle, color: Theme.of(context).cardColor, boxShadow: [
+                                      BoxShadow(
+                                        color: ColorResources.getShadowColor().withOpacity(0.08),
+                                        blurRadius: 20,
+                                        offset: const Offset(0, 3),
+                                      )
+                                    ]),
+                                    child: Icon(
+                                      Icons.camera_alt,
+                                      size: 24,
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                          const SizedBox(
+                            height: Dimensions.PADDING_SIZE_LARGE,
+                          ),
+                          // Padding(
+                          //   padding: const EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE),
+                          //   child: GenderSection(),
+                          // ),
+                          InputSection(
+                            phoneController: phoneController,
+                            usernameController: usernameController,
+                            fNameController: firstNameController,
+                            lNameController: lastNameController,
+                            emailController: emailController,
+                          ),
+                        ],
                       ),
                     ),
-                  ],
-                ),
-              )
-            ],
+                  ),
+                  Container(
+                    padding: const EdgeInsets.only(
+                        left: Dimensions.PADDING_SIZE_DEFAULT, right: Dimensions.PADDING_SIZE_DEFAULT, bottom: Dimensions.PADDING_SIZE_DEFAULT),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: CustomSmallButton(
+                            onTap: () {
+                              _saveProfile(controller);
+                            },
+                            backgroundColor: Theme.of(context).primaryColor,
+                            text: 'save changes'.tr,
+                            textColor: ColorResources.getWhiteColor(),
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
           ),
         ),
-      ),
-    );
+      );
     });
   }
+
   Future _onWillPop(BuildContext context) async {
-    if(Get.find<ImageController>().getImage != null){
+    if (Get.find<ImageController>().getImage != null) {
       Get.find<ImageController>().removeImage();
       print('====> Remove image from controller');
       return Get.back();
-    }
-    else{
+    } else {
       return Get.back();
     }
   }
-  _saveProfile(EditProfileController controller){
+
+  _saveProfile(EditProfileController controller) {
     String _fName = firstNameController.text;
     String _lName = lastNameController.text;
     String _email = emailController.text;
     String _gender = controller.gender;
-    String _occupation = occupationTextController.text;
+    String _occupation = phoneController.text;
     File _image = Get.find<ImageController>().getImage;
 
-
     List<MultipartBody> _multipartBody;
-    if(_image != null){
-      _multipartBody = [MultipartBody('image',_image )];
-    }else{
+    if (_image != null) {
+      _multipartBody = [MultipartBody('image', _image)];
+    } else {
       _multipartBody = [];
     }
 
-    EditProfileBody editProfileBody  = EditProfileBody(
+    EditProfileBody editProfileBody = EditProfileBody(
       fName: _fName,
       lName: _lName,
       gender: _gender,
@@ -207,10 +247,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       email: _email,
     );
     controller.updateProfileData(editProfileBody, _multipartBody).then((value) {
-      if(value) {
+      if (value) {
         Get.find<ProfileController>().profileData();
       }
     });
-
   }
 }

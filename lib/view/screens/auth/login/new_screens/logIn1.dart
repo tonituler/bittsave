@@ -57,7 +57,8 @@ class _LogIn1State extends State<LogIn1> {
                                   hintText: '7 (319) 555-0115',
                                   border: InputBorder.none,
                                   hintStyle: TextStyle(
-                                      color: Colors.black, fontSize: 20)),
+                                      color: Colors.black, fontSize: 20),
+                                      ),
                             ),
                           )
                         ],

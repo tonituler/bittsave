@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:six_cash/view/screens/home/savings_pages/choose_payment_method.dart';
+import 'package:six_cash/view/screens/home/savings_pages/savings_account.dart';
 
 import '../funding_options/request_from_a_riend/friend_identity.dart';
 import '../funding_usd_wallet_page.dart';
@@ -7,13 +8,15 @@ import 'create_a_plan.dart';
 import 'myPlans.dart';
 
 class ChoosePayMentSource extends StatefulWidget {
-  const ChoosePayMentSource({Key key}) : super(key: key);
+  ChoosePayMentSource({Key key, @required this.savingsInfo}) : super(key: key);
+  Map<String, dynamic> savingsInfo;
 
   @override
   State<ChoosePayMentSource> createState() => _ChoosePayMentSourceState();
 }
 
 class _ChoosePayMentSourceState extends State<ChoosePayMentSource> {
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,9 +42,9 @@ class _ChoosePayMentSourceState extends State<ChoosePayMentSource> {
                       fontSize: 15)),
               InkWell(
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return CreatAPlan();
-                  }));
+                  // Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  //   return CreatAPlan();
+                  // }));
                 },
                 child: Container(
                   margin: EdgeInsets.only(top: 120, right: 10, left: 10),
@@ -97,9 +100,15 @@ class _ChoosePayMentSourceState extends State<ChoosePayMentSource> {
                   col: Colors.pink,
                   text: 'Next',
                   ontap: () {
+                    print(widget.savingsInfo);
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
-                      return ChoosePaymentMethod();
+                      return ChoosePaymentMethod(
+                        savingsInfo: {
+                          ...widget.savingsInfo,
+                          "debit_type": "usd_wallet"
+                        },
+                      );
                     }));
                   },
                 ),
