@@ -47,11 +47,8 @@ class _LogIn1State extends State<LogIn1> {
                           Expanded(
                             flex: 2,
                             child: TextField(
-<<<<<<<<< Temporary merge branch 1
-                              // scribbleEnabled: true,
-=========
+                              //
                               scribbleEnabled: true,
->>>>>>>>> Temporary merge branch 2
                               textAlign: TextAlign.start,
                               enableSuggestions: true,
                               style: TextStyle(fontSize: 20),

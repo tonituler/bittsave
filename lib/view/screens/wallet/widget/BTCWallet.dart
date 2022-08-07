@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:six_cash/util/color_resources.dart';
 import 'package:six_cash/util/dimensions.dart';
 import 'package:six_cash/view/screens/home/funding_usd_wallet_page.dart';
+import 'package:six_cash/view/screens/wallet/buy_btc.dart';
+import 'package:six_cash/view/screens/wallet/recieve_Btc.dart';
+import 'package:six_cash/view/screens/wallet/sell_btc.dart';
+
+import '../send_btc.dart';
 
 class BTCWalletScreen extends StatefulWidget {
   const BTCWalletScreen({Key key}) : super(key: key);
@@ -57,7 +62,10 @@ class _BTCWalletScreenState extends State<BTCWalletScreen> {
                         children: [
                           Text(
                             'BTC',
-                            style: TextStyle(color: Colors.white, fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE, fontWeight: FontWeight.w500),
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE,
+                                fontWeight: FontWeight.w500),
                           ),
                           Spacer(),
                           Image.asset(
@@ -67,18 +75,24 @@ class _BTCWalletScreenState extends State<BTCWalletScreen> {
                         ],
                       ),
                       SizedBox(
-                        height: 25,
+                        height: 22,
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 5.0),
+                        padding: const EdgeInsets.symmetric(vertical: 1.0),
                         child: Text(
                           '0.0000000000',
-                          style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600, fontSize: Dimensions.FONT_SIZE_EXTRA_OVER_LARGE),
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600,
+                              fontSize: Dimensions.FONT_SIZE_EXTRA_OVER_LARGE),
                         ),
                       ),
                       Text(
                         '\$0.00 | 0 satoshis',
-                        style: TextStyle(color: Colors.white, fontWeight: FontWeight.w200, fontSize: Dimensions.FONT_SIZE_LARGE),
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w200,
+                            fontSize: Dimensions.FONT_SIZE_LARGE),
                       )
                     ],
                   ),
@@ -92,22 +106,36 @@ class _BTCWalletScreenState extends State<BTCWalletScreen> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   WalletIcons(
-                    ontap: () {},
+                    ontap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => SellBtc()));
+                    },
                     icon: "Compass.png",
                     label: "Sell",
                   ),
                   WalletIcons(
-                    ontap: () {},
+                    ontap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => BuyBTC()));
+                    },
                     icon: "StopCircle.png",
                     label: "Buy",
                   ),
                   WalletIcons(
-                    ontap: () {},
+                    ontap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => SendBTC()));
+                    },
                     icon: "CaretCircleUp.png",
                     label: "Send",
                   ),
                   WalletIcons(
-                    ontap: () {},
+                    ontap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ReceiveBtc()));
+                    },
                     icon: "PlayCircle.png",
                     label: "Receive",
                   )
@@ -163,10 +191,13 @@ class WalletIcons extends StatelessWidget {
                   padding: EdgeInsets.all(5),
                   width: 50,
                   height: 50,
-                  decoration: BoxDecoration(color: Colors.pink, borderRadius: BorderRadius.circular(16)),
+                  decoration: BoxDecoration(
+                      color: Colors.pink,
+                      borderRadius: BorderRadius.circular(16)),
                   child: Container(
                     padding: EdgeInsets.all(0),
-                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(30)),
+                    decoration:
+                        BoxDecoration(borderRadius: BorderRadius.circular(30)),
                     child: Image.asset(
                       "assets/image/" + icon,
                       color: ColorResources.whiteColor,

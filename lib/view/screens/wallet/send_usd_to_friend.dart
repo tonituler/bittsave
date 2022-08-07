@@ -15,7 +15,7 @@ class _SendUsdToFriendState extends State<SendUsdToFriend> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BackGroundColr1(
+      body: BackGroundColr(
         child: SafeArea(
           child: SingleChildScrollView(
             child: Padding(
