@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:six_cash/view/screens/home/funding_options/request_from_a_riend/friend_identity.dart';
+import 'package:six_cash/view/screens/home/savings_pages/myPlans1.dart';
 import 'package:six_cash/view/screens/home/savings_pages/start_saving_page.dart';
 
 import '../funding_usd_wallet_page.dart';
@@ -16,7 +17,7 @@ class _MyPlansState extends State<MyPlans> {
   Widget build(BuildContext context) {
     return BackGroundColr(
       child: Scaffold(
-         backgroundColor: Colors.transparent,
+        backgroundColor: Colors.transparent,
         appBar: AppBar(
           leading: BackButtons(),
           backgroundColor: Colors.white.withOpacity(0),
@@ -27,16 +28,40 @@ class _MyPlansState extends State<MyPlans> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'My Plans',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 22,
-                ),
+              Row(
+                children: [
+                  Text(
+                    'My Plans',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 22,
+                    ),
+                  ),
+                  Spacer(),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => MyPlan1()));
+                    },
+                    child: CircleAvatar(
+                      radius: 16,
+                      backgroundColor: Colors.pink[200],
+                      child: Icon(
+                        Icons.check,
+                        size: 16,
+                        color: Colors.white,
+                      ),
+                    ),
+                  )
+                ],
               ),
               SizedBox(height: 8),
-              Text('Check how your savings is gaining', style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w400, fontSize: 15)),
+              Text('Check how your savings is gaining',
+                  style: TextStyle(
+                      color: Colors.grey,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 15)),
               SizedBox(height: 70),
               Center(
                 child: Image.asset(
