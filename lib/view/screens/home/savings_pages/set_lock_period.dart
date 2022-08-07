@@ -1,5 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:six_cash/app/extensions.dart';
+import 'package:six_cash/controller/splash_controller.dart';
+import 'package:six_cash/util/color_resources.dart';
 import 'package:six_cash/view/screens/home/savings_pages/set_frequency.dart';
 
 import '../funding_options/request_from_a_riend/friend_identity.dart';
@@ -7,69 +11,137 @@ import '../funding_usd_wallet_page.dart';
 import 'myPlans.dart';
 
 class SetLockPeriod extends StatefulWidget {
-  const SetLockPeriod({Key key}) : super(key: key);
+  SetLockPeriod({Key key, @required this.savingsInfo}) : super(key: key);
+  Map<String, dynamic> savingsInfo;
 
   @override
   State<SetLockPeriod> createState() => _SetLockPeriodState();
 }
 
 class _SetLockPeriodState extends State<SetLockPeriod> {
+  String selectedMonth = "3";
+  String interestRate = "0";
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: BackGroundColr(
-            child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 14),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              BackButtons(),
-              Text('Set a lock period',
+    return BackGroundColr(
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          leading: BackButtons(),
+          backgroundColor: Colors.white.withOpacity(0),
+          elevation: 0,
+        ),
+        body: GetBuilder<SplashController>(builder: (splashController) {
+          return Container(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Set a lock period',
                   style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 22)),
-              SizedBox(height: 8),
-              Padding(
-                padding: const EdgeInsets.only(left: 12.0),
-                child: Text(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 22,
+                  ),
+                ),
+                SizedBox(height: 8),
+                Padding(
+                  padding: const EdgeInsets.only(left: 12.0),
+                  child: Text(
                     'How long would you like to save to achieve this plan',
                     style: TextStyle(
-                        color: Colors.grey,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 15)),
-              ),
-              SizedBox(height: 80),
-              RowCont(text: '3 Months', col: Colors.pink),
-              RowCont(col: Colors.white, text: '6 Months'),
-              RowCont(col: Colors.white, text: '12 Months'),
-              SizedBox(height: 40),
-              Padding(
-                padding: const EdgeInsets.only(left: 20.0, top: 60),
-                child: Text('Duration: 3 Months\nInterest Rate : 55% PA',
-                    style: TextStyle(
-                        color: Colors.grey[600],
-                        fontWeight: FontWeight.w400,
-                        fontSize: 15)),
-              ),
-              SizedBox(height: 10),
-              Padding(
-                padding: const EdgeInsets.only(top: 20.0),
-                child: newContTap(
-                  col: Colors.pink,
-                  text: 'Next',
-                  ontap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => SetFrequency()));
-                  },
+                      color: Colors.grey,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 15,
+                    ),
+                  ),
                 ),
+                SizedBox(height: 80),
+                ...splashController.configModel.planPeriod.map((Map<String, dynamic> item) => monthItem(month: item["period"].toString())).toList(),
+                SizedBox(height: 40),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20.0, top: 60),
+                  child: Text(
+                    'Duration: $selectedMonth Months\nInterest Rate : ${getInterestRate(selectedMonth, splashController)}% PA',
+                    style: TextStyle(
+                      color: Colors.grey[600],
+                      fontWeight: FontWeight.w400,
+                      fontSize: 15,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20.0),
+                  child: newContTap(
+                    col: Colors.pink,
+                    text: 'Next',
+                    ontap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => SetFrequency(
+                        savingsInfo: {
+                          ...widget.savingsInfo,
+                          "period": selectedMonth,
+                        },
+                      ),),);
+
+                    },
+                  ),
+                ),
+              ],
+            ),
+          );
+        }),
+      ),
+    );
+  }
+
+  String getInterestRate(String month, SplashController splashController) {
+    String interestRate = "0";
+    splashController.configModel.planPeriod.forEach((Map<String, dynamic> element) {
+      if (element["period"].toString() == month) {
+        interestRate = element["interest"].toString();
+      }
+    });
+
+    double value = double.parse(interestRate) * 100;
+    if (value == 0) {
+      return "0";
+    }
+
+    return value.toInt().toString();
+  }
+
+  Widget monthItem({String month}) {
+    return InkWell(
+      onTap: () {
+        setState(() {
+          selectedMonth = month;
+        });
+      },
+      child: Padding(
+        padding: EdgeInsets.only(left: 20.0, top: 10, right: 150.w, bottom: 10),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Center(
+              child: Text(
+                '$month Months',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
               ),
-            ],
-          ),
-        )),
+            ),
+            Spacer(),
+            Center(
+              child: CircleAvatar(
+                radius: 10,
+                child: Icon(Icons.check, color: (month == selectedMonth) ? ColorResources.primaryColor : Colors.white, size: 13),
+                backgroundColor: Colors.pink[100],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

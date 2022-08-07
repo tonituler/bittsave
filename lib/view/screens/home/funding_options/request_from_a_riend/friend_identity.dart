@@ -229,9 +229,9 @@ class _FriendsIdentityState extends State<FriendsIdentity> {
                                   fontWeight: FontWeight.w400,
                                   height: 54.h,
                                   onTap: () async {
-                                    if(amountInDolar == 0){
+                                    if (amountInDolar == 0) {
                                       showCustomSnackBar("The amount can not be \$0");
-                                      return ;
+                                      return;
                                     }
                                     Response response = await controller.fundRequest({
                                       "username": widget.username,
@@ -272,9 +272,15 @@ class BackGroundColr extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [Colors.pink[50], Color.fromARGB(0, 244, 235, 238), Colors.grey[50]])),
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [Colors.pink[50], Colors.grey[50], Colors.grey[50]],
+          // colors: [Colors.pink[50], Color.fromARGB(0, 244, 235, 238), Colors.grey[50]],
+        ),
+      ),
       width: double.infinity,
+      height: double.infinity,
       child: child,
     );
   }

@@ -91,4 +91,27 @@ class TransactionRepo {
   Future<Response>  fundRequest(Map<String, dynamic> credentials) async {
     return await apiClient.postData(AppConstants.CUSTOMER_REQUEST_MONEY, credentials);
   }
+
+
+  /// LOAN
+  Future<Response>  loanCalculation({@required Map<String, dynamic> data}) async {
+    return await apiClient.postData(AppConstants.LOAN_CALCULATOR, data);
+  }
+
+  Future<Response>  loanApply({@required Map<String, dynamic> data}) async {
+    return await apiClient.postData(AppConstants.LOAN_APPLY, data);
+  }
+
+  Future<Response>  loanCheck({@required Map<String, dynamic> data}) async {
+    return await apiClient.postData(AppConstants.LOAN_CHECK, data);
+  }
+  Future<Response>  loanList() async {
+    return await apiClient.getData(AppConstants.LOAN_LIST);
+  }
+
+  Future<Response>  loanPay({@required String loanId}) async {
+    return await apiClient.postData(AppConstants.LOAN_PAY, {"id": loanId});
+  }
+
+
 }

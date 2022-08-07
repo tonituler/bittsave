@@ -88,4 +88,37 @@ class PriceConverter {
   static String priceFormater({double balance}) {
     return '${formatter.format(balance)}';
   }
+
+  static double convertToNaira(double price) {
+    String value = Get.find<SplashController>().configModel.usdToNgn;
+    try {
+      double val = double.parse(value.trim());
+      price = val * price;
+      return price;
+    } catch (e) {}
+
+    return 0.0;
+  }
+
+  static double convertToDolar(double price) {
+    String value = Get.find<SplashController>().configModel.usdToNgn;
+    try {
+      double val = double.parse(value.trim());
+      price = price/val;
+      return price;
+    } catch (e) {}
+
+    return 0.0;
+  }
+
+  static double converDolarToBTC(double price) {
+    String value = Get.find<SplashController>().configModel.buyBtcRate;
+    try {
+      double val = double.parse(value.trim());
+      price = price *val;
+      return price;
+    } catch (e) {}
+
+    return 0.0;
+  }
 }

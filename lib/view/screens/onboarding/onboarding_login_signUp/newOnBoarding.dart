@@ -20,6 +20,7 @@ class _OnbardingState extends State<Onbarding> {
         finishButtonText: 'Get Started',
         finishButtonColor: Colors.pink,
         onFinish: () {
+<<<<<<<<< Temporary merge branch 1
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
@@ -29,11 +30,13 @@ class _OnbardingState extends State<Onbarding> {
               },
             ),
           );
+=========
           Navigator.pushReplacement(context,
               MaterialPageRoute(builder: (context) {
             return LogIn1();
             // return TestApp();
           }));
+>>>>>>>>> Temporary merge branch 2
         },
         background: [
           Image.asset('assets/newImages/1Image.png'),
@@ -54,10 +57,14 @@ class _OnbardingState extends State<Onbarding> {
                   Center(
                     child: Text(
                       'Secure Payment',
+<<<<<<<<< Temporary merge branch 1
+                      style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500, fontSize: 20),
+=========
                       style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.w500,
                           fontSize: 20),
+>>>>>>>>> Temporary merge branch 2
                     ),
                   ),
                   SizedBox(
@@ -66,10 +73,14 @@ class _OnbardingState extends State<Onbarding> {
                   Text(
                     'Our unique payment encryption technology will protect your funds',
                     textAlign: TextAlign.center,
+<<<<<<<<< Temporary merge branch 1
+                    style: TextStyle(fontSize: 12, color: Colors.grey, fontWeight: FontWeight.w400),
+=========
                     style: TextStyle(
                         fontSize: 12,
                         color: Colors.grey,
                         fontWeight: FontWeight.w400),
+>>>>>>>>> Temporary merge branch 2
                   ),
                 ],
               ),
@@ -86,10 +97,14 @@ class _OnbardingState extends State<Onbarding> {
                   Center(
                     child: Text(
                       'Add any accounts',
+<<<<<<<<< Temporary merge branch 1
+                      style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500, fontSize: 20),
+=========
                       style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.w500,
                           fontSize: 20),
+>>>>>>>>> Temporary merge branch 2
                     ),
                   ),
                   SizedBox(
@@ -98,10 +113,14 @@ class _OnbardingState extends State<Onbarding> {
                   Text(
                     'You can add any account, card or crypto wallet to the app and make payments',
                     textAlign: TextAlign.center,
+<<<<<<<<< Temporary merge branch 1
+                    style: TextStyle(fontSize: 12, color: Colors.grey, fontWeight: FontWeight.w400),
+=========
                     style: TextStyle(
                         fontSize: 12,
                         color: Colors.grey,
                         fontWeight: FontWeight.w400),
+>>>>>>>>> Temporary merge branch 2
                   ),
                 ],
               ),
@@ -118,10 +137,14 @@ class _OnbardingState extends State<Onbarding> {
                   Center(
                     child: Text(
                       'Custom card',
+<<<<<<<<< Temporary merge branch 1
+                      style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500, fontSize: 20),
+=========
                       style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.w500,
                           fontSize: 20),
+>>>>>>>>> Temporary merge branch 2
                     ),
                   ),
                   SizedBox(
@@ -130,10 +153,14 @@ class _OnbardingState extends State<Onbarding> {
                   Text(
                     'You can issue a card without leaving your home. Physical and online cards are available in the application.',
                     textAlign: TextAlign.center,
+<<<<<<<<< Temporary merge branch 1
+                    style: TextStyle(fontSize: 12, color: Colors.grey, fontWeight: FontWeight.w400),
+=========
                     style: TextStyle(
                         fontSize: 12,
                         color: Colors.grey,
                         fontWeight: FontWeight.w400),
+>>>>>>>>> Temporary merge branch 2
                   ),
                 ],
               ),

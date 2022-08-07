@@ -53,10 +53,11 @@ class _OtherInfoScreenState extends State<OtherInfoScreen> {
                     ),
                     //OccupationSelectionSection(),
                     InputSection(
-                      occupationController: occupationTextController,
+                      usernameController: occupationTextController,
                       fNameController: fNameTextController,
                       lNameController: lNameTextController,
                       emailController: emailTextController,
+                      phoneController: emailTextController,
                     ),
                     const SizedBox(
                       height: Dimensions.PADDING_SIZE_EXTRA_OVER_LARGE,
