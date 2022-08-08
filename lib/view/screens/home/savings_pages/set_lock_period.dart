@@ -19,7 +19,8 @@ class SetLockPeriod extends StatefulWidget {
 }
 
 class _SetLockPeriodState extends State<SetLockPeriod> {
-  String selectedMonth = "3";
+  String selectedMonth = "1";
+  String selectedMonthName = "3";
   String interestRate = "0";
 
   @override
@@ -59,12 +60,12 @@ class _SetLockPeriodState extends State<SetLockPeriod> {
                   ),
                 ),
                 SizedBox(height: 80),
-                ...splashController.configModel.planPeriod.map((Map<String, dynamic> item) => monthItem(month: item["period"].toString())).toList(),
+                ...splashController.configModel.planPeriod.map((Map<String, dynamic> item) => monthItem(month: item)).toList(),
                 SizedBox(height: 40),
                 Padding(
                   padding: const EdgeInsets.only(left: 20.0, top: 60),
                   child: Text(
-                    'Duration: $selectedMonth Months\nInterest Rate : ${getInterestRate(selectedMonth, splashController)}% PA',
+                    'Duration: $selectedMonthName Months\nInterest Rate : ${getInterestRate(selectedMonthName, splashController)}% PA',
                     style: TextStyle(
                       color: Colors.grey[600],
                       fontWeight: FontWeight.w400,
@@ -79,13 +80,18 @@ class _SetLockPeriodState extends State<SetLockPeriod> {
                     col: Colors.pink,
                     text: 'Next',
                     ontap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => SetFrequency(
-                        savingsInfo: {
-                          ...widget.savingsInfo,
-                          "period": selectedMonth,
-                        },
-                      ),),);
-
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SetFrequency(
+                            savingsInfo: {
+                              ...widget.savingsInfo,
+                              "period": selectedMonth,
+                              "lock_period": selectedMonthName + " Months",
+                            },
+                          ),
+                        ),
+                      );
                     },
                   ),
                 ),
@@ -113,11 +119,11 @@ class _SetLockPeriodState extends State<SetLockPeriod> {
     return value.toInt().toString();
   }
 
-  Widget monthItem({String month}) {
+  Widget monthItem({Map<String, dynamic> month}) {
     return InkWell(
       onTap: () {
         setState(() {
-          selectedMonth = month;
+          selectedMonth = month["id"].toString();
         });
       },
       child: Padding(
@@ -127,7 +133,7 @@ class _SetLockPeriodState extends State<SetLockPeriod> {
           children: [
             Center(
               child: Text(
-                '$month Months',
+                '${month["period"]} Months',
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
               ),
@@ -136,7 +142,7 @@ class _SetLockPeriodState extends State<SetLockPeriod> {
             Center(
               child: CircleAvatar(
                 radius: 10,
-                child: Icon(Icons.check, color: (month == selectedMonth) ? ColorResources.primaryColor : Colors.white, size: 13),
+                child: Icon(Icons.check, color: (month["id"].toString() == selectedMonth) ? ColorResources.primaryColor : Colors.white, size: 13),
                 backgroundColor: Colors.pink[100],
               ),
             ),

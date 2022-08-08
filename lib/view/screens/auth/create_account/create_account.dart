@@ -1,10 +1,13 @@
 import 'package:phone_number/phone_number.dart';
+import 'package:six_cash/app/extensions.dart';
+import 'package:six_cash/app/size_config/config.dart';
 import 'package:six_cash/controller/auth_controller.dart';
 import 'package:six_cash/controller/create_account_controller.dart';
 import 'package:six_cash/controller/splash_controller.dart';
 import 'package:six_cash/util/color_resources.dart';
 import 'package:six_cash/util/dimensions.dart';
 import 'package:six_cash/util/styles.dart';
+import 'package:six_cash/view/base/buttons.dart';
 import 'package:six_cash/view/base/custom_app_bar.dart';
 import 'package:six_cash/view/base/custom_country_code_picker.dart';
 import 'package:six_cash/view/base/custom_logo.dart';
@@ -29,6 +32,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig.init(context);
     return Scaffold(
       backgroundColor: ColorResources.getWhiteAndBlack(),
       appBar: CustomAppbar(title: 'login_registration'.tr),
@@ -81,10 +85,26 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                                 width: 1,
                               ),
                             ),
-                            prefixIcon: CustomCountryCodePiker(
-                              initSelect: controller.countryCode,
-                              onChanged: (code) => controller.setCountryCode(code),
+                            prefixIcon: SizedBox(
+                            width: 80,
+                            height: 20,
+                            child: Row(
+                              children: [
+                                Container(
+                                  width: 50,
+                                  height: 20,
+                                  margin: const EdgeInsets.only(right: 10, left: 20),
+                                  // decoration: const BoxDecoration(border: Border(right: BorderSide(width: 2, color: Colors.grey))),
+                                  child: const Center(child: Text("+234 ")),
+                                ),
+                              ],
                             ),
+                          ),
+                            // prefixIcon: CustomCountryCodePiker(
+                            //   initSelect: controller.countryCode,
+
+                            //   onChanged: (code) => controller.setCountryCode(code),
+                            // ),
                           ),
                         ),
                       ),
@@ -96,24 +116,30 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
           ),
           GetBuilder<AuthController>(
             builder: (controller) => Container(
-              height: 110,
-              child: !controller.isLoading
-                  ? CustomLargeButton(
-                      backgroundColor: Theme.of(context).secondaryHeaderColor,
-                      text: 'verify_umber'.tr,
-                      onTap: () async {
-                        String _phoneNumber = '${Get.find<CreateAccountController>().countryCode}${numberFieldController.text}';
-                        try {
-                          await PhoneNumberUtil()
-                              .parse(_phoneNumber)
-                              .then((value) => Get.find<CreateAccountController>().sendOtpResponse(number: _phoneNumber));
-                        } catch (e) {
-                          showCustomSnackBar('please_input_your_valid_number'.tr, isError: true);
-                          numberFieldController.clear();
-                        }
-                      },
-                    )
-                  : Center(child: CircularProgressIndicator(color: Theme.of(context).primaryColor)),
+              height: 60,
+               width: MediaQuery.of(context).size.width,
+                padding: EdgeInsets.symmetric(horizontal: 15.w),
+                margin: EdgeInsets.only(bottom: 20),
+              child: buttonWithBorder(
+                'Verify Number',
+                textColor: Colors.white,
+                buttonColor: ColorResources.primaryColor,
+                fontSize: 18.sp,
+                busy: controller.isLoading,
+                fontWeight: FontWeight.w400,
+                height: 54.h,
+                onTap: () async {
+                  String _phoneNumber = '${Get.find<CreateAccountController>().countryCode}${numberFieldController.text}';
+                  try {
+                    await PhoneNumberUtil()
+                        .parse(_phoneNumber)
+                        .then((value) => Get.find<CreateAccountController>().sendOtpResponse(number: _phoneNumber));
+                  } catch (e) {
+                    showCustomSnackBar('please_input_your_valid_number'.tr, isError: true);
+                    numberFieldController.clear();
+                  }
+                },
+              ),
             ),
           ),
         ],

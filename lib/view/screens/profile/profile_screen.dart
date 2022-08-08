@@ -207,54 +207,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           )),
     );
-
-    return Scaffold(
-      body: BackGroundColr(
-        child: SafeArea(
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                SizedBox(height: 10),
-                CircleAvatar(
-                  radius: 30,
-                  backgroundImage: AssetImage('assets/newImages/Photo.png'),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
-                  child: Text(
-                    'Babalola Anthony',
-                    style: TextStyle(fontWeight: FontWeight.w700),
-                  ),
-                ),
-                Text(
-                  '@babalola',
-                  style: TextStyle(color: Colors.grey[800], fontSize: 13),
-                ),
-                Image.asset('assets/newImages/qrCode.png'),
-                contTable('General', 'Profile Settings', 'Notifications', () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return ProfileSettings();
-                  }));
-                }, () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => NotificationScreens()));
-                }),
-                contTable('Payment', 'Payment Options', 'Payouts', () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => PaymentOptions()));
-                }, () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => PayOut()));
-                }),
-                contTable('Request', 'Request Status', 'Send Request', () {}, () {}),
-                contTable2('Security', 'Change Pin'),
-                contTable2('Verification', 'Step 1'),
-                contTable('Support', '24/ Support', 'FaQs', () {}, () {}),
-                contTable3('Policies', 'About Us', 'Term Of Use', 'Privacy Policy'),
-                contTable2('Exit', 'Logout'),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
   }
 
   Widget contTable(

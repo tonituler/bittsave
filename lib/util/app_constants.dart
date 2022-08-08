@@ -63,6 +63,15 @@ class AppConstants {
   static const String LOAN_LIST = '/api/v1/customer/list-loan';
   static const String LOAN_PAY = '/api/v1/customer/pay-loan';
 
+  static const String PLAN_APPLY = '/api/v1/customer/apply-plan';
+  static const String PLAN_PREVIEW = '/api/v1/customer/plan-review';
+  static const String EDIT_PLAN = '/api/v1/customer/edit-plan';
+  static const String CHECK_PLAN = '/api/v1/customer/check-plan';
+  static const String LIST_PLAN = '/api/v1/customer/list-plan';
+  static const String PLAN_PAYMENT_HISTORY = '/api/v1/customer/plan-history';
+  static const String PAY_PLAN = '/api/v1/customer/add-plan';
+  static const String WITHDRAWAL_PLAN = '/api/v1/customer/withdraw-plan';
+
   // Shared Key
   static const String THEME = 'theme';
   static const String TOKEN = 'token';

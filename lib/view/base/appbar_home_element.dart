@@ -10,7 +10,7 @@ class AppbarHomeElement extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: ColorResources.getPrimaryColor(),
+      color: Colors.transparent,
       padding: EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -20,7 +20,7 @@ class AppbarHomeElement extends StatelessWidget implements PreferredSizeWidget {
 
           Text(
             title,
-            style: montserratSemiBold.copyWith(fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE, color: ColorResources.whiteColor),
+            style: montserratSemiBold.copyWith(fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE, color: ColorResources.blackColor),
           ),
           SizedBox(
             height: Dimensions.PADDING_SIZE_DEFAULT,
