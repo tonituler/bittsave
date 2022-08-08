@@ -5,22 +5,15 @@ import 'package:six_cash/controller/auth_controller.dart';
 import 'package:six_cash/controller/profile_screen_controller.dart';
 import 'package:six_cash/controller/splash_controller.dart';
 import 'package:six_cash/helper/route_helper.dart';
-import 'package:six_cash/util/dimensions.dart';
-import 'package:six_cash/util/images.dart';
-import 'package:six_cash/util/styles.dart';
 import 'package:six_cash/view/base/custom_ink_well.dart';
 import 'package:six_cash/view/screens/home/funding_options/request_from_a_riend/friend_identity.dart';
 import 'package:six_cash/view/screens/profile/profile_settings.dart';
 import 'package:six_cash/view/screens/profile/widget/menu_item.dart';
-import 'package:six_cash/view/screens/profile/widget/profile_holder.dart';
 import 'package:six_cash/view/screens/profile/widget/profile_shimmer.dart';
-import 'package:six_cash/view/screens/profile/widget/two_factor_menu.dart';
 import 'package:six_cash/view/screens/profile/widget/user_info.dart';
 import 'package:six_cash/view/screens/settings_page/KYC.dart';
 import 'package:six_cash/view/screens/settings_page/payOut.dart';
 import 'package:six_cash/view/screens/settings_page/paymentOptions.dart';
-
-import 'notifications.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key key}) : super(key: key);
@@ -226,15 +219,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
             style: TextStyle(fontWeight: FontWeight.w600),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 8.0, right: 8, bottom: 5, top: 4),
+            padding:
+                const EdgeInsets.only(left: 8.0, right: 8, bottom: 5, top: 4),
             child: Container(
               height: 80,
               width: double.infinity,
-              decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(6)),
+              decoration: BoxDecoration(
+                  color: Colors.white, borderRadius: BorderRadius.circular(6)),
               child: Column(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 10.0, right: 16, top: 10, bottom: 10),
+                    padding: const EdgeInsets.only(
+                        left: 10.0, right: 16, top: 10, bottom: 10),
                     child: InkWell(
                       onTap: firstOnTap,
                       child: Row(
@@ -288,18 +284,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
             style: TextStyle(fontWeight: FontWeight.w600),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 8.0, right: 8, bottom: 5, top: 4),
+            padding:
+                const EdgeInsets.only(left: 8.0, right: 8, bottom: 5, top: 4),
             child: Container(
               height: 50,
               width: double.infinity,
-              decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(6)),
+              decoration: BoxDecoration(
+                  color: Colors.white, borderRadius: BorderRadius.circular(6)),
               child: Column(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 10.0, right: 16, top: 10, bottom: 10),
+                    padding: const EdgeInsets.only(
+                        left: 10.0, right: 16, top: 10, bottom: 10),
                     child: InkWell(
                       onTap: () {
-                        Navigator.push(context, (MaterialPageRoute(builder: (context) => KYC())));
+                        Navigator.push(context,
+                            (MaterialPageRoute(builder: (context) => KYC())));
                       },
                       child: Row(
                         children: [
@@ -338,15 +338,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
             style: TextStyle(fontWeight: FontWeight.w600),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 8.0, right: 8, bottom: 5, top: 4),
+            padding:
+                const EdgeInsets.only(left: 8.0, right: 8, bottom: 5, top: 4),
             child: Container(
               height: 120,
               width: double.infinity,
-              decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(6)),
+              decoration: BoxDecoration(
+                  color: Colors.white, borderRadius: BorderRadius.circular(6)),
               child: Column(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 10.0, right: 16, top: 10, bottom: 10),
+                    padding: const EdgeInsets.only(
+                        left: 10.0, right: 16, top: 10, bottom: 10),
                     child: Row(
                       children: [
                         Text('        $secondText'),
@@ -359,7 +362,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 10.0, right: 16, bottom: 10),
+                    padding: const EdgeInsets.only(
+                        left: 10.0, right: 16, bottom: 10),
                     child: Row(
                       children: [
                         Text('        $thirdText'),
