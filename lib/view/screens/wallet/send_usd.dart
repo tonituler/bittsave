@@ -27,9 +27,7 @@ class _SendUsdState extends State<SendUsd> {
                   BackButtons(),
                   Padding(
                     padding: const EdgeInsets.only(left: 8, bottom: 10),
-                    child: Text('How do you want to send USD?',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w700, fontSize: 20)),
+                    child: Text('How do you want to send USD?', style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20)),
                   ),
                   Container(
                     margin: EdgeInsets.only(top: 30),
@@ -40,13 +38,16 @@ class _SendUsdState extends State<SendUsd> {
                         color: Colors.white,
                       ),
                       title: "Send as BTC",
-                      subTitle:
-                          'Send BTC to a wallet address directly from your USD wallet',
+                      subTitle: 'Send BTC to a wallet address directly from your USD wallet',
                       ontap: () {
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => SendBTCto()));
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => SendBTCto(
+                              type: "USD",
+                            ),
+                          ),
+                        );
                       },
                     ),
                   ),
@@ -62,9 +63,13 @@ class _SendUsdState extends State<SendUsd> {
                       subTitle: 'Send USD to other bitsave users',
                       ontap: () {
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => SendUsdToFriend()));
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => SendUsdToFriend(
+                              type: "USD",
+                            ),
+                          ),
+                        );
                       },
                     ),
                   ),

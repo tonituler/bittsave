@@ -9,17 +9,20 @@ class SavingsPlan {
     this.status,
     this.nextPaymentDate,
     this.name,
+    this.gains,
   });
 
   int id;
   String amount;
   String name;
+  String gains;
   String status;
   String targetAmount;
   String nextPaymentDate;
 
   factory SavingsPlan.fromJson(Map<String, dynamic> json) => SavingsPlan(
     id: json["id"],
+    gains: json["gains"].toString(),
     amount: json["amount"].toString(),
     name: json["name"].toString(),
     status: json["status"].toString(),

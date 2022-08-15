@@ -41,7 +41,7 @@ class CustomDialog extends StatelessWidget {
               height: 80,
               width: 80,
               alignment: Alignment.center,
-              decoration: BoxDecoration(color: isFailed ? ColorResources.getRedColor() : Theme.of(context).primaryColor, shape: BoxShape.circle),
+              decoration: BoxDecoration(color: isFailed ? ColorResources.primaryColor : Theme.of(context).primaryColor, shape: BoxShape.circle),
               child: Transform.rotate(angle: rotateAngle, child: Icon(icon, size: 40, color: Colors.white)),
             ),
           ),
@@ -56,7 +56,7 @@ class CustomDialog extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 0),
                 child: Row(
                   children: [
-                    Expanded(child: CustomButton(buttonText: onTapFalseText, color: ColorResources.getRedColor(), onTap: onTapFalse)),
+                    Expanded(child: CustomButton(buttonText: onTapFalseText, color: ColorResources.primaryColor, onTap: onTapFalse)),
                     SizedBox(
                       width: 10,
                     ),
@@ -65,7 +65,7 @@ class CustomDialog extends StatelessWidget {
                       buttonText: onTapTrueText,
                       onTap: onTapTrue,
                       color: ColorResources.getAcceptBtn(),
-                    )),
+                    ),),
                   ],
                 ),
               ),

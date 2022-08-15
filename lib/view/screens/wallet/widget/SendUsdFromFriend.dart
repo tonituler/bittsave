@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:six_cash/app/extensions.dart';
+import 'package:six_cash/controller/splash_controller.dart';
+import 'package:six_cash/helper/price_converter.dart';
+import 'package:six_cash/util/images.dart';
 
 import '../../../../util/color_resources.dart';
 import '../../deshboard/nav_bar.dart';
@@ -8,7 +12,8 @@ import '../../home/funding_options/request_from_a_riend/friend_identity.dart';
 import '../../home/funding_usd_wallet_page.dart';
 
 class SendUsdFromFriend extends StatefulWidget {
-  const SendUsdFromFriend({Key key}) : super(key: key);
+  SendUsdFromFriend({Key key, @required this.requestInfo}) : super(key: key);
+  Map<String, dynamic> requestInfo;
 
   @override
   State<SendUsdFromFriend> createState() => _SendUsdFromFriendState();
@@ -45,9 +50,7 @@ class _SendUsdFromFriendState extends State<SendUsdFromFriend> {
                   padding: EdgeInsets.symmetric(vertical: 40.h),
                   // height: 600,
                   width: double.infinity,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10)),
+                  decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10)),
                   child: Column(
                     children: [
                       Text(
@@ -59,34 +62,41 @@ class _SendUsdFromFriendState extends State<SendUsdFromFriend> {
                       ),
                       SizedBox(height: 8),
                       Text(
-                        '\$1,240.00',
+                        '\$${PriceConverter.priceFormater(balance: widget.requestInfo["amount"])}',
                         style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 30.sp,
-                            fontWeight: FontWeight.w400),
+                          color: Colors.black,
+                          fontSize: 30.sp,
+                          fontWeight: FontWeight.w400,
+                        ),
                       ),
                       Container(
-                        margin: EdgeInsets.only(top: 35.h, bottom: 10),
-                        width: 80,
-                        height: 80,
+                        margin: EdgeInsets.only(top: 50, bottom: 10),
+                        width: 70,
+                        height: 70,
                         decoration: BoxDecoration(
                           color: Colors.black,
-                          borderRadius: BorderRadius.circular(8),
-                          image: DecorationImage(
-                            image: AssetImage('assets/image/logo.png'),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          child: FadeInImage.assetNetwork(
+                            fit: BoxFit.cover,
+                            image: "${Get.find<SplashController>().configModel.baseUrls.customerImageUrl}/${widget.requestInfo["image"]}",
+                            placeholder: Images.avatar,
+                            imageErrorBuilder: (context, url, error) => Image.asset(
+                              Images.avatar,
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                       ),
                       Text(
-                        'Alan Santos',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w400, fontSize: 18.sp),
+                        widget.requestInfo["name"],
+                        style: TextStyle(fontWeight: FontWeight.w300, fontSize: 14),
                       ),
                       SizedBox(height: 30),
                       Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(width: 0.1),
-                            borderRadius: BorderRadius.circular(18)),
+                        decoration: BoxDecoration(border: Border.all(width: 0.1), borderRadius: BorderRadius.circular(18)),
                         margin: EdgeInsets.symmetric(horizontal: 10),
                         padding: EdgeInsets.symmetric(horizontal: 12),
                         // color: Colors.pink,
@@ -95,35 +105,28 @@ class _SendUsdFromFriendState extends State<SendUsdFromFriend> {
                           leading: Icon(
                             Icons.qr_code_2_sharp,
                           ),
-                          trailing: Icon(Icons.share,
-                              color: ColorResources.primaryColor),
+                          trailing: Icon(Icons.share, color: ColorResources.primaryColor),
                           title: Text(
                             'share with your friend',
                             maxLines: 1,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.w300,
-                                fontSize: 10),
+                            style: TextStyle(color: Colors.black, fontWeight: FontWeight.w300, fontSize: 10),
                           ),
                           subtitle: Text(
                             'Click here to share your QR Code',
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                                fontSize: 10, fontWeight: FontWeight.w600),
+                            style: TextStyle(fontSize: 10, fontWeight: FontWeight.w600),
                           ),
                         ),
                       ),
                       InkWell(
                         onTap: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) {
                             return NavBarScreen();
                           }));
                         },
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 20.0, horizontal: 12),
+                          padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 12),
                           child: Container(
                             width: double.infinity,
                             height: 40,
@@ -133,9 +136,7 @@ class _SendUsdFromFriendState extends State<SendUsdFromFriend> {
                               textAlign: TextAlign.center,
                               style: TextStyle(color: Colors.white),
                             )),
-                            decoration: BoxDecoration(
-                                color: Colors.pink,
-                                borderRadius: BorderRadius.circular(8)),
+                            decoration: BoxDecoration(color: Colors.pink, borderRadius: BorderRadius.circular(8)),
                           ),
                         ),
                       ),
@@ -151,20 +152,13 @@ class _SendUsdFromFriendState extends State<SendUsdFromFriend> {
   }
 }
 
-Widget InnerContainer(
-    {double height,
-    Color col,
-    double data,
-    String text,
-    TextStyle style,
-    Widget widget}) {
+Widget InnerContainer({double height, Color col, double data, String text, TextStyle style, Widget widget}) {
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: Container(
       height: height,
       width: double.infinity,
-      decoration:
-          BoxDecoration(color: col, borderRadius: BorderRadius.circular(data)),
+      decoration: BoxDecoration(color: col, borderRadius: BorderRadius.circular(data)),
       child: Center(
         child: widget,
       ),

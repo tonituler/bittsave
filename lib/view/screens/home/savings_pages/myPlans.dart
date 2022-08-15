@@ -177,7 +177,7 @@ class _MyPlansState extends State<MyPlans> {
                             style: TextStyle(color: Colors.grey, fontSize: 10),
                           ),
                           Text(
-                            '\$${PriceConverter.priceFormater(balance: double.parse(plan.amount))}',
+                            '\$${PriceConverter.priceFormater(balance: double.parse(plan.gains))}',
                             style: TextStyle(color: Colors.black, fontSize: 21.5, fontWeight: FontWeight.w400),
                           ),
                         ],

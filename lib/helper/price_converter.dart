@@ -104,21 +104,52 @@ class PriceConverter {
     String value = Get.find<SplashController>().configModel.usdToNgn;
     try {
       double val = double.parse(value.trim());
-      price = price/val;
+      price = price / val;
       return price;
     } catch (e) {}
 
     return 0.0;
   }
 
-  static double converDolarToBTC(double price) {
-    String value = Get.find<SplashController>().configModel.buyBtcRate;
+  static double converBTCToDolar(double btcPrice) {
+    String value = Get.find<SplashController>().configModel.btcValue;
+    
     try {
       double val = double.parse(value.trim());
-      price = price *val;
-      return price;
-    } catch (e) {}
+      btcPrice = btcPrice * val;
+      return btcPrice;
+    } catch (e) {
+      // print(e);
+    }
 
     return 0.0;
+  }
+
+  static double converDolarToBTC(double price) {
+    String value = Get.find<SplashController>().configModel.btcValue;
+    try {
+      double val = double.parse(value.trim());
+      price = price / val;
+      return double.parse(price.toStringAsFixed(8));
+    } catch (e) {
+      // print(e);
+    }
+
+    return 0.0;
+  }
+
+  static bool isTextFieldPriceValid(double availableBalance, String amountFromTextfield) {
+    try {
+      String enteredPrice = "0.0";
+      if (amountFromTextfield.trim() != "") {
+        enteredPrice = amountFromTextfield;
+      }
+
+      double cleanedPrivce = double.parse(enteredPrice);
+      if (availableBalance > cleanedPrivce) {
+        return true;
+      }
+    } catch (e) {}
+    return false;
   }
 }

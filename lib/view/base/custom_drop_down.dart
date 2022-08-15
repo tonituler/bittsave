@@ -3,6 +3,8 @@ import 'package:six_cash/app/extensions.dart';
 import 'package:six_cash/util/color_resources.dart';
 import 'package:six_cash/view/base/text_widgets.dart';
 
+enum DropDownType { Bordered, Underline, None }
+
 class CustomDropDownButton extends StatefulWidget {
   final List<String> list;
   final Function(String) onChanged;
@@ -10,8 +12,19 @@ class CustomDropDownButton extends StatefulWidget {
   final String hintText;
   final String title;
   final bool busy;
+  final DropDownType bordered;
+  final Color backgroundColor;
 
-  CustomDropDownButton({this.list, this.onChanged, this.value, this.hintText, this.title, this.busy = false});
+  CustomDropDownButton({
+    this.list,
+    this.onChanged,
+    this.value,
+    this.hintText,
+    this.title,
+    this.busy = false,
+    this.bordered = DropDownType.Underline,
+    this.backgroundColor = Colors.transparent,
+  });
 
   @override
   _CustomDropDownButtonState createState() => _CustomDropDownButtonState();
@@ -29,7 +42,7 @@ class _CustomDropDownButtonState extends State<CustomDropDownButton> {
               padding: EdgeInsets.only(bottom: 6.h),
               child: Row(
                 children: [
-                  regularText(widget.title, fontSize: 12.sp, color: Colors.grey),
+                  regularText(widget.title, fontSize: 14.sp, color: Colors.black, fontWeight: FontWeight.w500,),
                   Spacer(),
                   if (widget.busy)
                     SizedBox(
@@ -43,16 +56,9 @@ class _CustomDropDownButtonState extends State<CustomDropDownButton> {
                 ],
               )),
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 12.h),
-            decoration: BoxDecoration(
-              border: Border(
-                bottom: BorderSide(
-                  width: 1,
-                  color: Colors.black,
-                )
-              )
-            ),
-            height: 50.h,
+            padding: EdgeInsets.symmetric(horizontal: 20.h, ),
+            decoration: getDecoration(),
+            height: 60.h,
             alignment: Alignment.center,
             child: DropdownButton<String>(
               style: TextStyle(
@@ -95,5 +101,32 @@ class _CustomDropDownButtonState extends State<CustomDropDownButton> {
         ],
       ),
     );
+  }
+
+  BoxDecoration getDecoration() {
+    if (widget.bordered == DropDownType.Bordered) {
+      return BoxDecoration(
+        color: widget.backgroundColor,
+        borderRadius: BorderRadius.circular(5),
+        border: Border.all(
+          width: 1.h,
+            color: widget.backgroundColor,
+        ),
+      );
+    }
+
+    if (widget.bordered == DropDownType.Underline) {
+      return BoxDecoration(
+        color: widget.backgroundColor,
+        borderRadius: BorderRadius.circular(5),
+        border: Border(
+          bottom: BorderSide(
+            width: 1.h,
+            color: widget.backgroundColor,
+          ),
+        ),
+      );
+    }
+    return BoxDecoration(color: widget.backgroundColor,);
   }
 }

@@ -21,6 +21,10 @@ class UserInfo {
     this.balance,
     this.uniqueId,
     this.qrCode,
+    this.usdBalance,
+    this.btcBalance,
+    this.btcInSatoshis,
+    this.btcCollateralUsed,
   });
 
   String username;
@@ -37,6 +41,10 @@ class UserInfo {
   double balance;
   String uniqueId;
   String qrCode;
+  double usdBalance;
+  double btcBalance;
+  double btcInSatoshis;
+  double btcCollateralUsed;
 
   factory UserInfo.fromJson(Map<String, dynamic> json) => UserInfo(
     username: json["username"],
@@ -53,5 +61,9 @@ class UserInfo {
     balance: json["balance"].toDouble() ?? 0.0,
     uniqueId: json["unique_id"],
     qrCode: json["qr_code"],
+    usdBalance: json["usd_balance"].toDouble() ?? 0.0,
+    btcBalance: json["btc_balance"].toDouble() ?? 0.0,
+    btcInSatoshis: json["btc_in_satoshis"].toDouble() ?? 0.0,
+    btcCollateralUsed: json["btc_collateral_used"].toDouble() ?? 0.0,
   );
 }

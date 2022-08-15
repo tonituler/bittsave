@@ -26,6 +26,7 @@ import 'package:six_cash/controller/splash_controller.dart';
 import 'package:six_cash/controller/theme_controller.dart';
 import 'package:six_cash/controller/transaction_history_controller.dart';
 import 'package:six_cash/controller/varification_controller.dart';
+import 'package:six_cash/controller/wallet_controller.dart';
 import 'package:six_cash/controller/websitelink_controller.dart';
 import 'package:six_cash/data/api/api_client.dart';
 import 'package:six_cash/data/repository/add_money_repo.dart';
@@ -83,6 +84,7 @@ Future<Map<String, Map<String, String>>> init() async {
   Get.lazyPut(() => AuthController(authRepo: Get.find()));
   Get.lazyPut(() => DepositController(transacRepo: Get.find()));
   Get.lazyPut(() => SavingsController(transacRepo: Get.find()));
+  Get.lazyPut(() => WalletController(transacRepo: Get.find()));
   Get.lazyPut(() => LoanController(transacRepo: Get.find()));
   Get.lazyPut(() => HomeController());
   Get.lazyPut(() => CreateAccountController());

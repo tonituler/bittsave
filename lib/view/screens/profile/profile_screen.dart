@@ -62,11 +62,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             CustomInkWell(
                                 child: MenuItem(title: 'Payment Options'),
                                 onTap: () {
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => PaymentOptions()));
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => PaymentOptions(),),);
                                 },
                               ),
                               CustomInkWell(child: MenuItem(title: 'Payouts'), onTap: (){
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => PayOut()));
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => PayOut(),),);
                               }),
                           ],
                         ),
@@ -94,8 +94,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             CustomInkWell(
                                 child: MenuItem(title: 'Step 1'),
                                 onTap: () {
-                                  Get.toNamed(RouteHelper.getEditProfileRoute())
-                                      .then((value) => Get.find<ProfileController>().profileData(loading: true));
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => KYC()));
                                 },
                               ),
                           ],
@@ -199,201 +198,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
               },
             ),
           )),
-    );
-  }
-
-  Widget contTable(
-    final String firstText,
-    final String secondText,
-    final String thirdText,
-    final Function firstOnTap,
-    final Function secondOnTap,
-  ) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            '     $firstText',
-            style: TextStyle(fontWeight: FontWeight.w600),
-          ),
-          Padding(
-            padding:
-                const EdgeInsets.only(left: 8.0, right: 8, bottom: 5, top: 4),
-            child: Container(
-              height: 80,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(6)),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        left: 10.0, right: 16, top: 10, bottom: 10),
-                    child: InkWell(
-                      onTap: firstOnTap,
-                      child: Row(
-                        children: [
-                          Text('        $secondText'),
-                          Spacer(),
-                          Icon(
-                            Icons.keyboard_arrow_right,
-                            color: Colors.pink,
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10.0, right: 16),
-                    child: InkWell(
-                      onTap: secondOnTap,
-                      child: Row(
-                        children: [
-                          Text('        $thirdText'),
-                          Spacer(),
-                          Icon(
-                            Icons.keyboard_arrow_right,
-                            color: Colors.pink,
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget contTable2(
-    final String firstText,
-    final String secondText,
-  ) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            '     $firstText',
-            style: TextStyle(fontWeight: FontWeight.w600),
-          ),
-          Padding(
-            padding:
-                const EdgeInsets.only(left: 8.0, right: 8, bottom: 5, top: 4),
-            child: Container(
-              height: 50,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(6)),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        left: 10.0, right: 16, top: 10, bottom: 10),
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.push(context,
-                            (MaterialPageRoute(builder: (context) => KYC())));
-                      },
-                      child: Row(
-                        children: [
-                          Text('        $secondText'),
-                          Spacer(),
-                          Icon(
-                            Icons.keyboard_arrow_right,
-                            color: Colors.pink,
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget contTable3(
-    final String firstText,
-    final String secondText,
-    final String thirdText,
-    final String forthText,
-  ) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            '     $firstText',
-            style: TextStyle(fontWeight: FontWeight.w600),
-          ),
-          Padding(
-            padding:
-                const EdgeInsets.only(left: 8.0, right: 8, bottom: 5, top: 4),
-            child: Container(
-              height: 120,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(6)),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        left: 10.0, right: 16, top: 10, bottom: 10),
-                    child: Row(
-                      children: [
-                        Text('        $secondText'),
-                        Spacer(),
-                        Icon(
-                          Icons.keyboard_arrow_right,
-                          color: Colors.pink,
-                        )
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        left: 10.0, right: 16, bottom: 10),
-                    child: Row(
-                      children: [
-                        Text('        $thirdText'),
-                        Spacer(),
-                        Icon(
-                          Icons.keyboard_arrow_right,
-                          color: Colors.pink,
-                        )
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10.0, right: 16),
-                    child: Row(
-                      children: [
-                        Text('        $forthText'),
-                        Spacer(),
-                        Icon(
-                          Icons.keyboard_arrow_right,
-                          color: Colors.pink,
-                        )
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
     );
   }
 }

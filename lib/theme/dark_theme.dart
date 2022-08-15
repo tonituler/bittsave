@@ -6,5 +6,8 @@ ThemeData dark = ThemeData(
   primaryColor: Color(0xFF689da7),
   brightness: Brightness.dark,
   secondaryHeaderColor: Color(0xFFaaa818),
-  bottomNavigationBarTheme: BottomNavigationBarThemeData(backgroundColor: Colors.black, selectedItemColor: ColorResources.themeDarkBackgroundColor),
+  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    backgroundColor: Colors.black,
+    selectedItemColor: ColorResources.themeDarkBackgroundColor,
+  ),
 );

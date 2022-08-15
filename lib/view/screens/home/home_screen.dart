@@ -246,7 +246,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 maxLines: 1,
                                                 overflow: TextOverflow.ellipsis,
                                                 style: montserratLight.copyWith(
-                                                    fontSize: Dimensions.FONT_SIZE_SMALL, color: ColorResources.whiteColor, fontWeight: FontWeight.bold),
+                                                    fontSize: Dimensions.FONT_SIZE_SMALL,
+                                                    color: ColorResources.whiteColor,
+                                                    fontWeight: FontWeight.bold),
                                               ),
                                               Text(
                                                 'Wallet',
@@ -347,7 +349,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 maxLines: 1,
                                                 overflow: TextOverflow.ellipsis,
                                                 style: montserratLight.copyWith(
-                                                    fontSize: Dimensions.FONT_SIZE_SMALL, color: ColorResources.whiteColor, fontWeight: FontWeight.bold),
+                                                    fontSize: Dimensions.FONT_SIZE_SMALL,
+                                                    color: ColorResources.whiteColor,
+                                                    fontWeight: FontWeight.bold),
                                               ),
                                               Text(
                                                 'Wallet',
@@ -436,7 +440,12 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                               InkWell(
                                 onTap: () {
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => MyPlans()));
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => MyPlans(),
+                                    ),
+                                  );
                                 },
                                 child: savingsItems(
                                   image: "open_folder_add.png",

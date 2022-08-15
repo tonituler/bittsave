@@ -6,8 +6,11 @@ ThemeData light = ThemeData(
   fontFamily: 'Montserrat',
   primaryColor: Color(0xFF950035),
   secondaryHeaderColor: Color(0xFFCFEC7E),
-  highlightColor: Color(0xFF003E47),
+  highlightColor: Color(0xFF950035).withOpacity(0.2),
   backgroundColor: Colors.white,
-  bottomNavigationBarTheme: BottomNavigationBarThemeData(backgroundColor: Colors.white,selectedItemColor: ColorResources.themeLightBackgroundColor),
-
+  splashColor: Color(0xFF950035).withOpacity(0.2),
+  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    backgroundColor: Colors.white,
+    selectedItemColor: ColorResources.themeLightBackgroundColor,
+  ),
 );

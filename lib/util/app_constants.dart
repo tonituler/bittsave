@@ -72,6 +72,17 @@ class AppConstants {
   static const String PAY_PLAN = '/api/v1/customer/add-plan';
   static const String WITHDRAWAL_PLAN = '/api/v1/customer/withdraw-plan';
 
+  //WALLET
+  static const String SEND_USD_TO_BTC_USER = '/api/v1/customer/usd-wallet-btc';
+  static const String WALLET_WITHDRAWAL = '/api/v1/customer/usd-wallet-withdraw';
+  static const String SEND_BTC_TO_BTC = '/api/v1/customer/btc-wallet-btc';
+  static const String SEND_BTC_TO_USER = '/api/v1/customer/btc-wallet-user';
+  static const String BUY_BTC = '/api/v1/customer/buy-btc';
+  static const String SELL_BTC = '/api/v1/customer/sell-btc';
+  static const String USD_HISTORY = '/api/v1/customer/transaction-wallet-history/usd';
+  static const String BTC_HISTORY = '/api/v1/customer/transaction-wallet-history/btc';
+  static const String ALL_WALLET_HISTORY = '/api/v1/customer/transaction-history';
+
   // Shared Key
   static const String THEME = 'theme';
   static const String TOKEN = 'token';

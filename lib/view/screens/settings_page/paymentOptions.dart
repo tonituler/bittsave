@@ -98,7 +98,7 @@ class _PaymentOptionsState extends State<PaymentOptions> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => PaymentDestination()));
+                              builder: (context) => PaymentDestination(),),);
                     },
                   ),
                 ],

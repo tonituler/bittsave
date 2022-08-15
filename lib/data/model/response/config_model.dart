@@ -33,14 +33,16 @@ class ConfigModel {
     this.loanCommissionNgn,
     this.loanCommissionUsd,
     this.usdToNgn,
-    this.buyBtcRate,
-    this.sellBtcRate,
+    this.buyBtcFee,
+    this.sellBtcFee,
     this.loanPeriod,
     this.loanToValueOptions,
     this.loanRepaymentOption,
     this.loanCreditType,
     this.planPeriod,
     this.planFrequency,
+    this.bankList,
+    this.stateRegion,
   });
 
   String companyName;
@@ -68,8 +70,8 @@ class ConfigModel {
   String loanCommissionNgn;
   String loanCommissionUsd;
   String usdToNgn;
-  String buyBtcRate;
-  String sellBtcRate;
+  String buyBtcFee;
+  String sellBtcFee;
   
   List<Map<String, dynamic>> loanPeriod;
   List<Map<String, dynamic>> loanToValueOptions;
@@ -77,6 +79,8 @@ class ConfigModel {
   List<Map<String, dynamic>> loanCreditType;
   List<Map<String, dynamic>> planPeriod;
   List<Map<String, dynamic>> planFrequency;
+  List<Map<String, dynamic>> bankList;
+  List<Map<String, dynamic>> stateRegion;
 
   factory ConfigModel.fromJson(Map<String, dynamic> json) => ConfigModel(
     companyName: json["company_name"],
@@ -104,14 +108,16 @@ class ConfigModel {
     loanCommissionNgn: json["loan_commission_flat_ngn"].toString(),
     loanCommissionUsd: json["loan_commission_flat_usd"].toString(),
     usdToNgn: json["usd_ngn"].toString(),
-    buyBtcRate: json["buy_btc_rate"].toString(),
-    sellBtcRate: json["sell_btc_rate"].toString(),
+    buyBtcFee: json["buy_btc_fee"].toString(),
+    sellBtcFee: json["sell_btc_fee"].toString(),
     loanPeriod: List<Map<String, dynamic>>.from(json["loan_period"]),
     loanToValueOptions: List<Map<String, dynamic>>.from(json["loan_to_value_options"]),
     loanRepaymentOption: List<Map<String, dynamic>>.from(json["loan_repayment_option"]),
     loanCreditType: List<Map<String, dynamic>>.from(json["loan_credit_type"]),
     planPeriod: List<Map<String, dynamic>>.from(json["plan_period"]),
     planFrequency: List<Map<String, dynamic>>.from(json["plan_frequency"]),
+    bankList: List<Map<String, dynamic>>.from(json["bank_list"]),
+    stateRegion: List<Map<String, dynamic>>.from(json["state_region"]),
   );
 }
 

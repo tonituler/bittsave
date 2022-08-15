@@ -19,14 +19,14 @@ Widget buttonWithBorder(
   bool diabled = false,
 }) {
   return InkWell(
-    onTap: busy ? null : onTap,
+    onTap: (busy || diabled) ? null : onTap,
     child: Container(
       height: height,
       width: width,
       alignment: Alignment.center,
       padding: EdgeInsets.symmetric(vertical: 13.h, horizontal: horiMargin ?? 0),
       decoration: BoxDecoration(
-        color: (diabled) ? ColorResources.pinkColors : buttonColor,
+        color: (diabled) ? ColorResources.greyColor : buttonColor,
         borderRadius: BorderRadius.circular(borderRadius ?? 8.h),
         border: Border.all(
           color: borderColor ?? Colors.transparent,

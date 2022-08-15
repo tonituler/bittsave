@@ -203,6 +203,11 @@ class _FriendsIdentityState extends State<FriendsIdentity> {
                                             setState(() {});
                                           } catch (e) {}
                                         }
+                                        else {
+                                           amountInNaira = 0.0;
+                                            amountInDolar = 0.0;
+                                            setState(() {});
+                                        }
                                       },
                                       style: TextStyle(fontSize: 35.sp, fontWeight: FontWeight.w700),
                                     ),
