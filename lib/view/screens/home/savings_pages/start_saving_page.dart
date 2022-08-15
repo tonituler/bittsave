@@ -37,39 +37,41 @@ class _StartSavingPageState extends State<StartSavingPage> {
               SizedBox(height: 8),
               Text('We have a plan for you that will meet your goals',
                   style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w400, fontSize: 15)),
-              InkWell(
-                onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return CreatAPlan();
-                  }));
-                },
-                child: Container(
-                  margin: EdgeInsets.symmetric(vertical: 80, horizontal: 10),
-                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 15),
-                  height: 200,
-                  width: double.infinity,
-                  decoration:
-                      BoxDecoration(color: Colors.white60, borderRadius: BorderRadius.circular(20), border: Border.all(color: Colors.pink, width: 1)),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                          child: Image.asset(
-                        "assets/newImages/Credit Card.png",
-                        scale: 4,
-                      )),
-                      Text(
-                        'Bitcoin Savings',
-                        style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
-                      ),
-                      SizedBox(height: 10),
-                      Text(
-                        'Steadily build your wealth in Bitcoin by automation your Bitcoin purchase. You never have to worry about Bitcoin price wings.',
-                        style: TextStyle(
-                          fontSize: 12,
+              Container(
+                 margin: EdgeInsets.symmetric(vertical: 80, horizontal: 10),
+                child: InkWell(
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) {
+                      return CreatAPlan();
+                    }));
+                  },
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 15),
+                    height: 200,
+                    width: double.infinity,
+                    decoration:
+                        BoxDecoration(color: Colors.white60, borderRadius: BorderRadius.circular(20), border: Border.all(color: Colors.pink, width: 1)),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                            child: Image.asset(
+                          "assets/newImages/Credit Card.png",
+                          scale: 4,
+                        )),
+                        Text(
+                          'Bitcoin Savings',
+                          style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
                         ),
-                      ),
-                    ],
+                        SizedBox(height: 10),
+                        Text(
+                          'Steadily build your wealth in Bitcoin by automation your Bitcoin purchase. You never have to worry about Bitcoin price wings.',
+                          style: TextStyle(
+                            fontSize: 12,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

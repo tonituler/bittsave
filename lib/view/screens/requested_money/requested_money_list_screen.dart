@@ -6,6 +6,7 @@ import 'package:six_cash/util/color_resources.dart';
 import 'package:six_cash/util/dimensions.dart';
 import 'package:six_cash/util/styles.dart';
 import 'package:six_cash/view/base/custom_app_bar.dart';
+import 'package:six_cash/view/screens/home/funding_options/request_from_a_riend/friend_identity.dart';
 import 'package:six_cash/view/screens/requested_money/widget/requested_money_screen.dart';
 
 class RequestedMoneyListScreen extends StatelessWidget {
@@ -16,76 +17,79 @@ class RequestedMoneyListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomAppbar(
-          title: isOwn ? 'send_requests'.tr : 'requests'.tr,
-          onTap: () {
-            Get.back();
-          }),
-      body: RefreshIndicator(
-        backgroundColor: Theme.of(context).primaryColor,
-        onRefresh: () async {
-          if (isOwn) {
-            await Get.find<RequestedMoneyController>().getOwnRequestedMoneyList(1, reload: true);
-          } else {
-            await Get.find<RequestedMoneyController>().getRequestedMoneyList(1, context, reload: true);
-          }
+    return BackGroundColr(
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: CustomAppbar(
+            title: isOwn ? 'send_requests'.tr : 'requests'.tr,
+            onTap: () {
+              Get.back();
+            }),
+        body: RefreshIndicator(
+          backgroundColor: Colors.transparent,
+          onRefresh: () async {
+            if (isOwn) {
+              await Get.find<RequestedMoneyController>().getOwnRequestedMoneyList(1, reload: true);
+            } else {
+              await Get.find<RequestedMoneyController>().getRequestedMoneyList(1, context, reload: true);
+            }
 
-          return true;
-        },
-        child: CustomScrollView(
-          physics: AlwaysScrollableScrollPhysics(),
-          controller: _scrollController,
-          slivers: [
-            SliverPersistentHeader(
-                pinned: true,
-                delegate: SliverDelegate(
-                    child: Container(
-                  padding: EdgeInsets.all(Dimensions.PADDING_SIZE_SMALL),
-                  height: 50,
-                  alignment: Alignment.centerLeft,
-                  child: GetBuilder<RequestedMoneyController>(
-                    builder: (requestMoneyController) {
-                      return ListView(shrinkWrap: true, scrollDirection: Axis.horizontal, children: [
-                        RequestTypeButton(
-                            text: 'pending'.tr,
-                            index: 0,
-                            requestMoneyList:
-                                isOwn ? requestMoneyController.ownPendingRequestedMoneyList : requestMoneyController.pendingRequestedMoneyList),
-                        SizedBox(width: 10),
-                        RequestTypeButton(
-                            text: 'accepted'.tr,
-                            index: 1,
-                            requestMoneyList:
-                                isOwn ? requestMoneyController.ownAcceptedRequestedMoneyList : requestMoneyController.acceptedRequestedMoneyList),
-                        SizedBox(width: 10),
-                        RequestTypeButton(
-                            text: 'denied'.tr,
-                            index: 2,
-                            requestMoneyList:
-                                isOwn ? requestMoneyController.ownDeniedRequestedMoneyList : requestMoneyController.deniedRequestedMoneyList),
-                        SizedBox(width: 10),
-                        RequestTypeButton(
-                            text: 'all'.tr,
-                            index: 3,
-                            requestMoneyList: isOwn ? requestMoneyController.ownRequestList : requestMoneyController.requestedMoneyList),
-                      ]);
-                    },
-                  ),
-                ))),
-            SliverToBoxAdapter(
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: EdgeInsets.all(Dimensions.PADDING_SIZE_EXTRA_SMALL),
-                  child: RequestedMoneyScreen(
-                    scrollController: _scrollController,
-                    isHome: false,
-                    isOwn: isOwn,
+            return true;
+          },
+          child: CustomScrollView(
+            physics: AlwaysScrollableScrollPhysics(),
+            controller: _scrollController,
+            slivers: [
+              SliverPersistentHeader(
+                  pinned: true,
+                  delegate: SliverDelegate(
+                      child: Container(
+                    padding: EdgeInsets.all(Dimensions.PADDING_SIZE_SMALL),
+                    height: 50,
+                    alignment: Alignment.centerLeft,
+                    child: GetBuilder<RequestedMoneyController>(
+                      builder: (requestMoneyController) {
+                        return ListView(shrinkWrap: true, scrollDirection: Axis.horizontal, children: [
+                          RequestTypeButton(
+                              text: 'pending'.tr,
+                              index: 0,
+                              requestMoneyList:
+                                  isOwn ? requestMoneyController.ownPendingRequestedMoneyList : requestMoneyController.pendingRequestedMoneyList),
+                          SizedBox(width: 10),
+                          RequestTypeButton(
+                              text: 'accepted'.tr,
+                              index: 1,
+                              requestMoneyList:
+                                  isOwn ? requestMoneyController.ownAcceptedRequestedMoneyList : requestMoneyController.acceptedRequestedMoneyList),
+                          SizedBox(width: 10),
+                          RequestTypeButton(
+                              text: 'denied'.tr,
+                              index: 2,
+                              requestMoneyList:
+                                  isOwn ? requestMoneyController.ownDeniedRequestedMoneyList : requestMoneyController.deniedRequestedMoneyList),
+                          SizedBox(width: 10),
+                          RequestTypeButton(
+                              text: 'all'.tr,
+                              index: 3,
+                              requestMoneyList: isOwn ? requestMoneyController.ownRequestList : requestMoneyController.requestedMoneyList),
+                        ]);
+                      },
+                    ),
+                  ))),
+              SliverToBoxAdapter(
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: EdgeInsets.all(Dimensions.PADDING_SIZE_EXTRA_SMALL),
+                    child: RequestedMoneyScreen(
+                      scrollController: _scrollController,
+                      isHome: false,
+                      isOwn: isOwn,
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

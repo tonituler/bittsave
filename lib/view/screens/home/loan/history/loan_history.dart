@@ -92,6 +92,7 @@ class _LoanHistoryState extends State<LoanHistory> {
               );
             },
           ),
+        
         ),
       ),
     );

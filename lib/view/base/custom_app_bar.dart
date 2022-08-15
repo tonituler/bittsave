@@ -12,14 +12,14 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: ColorResources.getPrimaryColor(),
+      color: Colors.transparent,
       child: SafeArea(
         child: Container(
-          color: ColorResources.getPrimaryColor(),
+          color: Colors.transparent,
           padding: const EdgeInsets.all(Dimensions.PADDING_SIZE_LARGE),
           child: Center(
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 CustomInkWell(
@@ -32,22 +32,22 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
                   child: Container(
                     height: 40, width: 40,
                     // padding: const EdgeInsets.all(Dimensions.PADDING_SIZE_DEFAULT),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: ColorResources.INNER_BORDER_COLOR, width: 0.5),
-                      borderRadius: BorderRadius.circular(Dimensions.RADIUS_SIZE_SMALL),
-                    ),
+                    // decoration: BoxDecoration(
+                    //   border: Border.all(color: ColorResources.INNER_BORDER_COLOR, width: 0.5),
+                    //   borderRadius: BorderRadius.circular(Dimensions.RADIUS_SIZE_SMALL),
+                    // ),
                     child: Center(
                       child: Icon(
                         Icons.arrow_back_ios_new,
                         size: Dimensions.ARROW_ICON_SIZE,
-                        color: ColorResources.COLOR_WHITE,
+                        color: ColorResources.blackColor,
                       ),
                     ),
                   ),
                 ),
                 Text(
                   title,
-                  style: montserratMedium.copyWith(fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE, color: ColorResources.COLOR_WHITE),
+                  style: montserratMedium.copyWith(fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE, color: ColorResources.blackColor),
                 ),
                 SizedBox(),
               ],

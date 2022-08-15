@@ -96,7 +96,7 @@ class _SetStartDateState extends State<SetStartDate> {
                               Container(
                                 child: SfDateRangePicker(
                                   showNavigationArrow: true,
-                                  // allowViewNavigation: true,
+                                  minDate: DateTime.now(),
 
                                   onSelectionChanged: (DateRangePickerSelectionChangedArgs args) {
                                     _selectedDate = DateFormat('yyyy-MM-dd').format(args.value).toString();
@@ -104,7 +104,6 @@ class _SetStartDateState extends State<SetStartDate> {
                                     setState(() {});
                                   },
                                   selectionMode: DateRangePickerSelectionMode.single,
-                                  initialSelectedDate: DateTime.now(),
                                 ),
                               ),
                             ],

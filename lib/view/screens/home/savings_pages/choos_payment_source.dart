@@ -106,7 +106,8 @@ class _ChoosePayMentSourceState extends State<ChoosePayMentSource> {
                       return ChoosePaymentMethod(
                         savingsInfo: {
                           ...widget.savingsInfo,
-                          "debit_type": "usd_wallet"
+                          "debit_type": "usd_wallet",
+                          "debit_type_name": "USD Wallet"
                         },
                       );
                     }));

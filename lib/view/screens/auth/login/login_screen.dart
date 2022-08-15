@@ -189,9 +189,13 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         Row(
                           children: [
-                            Text('Account'.tr,
-                                style: montserratLight.copyWith(
-                                    color: ColorResources.getBlackColor().withOpacity(0.9), fontSize: Dimensions.FONT_SIZE_LARGE)),
+                            Text(
+                              'Account'.tr,
+                              style: montserratLight.copyWith(
+                                color: ColorResources.getBlackColor().withOpacity(0.9),
+                                fontSize: Dimensions.FONT_SIZE_LARGE,
+                              ),
+                            ),
                             Expanded(
                               child: TextField(
                                 controller: phoneController,
@@ -201,15 +205,30 @@ class _LoginScreenState extends State<LoginScreen> {
                                 },
                                 keyboardType: TextInputType.phone,
                                 decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    contentPadding: const EdgeInsets.only(top: 14),
-                                    prefixIcon: CustomCountryCodePiker(
-                                      initSelect: widget.countryCode,
-                                      onChanged: (code) {
-                                        print(code);
-                                        setCountryCode(code);
-                                      },
-                                    )),
+                                  border: InputBorder.none,
+                                  contentPadding: const EdgeInsets.only(top: 14),
+                                  prefixIcon: SizedBox(
+                                    width: 50,
+                                    height: 20,
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                          width: 40,
+                                          height: 20,
+                                          margin: const EdgeInsets.only(right: 5, left: 5),
+                                          child: const Center(child: Text("+234 ")),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  // prefixIcon: CustomCountryCodePiker(
+                                  //   initSelect: widget.countryCode,
+                                  //   onChanged: (code) {
+                                  //     print(code);
+                                  //     setCountryCode(code);
+                                  //   },
+                                  // ),
+                                ),
                               ),
                             )
                           ],

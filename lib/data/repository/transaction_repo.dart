@@ -114,4 +114,36 @@ class TransactionRepo {
   }
 
 
+  /// SAVINGS
+  Future<Response>  savingsApply({@required Map<String, dynamic> data}) async {
+    return await apiClient.postData(AppConstants.PLAN_APPLY, data);
+  }
+
+  Future<Response>  updateSavings({@required Map<String, dynamic> data}) async {
+    return await apiClient.postData(AppConstants.EDIT_PLAN, data);
+  }
+  Future<Response>  checkPlan() async {
+    return await apiClient.getData(AppConstants.CHECK_PLAN);
+  }
+
+  Future<Response>  planList() async {
+    return await apiClient.getData(AppConstants.LIST_PLAN);
+  }
+
+  Future<Response>  planPreview(Map<String, dynamic> data) async {
+    return await apiClient.postData(AppConstants.PLAN_PREVIEW, data);
+  }
+
+  Future<Response>  planPaymentHistory({@required Map<String, dynamic> data}) async {
+    return await apiClient.postData(AppConstants.PLAN_PAYMENT_HISTORY, data);
+  }
+
+  Future<Response>  payPlan({@required Map<String, dynamic> data}) async {
+    return await apiClient.postData(AppConstants.PAY_PLAN, data);
+  }
+  Future<Response>  withdrawPlan() async {
+    return await apiClient.getData(AppConstants.WITHDRAWAL_PLAN);
+  }
+
+
 }
