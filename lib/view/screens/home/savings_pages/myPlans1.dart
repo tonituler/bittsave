@@ -89,8 +89,8 @@ class _MyPlan1State extends State<MyPlan1> {
                   context, MaterialPageRoute(builder: (context) => Plan2()));
             },
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-              margin: EdgeInsets.only(right: 20),
+              padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+              margin: EdgeInsets.only(right: 10),
               color: Colors.white,
               child: Column(
                 children: [
@@ -100,7 +100,7 @@ class _MyPlan1State extends State<MyPlan1> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text('Plan Name', style: kLightStyle),
-                          Text('$text1', style: kBoldStyle)
+                          Expanded(child: Text('$text1', style: kBoldStyle))
                         ],
                       ),
                       Spacer(),

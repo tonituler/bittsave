@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:intl/intl.dart';
-import 'package:six_cash/app/extensions.dart';
 import 'package:six_cash/controller/savings_controller.dart';
-import 'package:six_cash/controller/splash_controller.dart';
 import 'package:six_cash/data/model/savings_plan.dart';
 import 'package:six_cash/helper/price_converter.dart';
 import 'package:six_cash/util/color_resources.dart';
 import 'package:six_cash/view/screens/home/funding_options/request_from_a_riend/friend_identity.dart';
+import 'package:six_cash/view/screens/home/savings_pages/plan2.dart';
 import 'package:six_cash/view/screens/home/savings_pages/start_saving_page.dart';
 
 import '../funding_usd_wallet_page.dart';
@@ -98,12 +97,18 @@ class _MyPlansState extends State<MyPlans> {
                             ),
                           ),
                           SizedBox(height: 8),
-                          Text('Check how your savings is gaining', style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w400, fontSize: 15)),
+                          Text('Check how your savings is gaining',
+                              style: TextStyle(
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 15)),
                           SizedBox(height: 40),
                           Expanded(
                             child: SingleChildScrollView(
                               child: Column(
-                                children: controller.savingsList.map((item) => savingItem(item)).toList(),
+                                children: controller.savingsList
+                                    .map((item) => savingItem(item))
+                                    .toList(),
                               ),
                             ),
                           ),
@@ -132,17 +137,22 @@ class _MyPlansState extends State<MyPlans> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            width: 100,
+            width: 150,
             height: 25,
             child: Center(
                 child: Text(
               '${plan.status}',
               style: TextStyle(color: Colors.white),
             )),
-            color: (plan.status?.toLowerCase() == "completed") ? Colors.green : Colors.pink,
+            color: (plan.status?.toLowerCase() == "completed")
+                ? Colors.green
+                : Colors.pink,
           ),
           InkWell(
-            onTap: (){},
+            onTap: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Plan2()));
+            },
             child: Container(
               width: double.infinity,
               height: 110,
@@ -164,7 +174,10 @@ class _MyPlansState extends State<MyPlans> {
                           Text(
                             plan.name,
                             // '\$${PriceConverter.priceFormater(balance: double.parse(loan.loanAmount))}',
-                            style: TextStyle(color: Colors.black, fontSize: 21.5, fontWeight: FontWeight.w400),
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 21.5,
+                                fontWeight: FontWeight.w400),
                           ),
                         ],
                       ),
@@ -178,7 +191,10 @@ class _MyPlansState extends State<MyPlans> {
                           ),
                           Text(
                             '\$${PriceConverter.priceFormater(balance: double.parse(plan.amount))}',
-                            style: TextStyle(color: Colors.black, fontSize: 21.5, fontWeight: FontWeight.w400),
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 21.5,
+                                fontWeight: FontWeight.w400),
                           ),
                         ],
                       ),
@@ -192,7 +208,10 @@ class _MyPlansState extends State<MyPlans> {
                           ),
                           Text(
                             '\$${PriceConverter.priceFormater(balance: double.parse(plan.targetAmount))}',
-                            style: TextStyle(color: Colors.black, fontSize: 21.5, fontWeight: FontWeight.w400),
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 21.5,
+                                fontWeight: FontWeight.w400),
                           ),
                         ],
                       ),
@@ -203,7 +222,8 @@ class _MyPlansState extends State<MyPlans> {
                     children: [
                       Text(
                         'Next payment:',
-                        style: TextStyle(color: Colors.black, fontWeight: FontWeight.w600),
+                        style: TextStyle(
+                            color: Colors.black, fontWeight: FontWeight.w600),
                       ),
                       SizedBox(width: 4),
                       Center(
@@ -227,9 +247,13 @@ class _MyPlansState extends State<MyPlans> {
   String formatedDate(String date) {
     DateTime dT = DateTime.parse(date);
 
-    return  DateFormat('hh:mm a').format(DateTime(0, dT.month, dT.day, dT.hour, dT.minute)) + " | " "${dT.day}-" + DateFormat('MMMM').format(DateTime(0, dT.month)) + "-" + dT.year.toString();
+    return DateFormat('hh:mm a')
+            .format(DateTime(0, dT.month, dT.day, dT.hour, dT.minute)) +
+        " | " "${dT.day}-" +
+        DateFormat('MMMM').format(DateTime(0, dT.month)) +
+        "-" +
+        dT.year.toString();
   }
-
 
   Widget notSavingsItem() {
     return Scaffold(
@@ -255,7 +279,11 @@ class _MyPlansState extends State<MyPlans> {
               ),
             ),
             SizedBox(height: 8),
-            Text('Check how your savings is gaining', style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w400, fontSize: 15)),
+            Text('Check how your savings is gaining',
+                style: TextStyle(
+                    color: Colors.grey,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 15)),
             SizedBox(height: 70),
             Center(
               child: Image.asset(

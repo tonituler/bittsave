@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:six_cash/view/screens/home/funding_usd_wallet_page.dart';
 import 'package:six_cash/view/screens/home/savings_pages/myPlans1.dart';
 
+import 'editingPlan.dart';
+
 class Plan2 extends StatefulWidget {
   const Plan2({Key key}) : super(key: key);
 
@@ -64,11 +66,28 @@ class _Plan2State extends State<Plan2> {
                       )
                     ],
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8),
-                    child: Text('My School Fees',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w700, fontSize: 20)),
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8),
+                        child: Text('My School Fees',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w700, fontSize: 20)),
+                      ),
+                      Spacer(),
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => EditPlan()));
+                        },
+                        child: Icon(
+                          Icons.edit_outlined,
+                          color: Colors.pink,
+                        ),
+                      )
+                    ],
                   ),
                   Padding(
                     padding:

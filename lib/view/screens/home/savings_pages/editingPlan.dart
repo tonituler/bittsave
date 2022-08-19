@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 
-import '../home/funding_options/request_from_a_riend/friend_identity.dart';
-import '../home/funding_usd_wallet_page.dart';
-import '../profile/profile_confirmation.dart';
+import '../../wallet/widget/confirm_friendIdentity.dart';
+import '../funding_usd_wallet_page.dart';
 
-class ProfileUpdate extends StatefulWidget {
-  const ProfileUpdate({Key key}) : super(key: key);
+class EditPlan extends StatefulWidget {
+  const EditPlan({Key key}) : super(key: key);
 
   @override
-  State<ProfileUpdate> createState() => _ProfileUpdateState();
+  State<EditPlan> createState() => _EditPlanState();
 }
 
-class _ProfileUpdateState extends State<ProfileUpdate> {
+class _EditPlanState extends State<EditPlan> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,23 +25,39 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                   BackButtons(),
                   Padding(
                     padding: const EdgeInsets.only(left: 8),
-                    child: Text('Update Bank Account',
+                    child: Text('Edit Plan',
                         style: TextStyle(
-                            fontWeight: FontWeight.w700, fontSize: 20)),
+                            fontWeight: FontWeight.w400, fontSize: 20)),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 8.0),
                     child: Text(
-                      'Provide bank account details for easy transfer',
-                      style: TextStyle(color: Colors.grey[800], fontSize: 14),
+                      'Let us know your location as it reflect on your proof of identification',
+                      style: TextStyle(color: Colors.grey[800], fontSize: 12),
                     ),
                   ),
                   SizedBox(height: 50),
-                  textCont('Account Number', '020202020202'),
-                  textCont('Account Name', 'Babalola Anthony'),
+                  textCont('Plan name', 'My Rent'),
+                  textCont('Amount', '20'),
                   textCont2(
-                      "Bank Name",
-                      "Select a bank",
+                      "Frequency",
+                      "Daily",
+                      Icon(
+                        Icons.keyboard_arrow_down_sharp,
+                        color: Colors.pink,
+                        size: 22,
+                      )),
+                  textCont2(
+                      "Credit",
+                      "Usd Wallet",
+                      Icon(
+                        Icons.keyboard_arrow_down_sharp,
+                        color: Colors.pink,
+                        size: 22,
+                      )),
+                  textCont2(
+                      "Auto Invest",
+                      "Yes",
                       Icon(
                         Icons.keyboard_arrow_down_sharp,
                         color: Colors.pink,
@@ -53,7 +68,7 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                     onTap: () {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
-                        return ConfirmationPage();
+                        return Container();
                       }));
                     },
                     child: Padding(
@@ -64,7 +79,7 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                         height: 40,
                         child: Center(
                             child: Text(
-                          'Update changes',
+                          'Save Plan',
                           textAlign: TextAlign.center,
                           style: TextStyle(color: Colors.white),
                         )),
