@@ -9,6 +9,7 @@ import 'package:six_cash/view/base/appbar_home_element.dart';
 import 'package:six_cash/view/base/custom_ink_well.dart';
 import 'package:six_cash/view/screens/history/widget/history_view.dart';
 import 'package:six_cash/view/screens/home/funding_options/request_from_a_riend/friend_identity.dart';
+import 'package:six_cash/view/screens/home/funding_usd_wallet_page.dart';
 
 class HistoryScreen extends StatelessWidget {
   final ScrollController _scrollController = ScrollController();
@@ -21,57 +22,83 @@ class HistoryScreen extends StatelessWidget {
     return BackGroundColr(
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        appBar: AppbarHomeElement(title: 'history'.tr),
+        appBar: AppBar(
+          leading: BackButtons(),
+          backgroundColor: Colors.white.withOpacity(0),
+          elevation: 0,
+        ),
         body: SafeArea(
-          child: RefreshIndicator(
-            backgroundColor: Theme.of(context).primaryColor,
-            onRefresh: () async {
-              await Get.find<TransactionHistoryController>().getTransactionData(1, reload: true);
-              return true;
-            },
-            child: CustomScrollView(
-              physics: AlwaysScrollableScrollPhysics(),
-              controller: _scrollController,
-              slivers: [
-                SliverPersistentHeader(
-                    pinned: true,
-                    delegate: SliverDelegate(
-                        child: Container(
-                      padding: EdgeInsets.symmetric(vertical: Dimensions.PADDING_SIZE_SMALL),
-                      height: 50,
-                      alignment: Alignment.centerLeft,
-                      child: GetBuilder<TransactionHistoryController>(
-                        builder: (historyController) {
-                          return ListView(
-                              shrinkWrap: true,
-                              padding: const EdgeInsets.only(left: Dimensions.PADDING_SIZE_SMALL),
-                              scrollDirection: Axis.horizontal,
-                              children: [
-                                TransactionTypeButton(text: 'all'.tr, index: 0, transactionHistoryList: historyController.transactionList),
-                                SizedBox(width: 10),
-                                TransactionTypeButton(text: 'send_money'.tr, index: 1, transactionHistoryList: historyController.sendMoneyList),
-                                SizedBox(width: 10),
-                                TransactionTypeButton(text: 'cash_in'.tr, index: 2, transactionHistoryList: historyController.cashInMoneyList),
-                                SizedBox(width: 10),
-                                TransactionTypeButton(text: 'add_money'.tr, index: 3, transactionHistoryList: historyController.addMoneyList),
-                                SizedBox(width: 10),
-                                TransactionTypeButton(text: 'received_money'.tr, index: 4, transactionHistoryList: historyController.receivedMoneyList),
-                                SizedBox(width: 10),
-                                TransactionTypeButton(text: 'cash_out'.tr, index: 5, transactionHistoryList: historyController.cashOutList),
-                              ]);
-                        },
-                      ),
-                    ))),
-                SliverToBoxAdapter(
-                  child: Scrollbar(
-                    child: Padding(
-                      padding: EdgeInsets.all(Dimensions.PADDING_SIZE_SMALL),
-                      child: TransactionViewScreen(scrollController: _scrollController, isHome: false),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Text(
+                    'My Plans',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 22,
                     ),
                   ),
+              ),
+                SizedBox(height: 20),
+              Expanded(
+                child: RefreshIndicator(
+                  backgroundColor: Theme.of(context).primaryColor,
+                  onRefresh: () async {
+                    await Get.find<TransactionHistoryController>().getTransactionData(1, reload: true);
+                    return true;
+                  },
+                  child: CustomScrollView(
+                    physics: AlwaysScrollableScrollPhysics(),
+                    controller: _scrollController,
+                    slivers: [
+                      
+                      SliverPersistentHeader(
+                          pinned: true,
+                          delegate: SliverDelegate(
+                              child: Container(
+                            padding: EdgeInsets.symmetric(vertical: Dimensions.PADDING_SIZE_SMALL),
+                            height: 50,
+                            alignment: Alignment.centerLeft,
+                            child: GetBuilder<TransactionHistoryController>(
+                              builder: (historyController) {
+                                return ListView(
+                                    shrinkWrap: true,
+                                    padding: const EdgeInsets.only(left: Dimensions.PADDING_SIZE_SMALL),
+                                    scrollDirection: Axis.horizontal,
+                                    children: [
+                                      TransactionTypeButton(text: 'all'.tr, index: 0, transactionHistoryList: historyController.transactionList),
+                                      SizedBox(width: 10),
+                                      TransactionTypeButton(text: 'send_money'.tr, index: 1, transactionHistoryList: historyController.sendMoneyList),
+                                      SizedBox(width: 10),
+                                      TransactionTypeButton(text: 'cash_in'.tr, index: 2, transactionHistoryList: historyController.cashInMoneyList),
+                                      SizedBox(width: 10),
+                                      TransactionTypeButton(text: 'add_money'.tr, index: 3, transactionHistoryList: historyController.addMoneyList),
+                                      SizedBox(width: 10),
+                                      TransactionTypeButton(
+                                          text: 'received_money'.tr, index: 4, transactionHistoryList: historyController.receivedMoneyList),
+                                      SizedBox(width: 10),
+                                      TransactionTypeButton(text: 'cash_out'.tr, index: 5, transactionHistoryList: historyController.cashOutList),
+                                    ]);
+                              },
+                            ),
+                          ))),
+                      SliverToBoxAdapter(
+                        child: Scrollbar(
+                          child: Padding(
+                            padding: EdgeInsets.all(Dimensions.PADDING_SIZE_SMALL),
+                            child: TransactionViewScreen(scrollController: _scrollController, isHome: false),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

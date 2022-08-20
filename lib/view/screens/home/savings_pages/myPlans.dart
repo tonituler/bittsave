@@ -8,12 +8,14 @@ import 'package:six_cash/data/model/savings_plan.dart';
 import 'package:six_cash/helper/price_converter.dart';
 import 'package:six_cash/util/color_resources.dart';
 import 'package:six_cash/view/screens/home/funding_options/request_from_a_riend/friend_identity.dart';
+import 'package:six_cash/view/screens/home/savings_pages/plan2.dart';
 import 'package:six_cash/view/screens/home/savings_pages/start_saving_page.dart';
 
 import '../funding_usd_wallet_page.dart';
 
 class MyPlans extends StatefulWidget {
-  const MyPlans({Key key}) : super(key: key);
+  MyPlans({Key key, this.shouldNavigate = true}) : super(key: key);
+  bool shouldNavigate;
 
   @override
   State<MyPlans> createState() => _MyPlansState();
@@ -52,7 +54,7 @@ class _MyPlansState extends State<MyPlans> {
                   return Scaffold(
                     backgroundColor: Colors.transparent,
                     appBar: AppBar(
-                      leading: BackButtons(),
+                      leading: (widget.shouldNavigate) ? BackButtons() : SizedBox(),
                       backgroundColor: Colors.white.withOpacity(0),
                       elevation: 0,
                       actions: [
@@ -142,7 +144,16 @@ class _MyPlansState extends State<MyPlans> {
             color: (plan.status?.toLowerCase() == "completed") ? Colors.green : Colors.pink,
           ),
           InkWell(
-            onTap: (){},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SavingPlan(
+                    plan: plan,
+                  ),
+                ),
+              );
+            },
             child: Container(
               width: double.infinity,
               height: 110,
@@ -227,15 +238,18 @@ class _MyPlansState extends State<MyPlans> {
   String formatedDate(String date) {
     DateTime dT = DateTime.parse(date);
 
-    return  DateFormat('hh:mm a').format(DateTime(0, dT.month, dT.day, dT.hour, dT.minute)) + " | " "${dT.day}-" + DateFormat('MMMM').format(DateTime(0, dT.month)) + "-" + dT.year.toString();
+    return DateFormat('hh:mm a').format(DateTime(0, dT.month, dT.day, dT.hour, dT.minute)) +
+        " | " "${dT.day}-" +
+        DateFormat('MMMM').format(DateTime(0, dT.month)) +
+        "-" +
+        dT.year.toString();
   }
-
 
   Widget notSavingsItem() {
     return Scaffold(
       backgroundColor: Colors.transparent,
       appBar: AppBar(
-        leading: BackButtons(),
+        leading: (widget.shouldNavigate) ? BackButtons() : SizedBox(),
         backgroundColor: Colors.white.withOpacity(0),
         elevation: 0,
       ),

@@ -164,18 +164,18 @@ class _NavBarScreenState extends State<NavBarScreen> {
             child: Image.asset(
               icon,
               fit: BoxFit.contain,
-              color: Get.find<MenuController>().currentTab == selectIndex ? ColorResources.getPrimaryTextColor() : ColorResources.nevDefaultColor,
+              // color: Get.find<MenuController>().currentTab == selectIndex ? ColorResources.getPrimaryTextColor() : ColorResources.nevDefaultColor,
             ),
           ),
-          const SizedBox(height: 6.0),
-          Text(
-            name,
-            style: TextStyle(
-              color: Get.find<MenuController>().currentTab == selectIndex ? ColorResources.getPrimaryTextColor() : ColorResources.nevDefaultColor,
-              fontSize: Dimensions.NAVBAR_FONT_SIZE,
-              fontWeight: FontWeight.w400,
-            ),
-          )
+          // const SizedBox(height: 6.0),
+          // Text(
+          //   name,
+          //   style: TextStyle(
+          //     color: Get.find<MenuController>().currentTab == selectIndex ? ColorResources.getPrimaryTextColor() : ColorResources.nevDefaultColor,
+          //     fontSize: Dimensions.NAVBAR_FONT_SIZE,
+          //     fontWeight: FontWeight.w400,
+          //   ),
+          // )
         ],
       ),
     );

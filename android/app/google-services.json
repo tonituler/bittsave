@@ -1,34 +1,41 @@
 {
   "project_info": {
-    "project_number": "535817998443",
-    "project_id": "cash-ec3ff",
-    "storage_bucket": "cash-ec3ff.appspot.com"
+    "project_number": "804739771602",
+    "project_id": "bittsave-9d375",
+    "storage_bucket": "bittsave-9d375.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:535817998443:android:72b63982aeb7a66992212e",
+        "mobilesdk_app_id": "1:804739771602:android:3267a2816809f97241d10b",
         "android_client_info": {
           "package_name": "com.bittsave.app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "535817998443-rfe0s8cg4dl9aa49vob8v6f0j4e3nc3q.apps.googleusercontent.com",
+          "client_id": "804739771602-del64ksgh8jii5gkrn0597qv3ahv46kt.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDXeqc5VcEMcrguzMjdL8WpR-p5hb-nxC8"
+          "current_key": "AIzaSyDWWnLSxWUTFIqN04McqsT65GokB9xgJv4"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "535817998443-rfe0s8cg4dl9aa49vob8v6f0j4e3nc3q.apps.googleusercontent.com",
+              "client_id": "804739771602-del64ksgh8jii5gkrn0597qv3ahv46kt.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "804739771602-qp3rmpt9ugeerqidieofclk08srfcckj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.bittsave.app"
+              }
             }
           ]
         }

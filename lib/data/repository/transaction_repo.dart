@@ -119,8 +119,8 @@ class TransactionRepo {
     return await apiClient.postData(AppConstants.EDIT_PLAN, data);
   }
 
-  Future<Response> checkPlan() async {
-    return await apiClient.getData(AppConstants.CHECK_PLAN);
+  Future<Response> checkPlan(String planId) async {
+    return await apiClient.postData(AppConstants.CHECK_PLAN, {"id": planId});
   }
 
   Future<Response> planList() async {
@@ -135,12 +135,12 @@ class TransactionRepo {
     return await apiClient.postData(AppConstants.PLAN_PAYMENT_HISTORY, data);
   }
 
-  Future<Response> payPlan({@required Map<String, dynamic> data}) async {
-    return await apiClient.postData(AppConstants.PAY_PLAN, data);
+  Future<Response> payPlan(String planId) async {
+    return await apiClient.postData(AppConstants.PAY_PLAN, {"id": planId});
   }
 
-  Future<Response> withdrawPlan() async {
-    return await apiClient.getData(AppConstants.WITHDRAWAL_PLAN);
+  Future<Response> withdrawPlan(String planId) async {
+    return await apiClient.postData(AppConstants.WITHDRAWAL_PLAN, {"id": planId});
   }
 
   ///WALLET

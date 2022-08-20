@@ -16,9 +16,9 @@ dependencies:
   get: ^4.6.1
   shared_preferences: ^2.0.6
   connectivity: ^3.0.6
-  # firebase_core: ^1.2.1
-  # firebase_messaging: ^11.2.12
-  # flutter_local_notifications: ^9.4.0
+  firebase_core: ^1.2.1
+  firebase_messaging: ^11.2.12
+  flutter_local_notifications: ^9.4.0
   path_provider: ^2.0.2
   url_strategy: ^0.2.0
   dotted_border: ^2.0.0+1

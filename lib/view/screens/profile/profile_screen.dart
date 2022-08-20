@@ -53,6 +53,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       .then((value) => Get.find<ProfileController>().profileData(loading: true));
                                 },
                               ),
+                              CustomInkWell(child: MenuItem(title: 'History'), onTap: () => Get.toNamed(RouteHelper.history)),
                               CustomInkWell(child: MenuItem(title: 'Notification'), onTap: () => Get.toNamed(RouteHelper.notification)),
                           ],
                         ),

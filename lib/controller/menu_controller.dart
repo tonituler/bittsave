@@ -1,5 +1,6 @@
 import 'package:six_cash/view/screens/history/history_screen.dart';
 import 'package:six_cash/view/screens/home/home_screen.dart';
+import 'package:six_cash/view/screens/home/savings_pages/myPlans.dart';
 import 'package:six_cash/view/screens/notification/notification_screen.dart';
 import 'package:six_cash/view/screens/profile/profile_screen.dart';
 
@@ -31,7 +32,7 @@ class MenuController extends GetxController implements GetxService{
   }
 
   selectHistoryPage() {
-    _currentScreen = HistoryScreen();
+    _currentScreen = MyPlans(shouldNavigate: false,);
     _currentTab = 1;
     update();
   }
