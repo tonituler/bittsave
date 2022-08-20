@@ -7,7 +7,7 @@ import 'package:six_cash/controller/splash_controller.dart';
 import 'package:six_cash/helper/route_helper.dart';
 import 'package:six_cash/view/base/custom_ink_well.dart';
 import 'package:six_cash/view/screens/home/funding_options/request_from_a_riend/friend_identity.dart';
-import 'package:six_cash/view/screens/profile/profile_settings.dart';
+import 'package:six_cash/view/screens/profile/widget/menu_item.dart' as menu;
 import 'package:six_cash/view/screens/profile/widget/menu_item.dart';
 import 'package:six_cash/view/screens/profile/widget/profile_shimmer.dart';
 import 'package:six_cash/view/screens/profile/widget/user_info.dart';
@@ -36,14 +36,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
               builder: (progressController) {
                 return ModalProgressHUD(
                   inAsyncCall: progressController.isLoading,
-                  progressIndicator: CircularProgressIndicator(color: Theme.of(context).primaryColor),
+                  progressIndicator: CircularProgressIndicator(
+                      color: Theme.of(context).primaryColor),
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
-                        GetBuilder<ProfileController>(builder: (profileController) {
-                          return profileController.isLoading ? ProfileShimmer() : UserInfo(profileController: profileController);
+                        GetBuilder<ProfileController>(
+                            builder: (profileController) {
+                          return profileController.isLoading
+                              ? ProfileShimmer()
+                              : UserInfo(profileController: profileController);
                         }),
-                        MenuSegment(
+                        menu.MenuSegment(
                           title: "General",
                           menuItem: [
                             CustomInkWell(
@@ -57,11 +61,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               CustomInkWell(child: MenuItem(title: 'Notification'), onTap: () => Get.toNamed(RouteHelper.notification)),
                           ],
                         ),
-                        MenuSegment(
+                        menu.MenuSegment(
                           title: "Payment",
                           menuItem: [
                             CustomInkWell(
-                                child: MenuItem(title: 'Payment Options'),
+                              child: menu.MenuItem(title: 'Payment Options'),
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            PaymentOptions()));
+                              },
+                            ),
+                            CustomInkWell(
+                                child: menu.MenuItem(title: 'Payouts'),
                                 onTap: () {
                                   Navigator.push(context, MaterialPageRoute(builder: (context) => PaymentOptions(),),);
                                 },
@@ -71,25 +85,31 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               }),
                           ],
                         ),
-                        MenuSegment(
+                        menu.MenuSegment(
                           title: "Request",
                           menuItem: [
                             CustomInkWell(
-                                child: MenuItem(title: 'Request Status'),
-                                onTap: () => Get.toNamed(RouteHelper.getRequestedMoneyRoute())),
-                              CustomInkWell(child: MenuItem(title: 'Send Request'), onTap: () => Get.toNamed(RouteHelper.getRequestedMoneyRoute(from: 'won'))),
+                                child: menu.MenuItem(title: 'Request Status'),
+                                onTap: () => Get.toNamed(
+                                    RouteHelper.getRequestedMoneyRoute())),
+                            CustomInkWell(
+                                child: menu.MenuItem(title: 'Send Request'),
+                                onTap: () => Get.toNamed(
+                                    RouteHelper.getRequestedMoneyRoute(
+                                        from: 'won'))),
                           ],
                         ),
-                        MenuSegment(
+                        menu.MenuSegment(
                           title: "Security",
                           menuItem: [
                             CustomInkWell(
-                                child: MenuItem(title: 'Change Pin'),
-                                onTap: () => Get.toNamed(RouteHelper.getChangePinRoute()),
-                                ),
+                              child: menu.MenuItem(title: 'Change Pin'),
+                              onTap: () =>
+                                  Get.toNamed(RouteHelper.getChangePinRoute()),
+                            ),
                           ],
                         ),
-                        MenuSegment(
+                        menu.MenuSegment(
                           title: "Verification",
                           menuItem: [
                             CustomInkWell(
@@ -100,41 +120,46 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ),
                           ],
                         ),
-                        MenuSegment(
+                        menu.MenuSegment(
                           title: "Support",
                           menuItem: [
                             CustomInkWell(
-                                child: MenuItem(title: '24/7 Support'),
-                                onTap: () {
-                                  Get.toNamed(RouteHelper.getSupportRoute());
-                                },
-                              ),
-                              CustomInkWell(child: MenuItem(title: 'FAQs'), onTap: () => Get.toNamed(RouteHelper.faq)),
+                              child: menu.MenuItem(title: '24/7 Support'),
+                              onTap: () {
+                                Get.toNamed(RouteHelper.getSupportRoute());
+                              },
+                            ),
+                            CustomInkWell(
+                                child: menu.MenuItem(title: 'FAQs'),
+                                onTap: () => Get.toNamed(RouteHelper.faq)),
                           ],
                         ),
-                        MenuSegment(
+                        menu.MenuSegment(
                           title: "Policies",
                           menuItem: [
-                             CustomInkWell(
-                                child: MenuItem(title: 'About Us'),
-                                onTap: () {
-                                  Get.toNamed(RouteHelper.about_us);
-                                },
-                              ),
-                              CustomInkWell(child: MenuItem(title: 'Term of Use'), onTap: () => Get.toNamed(RouteHelper.terms)),
-                              CustomInkWell(child: MenuItem(title: 'Privacy Policy'), onTap: () => Get.toNamed(RouteHelper.privacy)),
+                            CustomInkWell(
+                              child: menu.MenuItem(title: 'About Us'),
+                              onTap: () {
+                                Get.toNamed(RouteHelper.about_us);
+                              },
+                            ),
+                            CustomInkWell(
+                                child: menu.MenuItem(title: 'Term of Use'),
+                                onTap: () => Get.toNamed(RouteHelper.terms)),
+                            CustomInkWell(
+                                child: menu.MenuItem(title: 'Privacy Policy'),
+                                onTap: () => Get.toNamed(RouteHelper.privacy)),
                           ],
                         ),
-                        MenuSegment(
+                        menu.MenuSegment(
                           title: "Exit",
                           menuItem: [
                             CustomInkWell(
-                                child: MenuItem(title: 'Logout'),
-                                onTap: () {
-                                  Get.find<ProfileController>().logOut(context);
-                                },
-                              ),
-                              
+                              child: menu.MenuItem(title: 'Logout'),
+                              onTap: () {
+                                Get.find<ProfileController>().logOut(context);
+                              },
+                            ),
                           ],
                         ),
                         // ProfileHeader(title: 'setting'.tr),
@@ -148,7 +173,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         //               .then((value) => Get.find<ProfileController>().profileData(loading: true));
                         //         },
                         //       ),
-                              
+
                         //       CustomInkWell(
                         //           child: MenuItem(title: 'change_language'.tr), onTap: () => Get.toNamed(RouteHelper.getChoseLanguageRoute())
                         //           ),
@@ -187,11 +212,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         //           );
                         //         },
                         //       )
-                            
+
                         //     ],
                         //   ),
                         // ),
-                        
                       ],
                     ),
                   ),
