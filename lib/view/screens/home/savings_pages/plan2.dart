@@ -10,6 +10,7 @@ import 'package:six_cash/util/color_resources.dart';
 import 'package:six_cash/view/base/buttons.dart';
 import 'package:six_cash/view/screens/home/funding_options/request_from_a_riend/friend_identity.dart';
 import 'package:six_cash/view/screens/home/funding_usd_wallet_page.dart';
+import 'package:six_cash/view/screens/home/savings_pages/editingPlan.dart';
 import 'package:six_cash/view/screens/home/savings_pages/myPlans1.dart';
 
 class SavingPlan extends StatefulWidget {
@@ -45,7 +46,7 @@ class _Plan2State extends State<SavingPlan> {
                   return notSavingsItem();
                 } else if (snapshot.hasData) {
                   isInitialLoad = true;
-                  onOFF = (controller.planDetails["auto_invest"] == 1) ? true: false;
+                  onOFF = (controller.planDetails["auto_invest"] == 1) ? true : false;
 
                   if (controller.savingsList.isEmpty) {
                     return notSavingsItem();
@@ -99,26 +100,42 @@ class _Plan2State extends State<SavingPlan> {
                                                   setState(() {
                                                     onOFF = value;
                                                   });
-                                                  savingsController.updateSavings({
-                                                    "id": widget.plan.id,
-                                                    "auto_invest": (onOFF) ? 1 : 0
-                                                  });
+                                                  savingsController.updateSavings({"id": widget.plan.id, "auto_invest": (onOFF) ? 1 : 0});
                                                 }),
                                           ),
                                         ],
                                       )
                                     ],
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 8),
-                                    child: Text(widget.plan.name, style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20)),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 8.0, bottom: 10, top: 5),
-                                    child: Text(
-                                      'Check how your savings is gaining',
-                                      style: TextStyle(fontSize: 12),
-                                    ),
+                                  Row(
+                                    children: [
+                                      Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.only(left: 8),
+                                            child: Text(widget.plan.name, style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20)),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(left: 8.0, bottom: 10, top: 5),
+                                            child: Text(
+                                              'Check how your savings is gaining',
+                                              style: TextStyle(fontSize: 12),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Spacer(),
+                                      IconButton(
+                                        onPressed: () {
+                                          Navigator.push(context, MaterialPageRoute(builder: (context) => EditPlan()));
+                                        },
+                                        icon: Icon(
+                                          Icons.edit_outlined,
+                                          color: Colors.pink,
+                                        ),
+                                      )
+                                    ],
                                   ),
                                   spaceCont(
                                     'Plan Balance',
