@@ -25,6 +25,10 @@ class UserInfo {
     this.btcBalance,
     this.btcInSatoshis,
     this.btcCollateralUsed,
+    this.invested,
+    this.returns,
+    this.investedBalanceBTC,
+    this.investedBalanceUSD,
   });
 
   String username;
@@ -45,6 +49,10 @@ class UserInfo {
   double btcBalance;
   double btcInSatoshis;
   double btcCollateralUsed;
+  double invested;
+  double returns;
+  double investedBalanceUSD;
+  double investedBalanceBTC;
 
   factory UserInfo.fromJson(Map<String, dynamic> json) => UserInfo(
     username: json["username"],
@@ -65,5 +73,9 @@ class UserInfo {
     btcBalance: json["btc_balance"].toDouble() ?? 0.0,
     btcInSatoshis: json["btc_in_satoshis"].toDouble() ?? 0.0,
     btcCollateralUsed: json["btc_collateral_used"].toDouble() ?? 0.0,
+    invested: json["invested"].toDouble() ?? 0.0,
+    returns: json["returns"].toDouble() ?? 0.0,
+    investedBalanceBTC: json["investment_balance_btc"].toDouble() ?? 0.0,
+    investedBalanceUSD: json["investment_balance_usd"].toDouble() ?? 0.0,
   );
 }
