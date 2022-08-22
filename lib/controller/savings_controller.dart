@@ -17,7 +17,7 @@ class SavingsController extends GetxController implements GetxService {
   List<SavingsPlan> _savingsList;
   Map<String, dynamic> funderInfo;
   Map<String, dynamic> planPreviewResponse;
-  Map<String, dynamic> planDetails;
+  SavingsPlan planDetails;
 
   bool get isLoading => _isLoading;
   bool get isInitLoading => _isInitLoading;
@@ -104,10 +104,10 @@ class SavingsController extends GetxController implements GetxService {
   Future<bool> updateSavings(Map<String, dynamic> data) async {
     // _isLoading = true;
     // update();
-    planDetails = {
-        ...planDetails,
+    planDetails = SavingsPlan.fromJson({
+        ...planDetails.toJson(),
         ...data,
-      };
+      });
     Response response = await transacRepo.updateSavings(data: data);
     if (response.statusCode == 200) {
       // planDetails = {
@@ -132,7 +132,7 @@ class SavingsController extends GetxController implements GetxService {
     Response response = await transacRepo.checkPlan(planId);
     if (response.statusCode == 200) {
       print(response.body);
-      planDetails = response.body;
+      planDetails = SavingsPlan.fromJson(response.body);
       update();
       return true;
     } else {

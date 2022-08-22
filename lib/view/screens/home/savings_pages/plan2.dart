@@ -46,9 +46,9 @@ class _Plan2State extends State<SavingPlan> {
                   return notSavingsItem();
                 } else if (snapshot.hasData) {
                   isInitialLoad = true;
-                  onOFF = (controller.planDetails["auto_invest"] == 1) ? true : false;
+                  onOFF = (controller.planDetails.autoInvest == 1) ? true : false;
 
-                  if (controller.savingsList.isEmpty) {
+                  if (controller.planDetails == null) {
                     return notSavingsItem();
                   } else {
                     return Scaffold(
@@ -128,7 +128,9 @@ class _Plan2State extends State<SavingPlan> {
                                       Spacer(),
                                       IconButton(
                                         onPressed: () {
-                                          Navigator.push(context, MaterialPageRoute(builder: (context) => EditPlan()));
+                                          Navigator.push(context, MaterialPageRoute(builder: (context) => EditPlan(
+                                            savingsPlan: controller.planDetails
+                                          )));
                                         },
                                         icon: Icon(
                                           Icons.edit_outlined,
@@ -139,27 +141,27 @@ class _Plan2State extends State<SavingPlan> {
                                   ),
                                   spaceCont(
                                     'Plan Balance',
-                                    '\$${controller.planDetails["plan_balance"]}',
+                                    '\$${controller.planDetails.planBalance}',
                                     'Periodic Deposit',
-                                    '\$${controller.planDetails["invested"]}',
+                                    '\$${controller.planDetails.invested}',
                                   ),
                                   spaceCont(
                                     'Status',
-                                    controller.planDetails["status"].toString().capitalizeFirst,
+                                    controller.planDetails.status.toString().capitalizeFirst,
                                     'Frequency',
-                                    getFrequency(controller.planDetails["status"].toString()),
+                                    getFrequency(controller.planDetails.status.toString()),
                                   ),
                                   spaceCont(
                                     'Gains',
-                                    '\$${controller.planDetails["gains"]}',
+                                    '\$${controller.planDetails.gains}',
                                     'Total Earnings',
-                                    '\$${controller.planDetails["total_earning"]}',
+                                    '\$${controller.planDetails.totalEarning}',
                                   ),
                                   spaceCont(
                                     'Plan Created on',
-                                    formatedDate(controller.planDetails["start_date"]),
+                                    formatedDate(controller.planDetails.startDate),
                                     'Plan Ends on',
-                                    formatedDate(controller.planDetails["end_date"]),
+                                    formatedDate(controller.planDetails.endDate),
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.only(left: 10.0, right: 10, top: 100),
@@ -326,7 +328,7 @@ class _Plan2State extends State<SavingPlan> {
   Widget modalBottomSheet(SavingsController controller) {
     List<Widget> items = [];
 
-    List<Map<String, dynamic>>.from(controller.planDetails["listed_plan"]).forEach((item) {
+    List<Map<String, dynamic>>.from(controller.planDetails.listedPlan).forEach((item) {
       items.add(historyCont(item));
     });
 

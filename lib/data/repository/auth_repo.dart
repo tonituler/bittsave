@@ -1,5 +1,6 @@
 
 // import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -32,26 +33,26 @@ class AuthRepo extends GetxService{
    Future<Response> updateToken() async {
      String _deviceToken;
      if (GetPlatform.isIOS) {
-      //  NotificationSettings settings = await FirebaseMessaging.instance.requestPermission(
-      //    alert: true, announcement: false, badge: true, carPlay: false,
-      //    criticalAlert: false, provisional: false, sound: true,
-      //  );
-      //  if(settings.authorizationStatus == AuthorizationStatus.authorized) {
-      //    _deviceToken = await _saveDeviceToken();
-      //    FirebaseMessaging.instance.subscribeToTopic(AppConstants.ALL);
-      //    FirebaseMessaging.instance.subscribeToTopic(AppConstants.USERS);
-      //    debugPrint('=========>Device Token ======$_deviceToken');
-      //  }
+       NotificationSettings settings = await FirebaseMessaging.instance.requestPermission(
+         alert: true, announcement: false, badge: true, carPlay: false,
+         criticalAlert: false, provisional: false, sound: true,
+       );
+       if(settings.authorizationStatus == AuthorizationStatus.authorized) {
+         _deviceToken = await _saveDeviceToken();
+         FirebaseMessaging.instance.subscribeToTopic(AppConstants.ALL);
+         FirebaseMessaging.instance.subscribeToTopic(AppConstants.USERS);
+         debugPrint('=========>Device Token ======$_deviceToken');
+       }
      }else {
-      //  _deviceToken = await _saveDeviceToken();
-      //  FirebaseMessaging.instance.subscribeToTopic(AppConstants.ALL);
-      //  FirebaseMessaging.instance.subscribeToTopic(AppConstants.USERS);
+       _deviceToken = await _saveDeviceToken();
+       FirebaseMessaging.instance.subscribeToTopic(AppConstants.ALL);
+       FirebaseMessaging.instance.subscribeToTopic(AppConstants.USERS);
        debugPrint('=========>Device Token ======$_deviceToken');
      }
      if(!GetPlatform.isWeb) {
-      //  // FirebaseMessaging.instance.subscribeToTopic('six_cash');
-      //  FirebaseMessaging.instance.subscribeToTopic(AppConstants.ALL);
-      //  FirebaseMessaging.instance.subscribeToTopic(AppConstants.USERS);
+       FirebaseMessaging.instance.subscribeToTopic('bittsave');
+       FirebaseMessaging.instance.subscribeToTopic(AppConstants.ALL);
+       FirebaseMessaging.instance.subscribeToTopic(AppConstants.USERS);
      }
      return await apiClient.postData(AppConstants.TOKEN_URI, {"_method": "put", "token": _deviceToken},
        headers:  {
@@ -65,7 +66,7 @@ class AuthRepo extends GetxService{
    Future<String> _saveDeviceToken() async {
      String _deviceToken = '';
      if(!GetPlatform.isWeb) {
-      //  _deviceToken = await FirebaseMessaging.instance.getToken();
+       _deviceToken = await FirebaseMessaging.instance.getToken();
      }
      if (_deviceToken != null) {
      }

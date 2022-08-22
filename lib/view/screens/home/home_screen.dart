@@ -11,6 +11,7 @@ import 'package:six_cash/controller/splash_controller.dart';
 import 'package:six_cash/controller/transaction_controller.dart';
 import 'package:six_cash/controller/transaction_history_controller.dart';
 import 'package:six_cash/controller/websitelink_controller.dart';
+import 'package:six_cash/helper/price_converter.dart';
 import 'package:six_cash/util/color_resources.dart';
 import 'package:six_cash/util/dimensions.dart';
 import 'package:six_cash/util/styles.dart';
@@ -79,420 +80,19 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: SingleChildScrollView(
                   physics: AlwaysScrollableScrollPhysics(),
                   child: GetBuilder<SplashController>(builder: (splashController) {
-                    return Column(
-                      children: [
-                        Container(
-                          margin: EdgeInsets.all(20),
-                          padding: EdgeInsets.all(20),
-                          width: double.infinity,
-                          height: 210,
-                          decoration: BoxDecoration(color: ColorResources.primaryColor, borderRadius: BorderRadius.circular(20)),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Investment Balance',
-                                textAlign: TextAlign.start,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: montserratLight.copyWith(
-                                    fontSize: Dimensions.FONT_SIZE_DEFAULT, color: ColorResources.whiteColor, fontWeight: FontWeight.bold),
-                              ),
-                              Text(
-                                '\$0.00',
-                                textAlign: TextAlign.start,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: montserratLight.copyWith(
-                                    fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE, color: ColorResources.whiteColor, fontWeight: FontWeight.w600),
-                              ),
-                              Text(
-                                '0.00000000 BTC',
-                                textAlign: TextAlign.start,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: montserratLight.copyWith(
-                                    fontSize: Dimensions.FONT_SIZE_LARGE - 2, color: ColorResources.whiteColor, fontWeight: FontWeight.w500),
-                              ),
-                              Container(
-                                padding: EdgeInsets.all(5),
-                                height: 40,
-                                decoration: BoxDecoration(color: ColorResources.COLOR_WHITE, borderRadius: BorderRadius.circular(10)),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                  children: [
-                                    Column(
-                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          '\$30,000.00',
-                                          textAlign: TextAlign.start,
-                                          maxLines: 1,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: montserratLight.copyWith(
-                                            fontSize: Dimensions.FONT_SIZE_SMALL,
-                                            color: ColorResources.blackColor,
-                                          ),
-                                        ),
-                                        Text(
-                                          'BTC Price',
-                                          textAlign: TextAlign.start,
-                                          maxLines: 1,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: montserratLight.copyWith(
-                                            fontSize: Dimensions.FONT_SIZE_SMALL,
-                                            color: ColorResources.blackColor,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Column(
-                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          '\$0.00',
-                                          textAlign: TextAlign.start,
-                                          maxLines: 1,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: montserratLight.copyWith(
-                                            fontSize: Dimensions.FONT_SIZE_SMALL,
-                                            color: ColorResources.blackColor,
-                                          ),
-                                        ),
-                                        Text(
-                                          'Invested',
-                                          textAlign: TextAlign.start,
-                                          maxLines: 1,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: montserratLight.copyWith(
-                                            fontSize: Dimensions.FONT_SIZE_SMALL,
-                                            color: ColorResources.blackColor,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Column(
-                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          '0.00%',
-                                          textAlign: TextAlign.start,
-                                          maxLines: 1,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: montserratLight.copyWith(
-                                            fontSize: Dimensions.FONT_SIZE_SMALL,
-                                            color: ColorResources.blackColor,
-                                          ),
-                                        ),
-                                        Text(
-                                          'Returns',
-                                          textAlign: TextAlign.start,
-                                          maxLines: 1,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: montserratLight.copyWith(
-                                            fontSize: Dimensions.FONT_SIZE_SMALL,
-                                            color: ColorResources.blackColor,
-                                          ),
-                                        ),
-                                      ],
-                                    )
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Expanded(
-                                child: Container(
-                                  margin: EdgeInsets.all(5),
-                                  padding: EdgeInsets.all(20),
-                                  height: 180,
-                                  decoration: BoxDecoration(color: ColorResources.primaryColor, borderRadius: BorderRadius.circular(20)),
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
-                                        children: [
-                                          Container(
-                                            height: 30,
-                                            width: 30,
-                                            padding: EdgeInsets.all(0),
-                                            child: Image.asset(
-                                              "assets/image/dollar_coin.png",
-                                              height: 30,
-                                              width: 30,
-                                            ),
-                                          ),
-                                          const SizedBox(
-                                            width: 5,
-                                          ),
-                                          Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                'USD',
-                                                textAlign: TextAlign.start,
-                                                maxLines: 1,
-                                                overflow: TextOverflow.ellipsis,
-                                                style: montserratLight.copyWith(
-                                                    fontSize: Dimensions.FONT_SIZE_SMALL,
-                                                    color: ColorResources.whiteColor,
-                                                    fontWeight: FontWeight.bold),
-                                              ),
-                                              Text(
-                                                'Wallet',
-                                                textAlign: TextAlign.start,
-                                                maxLines: 1,
-                                                overflow: TextOverflow.ellipsis,
-                                                style: montserratLight.copyWith(
-                                                  fontSize: Dimensions.FONT_SIZE_SMALL,
-                                                  color: ColorResources.whiteColor,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                      Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Row(
-                                            crossAxisAlignment: CrossAxisAlignment.end,
-                                            children: [
-                                              Text(
-                                                '\$ 3,753',
-                                                textAlign: TextAlign.start,
-                                                maxLines: 1,
-                                                overflow: TextOverflow.ellipsis,
-                                                style: montserratLight.copyWith(
-                                                  fontSize: Dimensions.FONT_SIZE_OVER_LARGE - 1,
-                                                  color: ColorResources.whiteColor,
-                                                  fontWeight: FontWeight.w600,
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                  bottom: 3,
-                                                ),
-                                                child: Text(
-                                                  '.35',
-                                                  textAlign: TextAlign.start,
-                                                  maxLines: 1,
-                                                  overflow: TextOverflow.ellipsis,
-                                                  style: montserratLight.copyWith(
-                                                    fontSize: Dimensions.FONT_SIZE_SMALL,
-                                                    color: ColorResources.whiteColor,
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          Text(
-                                            '      USD',
-                                            textAlign: TextAlign.center,
-                                            maxLines: 1,
-                                            overflow: TextOverflow.ellipsis,
-                                            style: montserratLight.copyWith(
-                                              fontSize: Dimensions.FONT_SIZE_DEFAULT,
-                                              color: ColorResources.whiteColor,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                child: Container(
-                                  margin: EdgeInsets.all(5),
-                                  padding: EdgeInsets.all(20),
-                                  height: 180,
-                                  decoration: BoxDecoration(color: ColorResources.blackColor, borderRadius: BorderRadius.circular(20)),
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
-                                        children: [
-                                          Container(
-                                            height: 30,
-                                            width: 30,
-                                            padding: EdgeInsets.all(0),
-                                            child: Image.asset(
-                                              "assets/image/btc_coin.png",
-                                              height: 30,
-                                              width: 30,
-                                            ),
-                                          ),
-                                          const SizedBox(
-                                            width: 5,
-                                          ),
-                                          Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                'BTC',
-                                                textAlign: TextAlign.start,
-                                                maxLines: 1,
-                                                overflow: TextOverflow.ellipsis,
-                                                style: montserratLight.copyWith(
-                                                    fontSize: Dimensions.FONT_SIZE_SMALL,
-                                                    color: ColorResources.whiteColor,
-                                                    fontWeight: FontWeight.bold),
-                                              ),
-                                              Text(
-                                                'Wallet',
-                                                textAlign: TextAlign.start,
-                                                maxLines: 1,
-                                                overflow: TextOverflow.ellipsis,
-                                                style: montserratLight.copyWith(
-                                                  fontSize: Dimensions.FONT_SIZE_SMALL,
-                                                  color: ColorResources.whiteColor,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                      Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Row(
-                                            crossAxisAlignment: CrossAxisAlignment.end,
-                                            children: [
-                                              Text(
-                                                'BTC 0.00',
-                                                textAlign: TextAlign.start,
-                                                maxLines: 1,
-                                                overflow: TextOverflow.ellipsis,
-                                                style: montserratLight.copyWith(
-                                                    fontSize: Dimensions.FONT_SIZE_OVER_LARGE - 1,
-                                                    color: ColorResources.whiteColor,
-                                                    fontWeight: FontWeight.w600),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                  bottom: 3,
-                                                ),
-                                                child: Text(
-                                                  '.35',
-                                                  textAlign: TextAlign.start,
-                                                  maxLines: 1,
-                                                  overflow: TextOverflow.ellipsis,
-                                                  style: montserratLight.copyWith(
-                                                    fontSize: Dimensions.FONT_SIZE_SMALL,
-                                                    color: ColorResources.whiteColor,
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(left: 10),
-                                            child: Text(
-                                              '      Satoshis',
-                                              textAlign: TextAlign.center,
-                                              maxLines: 1,
-                                              overflow: TextOverflow.ellipsis,
-                                              style: montserratLight.copyWith(
-                                                fontSize: Dimensions.FONT_SIZE_DEFAULT,
-                                                color: ColorResources.whiteColor,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              InkWell(
-                                onTap: () {
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                                    return FundingUsdWallet();
-                                  }));
-                                },
-                                child: savingsItems(
-                                  image: "credit_card_red.png",
-                                  label: "Deposit",
-                                ),
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => MyPlans(),
-                                    ),
-                                  );
-                                },
-                                child: savingsItems(
-                                  image: "open_folder_add.png",
-                                  label: "Save Now",
-                                ),
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                                    return LoanApplication();
-                                  }));
-                                },
-                                child: savingsItems(
-                                  image: "grid_04.png",
-                                  label: "Loan",
-                                ),
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => Onbarding()));
-                                },
-                                child: savingsItems(
-                                  image: "grid_03.png",
-                                  label: "Request",
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.all(20),
-                          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                          width: double.infinity,
-                          height: 60,
-                          decoration: BoxDecoration(color: ColorResources.primaryColor, borderRadius: BorderRadius.circular(10)),
-                          child: Row(
-                            children: [
-                              Image.asset(
-                                "assets/image/verify_dentity_icon.png",
-                                height: 15,
-                              ),
-                              SizedBox(
-                                width: 20,
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    return GetBuilder<ProfileController>(builder: (profileController) {
+                        return Column(
+                          children: [
+                            if(profileController.userInfo != null)
+                            Container(
+                              margin: EdgeInsets.all(20),
+                              padding: EdgeInsets.all(20),
+                              width: double.infinity,
+                              height: 210,
+                              decoration: BoxDecoration(color: ColorResources.primaryColor, borderRadius: BorderRadius.circular(20)),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
                                     'Investment Balance',
@@ -500,46 +100,451 @@ class _HomeScreenState extends State<HomeScreen> {
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
                                     style: montserratLight.copyWith(
-                                      fontSize: Dimensions.FONT_SIZE_DEFAULT,
-                                      color: ColorResources.whiteColor,
-                                    ),
+                                        fontSize: Dimensions.FONT_SIZE_DEFAULT, color: ColorResources.whiteColor, fontWeight: FontWeight.bold),
                                   ),
                                   Text(
-                                    'Now  you can add unlimited card and account',
+                                    '\$${PriceConverter.priceFormater(balance: profileController.userInfo.investedBalanceUSD)}',
                                     textAlign: TextAlign.start,
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
                                     style: montserratLight.copyWith(
-                                      fontSize: Dimensions.FONT_SIZE_SMALL,
-                                      color: ColorResources.whiteColor.withOpacity(0.6),
+                                        fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE, color: ColorResources.whiteColor, fontWeight: FontWeight.w600),
+                                  ),
+                                  Text(
+                                    '${PriceConverter.priceFormater(balance: profileController.userInfo.investedBalanceBTC)} BTC',
+                                    textAlign: TextAlign.start,
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: montserratLight.copyWith(
+                                        fontSize: Dimensions.FONT_SIZE_LARGE - 2, color: ColorResources.whiteColor, fontWeight: FontWeight.w500),
+                                  ),
+                                  Container(
+                                    padding: EdgeInsets.all(5),
+                                    height: 40,
+                                    decoration: BoxDecoration(color: ColorResources.COLOR_WHITE, borderRadius: BorderRadius.circular(10)),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Column(
+                                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              '\$${PriceConverter.priceFormater(balance: double.parse(splashController.configModel.btcValue))}',
+                                              textAlign: TextAlign.start,
+                                              maxLines: 1,
+                                              overflow: TextOverflow.ellipsis,
+                                              style: montserratLight.copyWith(
+                                                fontSize: Dimensions.FONT_SIZE_SMALL,
+                                                color: ColorResources.blackColor,
+                                              ),
+                                            ),
+                                            Text(
+                                              'BTC Price',
+                                              textAlign: TextAlign.start,
+                                              maxLines: 1,
+                                              overflow: TextOverflow.ellipsis,
+                                              style: montserratLight.copyWith(
+                                                fontSize: Dimensions.FONT_SIZE_SMALL,
+                                                color: ColorResources.blackColor,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        Column(
+                                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              '\$${PriceConverter.priceFormater(balance: profileController.userInfo.invested)}',
+                                              textAlign: TextAlign.start,
+                                              maxLines: 1,
+                                              overflow: TextOverflow.ellipsis,
+                                              style: montserratLight.copyWith(
+                                                fontSize: Dimensions.FONT_SIZE_SMALL,
+                                                color: ColorResources.blackColor,
+                                              ),
+                                            ),
+                                            Text(
+                                              'Invested',
+                                              textAlign: TextAlign.start,
+                                              maxLines: 1,
+                                              overflow: TextOverflow.ellipsis,
+                                              style: montserratLight.copyWith(
+                                                fontSize: Dimensions.FONT_SIZE_SMALL,
+                                                color: ColorResources.blackColor,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        Column(
+                                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              '${profileController.userInfo.returns}%',
+                                              textAlign: TextAlign.start,
+                                              maxLines: 1,
+                                              overflow: TextOverflow.ellipsis,
+                                              style: montserratLight.copyWith(
+                                                fontSize: Dimensions.FONT_SIZE_SMALL,
+                                                color: ColorResources.blackColor,
+                                              ),
+                                            ),
+                                            Text(
+                                              'Returns',
+                                              textAlign: TextAlign.start,
+                                              maxLines: 1,
+                                              overflow: TextOverflow.ellipsis,
+                                              style: montserratLight.copyWith(
+                                                fontSize: Dimensions.FONT_SIZE_SMALL,
+                                                color: ColorResources.blackColor,
+                                              ),
+                                            ),
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 10),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: [
+                                  Expanded(
+                                    child: Container(
+                                      margin: EdgeInsets.all(5),
+                                      padding: EdgeInsets.all(20),
+                                      height: 180,
+                                      decoration: BoxDecoration(color: ColorResources.primaryColor, borderRadius: BorderRadius.circular(20)),
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            children: [
+                                              Container(
+                                                height: 30,
+                                                width: 30,
+                                                padding: EdgeInsets.all(0),
+                                                child: Image.asset(
+                                                  "assets/image/dollar_coin.png",
+                                                  height: 30,
+                                                  width: 30,
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                width: 5,
+                                              ),
+                                              Column(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    'USD',
+                                                    textAlign: TextAlign.start,
+                                                    maxLines: 1,
+                                                    overflow: TextOverflow.ellipsis,
+                                                    style: montserratLight.copyWith(
+                                                        fontSize: Dimensions.FONT_SIZE_SMALL,
+                                                        color: ColorResources.whiteColor,
+                                                        fontWeight: FontWeight.bold),
+                                                  ),
+                                                  Text(
+                                                    'Wallet',
+                                                    textAlign: TextAlign.start,
+                                                    maxLines: 1,
+                                                    overflow: TextOverflow.ellipsis,
+                                                    style: montserratLight.copyWith(
+                                                      fontSize: Dimensions.FONT_SIZE_SMALL,
+                                                      color: ColorResources.whiteColor,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                          Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Row(
+                                                crossAxisAlignment: CrossAxisAlignment.end,
+                                                children: [
+                                                  Text(
+                                                    '\$ 3,753',
+                                                    textAlign: TextAlign.start,
+                                                    maxLines: 1,
+                                                    overflow: TextOverflow.ellipsis,
+                                                    style: montserratLight.copyWith(
+                                                      fontSize: Dimensions.FONT_SIZE_OVER_LARGE - 1,
+                                                      color: ColorResources.whiteColor,
+                                                      fontWeight: FontWeight.w600,
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding: const EdgeInsets.only(
+                                                      bottom: 3,
+                                                    ),
+                                                    child: Text(
+                                                      '.35',
+                                                      textAlign: TextAlign.start,
+                                                      maxLines: 1,
+                                                      overflow: TextOverflow.ellipsis,
+                                                      style: montserratLight.copyWith(
+                                                        fontSize: Dimensions.FONT_SIZE_SMALL,
+                                                        color: ColorResources.whiteColor,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              Text(
+                                                '      USD',
+                                                textAlign: TextAlign.center,
+                                                maxLines: 1,
+                                                overflow: TextOverflow.ellipsis,
+                                                style: montserratLight.copyWith(
+                                                  fontSize: Dimensions.FONT_SIZE_DEFAULT,
+                                                  color: ColorResources.whiteColor,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Container(
+                                      margin: EdgeInsets.all(5),
+                                      padding: EdgeInsets.all(20),
+                                      height: 180,
+                                      decoration: BoxDecoration(color: ColorResources.blackColor, borderRadius: BorderRadius.circular(20)),
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            children: [
+                                              Container(
+                                                height: 30,
+                                                width: 30,
+                                                padding: EdgeInsets.all(0),
+                                                child: Image.asset(
+                                                  "assets/image/btc_coin.png",
+                                                  height: 30,
+                                                  width: 30,
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                width: 5,
+                                              ),
+                                              Column(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    'BTC',
+                                                    textAlign: TextAlign.start,
+                                                    maxLines: 1,
+                                                    overflow: TextOverflow.ellipsis,
+                                                    style: montserratLight.copyWith(
+                                                        fontSize: Dimensions.FONT_SIZE_SMALL,
+                                                        color: ColorResources.whiteColor,
+                                                        fontWeight: FontWeight.bold),
+                                                  ),
+                                                  Text(
+                                                    'Wallet',
+                                                    textAlign: TextAlign.start,
+                                                    maxLines: 1,
+                                                    overflow: TextOverflow.ellipsis,
+                                                    style: montserratLight.copyWith(
+                                                      fontSize: Dimensions.FONT_SIZE_SMALL,
+                                                      color: ColorResources.whiteColor,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                          Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Row(
+                                                crossAxisAlignment: CrossAxisAlignment.end,
+                                                children: [
+                                                  Text(
+                                                    'BTC 0.00',
+                                                    textAlign: TextAlign.start,
+                                                    maxLines: 1,
+                                                    overflow: TextOverflow.ellipsis,
+                                                    style: montserratLight.copyWith(
+                                                        fontSize: Dimensions.FONT_SIZE_OVER_LARGE - 1,
+                                                        color: ColorResources.whiteColor,
+                                                        fontWeight: FontWeight.w600),
+                                                  ),
+                                                  Padding(
+                                                    padding: const EdgeInsets.only(
+                                                      bottom: 3,
+                                                    ),
+                                                    child: Text(
+                                                      '.35',
+                                                      textAlign: TextAlign.start,
+                                                      maxLines: 1,
+                                                      overflow: TextOverflow.ellipsis,
+                                                      style: montserratLight.copyWith(
+                                                        fontSize: Dimensions.FONT_SIZE_SMALL,
+                                                        color: ColorResources.whiteColor,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(left: 10),
+                                                child: Text(
+                                                  '      Satoshis',
+                                                  textAlign: TextAlign.center,
+                                                  maxLines: 1,
+                                                  overflow: TextOverflow.ellipsis,
+                                                  style: montserratLight.copyWith(
+                                                    fontSize: Dimensions.FONT_SIZE_DEFAULT,
+                                                    color: ColorResources.whiteColor,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ],
                               ),
-                            ],
-                          ),
-                        ),
-                        requestCard(status: "Request"),
-                        requestCard(status: "Pending Payment"),
-                        splashController.configModel.themeIndex == '1'
-                            ? GetBuilder<ProfileController>(
-                                builder: (profile) => FirstCardPortion(profileController: profile),
-                              )
-                            : splashController.configModel.themeIndex == '2'
-                                ? SecondCardPortion()
-                                : splashController.configModel.themeIndex == '3'
-                                    ? ThirdCardPortion()
-                                    : GetBuilder<ProfileController>(builder: (profile) => FirstCardPortion(profileController: profile)),
-                        SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
-                        GetBuilder<WebsiteLinkController>(builder: (websiteLinkController) {
-                          return websiteLinkController.isLoading
-                              ? WebSiteShimmer()
-                              : websiteLinkController.websiteList.length > 0
-                                  ? LinkedWebsite(websiteLinkController: websiteLinkController)
-                                  : SizedBox();
-                        }),
-                        const SizedBox(height: 80),
-                      ],
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: [
+                                  InkWell(
+                                    onTap: () {
+                                      Navigator.push(context, MaterialPageRoute(builder: (context) {
+                                        return FundingUsdWallet();
+                                      }));
+                                    },
+                                    child: savingsItems(
+                                      image: "credit_card_red.png",
+                                      label: "Deposit",
+                                    ),
+                                  ),
+                                  InkWell(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => MyPlans(),
+                                        ),
+                                      );
+                                    },
+                                    child: savingsItems(
+                                      image: "open_folder_add.png",
+                                      label: "Save Now",
+                                    ),
+                                  ),
+                                  InkWell(
+                                    onTap: () {
+                                      Navigator.push(context, MaterialPageRoute(builder: (context) {
+                                        return LoanApplication();
+                                      }));
+                                    },
+                                    child: savingsItems(
+                                      image: "grid_04.png",
+                                      label: "Loan",
+                                    ),
+                                  ),
+                                  InkWell(
+                                    onTap: () {
+                                      Navigator.push(context, MaterialPageRoute(builder: (context) => Onbarding()));
+                                    },
+                                    child: savingsItems(
+                                      image: "grid_03.png",
+                                      label: "Request",
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.all(20),
+                              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                              width: double.infinity,
+                              height: 60,
+                              decoration: BoxDecoration(color: ColorResources.primaryColor, borderRadius: BorderRadius.circular(10)),
+                              child: Row(
+                                children: [
+                                  Image.asset(
+                                    "assets/image/verify_dentity_icon.png",
+                                    height: 15,
+                                  ),
+                                  SizedBox(
+                                    width: 20,
+                                  ),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                    children: [
+                                      Text(
+                                        'Investment Balance',
+                                        textAlign: TextAlign.start,
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: montserratLight.copyWith(
+                                          fontSize: Dimensions.FONT_SIZE_DEFAULT,
+                                          color: ColorResources.whiteColor,
+                                        ),
+                                      ),
+                                      Text(
+                                        'Now  you can add unlimited card and account',
+                                        textAlign: TextAlign.start,
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: montserratLight.copyWith(
+                                          fontSize: Dimensions.FONT_SIZE_SMALL,
+                                          color: ColorResources.whiteColor.withOpacity(0.6),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            requestCard(status: "Request"),
+                            requestCard(status: "Pending Payment"),
+                            splashController.configModel.themeIndex == '1'
+                                ? GetBuilder<ProfileController>(
+                                    builder: (profile) => FirstCardPortion(profileController: profile),
+                                  )
+                                : splashController.configModel.themeIndex == '2'
+                                    ? SecondCardPortion()
+                                    : splashController.configModel.themeIndex == '3'
+                                        ? ThirdCardPortion()
+                                        : GetBuilder<ProfileController>(builder: (profile) => FirstCardPortion(profileController: profile)),
+                            SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
+                            GetBuilder<WebsiteLinkController>(builder: (websiteLinkController) {
+                              return websiteLinkController.isLoading
+                                  ? WebSiteShimmer()
+                                  : websiteLinkController.websiteList.length > 0
+                                      ? LinkedWebsite(websiteLinkController: websiteLinkController)
+                                      : SizedBox();
+                            }),
+                            const SizedBox(height: 80),
+                          ],
+                        );
+                      }
                     );
                   }),
                 ),
