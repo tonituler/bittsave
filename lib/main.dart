@@ -41,7 +41,8 @@ Future<void> main() async {
     }
   } catch (e) {}
 
-  runApp(MyApp(languages: _languages, orderID: _orderID));
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+      .then((value) => runApp(MyApp(languages: _languages, orderID: _orderID)));
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: Colors.transparent.withOpacity(0.3)));
 }

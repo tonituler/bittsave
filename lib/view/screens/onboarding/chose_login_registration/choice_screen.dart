@@ -5,9 +5,10 @@ import 'package:six_cash/helper/route_helper.dart';
 import 'package:six_cash/util/app_constants.dart';
 import 'package:six_cash/util/color_resources.dart';
 import 'package:six_cash/util/dimensions.dart';
-import 'package:six_cash/util/styles.dart';
 import 'package:six_cash/view/base/custom_small_button.dart';
 import 'package:six_cash/view/screens/onboarding/chose_login_registration/widget/indicator_section.dart';
+
+import '../../../../util/styles.dart';
 
 class ChoiceScreen extends StatelessWidget {
   ChoiceScreen({Key key}) : super(key: key);
@@ -19,6 +20,7 @@ class ChoiceScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: ColorResources.getWhiteAndBlack(),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
             child: Column(
@@ -35,77 +37,73 @@ class ChoiceScreen extends StatelessWidget {
                       },
                       itemBuilder: (context, index) {
                         return Container(
-                          padding: EdgeInsets.only(top: 50),
                           child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Container(
-                                height: size.width,
-                                width: size.width,
-                                child: Stack(
-                                  children: [
-                                    Align(
-                                      alignment: Alignment.bottomCenter,
-                                      child: SizedBox(
-                                        width: MediaQuery.of(context).size.width,
-                                        // height: MediaQuery.of(context).size.height * 0.7,
-                                        child: Image.asset(
-                                          AppConstants.onboardList[index].image,
-                                          fit: BoxFit.fitWidth,
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
+                              Image.asset(
+                                AppConstants.onboardList[index].image,
+                                filterQuality: FilterQuality.high,
                               ),
-                              Spacer(),
-                              // const SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
-                              // CustomLogo(height: Dimensions.MEDIUM_LOGO, width: Dimensions.MEDIUM_LOGO,),
-                              // SizedBox(height: Dimensions.PADDING_SIZE_DEFAULT),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_DEFAULT),
+                              Container(
+                                margin: EdgeInsets.only(
+                                    top: 10, left: 20, bottom: 5),
                                 child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Text(
                                       AppConstants.onboardList[index].title,
                                       style: montserratSemiBold.copyWith(
                                         color: ColorResources.getBlackColor(),
-                                        fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE,
+                                        fontSize:
+                                            Dimensions.FONT_SIZE_EXTRA_LARGE,
                                       ),
-                                      textAlign: TextAlign.center,
                                     ),
-                                    const SizedBox(
-                                      height: Dimensions.PADDING_SIZE_DEFAULT,
+                                    SizedBox(
+                                      height: 5,
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.symmetric(horizontal: Dimensions.RADIUS_SIZE_SMALL),
+                                      padding:
+                                          EdgeInsets.symmetric(vertical: 2),
                                       child: Text(
-                                        AppConstants.onboardList[index].subtitle,
-                                        maxLines: 2,
+                                        AppConstants
+                                            .onboardList[index].subtitle,
+                                        maxLines: 3,
                                         overflow: TextOverflow.ellipsis,
                                         style: montserratMedium.copyWith(
-                                          color: ColorResources.getOnboardGreyColor().withOpacity(0.5),
-                                          fontSize: Dimensions.FONT_SIZE_DEFAULT - 2,
+                                          color: ColorResources
+                                                  .getOnboardGreyColor()
+                                              .withOpacity(0.5),
+                                          fontSize:
+                                              Dimensions.FONT_SIZE_DEFAULT,
                                         ),
-                                        textAlign: TextAlign.center,
+                                        textAlign: TextAlign.left,
                                       ),
                                     ),
                                   ],
                                 ),
                               ),
-                              const SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
                             ],
                           ),
                         );
                       }),
                 ),
-                IndicatorSection(),
-                const SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_OVER_LARGE),
+                Padding(
+                  padding: const EdgeInsets.only(left: 17.0),
+                  child: Align(
+                      alignment: Alignment.topLeft, child: IndicatorSection()),
+                ),
+                const SizedBox(
+                    height: Dimensions.PADDING_SIZE_EXTRA_OVER_LARGE),
               ],
             ),
           ),
           Container(
+            // color: Colors.pink,
             padding: const EdgeInsets.only(
-                left: Dimensions.PADDING_SIZE_DEFAULT, right: Dimensions.PADDING_SIZE_DEFAULT, bottom: Dimensions.PADDING_SIZE_EXTRA_EXTRA_LARGE),
+                left: Dimensions.PADDING_SIZE_DEFAULT,
+                right: Dimensions.PADDING_SIZE_DEFAULT,
+                bottom: Dimensions.PADDING_SIZE_EXTRA_EXTRA_LARGE),
             child: GetBuilder<AuthController>(builder: (controller) {
               return Row(
                 children: [
@@ -115,7 +113,9 @@ class ChoiceScreen extends StatelessWidget {
                         if (controller.page < 2) {
                           int nextPage = controller.page + 1;
                           controller.change(nextPage);
-                          pageContoller.animateToPage(nextPage, curve: Curves.easeInOut, duration: Duration(milliseconds: 400));
+                          pageContoller.animateToPage(nextPage,
+                              curve: Curves.easeInOut,
+                              duration: Duration(milliseconds: 400));
                         } else {
                           Get.toNamed(RouteHelper.getRegistrationRoute());
                         }
@@ -134,3 +134,35 @@ class ChoiceScreen extends StatelessWidget {
     );
   }
 }
+
+// Text(
+// AppConstants.onboardList[index].title,
+// style: montserratSemiBold.copyWith(
+// color: ColorResources.getBlackColor(),
+// fontSize:
+// Dimensions.FONT_SIZE_EXTRA_LARGE,
+// ),
+// textAlign: TextAlign.center,
+// ),
+
+//
+// Text(
+// AppConstants
+//     .onboardList[index].subtitle,
+// maxLines: 2,
+// overflow: TextOverflow.ellipsis,
+// style: montserratMedium.copyWith(
+// color: ColorResources
+//     .getOnboardGreyColor()
+// .withOpacity(0.5),
+// fontSize:
+// Dimensions.FONT_SIZE_DEFAULT - 2,
+// ),
+// textAlign: TextAlign.center,
+// ),
+
+//
+// Image.asset(
+// AppConstants.onboardList[index].image,
+// fit: BoxFit.cover,
+// ),

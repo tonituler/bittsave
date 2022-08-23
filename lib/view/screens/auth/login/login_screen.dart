@@ -10,17 +10,16 @@ import 'package:six_cash/helper/route_helper.dart';
 import 'package:six_cash/util/color_resources.dart';
 import 'package:six_cash/util/dimensions.dart';
 import 'package:six_cash/util/styles.dart';
-import 'package:six_cash/view/base/custom_country_code_picker.dart';
 import 'package:six_cash/view/base/custom_password_field.dart';
 import 'package:six_cash/view/base/custom_snackbar.dart';
 import 'package:six_cash/view/screens/auth/login/widget/login_qr_popup_card.dart';
-import 'package:six_cash/view/screens/auth/pin_set/widget/appbar_section.dart';
 import 'package:six_cash/view/screens/home/widget/animated_card/custom_rect_tween.dart';
 import 'package:six_cash/view/screens/home/widget/animated_card/hero_dialogue_route.dart';
 
 class LoginScreen extends StatefulWidget {
   final String phoneNumber, countryCode;
-  const LoginScreen({Key key, this.phoneNumber, this.countryCode}) : super(key: key);
+  const LoginScreen({Key key, this.phoneNumber, this.countryCode})
+      : super(key: key);
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
@@ -75,11 +74,19 @@ class _LoginScreenState extends State<LoginScreen> {
                 ],
               ),
               Positioned(
-                top: Dimensions.PADDING_SIZE_EXTRA_EXTRA_LARGE,
-                left: 0,
+                top: 70,
+                left: 6,
                 right: 0,
-                child: AppbarSection(
-                  isLogin: true,
+
+                // child: AppbarSection(
+                //   isLogin: true,
+                // ),
+                child: Text(
+                  'We care about you',
+                  style: montserratSemiBold.copyWith(
+                    color: ColorResources.getWhiteColor(),
+                    fontSize: Dimensions.FONT_SIZE_OVER_OVER_LARGE,
+                  ),
                 ),
               ),
               Positioned(
@@ -97,8 +104,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   decoration: BoxDecoration(
                     color: ColorResources.getWhiteColor(),
                     borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(Dimensions.RADIUS_SIZE_EXTRA_EXTRA_LARGE),
-                      topRight: Radius.circular(Dimensions.RADIUS_SIZE_EXTRA_EXTRA_LARGE),
+                      topLeft: Radius.circular(
+                          Dimensions.RADIUS_SIZE_EXTRA_EXTRA_LARGE),
+                      topRight: Radius.circular(
+                          Dimensions.RADIUS_SIZE_EXTRA_EXTRA_LARGE),
                     ),
                   ),
                   child: SingleChildScrollView(
@@ -115,21 +124,27 @@ class _LoginScreenState extends State<LoginScreen> {
                                     'Welcome_back'.tr,
                                     textAlign: TextAlign.center,
                                     style: montserratLight.copyWith(
-                                      color: ColorResources.getPrimaryTextColor(),
+                                      color:
+                                          ColorResources.getPrimaryTextColor(),
                                       fontSize: Dimensions.FONT_SIZE_LARGE,
                                     ),
                                   ),
                                   controller.getCustomerName().isNotEmpty
                                       ? Container(
-                                          width: MediaQuery.of(context).size.width * 0.6,
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.6,
                                           child: Text(
                                             controller.getCustomerName(),
                                             textAlign: TextAlign.start,
                                             maxLines: 1,
                                             overflow: TextOverflow.ellipsis,
                                             style: montserratMedium.copyWith(
-                                              color: ColorResources.getPrimaryTextColor(),
-                                              fontSize: Dimensions.FONT_SIZE_EXTRA_OVER_LARGE,
+                                              color: ColorResources
+                                                  .getPrimaryTextColor(),
+                                              fontSize: Dimensions
+                                                  .FONT_SIZE_EXTRA_OVER_LARGE,
                                             ),
                                           ),
                                         )
@@ -138,8 +153,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                           overflow: TextOverflow.clip,
                                           textAlign: TextAlign.center,
                                           style: montserratMedium.copyWith(
-                                            color: ColorResources.getPrimaryTextColor(),
-                                            fontSize: Dimensions.FONT_SIZE_EXTRA_OVER_LARGE,
+                                            color: ColorResources
+                                                .getPrimaryTextColor(),
+                                            fontSize: Dimensions
+                                                .FONT_SIZE_EXTRA_OVER_LARGE,
                                           ),
                                         ),
                                 ],
@@ -150,8 +167,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                 width: 50,
                                 child: Stack(
                                   children: [
-                                    GetBuilder<AuthController>(builder: (controller) {
-                                      return controller.getCustomerQrCode().isNotEmpty
+                                    GetBuilder<AuthController>(
+                                        builder: (controller) {
+                                      return controller
+                                              .getCustomerQrCode()
+                                              .isNotEmpty
                                           ? InkWell(
                                               onTap: () {
                                                 Navigator.of(context).push(
@@ -165,13 +185,17 @@ class _LoginScreenState extends State<LoginScreen> {
                                               child: Hero(
                                                 tag: _heroQrTag,
                                                 createRectTween: (begin, end) {
-                                                  return CustomRectTween(begin: begin, end: end);
+                                                  return CustomRectTween(
+                                                      begin: begin, end: end);
                                                 },
                                                 child: Container(
-                                                  padding: const EdgeInsets.all(2),
-                                                  color: ColorResources.whiteColor,
+                                                  padding:
+                                                      const EdgeInsets.all(2),
+                                                  color:
+                                                      ColorResources.whiteColor,
                                                   child: SvgPicture.string(
-                                                    controller.getCustomerQrCode(),
+                                                    controller
+                                                        .getCustomerQrCode(),
                                                   ),
                                                 ),
                                               ),
@@ -192,7 +216,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             Text(
                               'Account'.tr,
                               style: montserratLight.copyWith(
-                                color: ColorResources.getBlackColor().withOpacity(0.9),
+                                color: ColorResources.getBlackColor()
+                                    .withOpacity(0.9),
                                 fontSize: Dimensions.FONT_SIZE_LARGE,
                               ),
                             ),
@@ -201,12 +226,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                 controller: phoneController,
                                 focusNode: phoneFocus,
                                 onSubmitted: (value) {
-                                  FocusScope.of(context).requestFocus(passFocus);
+                                  FocusScope.of(context)
+                                      .requestFocus(passFocus);
                                 },
                                 keyboardType: TextInputType.phone,
                                 decoration: InputDecoration(
                                   border: InputBorder.none,
-                                  contentPadding: const EdgeInsets.only(top: 14),
+                                  contentPadding:
+                                      const EdgeInsets.only(top: 14),
                                   prefixIcon: SizedBox(
                                     width: 50,
                                     height: 20,
@@ -215,8 +242,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                         Container(
                                           width: 40,
                                           height: 20,
-                                          margin: const EdgeInsets.only(right: 5, left: 5),
-                                          child: const Center(child: Text("+234 ")),
+                                          margin: const EdgeInsets.only(
+                                              right: 5, left: 5),
+                                          child: const Center(
+                                              child: Text("+234 ")),
                                         ),
                                       ],
                                     ),
@@ -234,11 +263,14 @@ class _LoginScreenState extends State<LoginScreen> {
                           ],
                         ),
                         Divider(
-                          color: ColorResources.getPrimaryTextColor().withOpacity(0.4),
+                          color: ColorResources.getPrimaryTextColor()
+                              .withOpacity(0.4),
                           height: 0.5,
                         ),
                         Container(
-                          padding: const EdgeInsets.only(top: Dimensions.PADDING_SIZE_EXTRA_EXTRA_LARGE, right: Dimensions.PADDING_SIZE_SMALL),
+                          padding: const EdgeInsets.only(
+                              top: Dimensions.PADDING_SIZE_EXTRA_EXTRA_LARGE,
+                              right: Dimensions.PADDING_SIZE_SMALL),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -273,7 +305,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 child: Text(
                                   'forget_password'.tr,
                                   style: montserratRegular.copyWith(
-                                    color: ColorResources.getRedColor(),
+                                    color: ColorResources.getPrimaryColor(),
                                     fontSize: Dimensions.FONT_SIZE_LARGE,
                                   ),
                                 ),
@@ -281,7 +313,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             ],
                           ),
                         ),
-                        const SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_OVER_LARGE),
+                        const SizedBox(
+                            height: Dimensions.PADDING_SIZE_EXTRA_OVER_LARGE),
                       ],
                     ),
                   ),
@@ -298,7 +331,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       _login(context);
                     },
                     elevation: 0,
-                    backgroundColor: Theme.of(context).secondaryHeaderColor,
+                    backgroundColor: ColorResources.getPrimaryColor(),
                     child: controller.isLoading
                         ? SizedBox(
                             height: Dimensions.PADDING_SIZE_LARGE,
@@ -310,7 +343,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         : SizedBox(
                             child: Icon(
                               Icons.arrow_forward,
-                              color: ColorResources.blackColor,
+                              color: ColorResources.whiteColor,
                               size: 28,
                             ),
                           ),
@@ -340,7 +373,9 @@ class _LoginScreenState extends State<LoginScreen> {
         PhoneNumber num = await PhoneNumberUtil().parse(_phoneNumber);
         print('+${num.countryCode}');
         print(num.nationalNumber);
-        Get.find<AuthController>().login(code: _code, phone: _phone, password: _password).then((value) async {
+        Get.find<AuthController>()
+            .login(code: _code, phone: _phone, password: _password)
+            .then((value) async {
           if (value.isOk) {
             Get.find<AuthController>().updateToken();
             await Get.find<ProfileController>().profileData(loading: true);

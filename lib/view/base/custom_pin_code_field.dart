@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:six_cash/util/color_resources.dart';
+
 class CustomPinCodeField extends StatelessWidget {
   final Function onCompleted;
   final double padding;
-  const CustomPinCodeField({Key key,@required this.onCompleted, this.padding = 0.0}) : super(key: key);
+  const CustomPinCodeField(
+      {Key key, @required this.onCompleted, this.padding = 0.0})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: padding),
+      padding: EdgeInsets.only(left: 22, right: 25),
       child: PinCodeTextField(
         appContext: context,
         length: 4,
@@ -22,7 +25,7 @@ class CustomPinCodeField extends StatelessWidget {
           shape: PinCodeFieldShape.box,
           borderRadius: BorderRadius.circular(10),
           fieldHeight: 55,
-          fieldWidth: 63,
+          fieldWidth: 58,
           activeFillColor: ColorResources.getGreyBaseGray6(),
           selectedColor: ColorResources.getPrimaryTextColor(),
           selectedFillColor: Colors.white,
@@ -30,7 +33,6 @@ class CustomPinCodeField extends StatelessWidget {
           inactiveColor: ColorResources.colorMap[200],
           activeColor: ColorResources.colorMap[400],
           borderWidth: 0.1,
-
         ),
         animationDuration: Duration(milliseconds: 300),
         backgroundColor: Colors.transparent,

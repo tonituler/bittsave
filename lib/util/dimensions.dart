@@ -18,7 +18,6 @@ class Dimensions {
   static const double PADDING_SIZE_OVER_LARGE = 45.0;
   static const double PADDING_SIZE_EXTRA_OVER_LARGE = 55.0;
 
-
   static const double RADIUS_SIZE_VERY_SMALL = 4.0;
   static const double RADIUS_SIZE_EXTRA_SMALL = 8.0;
   static const double RADIUS_SIZE_SMALL = 12.0;
@@ -38,7 +37,6 @@ class Dimensions {
   static const double DIVIDER_SIZE_MEDIUM = 2.0;
   static const double DIVIDER_SIZE_LARGE = 4.0;
   static const double DIVIDER_SIZE_EXTRA_LARGE = 4.0;
-
 
   static const double APPBAR_HIGHT_SIZE = 70.0;
 
@@ -68,12 +66,11 @@ class Dimensions {
   static const double ADD_MONEY_CARD_HEIGHT = 90.0;
   static const double TRANSACTION_TYPE_CARD_HEIGHT = 120.0;
 
-
   static const double ARROW_ICON_SIZE = 12.0;
   static const double PROFILE_PAGE_ICON_SIZE = 28.0;
 
-
   static const double NAVBAR_ICON_SIZE = 20.0;
+  static const double NAVBAR_ICON_SIZE_LARGE = 30.0;
   static const double NAVBAR_FONT_SIZE = 10.0;
 
   static const double NOTIFICATION_IMAGE_SIZE = 64.0;
