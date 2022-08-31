@@ -30,6 +30,7 @@ class _SendUsdToFriendState extends State<SendUsdToFriend> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  SizedBox(height: 20),
                   BackButtons(),
                   Padding(
                     padding: const EdgeInsets.only(left: 8, bottom: 4),

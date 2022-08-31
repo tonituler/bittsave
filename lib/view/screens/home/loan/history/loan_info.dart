@@ -24,67 +24,74 @@ class _LoanInfoState extends State<LoanInfo> {
     return BackGroundColr(
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        appBar: AppBar(
-          leading: BackButtons(),
-          backgroundColor: Colors.white.withOpacity(0),
-          elevation: 0,
-        ),
+        // appBar: AppBar(
+        //   leading: BackButtons(),
+        //   backgroundColor: Colors.white.withOpacity(0),
+        //   elevation: 0,
+        // ),
         body: GetBuilder<LoanController>(builder: (controller) {
-          return SingleChildScrollView(
-            child: Center(
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: 20),
-                    BoldTextTitle(
-                      data: '${widget.loanInfo.loanAmount} - N${PriceConverter.convertToNaira(double.parse(widget.loanInfo.loanAmount.toString()))}',
-                    ),
-                    SizedBox(height: 20),
-                    subText('Total Payback'),
-                    titleText('\$${widget.loanInfo.totalRepayment}'),
-                    SizedBox(height: 16),
-                    subText('Loan Amount'),
-                    titleText('\$${widget.loanInfo.loanAmount}'),
-                    SizedBox(height: 16),
-                    subText('Next Payment'),
-                    titleText('\$${widget.loanInfo.nextPayment}'),
-                    SizedBox(height: 16),
-                    subText('Current Balance'),
-                    titleText('\$${widget.loanInfo.currentBalance}'),
-                    SizedBox(height: 16),
-                    subText('Status'),
-                    titleText('${widget.loanInfo.status}'),
-                    SizedBox(height: 16),
-                    subText('Due Date'),
-                    titleText('${widget.loanInfo.dueDate}'),
-                    SizedBox(height: 16),
-                    subText('Collateral Volume'),
-                    titleText('${PriceConverter.converDolarToBTC(double.parse(widget.loanInfo.collateral))} BTC'),
-                    SizedBox(height: 50),
-                    Container(
-                      height: 50,
-                      width: MediaQuery.of(context).size.width,
-                      padding: EdgeInsets.symmetric(horizontal: 5.w),
-                      child: buttonWithBorder(
-                        'Pay Now',
-                        textColor: Colors.white,
-                        buttonColor: ColorResources.primaryColor,
-                        fontSize: 18.sp,
-                        busy: controller.isLoading,
-                        fontWeight: FontWeight.w400,
-                        height: 54.h,
-                        onTap: () async {
-                          bool response = await controller.payLoan(loanId: widget.loanInfo.id.toString());
-
-                          if(response == true){
-                            Get.offAllNamed(RouteHelper.getNavBarRoute(), arguments: true);
-                          }
-                        },
+          return SafeArea(
+            child: SingleChildScrollView(
+              child: Center(
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 20),
+                      BackButtons(),
+                      BoldTextTitle(
+                        data:
+                            '${widget.loanInfo.loanAmount} - N${PriceConverter.convertToNaira(double.parse(widget.loanInfo.loanAmount.toString()))}',
                       ),
-                    ),
-                  ],
+                      SizedBox(height: 20),
+                      subText('Total Payback'),
+                      titleText('\$${widget.loanInfo.totalRepayment}'),
+                      SizedBox(height: 16),
+                      subText('Loan Amount'),
+                      titleText('\$${widget.loanInfo.loanAmount}'),
+                      SizedBox(height: 16),
+                      subText('Next Payment'),
+                      titleText('\$${widget.loanInfo.nextPayment}'),
+                      SizedBox(height: 16),
+                      subText('Current Balance'),
+                      titleText('\$${widget.loanInfo.currentBalance}'),
+                      SizedBox(height: 16),
+                      subText('Status'),
+                      titleText('${widget.loanInfo.status}'),
+                      SizedBox(height: 16),
+                      subText('Due Date'),
+                      titleText('${widget.loanInfo.dueDate}'),
+                      SizedBox(height: 16),
+                      subText('Collateral Volume'),
+                      titleText(
+                          '${PriceConverter.converDolarToBTC(double.parse(widget.loanInfo.collateral))} BTC'),
+                      SizedBox(height: 50),
+                      Container(
+                        height: 50,
+                        width: MediaQuery.of(context).size.width,
+                        padding: EdgeInsets.symmetric(horizontal: 5.w),
+                        child: buttonWithBorder(
+                          'Pay Now',
+                          textColor: Colors.white,
+                          buttonColor: ColorResources.primaryColor,
+                          fontSize: 18.sp,
+                          busy: controller.isLoading,
+                          fontWeight: FontWeight.w400,
+                          height: 54.h,
+                          onTap: () async {
+                            bool response = await controller.payLoan(
+                                loanId: widget.loanInfo.id.toString());
+
+                            if (response == true) {
+                              Get.offAllNamed(RouteHelper.getNavBarRoute(),
+                                  arguments: true);
+                            }
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -128,7 +135,10 @@ class _LoanInfoState extends State<LoanInfo> {
                         ),
                         Text(
                           '\$200.00',
-                          style: TextStyle(color: Colors.black, fontSize: 21.5, fontWeight: FontWeight.w400),
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 21.5,
+                              fontWeight: FontWeight.w400),
                         ),
                       ],
                     ),
@@ -142,7 +152,10 @@ class _LoanInfoState extends State<LoanInfo> {
                         ),
                         Text(
                           '\$205.00',
-                          style: TextStyle(color: Colors.black, fontSize: 21.5, fontWeight: FontWeight.w400),
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 21.5,
+                              fontWeight: FontWeight.w400),
                         ),
                       ],
                     ),
@@ -153,7 +166,8 @@ class _LoanInfoState extends State<LoanInfo> {
                   children: [
                     Text(
                       'Due date:',
-                      style: TextStyle(color: Colors.black, fontWeight: FontWeight.w600),
+                      style: TextStyle(
+                          color: Colors.black, fontWeight: FontWeight.w600),
                     ),
                     SizedBox(width: 4),
                     Center(
@@ -166,7 +180,9 @@ class _LoanInfoState extends State<LoanInfo> {
                     Container(
                       height: 20,
                       width: 70,
-                      decoration: BoxDecoration(color: Colors.pink, borderRadius: BorderRadius.circular(8)),
+                      decoration: BoxDecoration(
+                          color: Colors.pink,
+                          borderRadius: BorderRadius.circular(8)),
                       child: Center(
                           child: Text(
                         'Pay Now',
@@ -195,8 +211,11 @@ class _LoanInfoState extends State<LoanInfo> {
   Widget titleText(text) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.only(top: 10, left: 10, bottom: 10),
-      decoration: BoxDecoration(border: Border(bottom: BorderSide(color: ColorResources.primaryColor.withOpacity(0.5)))),
+      padding: const EdgeInsets.only(top: 5, left: 10, bottom: 10),
+      decoration: BoxDecoration(
+          border: Border(
+              bottom: BorderSide(
+                  color: ColorResources.primaryColor.withOpacity(0.5)))),
       child: Text(
         text,
         style: TextStyle(fontWeight: FontWeight.w400, fontSize: 16),
@@ -209,7 +228,7 @@ class _LoanInfoState extends State<LoanInfo> {
       padding: const EdgeInsets.only(left: 8.0),
       child: Text(
         '$text',
-        style: TextStyle(fontSize: 12, color: Colors.grey),
+        style: TextStyle(fontSize: 12, color: Colors.pink),
       ),
     );
   }

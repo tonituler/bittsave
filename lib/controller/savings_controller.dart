@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:six_cash/controller/profile_screen_controller.dart';
 import 'package:six_cash/data/api/api_checker.dart';
-import 'package:six_cash/data/model/agent_model.dart';
 import 'package:six_cash/data/model/savings_plan.dart';
 import 'package:six_cash/data/repository/transaction_repo.dart';
 import 'package:six_cash/view/base/custom_snackbar.dart';
@@ -105,10 +104,13 @@ class SavingsController extends GetxController implements GetxService {
     // _isLoading = true;
     // update();
     planDetails = SavingsPlan.fromJson({
-        ...planDetails.toJson(),
-        ...data,
-      });
+      ...planDetails.toJson(),
+      ...data,
+    });
     Response response = await transacRepo.updateSavings(data: data);
+    // Get.put(TransactionRepo(
+    //     apiClient: transacRepo.apiClient,
+    //     sharedPreferences: transacRepo.sharedPreferences));
     if (response.statusCode == 200) {
       // planDetails = {
       //   ...planDetails,
@@ -207,7 +209,8 @@ class SavingsController extends GetxController implements GetxService {
       _isInitLoading = true;
       funderInfo = null;
       update();
-      Response response = await transacRepo.checkCustomerUsername(username: username);
+      Response response =
+          await transacRepo.checkCustomerUsername(username: username);
       if (response.statusCode == 200) {
         funderInfo = response.body["data"];
         _isInitLoading = false;

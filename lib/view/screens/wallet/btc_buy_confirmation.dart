@@ -24,76 +24,83 @@ class _BTCBuyConfirmationState extends State<BTCBuyConfirmation> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: BackGroundColr(
-        child: GetBuilder<SplashController>(
-          builder: (splashController) {
-            return SafeArea(
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      BackButtons(),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8, bottom: 15),
-                        child: Text('Confirmation',
+        child: GetBuilder<SplashController>(builder: (splashController) {
+          return SafeArea(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: 20),
+                    BackButtons(),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8, bottom: 15),
+                      child: Text('Confirmation',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w700, fontSize: 20)),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10.0, top: 40),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Amount',
                             style: TextStyle(
-                                fontWeight: FontWeight.w700, fontSize: 20)),
+                                fontWeight: FontWeight.w400,
+                                color: ColorResources.primaryColor),
+                          ),
+                          SizedBox(height: 2),
+                          Text(
+                            '${widget.requestInfo["amount"]} USD',
+                            style: TextStyle(fontSize: 20),
+                          ),
+                          SizedBox(height: 10),
+                          Text(
+                            'Amount in BTC',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w400,
+                                color: ColorResources.primaryColor),
+                          ),
+                          SizedBox(height: 2),
+                          Text(
+                            '${widget.requestInfo["amount_btc"]} USD',
+                            style: TextStyle(fontSize: 20),
+                          ),
+                          SizedBox(height: 10),
+                          Text(
+                            'Fees',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w400,
+                                color: ColorResources.primaryColor),
+                          ),
+                          SizedBox(height: 2),
+                          Text(
+                            '${splashController.configModel.buyBtcFee} USD',
+                            style: TextStyle(fontSize: 20),
+                          ),
+                          SizedBox(height: 10),
+                          Text(
+                            'Total Amount',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w400,
+                                color: ColorResources.primaryColor),
+                          ),
+                          SizedBox(height: 2),
+                          Text(
+                            '${PriceConverter.priceFormater(balance: (double.parse(splashController.configModel.buyBtcFee) + double.parse(widget.requestInfo["amount"].toString())))} USD',
+                            style: TextStyle(fontSize: 20),
+                          ),
+                        ],
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10.0, top: 40),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Amount',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w400, color: Colors.grey),
-                            ),
-                            SizedBox(height: 10),
-                            Text(
-                              '${widget.requestInfo["amount"]} USD',
-                              style: TextStyle(fontSize: 20),
-                            ),
-                            Text(
-                              'Amount in BTC',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w400, color: Colors.grey),
-                            ),
-                            SizedBox(height: 10),
-                            Text(
-                              '${widget.requestInfo["amount_btc"]} USD',
-                              style: TextStyle(fontSize: 20),
-                            ),
-                            SizedBox(height: 10),
-                            Text(
-                              'Fees',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w400, color: Colors.grey),
-                            ),
-                            SizedBox(height: 10),
-                            Text(
-                              '${splashController.configModel.buyBtcFee} USD',
-                              style: TextStyle(fontSize: 20),
-                            ),
-                            SizedBox(height: 20),
-                            Text(
-                              'Total Amount',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w400, color: Colors.grey),
-                            ),
-                            SizedBox(height: 10),
-                            Text(
-                              '${PriceConverter.priceFormater(balance: (double.parse(splashController.configModel.buyBtcFee) + double.parse(widget.requestInfo["amount"].toString())))} USD',
-                              style: TextStyle(fontSize: 20),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: 30),
-                       Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 12),
-                      child: GetBuilder<WalletController>(builder: (controller) {
+                    ),
+                    SizedBox(height: 30),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 20.0, horizontal: 12),
+                      child:
+                          GetBuilder<WalletController>(builder: (controller) {
                         return Container(
                           height: 50,
                           width: MediaQuery.of(context).size.width,
@@ -104,7 +111,7 @@ class _BTCBuyConfirmationState extends State<BTCBuyConfirmation> {
                             vertical: 35.w,
                           ),
                           child: buttonWithBorder(
-                            'Confirm Request',
+                            'Looks Good',
                             textColor: Colors.white,
                             buttonColor: ColorResources.primaryColor,
                             fontSize: 18.sp,
@@ -120,7 +127,8 @@ class _BTCBuyConfirmationState extends State<BTCBuyConfirmation> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => BTCBuyConfirmationSucess(),
+                                    builder: (context) =>
+                                        BTCBuyConfirmationSucess(),
                                   ),
                                 );
                               }
@@ -129,14 +137,12 @@ class _BTCBuyConfirmationState extends State<BTCBuyConfirmation> {
                         );
                       }),
                     ),
-                      
-                    ],
-                  ),
+                  ],
                 ),
               ),
-            );
-          }
-        ),
+            ),
+          );
+        }),
       ),
     );
   }

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:six_cash/util/color_resources.dart';
 import 'package:six_cash/util/dimensions.dart';
@@ -12,8 +11,8 @@ class CustomPasswordField extends StatefulWidget {
   final String hint;
   final TextAlign textAlign;
   final TextEditingController controller;
-  final double fontSize,letterSpacing;
-  final FocusNode nextFocus,focusNode;
+  final double fontSize, letterSpacing;
+  final FocusNode nextFocus, focusNode;
   final TextInputAction textInputAction;
   CustomPasswordField({
     this.isShowSuffixIcon,
@@ -45,12 +44,12 @@ class _CustomPasswordFieldState extends State<CustomPasswordField> {
       obscureText: widget.isPassword ? _obscureText : false,
       cursorColor: ColorResources.getPrimaryTextColor(),
       textAlign: widget.textAlign,
-      keyboardType: TextInputType.number,
+      keyboardType: TextInputType.phone,
       textInputAction: widget.textInputAction,
       maxLength: 4,
-      onSubmitted: (text) => widget.nextFocus != null ? FocusScope.of(context).requestFocus(widget.nextFocus)
+      onSubmitted: (text) => widget.nextFocus != null
+          ? FocusScope.of(context).requestFocus(widget.nextFocus)
           : null,
-
       style: TextStyle(
         color: ColorResources.getBlackColor(),
         fontSize: widget.fontSize,
@@ -83,8 +82,10 @@ class _CustomPasswordFieldState extends State<CustomPasswordField> {
             ? widget.isPassword
                 ? IconButton(
                     icon: Icon(
-                        _obscureText ? Icons.visibility_off : Icons.visibility,
-                        color: ColorResources.getPrimaryTextColor(),size: 18,),
+                      _obscureText ? Icons.visibility_off : Icons.visibility,
+                      color: ColorResources.getPrimaryTextColor(),
+                      size: 18,
+                    ),
                     onPressed: _toggle)
                 : widget.isIcon
                     ? IconButton(

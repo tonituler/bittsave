@@ -28,17 +28,14 @@ class _SetLockPeriodState extends State<SetLockPeriod> {
     return BackGroundColr(
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        appBar: AppBar(
-          leading: BackButtons(),
-          backgroundColor: Colors.white.withOpacity(0),
-          elevation: 0,
-        ),
         body: GetBuilder<SplashController>(builder: (splashController) {
           return Container(
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                SizedBox(height: 60),
+                BackButtons(),
                 Text(
                   'Set a lock period',
                   style: TextStyle(
@@ -60,7 +57,9 @@ class _SetLockPeriodState extends State<SetLockPeriod> {
                   ),
                 ),
                 SizedBox(height: 80),
-                ...splashController.configModel.planPeriod.map((Map<String, dynamic> item) => monthItem(month: item)).toList(),
+                ...splashController.configModel.planPeriod
+                    .map((Map<String, dynamic> item) => monthItem(month: item))
+                    .toList(),
                 SizedBox(height: 40),
                 Padding(
                   padding: const EdgeInsets.only(left: 20.0, top: 60),
@@ -105,7 +104,8 @@ class _SetLockPeriodState extends State<SetLockPeriod> {
 
   String getInterestRate(String month, SplashController splashController) {
     String interestRate = "0";
-    splashController.configModel.planPeriod.forEach((Map<String, dynamic> element) {
+    splashController.configModel.planPeriod
+        .forEach((Map<String, dynamic> element) {
       if (element["period"].toString() == month) {
         interestRate = element["interest"].toString();
       }
@@ -142,7 +142,11 @@ class _SetLockPeriodState extends State<SetLockPeriod> {
             Center(
               child: CircleAvatar(
                 radius: 10,
-                child: Icon(Icons.check, color: (month["id"].toString() == selectedMonth) ? ColorResources.primaryColor : Colors.white, size: 13),
+                child: Icon(Icons.check,
+                    color: (month["id"].toString() == selectedMonth)
+                        ? ColorResources.primaryColor
+                        : Colors.white,
+                    size: 13),
                 backgroundColor: Colors.pink[100],
               ),
             ),

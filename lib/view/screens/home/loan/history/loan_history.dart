@@ -12,12 +12,14 @@ import 'package:six_cash/view/screens/home/funding_options/request_from_a_riend/
 import 'package:six_cash/view/screens/home/funding_options/request_from_a_riend/friend_identity.dart';
 import 'package:six_cash/view/screens/home/funding_usd_wallet_page.dart';
 import 'package:six_cash/view/screens/home/loan/history/loan_info.dart';
-import 'package:six_cash/view/screens/home/loan/loan_page.dart';
+
+import '../../../../../util/dimensions.dart';
 
 bool _showBtSheet = false;
 const kTextField = InputDecoration(
   hintText: 'Choose a value',
-  hintStyle: TextStyle(color: Colors.pink, fontWeight: FontWeight.w300, fontSize: 16),
+  hintStyle:
+      TextStyle(color: Colors.pink, fontWeight: FontWeight.w300, fontSize: 16),
 );
 
 class LoanHistory extends StatefulWidget {
@@ -46,53 +48,73 @@ class _LoanHistoryState extends State<LoanHistory> {
     return BackGroundColr(
       child: Scaffold(
         backgroundColor: Colors.white.withOpacity(0.1),
-        appBar: AppBar(
-          leading: BackButtons(),
-          backgroundColor: Colors.white.withOpacity(0),
-          elevation: 0,
-        ),
-        body: Container(
-          padding: EdgeInsets.symmetric(horizontal: 20),
-          child: GetBuilder<SplashController>(
-            builder: (splashController) {
-              return GetBuilder<LoanController>(
-                builder: (controller) {
-                  return FutureBuilder(
-                    future: loadLoans(controller),
-                    builder: (context, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        isInitialLoad = true;
-                        return Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      } else if (snapshot.hasError) {
-                        isInitialLoad = true;
-                        return noLoanItem();
-                      } else if (snapshot.hasData) {
-                        isInitialLoad = true;
+        // appBar: AppBar(
+        //   leading: Padding(
+        //     padding: const EdgeInsets.only(top: 20.0),
+        //     child: BackButtons(),
+        //   ),
+        //   backgroundColor: Colors.white.withOpacity(0),
+        //   elevation: 0,
+        // ),
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 5.0, right: 5),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 18),
+                Padding(
+                  padding: const EdgeInsets.only(left: 13.0),
+                  child: BackButtons(),
+                ),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  child: GetBuilder<SplashController>(
+                    builder: (splashController) {
+                      return GetBuilder<LoanController>(
+                        builder: (controller) {
+                          return FutureBuilder(
+                            future: loadLoans(controller),
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                isInitialLoad = true;
+                                return Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              } else if (snapshot.hasError) {
+                                isInitialLoad = true;
+                                return noLoanItem();
+                              } else if (snapshot.hasData) {
+                                isInitialLoad = true;
 
-                        if (controller.loansHistory.isEmpty) {
-                        return noLoanItem();
-                        } else {
-                          return SingleChildScrollView(
-                            child: Column(
-                              children: controller.loansHistory.map((item) => loanItem(item)).toList(),
-                            ),
+                                if (controller.loansHistory.isEmpty) {
+                                  return noLoanItem();
+                                } else {
+                                  return SingleChildScrollView(
+                                    child: Column(
+                                      children: controller.loansHistory
+                                          .map((item) => loanItem(item))
+                                          .toList(),
+                                    ),
+                                  );
+                                }
+                              } else {
+                                isInitialLoad = true;
+                                return Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              }
+                            },
                           );
-                        }
-                      } else {
-                        isInitialLoad = true;
-                        return Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      }
+                        },
+                      );
                     },
-                  );
-                },
-              );
-            },
+                  ),
+                ),
+              ],
+            ),
           ),
-        
         ),
       ),
     );
@@ -137,7 +159,9 @@ class _LoanHistoryState extends State<LoanHistory> {
           ),
           Padding(
             padding: const EdgeInsets.only(bottom: 10, top: 10),
-            child: Text('You have not applied for a loan, but thats about to change. Tap the button below', textAlign: TextAlign.center),
+            child: Text(
+                'You have not applied for a loan, but thats about to change. Tap the button below',
+                textAlign: TextAlign.center),
           ),
           Container(
             height: 50,
@@ -194,7 +218,6 @@ class _LoanHistoryState extends State<LoanHistory> {
       ),
     );
   }
-  
 
   Widget showLoanResult() {
     Widget widget = Container(
@@ -228,16 +251,20 @@ class _LoanHistoryState extends State<LoanHistory> {
                     ),
                     SizedBox(height: 20),
                     subText('Total Payback'),
-                    titleText('\$${controller.loanCalculationResult["total_payback"]}'),
+                    titleText(
+                        '\$${controller.loanCalculationResult["total_payback"]}'),
                     SizedBox(height: 16),
                     subText('Loan Amount'),
-                    titleText('\$${controller.loanCalculationResult["loan_amount"]}'),
+                    titleText(
+                        '\$${controller.loanCalculationResult["loan_amount"]}'),
                     SizedBox(height: 16),
                     subText('Monthly Payback'),
-                    titleText('\$${controller.loanCalculationResult["monthly_payback"]}'),
+                    titleText(
+                        '\$${controller.loanCalculationResult["monthly_payback"]}'),
                     SizedBox(height: 16),
                     subText('Collateral Volume'),
-                    titleText('\$${controller.loanCalculationResult["collateral_volume"]} BTC'),
+                    titleText(
+                        '\$${controller.loanCalculationResult["collateral_volume"]} BTC'),
                     SizedBox(height: 8),
                     Container(
                       height: 50,
@@ -304,19 +331,26 @@ class _LoanHistoryState extends State<LoanHistory> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            width: 100,
-            height: 25,
-            child: Center(
-                child: Text(
-              '${loan.status}',
-              style: TextStyle(color: Colors.white),
-            )),
-            color: (loan.status?.toLowerCase() == "completed")? Colors.green : Colors.pink,
+            width: 80,
+            height: 22,
+            decoration: BoxDecoration(
+                color: (loan.status?.toLowerCase() == "completed")
+                    ? Colors.green
+                    : Colors.pink,
+                borderRadius: BorderRadius.only(topRight: Radius.circular(10))),
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+              child: Text(
+                '${loan.status}',
+                textAlign: TextAlign.left,
+                style: TextStyle(color: Colors.white, fontSize: 10),
+              ),
+            ),
           ),
           Container(
             width: double.infinity,
-            height: 110,
-            color: Colors.white,
+            // height: 110,
+            color: Colors.white.withOpacity(0.3),
             padding: EdgeInsets.symmetric(horizontal: 14, vertical: 14),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -328,11 +362,14 @@ class _LoanHistoryState extends State<LoanHistory> {
                       children: [
                         Text(
                           'Loan Amount',
-                          style: TextStyle(color: Colors.grey, fontSize: 10),
+                          style: TextStyle(color: Colors.pink, fontSize: 10),
                         ),
                         Text(
                           '\$${PriceConverter.priceFormater(balance: double.parse(loan.loanAmount))}',
-                          style: TextStyle(color: Colors.black, fontSize: 21.5, fontWeight: FontWeight.w400),
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: Dimensions.FONT_SIZE_LARGE,
+                              fontWeight: FontWeight.w400),
                         ),
                       ],
                     ),
@@ -342,22 +379,27 @@ class _LoanHistoryState extends State<LoanHistory> {
                       children: [
                         Text(
                           'Total Payback',
-                          style: TextStyle(color: Colors.grey, fontSize: 10),
+                          style: TextStyle(color: Colors.pink, fontSize: 10),
                         ),
                         Text(
                           '\$${PriceConverter.priceFormater(balance: double.parse(loan.totalRepayment))}',
-                          style: TextStyle(color: Colors.black, fontSize: 21.5, fontWeight: FontWeight.w400),
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: Dimensions.FONT_SIZE_LARGE,
+                              fontWeight: FontWeight.w400),
                         ),
                       ],
                     ),
                   ],
                 ),
-                SizedBox(height: 15),
+                SizedBox(height: 8),
                 Row(
                   children: [
                     Text(
                       'Due date:',
-                      style: TextStyle(color: Colors.black, fontWeight: FontWeight.w600),
+                      style: TextStyle(
+                          color: ColorResources.COLOR_PRIMARY,
+                          fontWeight: FontWeight.w500),
                     ),
                     SizedBox(width: 4),
                     Center(
@@ -367,38 +409,38 @@ class _LoanHistoryState extends State<LoanHistory> {
                       ),
                     ),
                     Spacer(),
-                    if(loan.status?.toLowerCase() != "completed")
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return LoanInfo(
-                                loanInfo: loan,
-                              );
-                            },
+                    if (loan.status?.toLowerCase() != "completed")
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return LoanInfo(
+                                  loanInfo: loan,
+                                );
+                              },
+                            ),
+                          );
+                        },
+                        child: Container(
+                          height: 20,
+                          width: 70,
+                          decoration: BoxDecoration(
+                            color: Colors.pink,
+                            borderRadius: BorderRadius.circular(5),
                           ),
-                        );
-                      },
-                      child: Container(
-                        height: 20,
-                        width: 70,
-                        decoration: BoxDecoration(
-                          color: Colors.pink,
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        child: Center(
-                          child: Text(
-                            'Pay Now',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 12.sp,
+                          child: Center(
+                            child: Text(
+                              'Pay Now',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 12.sp,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    )
+                      )
                   ],
                 ),
               ],
@@ -462,7 +504,8 @@ class _LoanHistoryState extends State<LoanHistory> {
           child: SingleChildScrollView(
             child: GetBuilder<LoanController>(
               builder: (controller) {
-                return GetBuilder<SplashController>(builder: (splashController) {
+                return GetBuilder<SplashController>(
+                    builder: (splashController) {
                   return StatefulBuilder(builder: (context, updateState) {
                     return Container(
                       padding: EdgeInsets.only(top: 10),
@@ -475,11 +518,14 @@ class _LoanHistoryState extends State<LoanHistory> {
                       ),
                       child: Container(
                         height: MediaQuery.of(context).size.height / 1.48,
-                        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 16, vertical: 14),
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
                           color: Colors.white,
-                          borderRadius: BorderRadius.only(topRight: Radius.circular(20), topLeft: Radius.circular(20)),
+                          borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(20),
+                              topLeft: Radius.circular(20)),
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -489,7 +535,9 @@ class _LoanHistoryState extends State<LoanHistory> {
                                 children: [
                                   Text(
                                     'Loan Calculator',
-                                    style: TextStyle(fontWeight: FontWeight.w400, fontSize: 23),
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 23),
                                   ),
                                   Spacer(),
                                   GestureDetector(
@@ -522,7 +570,8 @@ class _LoanHistoryState extends State<LoanHistory> {
                                       controller: amount,
                                     ),
                                     CustomDropDownButton(
-                                      title: 'Select a repayment period (Month)',
+                                      title:
+                                          'Select a repayment period (Month)',
                                       hintText: 'Choose month',
                                       value: planPeriod,
                                       busy: false,
@@ -530,7 +579,10 @@ class _LoanHistoryState extends State<LoanHistory> {
                                         planPeriod = a;
                                         updateState(() {});
                                       },
-                                      list: splashController.configModel.planPeriod.map((e) => e["period"].toString()).toList(),
+                                      list: splashController
+                                          .configModel.planPeriod
+                                          .map((e) => e["period"].toString())
+                                          .toList(),
                                     ),
                                     CustomDropDownButton(
                                       title: 'Select a loan to value',
@@ -541,7 +593,10 @@ class _LoanHistoryState extends State<LoanHistory> {
                                         loanToValue = a;
                                         updateState(() {});
                                       },
-                                      list: splashController.configModel.loanToValueOptions.map((e) => e["value"].toString()).toList(),
+                                      list: splashController
+                                          .configModel.loanToValueOptions
+                                          .map((e) => e["value"].toString())
+                                          .toList(),
                                     ),
                                     CustomDropDownButton(
                                       title: 'Select a repayment type',
@@ -550,10 +605,16 @@ class _LoanHistoryState extends State<LoanHistory> {
                                       busy: false,
                                       onChanged: (a) {
                                         repaymentOption = a;
-                                        getRepaymentId(splashController.configModel.loanRepaymentOption, a);
+                                        getRepaymentId(
+                                            splashController.configModel
+                                                .loanRepaymentOption,
+                                            a);
                                         updateState(() {});
                                       },
-                                      list: splashController.configModel.loanRepaymentOption.map((e) => e["name"].toString()).toList(),
+                                      list: splashController
+                                          .configModel.loanRepaymentOption
+                                          .map((e) => e["name"].toString())
+                                          .toList(),
                                     ),
                                     SizedBox(
                                       height: 40.h,
@@ -561,11 +622,13 @@ class _LoanHistoryState extends State<LoanHistory> {
                                     Container(
                                       height: 50,
                                       width: MediaQuery.of(context).size.width,
-                                      padding: EdgeInsets.symmetric(horizontal: 5.w),
+                                      padding:
+                                          EdgeInsets.symmetric(horizontal: 5.w),
                                       child: buttonWithBorder(
                                         'Calculate Loan',
                                         textColor: Colors.white,
-                                        buttonColor: ColorResources.primaryColor,
+                                        buttonColor:
+                                            ColorResources.primaryColor,
                                         fontSize: 18.sp,
                                         busy: controller.isLoading,
                                         fontWeight: FontWeight.w400,
@@ -574,11 +637,14 @@ class _LoanHistoryState extends State<LoanHistory> {
                                           await controller.calculateLoan({
                                             "loan_amount": amount.text,
                                             "period": planPeriod,
-                                            'repayment_option': repaymentOptionId,
+                                            'repayment_option':
+                                                repaymentOptionId,
                                             'loan_to_value': loanToValue,
                                           });
 
-                                          if (controller.loanCalculationResult != null) {
+                                          if (controller
+                                                  .loanCalculationResult !=
+                                              null) {
                                             Navigator.pop(context);
                                             showLoanResult();
                                           }
@@ -625,7 +691,9 @@ class _LoanHistoryState extends State<LoanHistory> {
                 height: 400,
                 width: 300,
                 decoration: BoxDecoration(
-                    color: Colors.grey[50], border: Border.all(color: Colors.black26, width: 0.2), borderRadius: BorderRadius.circular(20)),
+                    color: Colors.grey[50],
+                    border: Border.all(color: Colors.black26, width: 0.2),
+                    borderRadius: BorderRadius.circular(20)),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -660,7 +728,9 @@ class _LoanHistoryState extends State<LoanHistory> {
                           col: Colors.pink,
                           widget: Text(
                             'Close',
-                            style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500),
                           ),
                         ),
                       ),

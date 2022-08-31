@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:six_cash/view/screens/home/savings_pages/set_lock_period.dart';
 
 import '../funding_options/request_from_a_riend/friend_identity.dart';
@@ -21,22 +22,28 @@ class _SavingsAccountState extends State<SavingsAccount> {
     return BackGroundColr(
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        appBar: AppBar(
-          leading: BackButtons(),
-          backgroundColor: Colors.white.withOpacity(0),
-          elevation: 0,
-        ),
         body: Container(
           padding: EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Savings Account', style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500, fontSize: 22)),
+              SizedBox(height: 60),
+              BackButtons(),
+              Text('Savings Account',
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 22)),
               SizedBox(height: 8),
-              Text('Set an amount that you would be saving .', style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w400, fontSize: 15)),
+              Text('Set an amount that you would be saving .',
+                  style: TextStyle(
+                      color: Colors.grey,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 15)),
               SizedBox(height: 100),
               TextField(
                 controller: amount,
+                keyboardType: TextInputType.phone,
                 decoration: InputDecoration(
                   hintText: 'Amount',
                   hintStyle: TextStyle(

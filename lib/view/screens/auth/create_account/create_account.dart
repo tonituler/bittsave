@@ -44,141 +44,133 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 10.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        BackButtons(),
-                        const SizedBox(
-                            height: Dimensions.PADDING_SIZE_EXTRA_OVER_LARGE),
-                        // CustomLogo(
-                        //     height: Dimensions.BIG_LOGO,
-                        //     width: Dimensions.BIG_LOGO),
-                        const SizedBox(
-                            height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: Dimensions.PADDING_SIZE_DEFAULT),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                // 'create_account_description'.tr,
-                                'Welcome'.tr,
-                                style: montserratRegular.copyWith(
-                                  color: ColorResources.getPrimaryColor(),
-                                  fontSize: Dimensions.FONT_SIZE_LARGE,
-                                ),
-                                textAlign: TextAlign.center,
-                              ),
-                              Text(
-                                // 'create_account_description'.tr,
-                                'Enter your\nmobile number'.tr,
-                                style: montserratRegular.copyWith(
-                                    color: ColorResources.getBlackColor(),
-                                    fontSize:
-                                        Dimensions.FONT_SIZE_OVER_OVER_LARGE,
-                                    fontWeight: FontWeight.w500),
-                                textAlign: TextAlign.left,
-                              ),
-                              Text(
-                                // 'create_account_description'.tr,
-                                'we will send you a confirmation code'.tr,
-                                style: montserratRegular.copyWith(
-                                    color: ColorResources.getGreyColor(),
-                                    fontSize: Dimensions.FONT_SIZE_DEFAULT,
-                                    fontWeight: FontWeight.w500),
-                                textAlign: TextAlign.left,
-                              ),
-                            ],
+              Padding(
+                padding: const EdgeInsets.only(left: 10.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    BackButtons(),
+                    const SizedBox(
+                        height: Dimensions.PADDING_SIZE_EXTRA_OVER_LARGE),
+                    // CustomLogo(
+                    //     height: Dimensions.BIG_LOGO,
+                    //     width: Dimensions.BIG_LOGO),
+                    const SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: Dimensions.PADDING_SIZE_DEFAULT),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            // 'create_account_description'.tr,
+                            'Welcome'.tr,
+                            style: montserratRegular.copyWith(
+                              color: ColorResources.getPrimaryColor(),
+                              fontSize: Dimensions.FONT_SIZE_LARGE,
+                            ),
+                            textAlign: TextAlign.center,
                           ),
-                        ),
-                        const SizedBox(
-                          height: Dimensions.PADDING_SIZE_EXTRA_LARGE,
-                        ),
-                        GetBuilder<CreateAccountController>(
-                          builder: (controller) => Container(
-                            height: 52,
-                            margin: EdgeInsets.symmetric(
-                                horizontal: Dimensions.PADDING_SIZE_DEFAULT),
-                            child: Center(
-                              child: TextField(
-                                maxLength: 10,
-                                textAlign: TextAlign.left,
-                                style: TextStyle(
-                                    fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE),
-                                controller: numberFieldController,
-                                keyboardType: TextInputType.phone,
-                                cursorColor:
-                                    ColorResources.getPrimaryTextColor(),
-                                decoration: InputDecoration(
-                                  counterText: '',
-                                  hintText: "___ ___ ___ ___",
-                                  hintStyle: TextStyle(
-                                      fontSize:
-                                          Dimensions.FONT_SIZE_EXTRA_LARGE,
-                                      fontWeight: FontWeight.w100,
-                                      color: Colors.grey[400]),
-                                  contentPadding: const EdgeInsets.only(
-                                    bottom: 0,
-                                    top: 0,
-                                  ),
-                                  // focusedBorder: OutlineInputBorder(
-                                  //   borderRadius: BorderRadius.circular(
-                                  //       Dimensions.RADIUS_SIZE_SMALL),
-                                  //   borderSide: BorderSide.none,
-                                  //   // borderSide: BorderSide(
-                                  //   //   color: ColorResources.getPrimaryTextColor(),
-                                  //   //   width: 2,
-                                  //   // ),
+                          Text(
+                            // 'create_account_description'.tr,
+                            'Enter your\nmobile number'.tr,
+                            style: montserratRegular.copyWith(
+                                color: ColorResources.getBlackColor(),
+                                fontSize: Dimensions.FONT_SIZE_OVER_OVER_LARGE,
+                                fontWeight: FontWeight.w500),
+                            textAlign: TextAlign.left,
+                          ),
+                          Text(
+                            // 'create_account_description'.tr,
+                            'we will send you a confirmation code'.tr,
+                            style: montserratRegular.copyWith(
+                                color: ColorResources.getGreyColor(),
+                                fontSize: Dimensions.FONT_SIZE_DEFAULT,
+                                fontWeight: FontWeight.w500),
+                            textAlign: TextAlign.left,
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: Dimensions.PADDING_SIZE_EXTRA_LARGE,
+                    ),
+                    GetBuilder<CreateAccountController>(
+                      builder: (controller) => Container(
+                        height: 52,
+                        margin: EdgeInsets.symmetric(
+                            horizontal: Dimensions.PADDING_SIZE_DEFAULT),
+                        child: Center(
+                          child: TextField(
+                            maxLength: 10,
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                                fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE),
+                            controller: numberFieldController,
+                            keyboardType: TextInputType.phone,
+                            cursorColor: ColorResources.getPrimaryTextColor(),
+                            decoration: InputDecoration(
+                              counterText: '',
+                              hintText: "___ ___ ___ ___",
+                              hintStyle: TextStyle(
+                                  fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE,
+                                  fontWeight: FontWeight.w100,
+                                  color: Colors.grey[400]),
+                              contentPadding: const EdgeInsets.only(
+                                bottom: 0,
+                                top: 0,
+                              ),
+                              // focusedBorder: OutlineInputBorder(
+                              //   borderRadius: BorderRadius.circular(
+                              //       Dimensions.RADIUS_SIZE_SMALL),
+                              //   borderSide: BorderSide.none,
+                              //   // borderSide: BorderSide(
+                              //   //   color: ColorResources.getPrimaryTextColor(),
+                              //   //   width: 2,
+                              //   // ),
+                              // ),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(
+                                      Dimensions.RADIUS_SIZE_SMALL),
+                                  // borderSide: BorderSide(
+                                  //   color: ColorResources.textFieldBorderColor,
+                                  //   width: 1,
                                   // ),
-                                  border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(
-                                          Dimensions.RADIUS_SIZE_SMALL),
-                                      // borderSide: BorderSide(
-                                      //   color: ColorResources.textFieldBorderColor,
-                                      //   width: 1,
-                                      // ),
-                                      borderSide: BorderSide.none),
-                                  prefixIcon: SizedBox(
-                                    width: 55,
-                                    height: 20,
-                                    child: Row(
-                                      children: [
-                                        Container(
-                                          // color: Colors.green,
-                                          width: 50,
-                                          height: 20,
-                                          margin: const EdgeInsets.only(
-                                              left: 0, bottom: 5),
-                                          // decoration: const BoxDecoration(border: Border(right: BorderSide(width: 2, color: Colors.grey))),
-                                          child: const Center(
-                                              child: Text(
-                                            "+234",
-                                            style: TextStyle(
-                                                fontSize: Dimensions
-                                                    .FONT_SIZE_EXTRA_LARGE),
-                                          )),
-                                        ),
-                                      ],
+                                  borderSide: BorderSide.none),
+                              prefixIcon: SizedBox(
+                                width: 55,
+                                height: 20,
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      // color: Colors.green,
+                                      width: 50,
+                                      height: 20,
+                                      margin: const EdgeInsets.only(
+                                          left: 0, bottom: 5),
+                                      // decoration: const BoxDecoration(border: Border(right: BorderSide(width: 2, color: Colors.grey))),
+                                      child: const Center(
+                                          child: Text(
+                                        "+234",
+                                        style: TextStyle(
+                                            fontSize: Dimensions
+                                                .FONT_SIZE_EXTRA_LARGE),
+                                      )),
                                     ),
-                                  ),
-                                  // prefixIcon: CustomCountryCodePiker(
-                                  //   initSelect: controller.countryCode,
-
-                                  //   onChanged: (code) => controller.setCountryCode(code),
-                                  // ),
+                                  ],
                                 ),
                               ),
+                              // prefixIcon: CustomCountryCodePiker(
+                              //   initSelect: controller.countryCode,
+
+                              //   onChanged: (code) => controller.setCountryCode(code),
+                              // ),
                             ),
                           ),
                         ),
-                      ],
+                      ),
                     ),
-                  ),
+                  ],
                 ),
               ),
               GetBuilder<AuthController>(

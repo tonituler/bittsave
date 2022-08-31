@@ -9,7 +9,10 @@ class MyAppBar {
         statusBarIconBrightness: Brightness.dark, // For Android (dark icons)
         statusBarBrightness: Brightness.light, // For iOS (dark icons)
       ),
-      leading: BackButtons(),
+      leading: Padding(
+        padding: const EdgeInsets.only(top: 20.0),
+        child: BackButtons(),
+      ),
       backgroundColor: Colors.transparent,
       elevation: 0,
     );

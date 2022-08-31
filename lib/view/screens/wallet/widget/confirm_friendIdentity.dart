@@ -16,7 +16,8 @@ import '../../home/funding_options/fund_bit_express.dart';
 import '../../home/funding_usd_wallet_page.dart';
 
 class FriendsIdentity1 extends StatefulWidget {
-  FriendsIdentity1({Key key, @required this.username, @required this.type}) : super(key: key);
+  FriendsIdentity1({Key key, @required this.username, @required this.type})
+      : super(key: key);
   String username;
   String type;
 
@@ -35,7 +36,8 @@ class _FriendsIdentity1State extends State<FriendsIdentity1> {
     super.initState();
 
     SchedulerBinding.instance.addPostFrameCallback((_) {
-      Get.find<WalletController>().checkCustomerUsername(username: widget.username);
+      Get.find<WalletController>()
+          .checkCustomerUsername(username: widget.username);
     });
   }
 
@@ -51,6 +53,7 @@ class _FriendsIdentity1State extends State<FriendsIdentity1> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              SizedBox(height: 20),
               BackButtons(),
               BoldTextTitle(
                 data: "Confirm your friend's\nidentification",
@@ -68,7 +71,8 @@ class _FriendsIdentity1State extends State<FriendsIdentity1> {
                   );
                 }
 
-                if (!controller.isInitLoading && controller.receipentInfo == null) {
+                if (!controller.isInitLoading &&
+                    controller.receipentInfo == null) {
                   return Container(
                     height: 400.h,
                     child: Center(
@@ -90,7 +94,8 @@ class _FriendsIdentity1State extends State<FriendsIdentity1> {
                             ),
                             Text(
                               "User information is not available",
-                              style: TextStyle(fontWeight: FontWeight.w300, fontSize: 18),
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w300, fontSize: 18),
                             ),
                           ],
                         ),
@@ -105,11 +110,13 @@ class _FriendsIdentity1State extends State<FriendsIdentity1> {
                       margin: EdgeInsets.symmetric(horizontal: 14),
                       height: 600,
                       width: double.infinity,
-                      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10)),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10)),
                       child: Column(
                         children: [
                           Container(
-                            margin: EdgeInsets.only(top: 70, bottom: 10),
+                            margin: EdgeInsets.only(top: 20, bottom: 10),
                             width: 70,
                             height: 70,
                             decoration: BoxDecoration(
@@ -117,12 +124,15 @@ class _FriendsIdentity1State extends State<FriendsIdentity1> {
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: ClipRRect(
-                              borderRadius: BorderRadius.all(Radius.circular(10)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10)),
                               child: FadeInImage.assetNetwork(
                                 fit: BoxFit.cover,
-                                image: "${Get.find<SplashController>().configModel.baseUrls.customerImageUrl}/${controller.receipentInfo["image"]}",
+                                image:
+                                    "${Get.find<SplashController>().configModel.baseUrls.customerImageUrl}/${controller.receipentInfo["image"]}",
                                 placeholder: Images.avatar,
-                                imageErrorBuilder: (context, url, error) => Image.asset(
+                                imageErrorBuilder: (context, url, error) =>
+                                    Image.asset(
                                   Images.avatar,
                                   fit: BoxFit.cover,
                                 ),
@@ -131,13 +141,15 @@ class _FriendsIdentity1State extends State<FriendsIdentity1> {
                           ),
                           Text(
                             controller.receipentInfo["name"],
-                            style: TextStyle(fontWeight: FontWeight.w300, fontSize: 14),
+                            style: TextStyle(
+                                fontWeight: FontWeight.w300, fontSize: 14),
                           ),
                           SizedBox(height: 40),
                           Container(
                             margin: EdgeInsets.symmetric(horizontal: 20),
                             decoration: BoxDecoration(
-                              border: Border.all(width: 0.1, color: Colors.grey),
+                              border:
+                                  Border.all(width: 0.1, color: Colors.grey),
                               // color: Colors.lightGreenAccent,
                               borderRadius: BorderRadius.circular(8),
                             ),
@@ -148,12 +160,18 @@ class _FriendsIdentity1State extends State<FriendsIdentity1> {
                                 SizedBox(height: 5),
                                 Text(
                                   'are you sure',
-                                  style: kLightTextStyle.copyWith(color: Colors.grey, fontWeight: FontWeight.w400, fontSize: 12),
+                                  style: kLightTextStyle.copyWith(
+                                      color: Colors.grey,
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 12),
                                 ),
                                 SizedBox(height: 10),
                                 Text(
-                                  'Please confirm your IDs ',
-                                  style: kLightTextStyle.copyWith(color: Colors.black, fontSize: 16, fontWeight: FontWeight.w400),
+                                  'This is Wrong identity',
+                                  style: kLightTextStyle.copyWith(
+                                      color: Colors.black,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w400),
                                 ),
                                 SizedBox(height: 7),
                                 CircleAvatar(
@@ -169,16 +187,21 @@ class _FriendsIdentity1State extends State<FriendsIdentity1> {
                             ),
                           ),
                           SizedBox(height: 20),
-                          Text('Enter amount', style: kLightTextStyle.copyWith(fontWeight: FontWeight.w400, color: Colors.grey, fontSize: 14)),
-                          SizedBox(height: 8),
+                          Text('Enter amount',
+                              style: kLightTextStyle.copyWith(
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.grey,
+                                  fontSize: 14)),
+                          SizedBox(height: 0),
                           Expanded(
+                            flex: 0,
                             child: Center(
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Text(
-                                    '\$',
+                                    '         \$',
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontWeight: FontWeight.w700,
@@ -186,21 +209,32 @@ class _FriendsIdentity1State extends State<FriendsIdentity1> {
                                     ),
                                   ),
                                   SizedBox(
-                                    width: 10,
+                                    width: 1,
                                   ),
                                   SizedBox(
                                     width: 150,
                                     // height: 80,
                                     child: TextField(
-                                      decoration: InputDecoration(border: InputBorder.none, hintText: "0.00"),
+                                      decoration: InputDecoration(
+                                          border: InputBorder.none,
+                                          hintText: "0.00",
+                                          hintStyle: TextStyle(
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 35.sp,
+                                          )),
                                       controller: amount,
                                       keyboardType: TextInputType.number,
                                       onChanged: (String value) {
                                         // print(usdToNgn);
-                                        if (value.trim() != "" && usdToNgn != null && usdToNgn != "") {
+                                        if (value.trim() != "" &&
+                                            usdToNgn != null &&
+                                            usdToNgn != "") {
                                           try {
-                                            double val = double.parse(value.trim());
-                                            double uToN = double.parse(usdToNgn);
+                                            double val =
+                                                double.parse(value.trim());
+                                            double uToN =
+                                                double.parse(usdToNgn);
                                             amountInNaira = val * uToN;
                                             amountInDolar = val;
                                             setState(() {});
@@ -211,71 +245,142 @@ class _FriendsIdentity1State extends State<FriendsIdentity1> {
                                           setState(() {});
                                         }
                                       },
-                                      style: TextStyle(fontSize: 35.sp, fontWeight: FontWeight.w700),
+                                      style: TextStyle(
+                                          fontSize: 35.sp,
+                                          fontWeight: FontWeight.w700),
                                     ),
                                   ),
                                 ],
                               ),
                             ),
                           ),
+                          // Expanded(
+                          //   child: Center(
+                          //     child: Row(
+                          //       mainAxisAlignment: MainAxisAlignment.center,
+                          //       crossAxisAlignment: CrossAxisAlignment.center,
+                          //       children: [
+                          //         Text(
+                          //           '\$',
+                          //           style: TextStyle(
+                          //             color: Colors.black,
+                          //             fontWeight: FontWeight.w700,
+                          //             fontSize: 35.sp,
+                          //           ),
+                          //         ),
+                          //         SizedBox(
+                          //           width: 10,
+                          //         ),
+                          //         SizedBox(
+                          //           width: 150,
+                          //           // height: 80,
+                          //           child: TextField(
+                          //             decoration: InputDecoration(
+                          //                 border: InputBorder.none,
+                          //                 hintText: "0.00"),
+                          //             controller: amount,
+                          //             keyboardType: TextInputType.number,
+                          //             onChanged: (String value) {
+                          //               // print(usdToNgn);
+                          //               if (value.trim() != "" &&
+                          //                   usdToNgn != null &&
+                          //                   usdToNgn != "") {
+                          //                 try {
+                          //                   double val =
+                          //                       double.parse(value.trim());
+                          //                   double uToN =
+                          //                       double.parse(usdToNgn);
+                          //                   amountInNaira = val * uToN;
+                          //                   amountInDolar = val;
+                          //                   setState(() {});
+                          //                 } catch (e) {}
+                          //               } else {
+                          //                 amountInNaira = 0.0;
+                          //                 amountInDolar = 0.0;
+                          //                 setState(() {});
+                          //               }
+                          //             },
+                          //             style: TextStyle(
+                          //                 fontSize: 35.sp,
+                          //                 fontWeight: FontWeight.w700),
+                          //           ),
+                          //         ),
+                          //       ],
+                          //     ),
+                          //   ),
+                          // ),
                           Divider(
                             color: Colors.grey,
                             thickness: 0.2,
                           ),
                           SizedBox(height: 15),
                           Container(
-                            margin: const EdgeInsets.only(top: 10.0, right: 12, left: 0, bottom: 0),
+                            margin: const EdgeInsets.only(
+                                top: 10.0, right: 12, left: 0, bottom: 0),
                             padding: const EdgeInsets.all(10),
-                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: Colors.black),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.black),
                             child: Center(
                               child: Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
                                   InnerContainer(
                                     height: 50,
                                     col: Colors.white,
                                     data: 5,
                                     widget: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: [
                                         Text(
                                           "Amount in BTC",
-                                          style: kLightTextStyle.copyWith(color: Colors.grey),
+                                          style: kLightTextStyle.copyWith(
+                                              color: Colors.grey),
                                         ),
                                         SizedBox(height: 2),
                                         Text(
                                           '${PriceConverter.converDolarToBTC(amountInDolar)}BTC',
-                                          style: kLightTextStyle.copyWith(fontWeight: FontWeight.w400, color: Colors.black, fontSize: 16.sp),
+                                          style: kLightTextStyle.copyWith(
+                                              fontWeight: FontWeight.w400,
+                                              color: Colors.black,
+                                              fontSize: 16.sp),
                                         ),
                                       ],
                                     ),
                                     style: kLightTextStyle,
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.symmetric(horizontal: 5.w),
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 5.w),
                                     child: GetBuilder<WalletController>(
                                       builder: (walletController) {
                                         return buttonWithBorder(
                                           "Send Now",
                                           textColor: Colors.white,
-                                          buttonColor: ColorResources.primaryColor,
+                                          buttonColor:
+                                              ColorResources.primaryColor,
                                           fontSize: 18.sp,
                                           busy: walletController.isLoading,
                                           fontWeight: FontWeight.w400,
                                           height: 54.h,
                                           onTap: () async {
                                             if (amountInDolar == 0) {
-                                              showCustomSnackBar("The amount can not be \$0");
+                                              showCustomSnackBar(
+                                                  "The amount can not be \$0");
                                               return;
                                             }
                                             bool response;
                                             if (widget.type == "USD") {
-                                              response = await walletController.sendUSDToBTCWallet({
+                                              response = await walletController
+                                                  .sendUSDToBTCWallet({
                                                 "username": widget.username,
                                                 "amount": amountInDolar,
                                               });
                                             } else {
-                                              response = await walletController.sendBTCToUser({
+                                              response = await walletController
+                                                  .sendBTCToUser({
                                                 "username": widget.username,
                                                 "amount": amountInDolar,
                                               });
@@ -284,11 +389,14 @@ class _FriendsIdentity1State extends State<FriendsIdentity1> {
                                             if (response) {
                                               Navigator.push(
                                                 context,
-                                                MaterialPageRoute(builder: (contet) {
+                                                MaterialPageRoute(
+                                                    builder: (contet) {
                                                   return SendUsdFromFriend(
                                                     requestInfo: {
-                                                      ...controller.receipentInfo,
-                                                      "username": widget.username,
+                                                      ...controller
+                                                          .receipentInfo,
+                                                      "username":
+                                                          widget.username,
                                                       "amount": amountInDolar,
                                                     },
                                                   );
@@ -327,7 +435,13 @@ class BackGroundColr extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
           gradient: LinearGradient(
-              begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [Colors.pink[50], Color.fromARGB(0, 244, 235, 238), Colors.grey[50]])),
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+            Colors.pink[50],
+            Color.fromARGB(0, 244, 235, 238),
+            Colors.grey[50]
+          ])),
       width: double.infinity,
       child: child,
     );

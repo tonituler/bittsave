@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:six_cash/view/screens/home/savings_pages/choose_payment_method.dart';
-import 'package:six_cash/view/screens/home/savings_pages/savings_account.dart';
 
 import '../funding_options/request_from_a_riend/friend_identity.dart';
 import '../funding_usd_wallet_page.dart';
-import 'create_a_plan.dart';
 import 'myPlans.dart';
 
 class ChoosePayMentSource extends StatefulWidget {
@@ -16,24 +14,25 @@ class ChoosePayMentSource extends StatefulWidget {
 }
 
 class _ChoosePayMentSourceState extends State<ChoosePayMentSource> {
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: BackGroundColr(
             child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 12),
+          padding: EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              SizedBox(height: 60),
               BackButtons(),
-              Text('Choose payment source',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 22),
-                      ),
+              Text(
+                'Choose payment source',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 22),
+              ),
               SizedBox(height: 8),
               Text('Select your preferred funding source',
                   style: TextStyle(

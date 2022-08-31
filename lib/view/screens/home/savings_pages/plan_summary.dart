@@ -10,10 +10,10 @@ import 'package:six_cash/view/screens/home/savings_pages/Successfull_page.dart';
 
 import '../funding_options/request_from_a_riend/friend_identity.dart';
 import '../funding_usd_wallet_page.dart';
-import 'myPlans.dart';
 
 class PlanSummary extends StatefulWidget {
-  PlanSummary({Key key, @required this.savingsInfo, @required this.planPreview}) : super(key: key);
+  PlanSummary({Key key, @required this.savingsInfo, @required this.planPreview})
+      : super(key: key);
   Map<String, dynamic> savingsInfo;
   Map<String, dynamic> planPreview;
 
@@ -27,47 +27,70 @@ class _PlanSummaryState extends State<PlanSummary> {
     return BackGroundColr(
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        appBar: AppBar(
-          leading: BackButtons(),
-          backgroundColor: Colors.white.withOpacity(0),
-          elevation: 0,
-        ),
         body: GetBuilder<SavingsController>(
           builder: (controller) {
             return Container(
-              padding: EdgeInsets.symmetric(horizontal: 12),
+              padding: EdgeInsets.symmetric(horizontal: 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Plan Summary', style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500, fontSize: 22)),
+                  SizedBox(height: 60),
+                  BackButtons(),
+                  Text('Plan Summary',
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 22)),
                   SizedBox(height: 8),
-                  Text('Lets go over all you\'ve selected, then you proceed to stacking Bitcoin!',
-                      style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w400, fontSize: 15)),
+                  Text(
+                      'Lets go over all you\'ve selected, then you proceed to stacking Bitcoin!',
+                      style: TextStyle(
+                          color: Colors.grey,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 15)),
                   Container(
                     margin: EdgeInsets.only(top: 60, right: 10, left: 10),
-                    padding: EdgeInsets.only(left: 40, right: 40, top: 25),
+                    padding: EdgeInsets.only(left: 10, right: 10, top: 25),
                     height: 360,
                     width: double.infinity,
                     decoration: BoxDecoration(
-                        color: Colors.white54, borderRadius: BorderRadius.circular(20), border: Border.all(color: Colors.pink, width: 1)),
+                        color: Colors.white54,
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(color: Colors.pink, width: 1)),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        conColumn('Type of Plan', 'Target Amount', "Bitcoin saving",
-                            '\$${PriceConverter.priceFormater(balance: double.parse(widget.planPreview["target_amount"].toString()))}'),
-                        conColumn('Plan Name', 'Periodic Amount', widget.savingsInfo["name"],
-                            '\$${PriceConverter.priceFormater(balance: double.parse(widget.planPreview["amount"].toString()))}'),
-                        conColumn('Lock Period', 'Frequency', widget.savingsInfo["lock_period"].toString(),
-                            widget.savingsInfo["frequency_name"].toString()),
                         conColumn(
-                          'ROI',
-                          'Start On',
-                          '\$${PriceConverter.priceFormater(balance: double.parse(widget.planPreview["roi"].toString()))}',
-                          formatedDate(),
-                        ),
+                            'Type of Plan',
+                            'Target Amount',
+                            "Bitcoin saving",
+                            '\$${PriceConverter.priceFormater(balance: double.parse(widget.planPreview["target_amount"].toString()))}',
+                            Colors.pink),
+                        conColumn(
+                            'Plan Name',
+                            'Periodic Amount',
+                            widget.savingsInfo["name"],
+                            '\$${PriceConverter.priceFormater(balance: double.parse(widget.planPreview["amount"].toString()))}',
+                            Colors.pink),
+                        conColumn(
+                            'Lock Period',
+                            'Frequency',
+                            widget.savingsInfo["lock_period"].toString(),
+                            widget.savingsInfo["frequency_name"].toString(),
+                            Colors.pink),
+                        conColumn(
+                            'ROI',
+                            'Start On',
+                            '\$${PriceConverter.priceFormater(balance: double.parse(widget.planPreview["roi"].toString()))}',
+                            formatedDate(),
+                            Colors.pink),
                         // conColumn('ROI', 'Start On', '\$${PriceConverter.priceFormater(balance: double.parse(widget.planPreview["roi"].toString()))}', DateFormat("MMMM dd, yyyy").parse(widget.savingsInfo["start_date"].toString()).toString()),
-                        conColumn('Payment Method', 'Cashout Method', widget.savingsInfo["debit_type_name"].toString(),
-                            widget.savingsInfo["credit_type_name"].toString()),
+                        conColumn(
+                            'Payment Method',
+                            'Cashout Method',
+                            widget.savingsInfo["debit_type_name"].toString(),
+                            widget.savingsInfo["credit_type_name"].toString(),
+                            Colors.white),
                       ],
                     ),
                   ),
@@ -81,7 +104,7 @@ class _PlanSummaryState extends State<PlanSummary> {
                       vertical: 35.w,
                     ),
                     child: buttonWithBorder(
-                      'Next',
+                      'Save plan',
                       textColor: Colors.white,
                       buttonColor: ColorResources.primaryColor,
                       fontSize: 18.sp,
@@ -116,7 +139,10 @@ class _PlanSummaryState extends State<PlanSummary> {
   String formatedDate() {
     DateTime dT = DateTime.parse(widget.savingsInfo["start_date"]);
 
-    return "${dT.day}${ordinal(dT.day)} " + DateFormat('MMMM').format(DateTime(0, dT.month)) + " " + dT.year.toString();
+    return "${dT.day}${ordinal(dT.day)} " +
+        DateFormat('MMMM').format(DateTime(0, dT.month)) +
+        " " +
+        dT.year.toString();
   }
 
   String ordinal(int number) {
@@ -140,7 +166,8 @@ class _PlanSummaryState extends State<PlanSummary> {
     }
   }
 
-  Widget conColumn(String sub1, String sub2, String title1, String title2) {
+  Widget conColumn(
+      String sub1, String sub2, String title1, String title2, col) {
     return Column(
       children: [
         Row(children: [
@@ -189,7 +216,7 @@ class _PlanSummaryState extends State<PlanSummary> {
         Divider(
           height: 30,
           thickness: 1,
-          color: Colors.pink,
+          color: col,
         ),
       ],
     );

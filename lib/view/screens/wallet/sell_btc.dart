@@ -4,6 +4,7 @@ import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:six_cash/app/extensions.dart';
 import 'package:six_cash/controller/profile_screen_controller.dart';
 import 'package:six_cash/helper/price_converter.dart';
+import 'package:six_cash/util/dimensions.dart';
 import 'package:six_cash/view/screens/wallet/btc_sell_confirmation.dart';
 
 import '../../../controller/deposit_controller.dart';
@@ -30,21 +31,19 @@ class _SellBtcState extends State<SellBtc> {
   Widget build(BuildContext context) {
     usdToNgn = Get.find<SplashController>().configModel.usdToNgn;
     return Scaffold(
-      appBar: AppBar(
-        leading: BackButtons(),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: GetBuilder<ProfileController>(builder: (profileController) {
             return Container(
-              padding: EdgeInsets.only(left: 10),
+              padding: EdgeInsets.only(left: 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  SizedBox(height: 20),
+                  BackButtons(),
                   Padding(
-                    padding: const EdgeInsets.only(left: 10.0, top: 10, bottom: 2),
+                    padding:
+                        const EdgeInsets.only(left: 10.0, top: 5, bottom: 2),
                     child: BoldTextTitle(
                       data: 'Sell Bitcoin',
                       fontSize: 24.sp,
@@ -52,91 +51,132 @@ class _SellBtcState extends State<SellBtc> {
                   ),
                   GetBuilder<SplashController>(
                     builder: (config) => Padding(
-                      padding: const EdgeInsets.only(left: 10.0, top: 3.0, bottom: 10),
+                      padding: const EdgeInsets.only(
+                          left: 10.0, top: 3.0, bottom: 10),
                       child: LightText(
-                        text: 'How much bitcoin would you like to sell?',
-                      ),
+                          text: 'How much bitcoin would you like to sell?',
+                          fontSize: Dimensions.FONT_SIZE_DEFAULT),
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.only(
-                      top: 15,
-                      bottom: 10,
-                    ),
-                    height: 150,
-                    width: double.maxFinite,
+                    // height: 500,
+                    margin: const EdgeInsets.only(
+                        top: 50.0, right: 20, left: 0, bottom: 0),
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.pink),
                     child: Center(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                '\$',
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 45.sp,
-                                ),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              SizedBox(
-                                width: 150,
-                                height: 80,
-                                child: TextField(
-                                  controller: amount,
-                                  keyboardType: TextInputType.number,
-                                  decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    hintText: "0.00",
+                          SizedBox(height: 30),
+                          Center(
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 80),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                // crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    '\$',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w900,
+                                      fontSize: 47.sp,
+                                    ),
                                   ),
-                                  onChanged: (String value) {
-                                    if (value.trim() != "" && usdToNgn != null && usdToNgn != "") {
-                                      try {
-                                        double val = double.parse(value.trim());
-                                        double uToN = double.parse(usdToNgn);
-                                        amountInNaira = val * uToN;
-                                        amountInDolar = val;
-                                        setState(() {});
-                                      } catch (e) {}
-                                    }
-                                    else {
-                                           amountInNaira = 0.0;
-                                            amountInDolar = 0.0;
+                                  Expanded(
+                                    child: TextField(
+                                      decoration: InputDecoration(
+                                          border: InputBorder.none,
+                                          hintText: "0.00",
+                                          contentPadding: EdgeInsets.only(
+                                              left: 2, bottom: 0, right: 0),
+                                          hintStyle: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w900,
+                                            fontSize: 52.sp,
+                                          )),
+                                      controller: amount,
+                                      keyboardType: TextInputType.number,
+                                      onChanged: (String value) {
+                                        if (value.trim() != "" &&
+                                            usdToNgn != null &&
+                                            usdToNgn != "") {
+                                          try {
+                                            double val =
+                                                double.parse(value.trim());
+                                            double uToN =
+                                                double.parse(usdToNgn);
+                                            amountInNaira = val * uToN;
+                                            amountInDolar = val;
                                             setState(() {});
+                                          } catch (e) {}
+                                        } else {
+                                          amountInNaira = 0.0;
+                                          amountInDolar = 0.0;
+                                          setState(() {});
                                         }
-                                  },
-                                  style: TextStyle(
-                                    fontSize: 45.sp,
-                                    fontWeight: FontWeight.w700,
+                                      },
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w900,
+                                          fontSize: 52.sp,
+                                          color: Colors.white),
+                                    ),
                                   ),
-                                ),
+                                  // SizedBox(
+                                  //   width: 150,
+                                  //   // height: 50,
+                                  //   child: TextField(
+                                  //     decoration: InputDecoration(
+                                  //         border: InputBorder.none,
+                                  //         hintText: "0.00",
+                                  //         contentPadding: EdgeInsets.only(
+                                  //             left: 2, bottom: 0, right: 0),
+                                  //         hintStyle: TextStyle(
+                                  //           color: Colors.white,
+                                  //           fontWeight: FontWeight.w900,
+                                  //           fontSize: 52.sp,
+                                  //         )),
+                                  //     controller: amount,
+                                  //     keyboardType: TextInputType.number,
+                                  //     onChanged: (String value) {
+                                  //       // print(usdToNgn);
+                                  //       if (value.trim() != "" &&
+                                  //           usdToNgn != null &&
+                                  //           usdToNgn != "") {
+                                  //         try {
+                                  //           double val =
+                                  //               double.parse(value.trim());
+                                  //           double uToN = double.parse(usdToNgn);
+                                  //           amountInNaira = val * uToN;
+                                  //           amountInDolar = val;
+                                  //           setState(() {});
+                                  //         } catch (e) {}
+                                  //       }
+                                  //     },
+                                  //     style: TextStyle(
+                                  //         fontWeight: FontWeight.w900,
+                                  //         fontSize: 52.sp,
+                                  //         color: Colors.white),
+                                  //   ),
+                                  // ),
+                                ],
                               ),
-                            ],
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(2.0),
-                            child: LightText(
-                              text:
-                                  'Avalibale BTC Bal: \$${PriceConverter.priceFormater(balance: PriceConverter.converBTCToDolar(profileController.userInfo.btcBalance - profileController.userInfo.btcCollateralUsed))}',
-                              fontSize: 12.sp,
                             ),
                           ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(top: 10.0, right: 12, left: 0, bottom: 0),
-                    padding: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: Colors.black),
-                    child: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 30.0),
+                            child: LightText(
+                                txAlign: TextAlign.center,
+                                text:
+                                    'Avalibale BTC Bal: \$${PriceConverter.priceFormater(balance: PriceConverter.converBTCToDolar(profileController.userInfo.btcBalance - profileController.userInfo.btcCollateralUsed))}',
+                                fontSize: 12.sp,
+                                col: ColorResources.whiteColor),
+                          ),
                           InnerContainer(
                             height: 50,
                             col: Colors.white,
@@ -146,28 +186,32 @@ class _SellBtcState extends State<SellBtc> {
                               children: [
                                 Text(
                                   "Amount in BTC",
-                                  style: kLightTextStyle.copyWith(color: Colors.grey),
+                                  style: kLightTextStyle.copyWith(
+                                      color: Colors.pink),
                                 ),
                                 SizedBox(height: 2),
                                 Text(
                                   '${PriceConverter.converDolarToBTC(amountInDolar)}BTC',
-                                  style: kLightTextStyle.copyWith(fontWeight: FontWeight.w400, color: Colors.black, fontSize: 16.sp),
+                                  style: kLightTextStyle.copyWith(
+                                      fontWeight: FontWeight.w400,
+                                      color: Colors.black,
+                                      fontSize: 16.sp),
                                 ),
                               ],
                             ),
                             style: kLightTextStyle,
                           ),
                           Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 5.w),
+                            padding: EdgeInsets.only(
+                                left: 5.w, right: 5.w, bottom: 5.w),
                             child: GetBuilder<DepositController>(
                               builder: (controller) {
                                 return buttonWithBorder(
-                                  "Next",
+                                  'Continue',
                                   textColor: Colors.white,
-                                  buttonColor: ColorResources.primaryColor,
+                                  buttonColor: ColorResources.blackColor,
                                   fontSize: 18.sp,
                                   busy: false,
-                                  diabled: !PriceConverter.isTextFieldPriceValid(PriceConverter.converBTCToDolar(profileController.userInfo.btcBalance - profileController.userInfo.btcCollateralUsed), amount.text),
                                   fontWeight: FontWeight.w400,
                                   height: 54.h,
                                   onTap: () async {
@@ -176,7 +220,9 @@ class _SellBtcState extends State<SellBtc> {
                                       MaterialPageRoute(builder: (context) {
                                         return BTCSellconfrimation(
                                           requestInfo: {
-                                            "amount_btc": PriceConverter.converDolarToBTC(amountInDolar),
+                                            "amount_btc":
+                                                PriceConverter.converDolarToBTC(
+                                                    amountInDolar),
                                             "amount": amountInDolar,
                                           },
                                         );
@@ -190,7 +236,7 @@ class _SellBtcState extends State<SellBtc> {
                         ],
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             );
@@ -200,22 +246,29 @@ class _SellBtcState extends State<SellBtc> {
     );
   }
 
-  
-
-  Widget LightText({String text, double fontSize}) {
+  Widget LightText(
+      {String text, double fontSize, TextAlign txAlign, Color col}) {
     return Text(
       text,
-      style: kLightTextStyle.copyWith(fontSize: fontSize ?? 12.sp),
+      textAlign: txAlign,
+      style: kLightTextStyle.copyWith(fontSize: fontSize ?? 12.sp, color: col),
     );
   }
 
-  Widget InnerContainer({double height, Color col, double data, String text, TextStyle style, Widget widget}) {
+  Widget InnerContainer(
+      {double height,
+      Color col,
+      double data,
+      String text,
+      TextStyle style,
+      Widget widget}) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
         height: height,
         width: double.infinity,
-        decoration: BoxDecoration(color: col, borderRadius: BorderRadius.circular(data)),
+        decoration: BoxDecoration(
+            color: col, borderRadius: BorderRadius.circular(data)),
         child: Center(
           child: widget,
         ),
@@ -223,5 +276,3 @@ class _SellBtcState extends State<SellBtc> {
     );
   }
 }
-
-

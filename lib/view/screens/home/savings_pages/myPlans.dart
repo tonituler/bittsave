@@ -9,6 +9,7 @@ import 'package:six_cash/view/screens/home/funding_options/request_from_a_riend/
 import 'package:six_cash/view/screens/home/savings_pages/plan2.dart';
 import 'package:six_cash/view/screens/home/savings_pages/start_saving_page.dart';
 
+import '../../../../util/dimensions.dart';
 import '../funding_usd_wallet_page.dart';
 
 class MyPlans extends StatefulWidget {
@@ -50,38 +51,32 @@ class _MyPlansState extends State<MyPlans> {
                   return notSavingsItem();
                 } else {
                   return Scaffold(
-                    backgroundColor: Colors.transparent,
-                    appBar: AppBar(
-                      leading: (widget.shouldNavigate) ? BackButtons() : SizedBox(),
-                      backgroundColor: Colors.white.withOpacity(0),
-                      elevation: 0,
-                      actions: [
-                        SizedBox(
-                          height: 20,
-                          child: Center(
-                            child: InkWell(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => StartSavingPage(),
-                                  ),
-                                );
-                              },
-                              child: Container(
-                                height: 40,
-                                width: 40,
-                                margin: EdgeInsets.only(right: 20),
-                                color: ColorResources.primaryColor,
-                                child: Center(
-                                  child: Icon(Icons.add, color: Colors.white),
-                                ),
-                              ),
-                            ),
+                    floatingActionButton: FloatingActionButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => StartSavingPage(),
                           ),
-                        )
-                      ],
+                        );
+                      },
+                      backgroundColor: ColorResources.primaryColor,
+                      child: Image.asset(
+                        'assets/image/plus23.png',
+                        scale: 3,
+                      ),
                     ),
+                    backgroundColor: Colors.transparent,
+                    // appBar: AppBar(
+                    //   leading: (widget.shouldNavigate)
+                    //       ? Padding(
+                    //           padding: const EdgeInsets.only(top: 10.0),
+                    //           child: BackButtons(),
+                    //         )
+                    //       : SizedBox(),
+                    //   backgroundColor: Colors.white.withOpacity(0),
+                    //   elevation: 0,
+                    // ),
                     body: Container(
                       height: MediaQuery.of(context).size.height,
                       width: MediaQuery.of(context).size.width,
@@ -89,6 +84,10 @@ class _MyPlansState extends State<MyPlans> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          SizedBox(
+                            height: 60,
+                          ),
+                          BackButtons(),
                           Text(
                             'My Plans',
                             style: TextStyle(
@@ -97,7 +96,6 @@ class _MyPlansState extends State<MyPlans> {
                               fontSize: 22,
                             ),
                           ),
-                          SizedBox(height: 8),
                           Text('Check how your savings is gaining',
                               style: TextStyle(
                                   color: Colors.grey,
@@ -138,16 +136,21 @@ class _MyPlansState extends State<MyPlans> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            width: 150,
-            height: 25,
-            child: Center(
-                child: Text(
-              '${plan.status}',
-              style: TextStyle(color: Colors.white),
-            )),
-            color: (plan.status?.toLowerCase() == "completed")
-                ? Colors.green
-                : Colors.pink,
+            width: 80,
+            height: 22,
+            decoration: BoxDecoration(
+                color: (plan.status?.toLowerCase() == "completed")
+                    ? Colors.green
+                    : Colors.pink,
+                borderRadius: BorderRadius.only(topRight: Radius.circular(10))),
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+              child: Text(
+                '${plan.status}',
+                textAlign: TextAlign.left,
+                style: TextStyle(color: Colors.white, fontSize: 10),
+              ),
+            ),
           ),
           InkWell(
             onTap: () {
@@ -162,8 +165,9 @@ class _MyPlansState extends State<MyPlans> {
             },
             child: Container(
               width: double.infinity,
-              height: 110,
-              color: Colors.white,
+              // height: 100,
+
+              color: Colors.white.withOpacity(0.3),
               padding: EdgeInsets.symmetric(horizontal: 14, vertical: 14),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -176,14 +180,16 @@ class _MyPlansState extends State<MyPlans> {
                         children: [
                           Text(
                             'Plan name',
-                            style: TextStyle(color: Colors.grey, fontSize: 10),
+                            style: TextStyle(
+                                color: ColorResources.COLOR_PRIMARY,
+                                fontSize: 10),
                           ),
                           Text(
                             plan.name,
                             // '\$${PriceConverter.priceFormater(balance: double.parse(loan.loanAmount))}',
                             style: TextStyle(
                                 color: Colors.black,
-                                fontSize: 21.5,
+                                fontSize: Dimensions.FONT_SIZE_LARGE,
                                 fontWeight: FontWeight.w400),
                           ),
                         ],
@@ -194,11 +200,16 @@ class _MyPlansState extends State<MyPlans> {
                         children: [
                           Text(
                             'Gains',
-                            style: TextStyle(color: Colors.grey, fontSize: 10),
+                            style: TextStyle(
+                                color: ColorResources.COLOR_PRIMARY,
+                                fontSize: 10),
                           ),
                           Text(
                             '\$${PriceConverter.priceFormater(balance: double.parse(plan.gains))}',
-                            style: TextStyle(color: Colors.black, fontSize: 21.5, fontWeight: FontWeight.w400),
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: Dimensions.FONT_SIZE_LARGE,
+                                fontWeight: FontWeight.w400),
                           ),
                         ],
                       ),
@@ -207,27 +218,30 @@ class _MyPlansState extends State<MyPlans> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Total Earnings',
-                            style: TextStyle(color: Colors.grey, fontSize: 10),
+                            'Plan Balance',
+                            style: TextStyle(
+                                color: ColorResources.COLOR_PRIMARY,
+                                fontSize: 10),
                           ),
                           Text(
                             '\$${PriceConverter.priceFormater(balance: double.parse(plan.targetAmount))}',
                             style: TextStyle(
                                 color: Colors.black,
-                                fontSize: 21.5,
+                                fontSize: Dimensions.FONT_SIZE_LARGE,
                                 fontWeight: FontWeight.w400),
                           ),
                         ],
                       ),
                     ],
                   ),
-                  SizedBox(height: 15),
+                  SizedBox(height: 8),
                   Row(
                     children: [
                       Text(
                         'Next payment:',
                         style: TextStyle(
-                            color: Colors.black, fontWeight: FontWeight.w600),
+                            color: ColorResources.COLOR_PRIMARY,
+                            fontWeight: FontWeight.w400),
                       ),
                       SizedBox(width: 4),
                       Center(
@@ -251,7 +265,8 @@ class _MyPlansState extends State<MyPlans> {
   String formatedDate(String date) {
     DateTime dT = DateTime.parse(date);
 
-    return DateFormat('hh:mm a').format(DateTime(0, dT.month, dT.day, dT.hour, dT.minute)) +
+    return DateFormat('hh:mm a')
+            .format(DateTime(0, dT.month, dT.day, dT.hour, dT.minute)) +
         " | " "${dT.day}-" +
         DateFormat('MMMM').format(DateTime(0, dT.month)) +
         "-" +
@@ -262,7 +277,12 @@ class _MyPlansState extends State<MyPlans> {
     return Scaffold(
       backgroundColor: Colors.transparent,
       appBar: AppBar(
-        leading: (widget.shouldNavigate) ? BackButtons() : SizedBox(),
+        leading: (widget.shouldNavigate)
+            ? Padding(
+                padding: const EdgeInsets.only(top: 20.0),
+                child: BackButtons(),
+              )
+            : SizedBox(),
         backgroundColor: Colors.white.withOpacity(0),
         elevation: 0,
       ),
@@ -273,6 +293,9 @@ class _MyPlansState extends State<MyPlans> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            SizedBox(
+              height: 10,
+            ),
             Text(
               'My Plans',
               style: TextStyle(
@@ -304,9 +327,11 @@ class _MyPlansState extends State<MyPlans> {
             SizedBox(height: 7),
             Center(
               child: Text(
-                'you\'ve not created a plan, but thats about to change. Just tap the button below',
+                'You\'ve not created a plan, but thats about to change. Just tap the button below',
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
+                style: TextStyle(
+                    fontSize: Dimensions.FONT_SIZE_DEFAULT,
+                    fontWeight: FontWeight.w400),
               ),
             ),
             SizedBox(height: 20),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:six_cash/app/extensions.dart';
 import 'package:six_cash/util/color_resources.dart';
+import 'package:six_cash/util/dimensions.dart';
 import 'package:six_cash/view/base/text_widgets.dart';
 
 enum DropDownType { Bordered, Underline, None }
@@ -34,7 +35,7 @@ class _CustomDropDownButtonState extends State<CustomDropDownButton> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 16.h),
+      margin: EdgeInsets.only(top: 2.h, left: 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -42,7 +43,12 @@ class _CustomDropDownButtonState extends State<CustomDropDownButton> {
               padding: EdgeInsets.only(bottom: 6.h),
               child: Row(
                 children: [
-                  regularText(widget.title, fontSize: 14.sp, color: Colors.black, fontWeight: FontWeight.w500,),
+                  regularText(
+                    widget.title,
+                    fontSize: Dimensions.FONT_SIZE_DEFAULT,
+                    color: ColorResources.greyColor,
+                    fontWeight: FontWeight.w500,
+                  ),
                   Spacer(),
                   if (widget.busy)
                     SizedBox(
@@ -56,15 +62,16 @@ class _CustomDropDownButtonState extends State<CustomDropDownButton> {
                 ],
               )),
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 20.h, ),
+            padding: EdgeInsets.symmetric(
+              horizontal: 20.h,
+            ),
             decoration: getDecoration(),
-            height: 60.h,
+            height: 50.h,
             alignment: Alignment.center,
             child: DropdownButton<String>(
               style: TextStyle(
                 color: Colors.black,
-                fontWeight: FontWeight.w500,
-                fontSize: 15.sp,
+                fontSize: Dimensions.FONT_SIZE_LARGE,
                 letterSpacing: 0.4,
               ),
               isExpanded: true,
@@ -73,10 +80,8 @@ class _CustomDropDownButtonState extends State<CustomDropDownButton> {
                 child: Text(
                   widget.hintText,
                   style: TextStyle(
-                    color: ColorResources.greyColor,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 12.sp,
-                  ),
+                      color: ColorResources.blackColor,
+                      fontSize: Dimensions.FONT_SIZE_LARGE),
                 ),
               ),
               value: widget.value,
@@ -92,7 +97,11 @@ class _CustomDropDownButtonState extends State<CustomDropDownButton> {
                   value: value,
                   child: Padding(
                     padding: EdgeInsets.symmetric(vertical: 8.h),
-                    child: Text(value, style: TextStyle(color: Colors.black, fontSize: 14.sp, fontWeight: FontWeight.w500)),
+                    child: Text(value,
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: Dimensions.FONT_SIZE_LARGE,
+                            fontWeight: FontWeight.w300)),
                   ),
                 );
               }).toList(),
@@ -110,7 +119,7 @@ class _CustomDropDownButtonState extends State<CustomDropDownButton> {
         borderRadius: BorderRadius.circular(5),
         border: Border.all(
           width: 1.h,
-            color: widget.backgroundColor,
+          color: widget.backgroundColor,
         ),
       );
     }
@@ -127,6 +136,8 @@ class _CustomDropDownButtonState extends State<CustomDropDownButton> {
         ),
       );
     }
-    return BoxDecoration(color: widget.backgroundColor,);
+    return BoxDecoration(
+      color: widget.backgroundColor,
+    );
   }
 }

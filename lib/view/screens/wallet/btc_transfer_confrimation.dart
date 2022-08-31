@@ -12,11 +12,13 @@ import '../home/funding_options/request_from_a_riend/friend_identity.dart';
 import '../home/funding_usd_wallet_page.dart';
 
 class BTCTransferConfirmation extends StatefulWidget {
-  BTCTransferConfirmation({Key key, @required this.requestInfo}) : super(key: key);
+  BTCTransferConfirmation({Key key, @required this.requestInfo})
+      : super(key: key);
   Map<String, dynamic> requestInfo;
 
   @override
-  State<BTCTransferConfirmation> createState() => _BTCTransferConfirmationState();
+  State<BTCTransferConfirmation> createState() =>
+      _BTCTransferConfirmationState();
 }
 
 class _BTCTransferConfirmationState extends State<BTCTransferConfirmation> {
@@ -28,14 +30,19 @@ class _BTCTransferConfirmationState extends State<BTCTransferConfirmation> {
           return SafeArea(
             child: SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    SizedBox(height: 20),
                     BackButtons(),
                     Padding(
                       padding: const EdgeInsets.only(left: 8, bottom: 15),
-                      child: Text('Transfer Confirmation', style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20)),
+                      child: Text('Transfer Confirmation',
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 22)),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 10.0, top: 40),
@@ -44,40 +51,61 @@ class _BTCTransferConfirmationState extends State<BTCTransferConfirmation> {
                         children: [
                           Text(
                             'Amount',
-                            style: TextStyle(fontWeight: FontWeight.w400, color: Colors.grey),
+                            style: TextStyle(
+                                fontWeight: FontWeight.w400,
+                                color: ColorResources.primaryColor),
                           ),
-                          SizedBox(height: 10),
+                          SizedBox(height: 5),
                           Text(
                             '${widget.requestInfo["amount"]} USD',
                             style: TextStyle(fontSize: 20),
                           ),
-                          SizedBox(height: 30),
+                          SizedBox(height: 15),
                           Text(
                             'Fees',
-                            style: TextStyle(fontWeight: FontWeight.w400, color: Colors.grey),
+                            style: TextStyle(
+                                fontWeight: FontWeight.w400,
+                                color: ColorResources.primaryColor),
                           ),
-                          SizedBox(height: 10),
+                          SizedBox(height: 5),
                           Text(
                             '${splashController.configModel.sellBtcFee} USD',
                             style: TextStyle(fontSize: 20),
                           ),
-                          SizedBox(height: 30),
+                          SizedBox(height: 15),
                           Text(
                             'Total Amount',
-                            style: TextStyle(fontWeight: FontWeight.w400, color: Colors.grey),
+                            style: TextStyle(
+                                fontWeight: FontWeight.w400,
+                                color: ColorResources.primaryColor),
                           ),
-                          SizedBox(height: 10),
+                          SizedBox(height: 5),
                           Text(
                             '${PriceConverter.priceFormater(balance: (double.parse(splashController.configModel.sellBtcFee) + double.parse(widget.requestInfo["amount"].toString())))} USD',
+                            style: TextStyle(fontSize: 20),
+                          ),
+                          SizedBox(height: 15),
+                          Text(
+                            'BTC Address',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w400,
+                                color: ColorResources.primaryColor),
+                          ),
+                          SizedBox(height: 5),
+                          Text(
+                            // '${PriceConverter.priceFormater(balance: (double.parse(splashController.configModel.sellBtcFee) + double.parse(widget.requestInfo["amount"].toString())))} USD',
+                            'kljsahdkjasdhkjasdhkjasdh',
                             style: TextStyle(fontSize: 20),
                           ),
                         ],
                       ),
                     ),
-                    SizedBox(height: 30),
+                    SizedBox(height: 15),
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 12),
-                      child: GetBuilder<WalletController>(builder: (controller) {
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 20.0, horizontal: 12),
+                      child:
+                          GetBuilder<WalletController>(builder: (controller) {
                         return Container(
                           height: 50,
                           width: MediaQuery.of(context).size.width,
@@ -88,7 +116,7 @@ class _BTCTransferConfirmationState extends State<BTCTransferConfirmation> {
                             vertical: 35.w,
                           ),
                           child: buttonWithBorder(
-                            'Continue',
+                            'Payment Confirmed',
                             textColor: Colors.white,
                             buttonColor: ColorResources.primaryColor,
                             fontSize: 18.sp,

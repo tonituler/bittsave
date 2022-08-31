@@ -23,6 +23,7 @@ class _PaymentOptionsState extends State<WithDrawPaymentOptions> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                SizedBox(height: 20),
                 BackButtons(),
                 Padding(
                   padding: const EdgeInsets.only(left: 10.0),

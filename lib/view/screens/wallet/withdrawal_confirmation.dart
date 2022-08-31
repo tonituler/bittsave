@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:six_cash/util/color_resources.dart';
 import 'package:six_cash/view/screens/wallet/usd_withdrawal_confirmation.dart';
 
 import '../home/funding_options/request_from_a_riend/friend_identity.dart';
@@ -23,6 +24,7 @@ class _WitdrawalConfirmationState extends State<WitdrawalConfirmation> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  SizedBox(height: 20),
                   BackButtons(),
                   Padding(
                     padding: const EdgeInsets.only(left: 8, bottom: 15),
@@ -38,53 +40,58 @@ class _WitdrawalConfirmationState extends State<WitdrawalConfirmation> {
                         Text(
                           'Amount',
                           style: TextStyle(
-                              fontWeight: FontWeight.w400, color: Colors.grey),
+                              fontWeight: FontWeight.w400,
+                              color: ColorResources.primaryColor),
                         ),
-                        SizedBox(height: 10),
+                        SizedBox(height: 2),
                         Text(
                           '37,900.00 USD',
                           style: TextStyle(fontSize: 17),
                         ),
-                        SizedBox(height: 30),
+                        SizedBox(height: 15),
                         Text(
                           'Total Amount',
                           style: TextStyle(
-                              fontWeight: FontWeight.w400, color: Colors.grey),
+                              fontWeight: FontWeight.w400,
+                              color: ColorResources.primaryColor),
                         ),
-                        SizedBox(height: 10),
+                        SizedBox(height: 2),
                         Text(
                           '4,999 USD',
                           style: TextStyle(fontSize: 17),
                         ),
-                        SizedBox(height: 30),
+                        SizedBox(height: 15),
                         Text(
                           'Fees',
                           style: TextStyle(
-                              fontWeight: FontWeight.w400, color: Colors.grey),
+                              fontWeight: FontWeight.w400,
+                              color: ColorResources.primaryColor),
                         ),
-                        SizedBox(height: 10),
+                        SizedBox(height: 2),
                         Text(
                           '500',
                           style: TextStyle(fontSize: 17),
                         ),
-                        SizedBox(height: 30),
+                        SizedBox(height: 15),
                         Text(
                           'Total Amount',
                           style: TextStyle(
-                              fontWeight: FontWeight.w400, color: Colors.grey),
+                              fontWeight: FontWeight.w400,
+                              color: ColorResources.primaryColor),
                         ),
-                        SizedBox(height: 10),
+                        SizedBox(height: 2),
                         Text(
                           '4,999 USD',
                           style: TextStyle(fontSize: 17),
                         ),
-                        SizedBox(height: 30),
+                        SizedBox(height: 15),
                         Text(
                           'id',
                           style: TextStyle(
-                              fontWeight: FontWeight.w400, color: Colors.grey),
+                              fontWeight: FontWeight.w400,
+                              color: ColorResources.primaryColor),
                         ),
-                        SizedBox(height: 10),
+                        SizedBox(height: 2),
                         Text(
                           'asdlknahsdkjahsdkjad',
                           style: TextStyle(fontSize: 17),
@@ -92,7 +99,7 @@ class _WitdrawalConfirmationState extends State<WitdrawalConfirmation> {
                       ],
                     ),
                   ),
-                  SizedBox(height: 30),
+                  SizedBox(height: 15),
                   InkWell(
                     onTap: () {
                       Navigator.push(

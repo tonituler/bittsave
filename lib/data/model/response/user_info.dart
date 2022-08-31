@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 
 UserInfo userInfoFromJson(String str) => UserInfo.fromJson(json.decode(str));
@@ -55,27 +54,27 @@ class UserInfo {
   double investedBalanceBTC;
 
   factory UserInfo.fromJson(Map<String, dynamic> json) => UserInfo(
-    username: json["username"],
-    fName: json["f_name"],
-    lName: json["l_name"],
-    phone: json["phone"],
-    email: json["email"],
-    image: json["image"],
-    type: json["type"],
-    gender: json["gender"],
-    occupation: json["occupation"],
-    twoFactor: json["two_factor"]==1?true:false,
-    fcmToken: json["fcm_token"],
-    balance: json["balance"].toDouble() ?? 0.0,
-    uniqueId: json["unique_id"],
-    qrCode: json["qr_code"],
-    usdBalance: json["usd_balance"].toDouble() ?? 0.0,
-    btcBalance: json["btc_balance"].toDouble() ?? 0.0,
-    btcInSatoshis: json["btc_in_satoshis"].toDouble() ?? 0.0,
-    btcCollateralUsed: json["btc_collateral_used"].toDouble() ?? 0.0,
-    invested: json["invested"].toDouble() ?? 0.0,
-    returns: json["returns"].toDouble() ?? 0.0,
-    investedBalanceBTC: json["investment_balance_btc"].toDouble() ?? 0.0,
-    investedBalanceUSD: json["investment_balance_usd"].toDouble() ?? 0.0,
-  );
+        username: json["username"],
+        fName: json["f_name"],
+        lName: json["l_name"],
+        phone: json["phone"],
+        email: json["email"],
+        image: json["image"],
+        type: json["type"],
+        gender: json["gender"],
+        occupation: json["occupation"],
+        twoFactor: json["two_factor"] == 1 ? true : false,
+        fcmToken: json["fcm_token"],
+        balance: json["balance"].toDouble() ?? 0.0,
+        uniqueId: json["unique_id"],
+        qrCode: json["qr_code"],
+        usdBalance: json["usd_balance"].toDouble() ?? 0.0,
+        btcBalance: json["btc_balance"].toDouble() ?? 0.0,
+        btcInSatoshis: json["btc_in_satoshis"].toDouble() ?? 0.0,
+        btcCollateralUsed: json["btc_collateral_used"].toDouble() ?? 0.0,
+        invested: json["invested"].toDouble() ?? 0.0,
+        returns: json["returns"].toDouble() ?? 0.0,
+        investedBalanceBTC: json["investment_balance_btc"].toDouble() ?? 0.0,
+        investedBalanceUSD: json["investment_balance_usd"].toDouble() ?? 0.0,
+      );
 }

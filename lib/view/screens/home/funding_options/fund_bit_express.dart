@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:six_cash/app/extensions.dart';
-import 'package:six_cash/controller/auth_controller.dart';
 import 'package:six_cash/controller/deposit_controller.dart';
 import 'package:six_cash/controller/splash_controller.dart';
 import 'package:six_cash/util/color_resources.dart';
@@ -34,20 +33,22 @@ class _FundBitExpressState extends State<FundBitExpress> {
   Widget build(BuildContext context) {
     usdToNgn = Get.find<SplashController>().configModel.usdToNgn;
     return Scaffold(
-      appBar: AppBar(
-        leading: BackButtons(),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
+      // appBar: AppBar(
+      //   leading: BackButtons(),
+      //   backgroundColor: Colors.transparent,
+      //   elevation: 0,
+      // ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
-            padding: EdgeInsets.only(left: 10),
+            padding: EdgeInsets.only(left: 20, right: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                SizedBox(height: 20),
+                BackButtons(),
                 Padding(
-                  padding: const EdgeInsets.only(left: 10.0, top: 10, bottom: 10),
+                  padding: const EdgeInsets.only(left: 0.0, top: 1, bottom: 10),
                   child: BoldTextTitle(
                     data: 'How much do you want to deposit?',
                     fontSize: 24.sp,
@@ -55,85 +56,139 @@ class _FundBitExpressState extends State<FundBitExpress> {
                 ),
                 GetBuilder<SplashController>(
                   builder: (config) => Padding(
-                    padding: const EdgeInsets.only(left: 8.0, top: 3.0, bottom: 10),
+                    padding:
+                        const EdgeInsets.only(left: 8.0, top: 30.0, bottom: 0),
                     child: LightText(
-                      text: 'Exchange rate: 1USD = ${config.configModel.usdToNgn} NGN',
+                      txAlign: TextAlign.center,
+                      col: ColorResources.primaryColor,
+                      text:
+                          'Exchange rate: 1USD = ${config.configModel.usdToNgn} NGN',
                     ),
                   ),
                 ),
+                // Container(
+                //   color: Colors.pink,
+                //   margin: EdgeInsets.only(
+                //     top: 15,
+                //     bottom: 10,
+                //   ),
+                //   height: 150,
+                //   width: double.maxFinite,
+                //   child: Container(),
+                // ),
                 Container(
-                  margin: EdgeInsets.only(
-                    top: 15,
-                    bottom: 10,
-                  ),
-                  height: 150,
-                  width: double.maxFinite,
+                  // height: 500,
+                  margin: const EdgeInsets.only(
+                      top: 0.0, right: 0, left: 0, bottom: 0),
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.pink),
                   child: Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              '\$',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.w700,
-                                fontSize: 45.sp,
-                              ),
+                        SizedBox(height: 30),
+                        Center(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 80),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              // crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  '\$',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w900,
+                                    fontSize: 47.sp,
+                                  ),
+                                ),
+                                Expanded(
+                                  child: TextField(
+                                    decoration: InputDecoration(
+                                        border: InputBorder.none,
+                                        hintText: "0.00",
+                                        contentPadding: EdgeInsets.only(
+                                            left: 2, bottom: 0, right: 0),
+                                        hintStyle: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w900,
+                                          fontSize: 52.sp,
+                                        )),
+                                    controller: amount,
+                                    keyboardType: TextInputType.number,
+                                    onChanged: (String value) {
+                                      // print(usdToNgn);
+                                      if (value.trim() != "" &&
+                                          usdToNgn != null &&
+                                          usdToNgn != "") {
+                                        try {
+                                          double val =
+                                              double.parse(value.trim());
+                                          double uToN = double.parse(usdToNgn);
+                                          amountInNaira = val * uToN;
+                                          amountInDolar = val;
+                                          setState(() {});
+                                        } catch (e) {}
+                                      }
+                                    },
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w900,
+                                        fontSize: 52.sp,
+                                        color: Colors.white),
+                                  ),
+                                ),
+                                // SizedBox(
+                                //   width: 150,
+                                //   // height: 50,
+                                //   child: TextField(
+                                //     decoration: InputDecoration(
+                                //         border: InputBorder.none,
+                                //         hintText: "0.00",
+                                //         contentPadding: EdgeInsets.only(
+                                //             left: 2, bottom: 0, right: 0),
+                                //         hintStyle: TextStyle(
+                                //           color: Colors.white,
+                                //           fontWeight: FontWeight.w900,
+                                //           fontSize: 52.sp,
+                                //         )),
+                                //     controller: amount,
+                                //     keyboardType: TextInputType.number,
+                                //     onChanged: (String value) {
+                                //       // print(usdToNgn);
+                                //       if (value.trim() != "" &&
+                                //           usdToNgn != null &&
+                                //           usdToNgn != "") {
+                                //         try {
+                                //           double val =
+                                //               double.parse(value.trim());
+                                //           double uToN = double.parse(usdToNgn);
+                                //           amountInNaira = val * uToN;
+                                //           amountInDolar = val;
+                                //           setState(() {});
+                                //         } catch (e) {}
+                                //       }
+                                //     },
+                                //     style: TextStyle(
+                                //         fontWeight: FontWeight.w900,
+                                //         fontSize: 52.sp,
+                                //         color: Colors.white),
+                                //   ),
+                                // ),
+                              ],
                             ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            SizedBox(
-                              width: 150,
-                              height: 80,
-                              child: TextField(
-                                decoration: InputDecoration(border: InputBorder.none, hintText: "0.00"),
-                                controller: amount,
-                                keyboardType: TextInputType.number,
-                                onChanged: (String value) {
-                                  // print(usdToNgn);
-                                  if (value.trim() != "" && usdToNgn != null && usdToNgn != "") {
-                                    try {
-                                      double val = double.parse(value.trim());
-                                      double uToN = double.parse(usdToNgn);
-                                      amountInNaira = val * uToN;
-                                      amountInDolar = val;
-                                      setState(() {});
-                                    } catch (e) {}
-                                  }
-                                },
-                                style: TextStyle(fontSize: 45.sp, fontWeight: FontWeight.w700),
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
-                        // Text(
-                        //   '\$0.00',
-                        //   style: TextStyle(
-                        //     color: Colors.black,
-                        //     fontWeight: FontWeight.w700,
-                        //     fontSize: 45.sp,
-                        //   ),
-                        // ),
                         Padding(
-                          padding: const EdgeInsets.all(2.0),
-                          child: LightText(text: 'USD Bal: \$500.00', fontSize: 12.sp),
+                          padding: const EdgeInsets.only(bottom: 30.0),
+                          child: LightText(
+                              txAlign: TextAlign.center,
+                              text: 'USD Bal: \$500.00',
+                              fontSize: 12.sp,
+                              col: ColorResources.whiteColor),
                         ),
-                      ],
-                    ),
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(top: 10.0, right: 12, left: 0, bottom: 0),
-                  padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: Colors.black),
-                  child: Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
                         InnerContainer(
                           height: 50,
                           col: Colors.white,
@@ -143,41 +198,48 @@ class _FundBitExpressState extends State<FundBitExpress> {
                             children: [
                               Text(
                                 "you'll pay",
-                                style: kLightTextStyle.copyWith(color: Colors.grey),
+                                style: kLightTextStyle.copyWith(
+                                    color: Colors.pink),
                               ),
                               SizedBox(height: 2),
                               Text(
                                 'N$amountInNaira',
-                                style: kLightTextStyle.copyWith(fontWeight: FontWeight.w400, color: Colors.black, fontSize: 16.sp),
+                                style: kLightTextStyle.copyWith(
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.black,
+                                    fontSize: 16.sp),
                               ),
                             ],
                           ),
                           style: kLightTextStyle,
                         ),
                         Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 5.w),
-                          child: GetBuilder<DepositController>(builder: (controller) {
-                            return buttonWithBorder(
-                              'Continue',
-                              textColor: Colors.white,
-                              buttonColor: ColorResources.primaryColor,
-                              fontSize: 18.sp,
-                              busy: false,
-                              fontWeight: FontWeight.w400,
-                              height: 54.h,
-                              onTap: () async {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (contet) {
-                                    return BankTransferPage(
-                                      amountInDolar: amountInDolar,
-                                      amountInNaira: amountInNaira,
-                                    );
-                                  }),
-                                );
-                              },
-                            );
-                          },),
+                          padding: EdgeInsets.only(
+                              left: 5.w, right: 5.w, bottom: 5.w),
+                          child: GetBuilder<DepositController>(
+                            builder: (controller) {
+                              return buttonWithBorder(
+                                'Continue',
+                                textColor: Colors.white,
+                                buttonColor: ColorResources.blackColor,
+                                fontSize: 18.sp,
+                                busy: false,
+                                fontWeight: FontWeight.w400,
+                                height: 54.h,
+                                onTap: () async {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (contet) {
+                                      return BankTransferPage(
+                                        amountInDolar: amountInDolar,
+                                        amountInNaira: amountInNaira,
+                                      );
+                                    }),
+                                  );
+                                },
+                              );
+                            },
+                          ),
                         ),
                       ],
                     ),
@@ -191,20 +253,35 @@ class _FundBitExpressState extends State<FundBitExpress> {
     );
   }
 
-  Widget LightText({String text, double fontSize}) {
+  Widget LightText(
+      {String text,
+      double fontSize,
+      @required TextAlign txAlign,
+      @required Color col}) {
     return Text(
       text,
-      style: kLightTextStyle.copyWith(fontSize: fontSize ?? 12.sp),
+      textAlign: txAlign,
+      style: kLightTextStyle.copyWith(
+        fontSize: fontSize ?? 12.sp,
+        color: col,
+      ),
     );
   }
 
-  Widget InnerContainer({double height, Color col, double data, String text, TextStyle style, Widget widget}) {
+  Widget InnerContainer(
+      {double height,
+      Color col,
+      double data,
+      String text,
+      TextStyle style,
+      Widget widget}) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
         height: height,
         width: double.infinity,
-        decoration: BoxDecoration(color: col, borderRadius: BorderRadius.circular(data)),
+        decoration: BoxDecoration(
+            color: col, borderRadius: BorderRadius.circular(data)),
         child: Center(
           child: widget,
         ),
