@@ -188,21 +188,21 @@ class _LoanApplicationState extends State<LoanApplication> {
                                         fontWeight: FontWeight.w400,
                                         fontSize: 23),
                                   ),
-                                  Spacer(),
-                                  GestureDetector(
-                                    onTap: () {
-                                      Navigator.pop(context);
-                                    },
-                                    child: CircleAvatar(
-                                      backgroundColor: Colors.pink,
-                                      radius: 14,
-                                      child: Icon(
-                                        Icons.clear,
-                                        size: 20,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
+                                  // Spacer(),
+                                  // GestureDetector(
+                                  //   onTap: () {
+                                  //     Navigator.pop(context);
+                                  //   },
+                                  //   child: CircleAvatar(
+                                  //     backgroundColor: Colors.pink,
+                                  //     radius: 14,
+                                  //     child: Icon(
+                                  //       Icons.clear,
+                                  //       size: 20,
+                                  //       color: Colors.white,
+                                  //     ),
+                                  //   ),
+                                  // ),
                                 ],
                               ),
                             ),
@@ -334,8 +334,8 @@ class _LoanApplicationState extends State<LoanApplication> {
       // isDismissible: false,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(20.h),
-          topRight: Radius.circular(20.h),
+          topLeft: Radius.circular(40.h),
+          topRight: Radius.circular(40.h),
         ),
       ),
       builder: (context) {
@@ -343,13 +343,13 @@ class _LoanApplicationState extends State<LoanApplication> {
           height: 600.h,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(20.h),
-              topRight: Radius.circular(20.h),
+              topLeft: Radius.circular(40.h),
+              topRight: Radius.circular(40.h),
             ),
           ),
           child: SingleChildScrollView(
             child: Container(
-              color: Colors.grey[50],
+              color: Colors.transparent,
               child: Container(
                 height: MediaQuery.of(context).size.height / 1.48,
                 padding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
@@ -357,34 +357,35 @@ class _LoanApplicationState extends State<LoanApplication> {
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(20),
-                        topLeft: Radius.circular(20))),
+                        topRight: Radius.circular(40),
+                        topLeft: Radius.circular(40))),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // SizedBox(height: 20),
+                    SizedBox(height: 10),
                     Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           'Loan Application',
                           style: TextStyle(
                               fontWeight: FontWeight.w400, fontSize: 23),
                         ),
-                        Spacer(),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                          child: CircleAvatar(
-                            backgroundColor: Colors.pink,
-                            radius: 14,
-                            child: Icon(
-                              Icons.clear,
-                              size: 20,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
+                        // Spacer(),
+                        // GestureDetector(
+                        //   onTap: () {
+                        //     Navigator.pop(context);
+                        //   },
+                        //   child: CircleAvatar(
+                        //     backgroundColor: Colors.pink,
+                        //     radius: 14,
+                        //     child: Icon(
+                        //       Icons.clear,
+                        //       size: 20,
+                        //       color: Colors.white,
+                        //     ),
+                        //   ),
+                        // ),
                       ],
                     ),
                     SizedBox(height: 5),
@@ -413,7 +414,7 @@ class _LoanApplicationState extends State<LoanApplication> {
                       },
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 5, vertical: 10),
+                            horizontal: 5, vertical: 6),
                         child: Container(
                           decoration: BoxDecoration(
                               color: Colors.pink,

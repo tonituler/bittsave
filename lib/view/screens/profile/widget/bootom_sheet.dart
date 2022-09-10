@@ -1,12 +1,12 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:six_cash/controller/profile_screen_controller.dart';
 import 'package:six_cash/controller/screen_shot_widget_controller.dart';
 import 'package:six_cash/util/color_resources.dart';
 import 'package:six_cash/util/dimensions.dart';
 import 'package:six_cash/util/styles.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:six_cash/view/base/custom_small_button.dart';
 
 class ProfileQRCodeBottomSheet extends StatelessWidget {
@@ -18,10 +18,14 @@ class ProfileQRCodeBottomSheet extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: ColorResources.getWhiteAndBlack(),
-        borderRadius:
-            BorderRadius.only(topLeft: Radius.circular(Dimensions.RADIUS_SIZE_LARGE), topRight: Radius.circular(Dimensions.RADIUS_SIZE_LARGE)),
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(Dimensions.RADIUS_SIZE_LARGE),
+            topRight: Radius.circular(Dimensions.RADIUS_SIZE_LARGE)),
         boxShadow: [
-          BoxShadow(color: ColorResources.getBlackAndWhite().withOpacity(0.5), blurRadius: 80, offset: const Offset(0, 20)),
+          BoxShadow(
+              color: ColorResources.getBlackAndWhite().withOpacity(0.5),
+              blurRadius: 80,
+              offset: const Offset(0, 20)),
         ],
       ),
       child: Container(
@@ -36,11 +40,15 @@ class ProfileQRCodeBottomSheet extends StatelessWidget {
               Container(
                   height: 4.0,
                   width: 32.0,
-                  decoration: BoxDecoration(color: ColorResources.getGreyBaseGray3(), borderRadius: BorderRadius.circular(32.0)))
+                  decoration: BoxDecoration(
+                      color: ColorResources.getGreyBaseGray3(),
+                      borderRadius: BorderRadius.circular(32.0)))
             ]),
             SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
             Padding(
-              padding: const EdgeInsets.only(left: Dimensions.PADDING_SIZE_LARGE, bottom: Dimensions.PADDING_SIZE_SMALL),
+              padding: const EdgeInsets.only(
+                  left: Dimensions.PADDING_SIZE_LARGE,
+                  bottom: Dimensions.PADDING_SIZE_SMALL),
               child: Text('my_qr_code'.tr,
                   style: montserratRegular.copyWith(
                     fontSize: Dimensions.FONT_SIZE_LARGE,
@@ -55,7 +63,8 @@ class ProfileQRCodeBottomSheet extends StatelessWidget {
                     shape: BoxShape.circle,
                     // color: Theme.of(context).secondaryHeaderColor,
                   ),
-                  child: SvgPicture.string(controller.userInfo.qrCode, height: size.width * 0.4, width: size.width * 0.4),
+                  child: SvgPicture.string(controller.userInfo.qrCode,
+                      height: size.width * 0.4, width: size.width * 0.4),
                 ),
               );
             }),
@@ -63,7 +72,8 @@ class ProfileQRCodeBottomSheet extends StatelessWidget {
               height: 50.0,
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_DEFAULT),
+              padding: const EdgeInsets.symmetric(
+                  horizontal: Dimensions.PADDING_SIZE_DEFAULT),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -71,12 +81,15 @@ class ProfileQRCodeBottomSheet extends StatelessWidget {
                     child: CustomSmallButton(
                       text: 'download'.tr,
                       textSize: Dimensions.FONT_SIZE_LARGE,
-                      textColor: ColorResources.getBlackColor(),
-                      backgroundColor: Theme.of(context).secondaryHeaderColor,
-                      onTap: () => Get.find<ScreenShootWidgetController>().qrCodeDownloadAndShare(
-                          qrCode: Get.find<ProfileController>().userInfo.qrCode,
-                          phoneNumber: Get.find<ProfileController>().userInfo.phone,
-                          isShare: false),
+                      textColor: ColorResources.primaryColor,
+                      backgroundColor: ColorResources.whiteColor,
+                      onTap: () => Get.find<ScreenShootWidgetController>()
+                          .qrCodeDownloadAndShare(
+                              qrCode:
+                                  Get.find<ProfileController>().userInfo.qrCode,
+                              phoneNumber:
+                                  Get.find<ProfileController>().userInfo.phone,
+                              isShare: false),
                     ),
                     /*child: Container(
                     alignment: Alignment.center,
@@ -98,10 +111,13 @@ class ProfileQRCodeBottomSheet extends StatelessWidget {
                       textSize: Dimensions.FONT_SIZE_LARGE,
                       textColor: ColorResources.getWhiteColor(),
                       backgroundColor: ColorResources.getPrimaryTextColor(),
-                      onTap: () => Get.find<ScreenShootWidgetController>().qrCodeDownloadAndShare(
-                          qrCode: Get.find<ProfileController>().userInfo.qrCode,
-                          phoneNumber: Get.find<ProfileController>().userInfo.phone,
-                          isShare: true),
+                      onTap: () => Get.find<ScreenShootWidgetController>()
+                          .qrCodeDownloadAndShare(
+                              qrCode:
+                                  Get.find<ProfileController>().userInfo.qrCode,
+                              phoneNumber:
+                                  Get.find<ProfileController>().userInfo.phone,
+                              isShare: true),
                     ),
                     /*child: InkWell(
                     onTap: (){

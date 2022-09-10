@@ -26,6 +26,7 @@ class _PaymentOptionsState extends State<PaymentOptions> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  SizedBox(height: 10),
                   Row(
                     children: [
                       BackButtons(),
@@ -96,9 +97,11 @@ class _PaymentOptionsState extends State<PaymentOptions> {
                     text: 'Add new account',
                     ontap: () {
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => PaymentDestination(),),);
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => PaymentDestination(),
+                        ),
+                      );
                     },
                   ),
                 ],

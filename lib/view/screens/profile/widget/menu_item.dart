@@ -1,5 +1,3 @@
-import 'package:six_cash/util/dimensions.dart';
-import 'package:six_cash/util/styles.dart';
 import 'package:flutter/material.dart';
 
 class MenuItem extends StatelessWidget {
@@ -12,7 +10,8 @@ class MenuItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 10.0, right: 16, top: 10, bottom: 10),
+      padding:
+          const EdgeInsets.only(left: 10.0, right: 16, top: 10, bottom: 10),
       child: Row(
         children: [
           Text('$title'),
@@ -25,7 +24,6 @@ class MenuItem extends StatelessWidget {
       ),
     );
 
-   
     // return Padding(
     //   padding: EdgeInsets.symmetric(vertical: Dimensions.PADDING_SIZE_SMALL, horizontal: Dimensions.PADDING_SIZE_DEFAULT),
     //   child: Row(
@@ -46,7 +44,6 @@ class MenuItem extends StatelessWidget {
 }
 
 class MenuSegment extends StatelessWidget {
-
   MenuSegment({
     Key key,
     @required this.title,
@@ -57,7 +54,7 @@ class MenuSegment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     return Padding(
+    return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,10 +67,13 @@ class MenuSegment extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 0, right: 8, bottom: 5, top: 4),
+            padding:
+                const EdgeInsets.only(left: 0, right: 8, bottom: 5, top: 4),
             child: Container(
               width: double.infinity,
-              decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(6)),
+              decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.3),
+                  borderRadius: BorderRadius.circular(6)),
               child: Column(
                 children: menuItem,
               ),
@@ -83,5 +83,4 @@ class MenuSegment extends StatelessWidget {
       ),
     );
   }
-
 }
