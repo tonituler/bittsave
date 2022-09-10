@@ -112,6 +112,11 @@ class PriceConverter {
     return '${formatter.format(balance)}';
   }
 
+  static String priceFormatInt({int balance}) {
+    String val = '${formatter.format(balance)}';
+    return val.split(".")[0];
+  }
+
   static double convertToNaira(double price) {
     String value = Get.find<SplashController>().configModel.usdToNgn;
     try {

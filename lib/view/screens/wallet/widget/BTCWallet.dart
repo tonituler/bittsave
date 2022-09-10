@@ -38,8 +38,7 @@ class _BTCWalletScreenState extends State<BTCWalletScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding:
-                      const EdgeInsets.only(bottom: 10.0, top: 20, left: 8),
+                  padding: const EdgeInsets.only(bottom: 10.0, top: 20, left: 8),
                   child: BoldTextTitle(
                     data: 'BTC Wallet',
                   ),
@@ -58,15 +57,13 @@ class _BTCWalletScreenState extends State<BTCWalletScreen> {
                   ),
                 ),
                 Padding(
-                  padding:
-                      EdgeInsets.only(top: 10, right: 10, left: 5, bottom: 10),
+                  padding: EdgeInsets.only(top: 10, right: 10, left: 5, bottom: 10),
                   child: PhysicalModel(
                     elevation: 8,
                     color: Colors.pink,
                     shadowColor: Colors.lightBlueAccent,
                     borderRadius: BorderRadius.circular(20),
-                    child: GetBuilder<ProfileController>(
-                        builder: (profileController) {
+                    child: GetBuilder<ProfileController>(builder: (profileController) {
                       return Container(
                         padding: EdgeInsets.all(20),
                         height: 150,
@@ -77,11 +74,7 @@ class _BTCWalletScreenState extends State<BTCWalletScreen> {
                               children: [
                                 Text(
                                   'BTC',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize:
-                                          Dimensions.FONT_SIZE_EXTRA_LARGE,
-                                      fontWeight: FontWeight.w500),
+                                  style: TextStyle(color: Colors.white, fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE, fontWeight: FontWeight.w500,),
                                 ),
                                 Spacer(),
                                 Container(
@@ -100,38 +93,39 @@ class _BTCWalletScreenState extends State<BTCWalletScreen> {
                               height: 22,
                             ),
                             Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(vertical: 1.0),
+                              padding: const EdgeInsets.symmetric(vertical: 1.0),
                               child: Text(
                                 '${profileController.userInfo.btcBalance}',
                                 style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w600,
-                                    fontSize:
-                                        Dimensions.FONT_SIZE_EXTRA_OVER_LARGE),
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: Dimensions.FONT_SIZE_EXTRA_OVER_LARGE,
+                                ),
                               ),
                             ),
                             Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    '\$${PriceConverter.priceFormater(balance: PriceConverter.converBTCToDolar(profileController.userInfo.btcBalance))}',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w200,
-                                        fontSize: Dimensions.FONT_SIZE_LARGE),
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  '\$${PriceConverter.priceFormater(balance: PriceConverter.converBTCToDolar(profileController.userInfo.btcBalance))}',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w200,
+                                    fontSize: Dimensions.FONT_SIZE_LARGE,
                                   ),
-                                  // Expanded(
-                                  //   child: Text(
-                                  //     ' ${PriceConverter.priceFormater(balance: profileController.userInfo.btcInSatoshis)} sats',
-                                  //     style: TextStyle(
-                                  //         color: Colors.white,
-                                  //         fontWeight: FontWeight.w200,
-                                  //         fontSize: Dimensions.FONT_SIZE_LARGE),
-                                  //   ),
-                                  // )
-                                ]),
+                                ),
+                                // Expanded(
+                                //   child: Text(
+                                //     ' ${PriceConverter.priceFormater(balance: profileController.userInfo.btcInSatoshis)} sats',
+                                //     style: TextStyle(
+                                //         color: Colors.white,
+                                //         fontWeight: FontWeight.w200,
+                                //         fontSize: Dimensions.FONT_SIZE_LARGE),
+                                //   ),
+                                // )
+                              ],
+                            ),
                             // Text(
                             //   '\$${PriceConverter.priceFormater(balance: PriceConverter.converBTCToDolar(profileController.userInfo.btcBalance))} | ${profileController.userInfo.btcInSatoshis} sats',
                             //   style: TextStyle(color: Colors.white, fontWeight: FontWeight.w200, fontSize: Dimensions.FONT_SIZE_LARGE),
@@ -175,9 +169,11 @@ class _BTCWalletScreenState extends State<BTCWalletScreen> {
                       WalletIcons(
                         ontap: () {
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => SendBTC()));
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => SendBTC(),
+                            ),
+                          );
                         },
                         icon: "CaretCircleUp.png",
                         label: "Send",
@@ -185,9 +181,11 @@ class _BTCWalletScreenState extends State<BTCWalletScreen> {
                       WalletIcons(
                         ontap: () {
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => ReceiveBtc()));
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ReceiveBtc(),
+                            ),
+                          );
                         },
                         icon: "PlayCircle.png",
                         label: "Receive",
@@ -196,8 +194,7 @@ class _BTCWalletScreenState extends State<BTCWalletScreen> {
                   ),
                 ),
                 Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+                  padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
                   child: Divider(
                     color: ColorResources.primaryColor,
                     height: 2,
@@ -224,8 +221,7 @@ class _BTCWalletScreenState extends State<BTCWalletScreen> {
                     return FutureBuilder(
                       future: loadSavings(controller),
                       builder: (context, snapshot) {
-                        if (snapshot.connectionState ==
-                            ConnectionState.waiting) {
+                        if (snapshot.connectionState == ConnectionState.waiting) {
                           isInitialLoad = true;
                           return Container(
                             height: 200,
@@ -243,9 +239,7 @@ class _BTCWalletScreenState extends State<BTCWalletScreen> {
                             return Container();
                           } else {
                             return Column(
-                              children: controller.btcHistory
-                                  .map((item) => savingItem(item))
-                                  .toList(),
+                              children: controller.btcHistory.map((item) => savingItem(item)).toList(),
                             );
                           }
                         } else {
@@ -489,9 +483,7 @@ class _BTCWalletScreenState extends State<BTCWalletScreen> {
             height: 25,
             child: Center(
               child: Text(
-                (plan["transaction_type"].toLowerCase() == "send_money")
-                    ? 'You Send'
-                    : "You Deposit",
+                (plan["transaction_type"].toLowerCase() == "send_money") ? 'You Send' : "You Deposit",
                 style: TextStyle(color: Colors.white),
               ),
             ),
@@ -512,18 +504,12 @@ class _BTCWalletScreenState extends State<BTCWalletScreen> {
                     children: [
                       Text(
                         '\$${PriceConverter.priceFormater(balance: PriceConverter.converBTCToDolar(double.parse(plan["amount"].toString())))}',
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 14.sp,
-                            fontWeight: FontWeight.w400),
+                        style: TextStyle(color: Colors.black, fontSize: 14.sp, fontWeight: FontWeight.w400),
                       ),
                       SizedBox(width: 10),
                       Text(
                         plan["user_info"]["name"],
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 14.sp,
-                            fontWeight: FontWeight.w400),
+                        style: TextStyle(color: Colors.black, fontSize: 14.sp, fontWeight: FontWeight.w400),
                       ),
                       SizedBox(width: 10),
                       Center(
@@ -546,8 +532,7 @@ class _BTCWalletScreenState extends State<BTCWalletScreen> {
   String formatedDate(String date) {
     DateTime dT = DateTime.parse(date);
 
-    return DateFormat('hh:mm a')
-            .format(DateTime(0, dT.month, dT.day, dT.hour, dT.minute)) +
+    return DateFormat('hh:mm a').format(DateTime(0, dT.month, dT.day, dT.hour, dT.minute)) +
         " | " "${dT.day}-" +
         DateFormat('MMMM').format(DateTime(0, dT.month)) +
         "-" +
@@ -585,13 +570,10 @@ class WalletIcons extends StatelessWidget {
                   padding: EdgeInsets.all(5),
                   width: 50,
                   height: 50,
-                  decoration: BoxDecoration(
-                      color: Colors.pink,
-                      borderRadius: BorderRadius.circular(16)),
+                  decoration: BoxDecoration(color: Colors.pink, borderRadius: BorderRadius.circular(16)),
                   child: Container(
                     padding: EdgeInsets.all(0),
-                    decoration:
-                        BoxDecoration(borderRadius: BorderRadius.circular(30)),
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(30)),
                     child: Image.asset(
                       "assets/image/" + icon,
                       color: ColorResources.whiteColor,

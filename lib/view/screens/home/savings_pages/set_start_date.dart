@@ -22,6 +22,14 @@ class _SetStartDateState extends State<SetStartDate> {
   String _selectedDate;
 
   @override
+  void initState() {
+    super.initState();
+
+    _selectedDate = DateFormat('yyyy-MM-dd').format(DateTime.now()).toString();
+    date.text = _selectedDate;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
@@ -33,17 +41,9 @@ class _SetStartDateState extends State<SetStartDate> {
             children: [
               SizedBox(height: 60),
               BackButtons(),
-              Text('Set a Start date',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 22)),
+              Text('Set a Start date', style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500, fontSize: 22)),
               SizedBox(height: 8),
-              Text('When would like to start saving this amount?',
-                  style: TextStyle(
-                      color: Colors.grey,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 15)),
+              Text('When would like to start saving this amount?', style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w400, fontSize: 15)),
               SizedBox(height: 100),
               InkWell(
                 onTap: () {
@@ -75,8 +75,7 @@ class _SetStartDateState extends State<SetStartDate> {
                                 child: Padding(
                                   padding: const EdgeInsets.all(10.0),
                                   child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       InkWell(
                                         onTap: () {
@@ -84,9 +83,7 @@ class _SetStartDateState extends State<SetStartDate> {
                                         },
                                         child: Text(
                                           'Cancel',
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 18.sp),
+                                          style: TextStyle(color: Colors.white, fontSize: 18.sp),
                                         ),
                                       ),
                                       InkWell(
@@ -98,9 +95,7 @@ class _SetStartDateState extends State<SetStartDate> {
                                         },
                                         child: Text(
                                           'Done',
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 18.sp),
+                                          style: TextStyle(color: Colors.white, fontSize: 18.sp),
                                         ),
                                       ),
                                     ],
@@ -111,17 +106,12 @@ class _SetStartDateState extends State<SetStartDate> {
                                 child: SfDateRangePicker(
                                   showNavigationArrow: true,
                                   minDate: DateTime.now(),
-                                  onSelectionChanged:
-                                      (DateRangePickerSelectionChangedArgs
-                                          args) {
-                                    _selectedDate = DateFormat('yyyy-MM-dd')
-                                        .format(args.value)
-                                        .toString();
+                                  onSelectionChanged: (DateRangePickerSelectionChangedArgs args) {
+                                    _selectedDate = DateFormat('yyyy-MM-dd').format(args.value).toString();
                                     updateState(() {});
                                     setState(() {});
                                   },
-                                  selectionMode:
-                                      DateRangePickerSelectionMode.single,
+                                  selectionMode: DateRangePickerSelectionMode.single,
                                 ),
                               ),
                             ],
@@ -140,7 +130,7 @@ class _SetStartDateState extends State<SetStartDate> {
                       color: ColorResources.primaryColor,
                     ),
                     hintText: 'June 26, 2022',
-                    hintStyle: TextStyle(color: Colors.pink, fontSize: 15),
+                    // hintStyle: TextStyle(color: Colors.pink, fontSize: 15),
                   ),
                 ),
               ),

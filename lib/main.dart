@@ -65,7 +65,7 @@ class MyApp extends StatelessWidget {
               locale: localizeController.locale,
               translations: Messages(languages: languages),
               fallbackLocale: Locale(AppConstants.languages[0].languageCode,
-                  AppConstants.languages[0].countryCode),
+                  AppConstants.languages[0].countryCode,),
               initialRoute: RouteHelper.getSplashRoute(),
               getPages: RouteHelper.routes,
               defaultTransition: Transition.topLevel,

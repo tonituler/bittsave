@@ -16,6 +16,12 @@ class RequestedMoneyController extends GetxController implements GetxService {
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
+  bool _isLoadingUpdateRequestedMoney = false;
+  bool get isLoadingUpdateRequestedMoney => _isLoadingUpdateRequestedMoney;
+
+  bool _isLoadingRequestedMoney = true;
+  bool get isLoadingRequestedMoney => _isLoadingRequestedMoney;
+
   List<RequestedMoney> _requestedMoneyList = [];
   List<RequestedMoney> _ownRequestList = [];
 
@@ -54,6 +60,8 @@ class RequestedMoneyController extends GetxController implements GetxService {
       _acceptedRequestedMoneyList =[];
       _deniedRequestedMoneyList =[];
     }
+    _isLoadingRequestedMoney = true;
+    
     Response response = await requestedMoneyRepo.getRequestedMoneyList();
     if(response.body['requested_money'] != null && response.body['requested_money'] != {} && response.statusCode == 200){
       print('body req : ${response.body['requested_money']}');
@@ -74,11 +82,11 @@ class RequestedMoneyController extends GetxController implements GetxService {
         });
 
 
-      _isLoading = false;
+      _isLoadingRequestedMoney = false;
       update();
     }else {
       ApiChecker.checkApi(response);
-      _isLoading = false;
+      _isLoadingRequestedMoney = false;
       update();
     }
 
@@ -142,6 +150,7 @@ class RequestedMoneyController extends GetxController implements GetxService {
     }
    update();
   }
+  
   Future<void> denyRequest(BuildContext context, int requestId, String pin ) async {
     _isLoading = true;
     update();
@@ -159,7 +168,24 @@ class RequestedMoneyController extends GetxController implements GetxService {
     update();
   }
 
+  Future<void> updateRequest(BuildContext context, String slug, int requestId, String pin) async {
+    _isLoadingUpdateRequestedMoney = true;
+    update();
+    Response response = await requestedMoneyRepo.updateRequestedMoney(slug, requestId, pin);
+    print(response.status);
 
+    if(response.statusCode == 200) {
+      getRequestedMoneyList(offset, context);
+      // Get.back();
+      Navigator.pop(context);
+      _isLoadingUpdateRequestedMoney = false;
+    }else {
+      _isLoadingUpdateRequestedMoney = false;
+      ApiChecker.checkApi(response);
+    }
+   update();
+  }
+  
   int _requestTypeIndex = 0;
   int get requestTypeIndex => _requestTypeIndex;
 

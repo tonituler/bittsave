@@ -56,6 +56,7 @@ Future<Map<String, Map<String, String>>> init() async {
   // Repository
   Get.lazyPut(() => SplashRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
   Get.lazyPut(() => LanguageRepo());
+  // Get.lazyPut(() => TransactionRepo(apiClient: Get.find(), sharedPreferences: Get.find()));
   Get.lazyPut(() => TransactionRepo(apiClient: Get.find(), sharedPreferences: Get.find()));
   Get.lazyPut(() => AuthRepo(apiClient: Get.find(),sharedPreferences: Get.find()));
   Get.lazyPut(() => ProfileRepo(apiClient: Get.find()));

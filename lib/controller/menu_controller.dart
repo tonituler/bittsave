@@ -13,7 +13,8 @@ class MenuController extends GetxController implements GetxService{
   int get currentTab => _currentTab;
   final List<Widget> screen = [
     HomeScreen(),
-    HistoryScreen(),
+    // HistoryScreen(),
+    MyPlans(),
     WalletScreen(),
     ProfileScreen()
   ];

@@ -4,8 +4,7 @@ class TransactionModel {
   int offset;
   List<Transactions> transactions;
 
-  TransactionModel(
-      {this.totalSize, this.limit, this.offset, this.transactions});
+  TransactionModel({this.totalSize, this.limit, this.offset, this.transactions});
 
   TransactionModel.fromJson(Map<String, dynamic> json) {
     totalSize = json['total_size'];
@@ -43,30 +42,16 @@ class Transactions {
   Sender sender;
 
   Transactions(
-      {this.transactionType,
-        this.transactionId,
-        this.debit,
-        this.credit,
-        this.userInfo,
-        this.createdAt,
-        this.receiver,
-        this.sender,
-        this.amount});
+      {this.transactionType, this.transactionId, this.debit, this.credit, this.userInfo, this.createdAt, this.receiver, this.sender, this.amount});
 
   Transactions.fromJson(Map<String, dynamic> json) {
     transactionType = json['transaction_type'];
     transactionId = json['transaction_id'];
     debit = json['debit'].toDouble();
     credit = json['credit'].toDouble();
-    userInfo = json['user_info'] != null
-        ? new UserInfo.fromJson(json['user_info'])
-        : null;
-    receiver = json['receiver'] != null
-        ? new Receiver.fromJson(json['receiver'])
-        : null;
-    sender = json['sender'] != null
-        ? new Sender.fromJson(json['sender'])
-        : null;
+    userInfo = json['user_info'] != null ? new UserInfo.fromJson(json['user_info']) : null;
+    receiver = json['receiver'] != null ? new Receiver.fromJson(json['receiver']) : null;
+    sender = json['sender'] != null ? new Sender.fromJson(json['sender']) : null;
     createdAt = json['created_at'];
     amount = json['amount'].toDouble();
   }
@@ -83,6 +68,28 @@ class Transactions {
     data['created_at'] = this.createdAt;
     data['amount'] = this.amount;
     return data;
+  }
+}
+
+class UnpaidDeposit {
+  String id;
+  String accountName;
+  String accountNo;
+  String bankName;
+  double amount;
+  String dateCreated;
+  String references;
+
+  UnpaidDeposit({this.id, this.accountName, this.accountNo, this.bankName, this.amount, this.dateCreated, this.references});
+
+  UnpaidDeposit.fromJson(Map<String, dynamic> json) {
+    accountName = json['account_name'];
+    accountNo = json['account_no'];
+    bankName = json['bank_name'];
+    amount = double.parse(json['amount'].toString());
+    id = json['id'].toString();
+    dateCreated = json['date_created'];
+    references = json['references'].toString();
   }
 }
 

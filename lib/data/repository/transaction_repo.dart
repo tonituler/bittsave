@@ -135,12 +135,12 @@ class TransactionRepo {
     return await apiClient.postData(AppConstants.PLAN_PAYMENT_HISTORY, data);
   }
 
-  Future<Response> payPlan(String planId) async {
-    return await apiClient.postData(AppConstants.PAY_PLAN, {"id": planId});
+  Future<Response> payPlan(String planId, String pin) async {
+    return await apiClient.postData(AppConstants.PAY_PLAN, {"id": planId, "pin": pin});
   }
 
-  Future<Response> withdrawPlan(String planId) async {
-    return await apiClient.postData(AppConstants.WITHDRAWAL_PLAN, {"id": planId});
+  Future<Response> withdrawPlan(String planId, String pin) async {
+    return await apiClient.postData(AppConstants.WITHDRAWAL_PLAN, {"id": planId, "pin": pin});
   }
 
   ///WALLET

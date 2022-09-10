@@ -22,12 +22,14 @@ class UserInfo {
     this.qrCode,
     this.usdBalance,
     this.btcBalance,
+    this.btcBalanceInUSD,
     this.btcInSatoshis,
     this.btcCollateralUsed,
     this.invested,
     this.returns,
     this.investedBalanceBTC,
     this.investedBalanceUSD,
+    this.isKycVerified,
   });
 
   String username;
@@ -45,6 +47,7 @@ class UserInfo {
   String uniqueId;
   String qrCode;
   double usdBalance;
+  double btcBalanceInUSD;
   double btcBalance;
   double btcInSatoshis;
   double btcCollateralUsed;
@@ -52,6 +55,7 @@ class UserInfo {
   double returns;
   double investedBalanceUSD;
   double investedBalanceBTC;
+  int isKycVerified;
 
   factory UserInfo.fromJson(Map<String, dynamic> json) => UserInfo(
         username: json["username"],
@@ -69,6 +73,7 @@ class UserInfo {
         uniqueId: json["unique_id"],
         qrCode: json["qr_code"],
         usdBalance: json["usd_balance"].toDouble() ?? 0.0,
+        btcBalanceInUSD: json["btc_balance_in_usd"].toDouble() ?? 0.0,
         btcBalance: json["btc_balance"].toDouble() ?? 0.0,
         btcInSatoshis: json["btc_in_satoshis"].toDouble() ?? 0.0,
         btcCollateralUsed: json["btc_collateral_used"].toDouble() ?? 0.0,
@@ -76,5 +81,6 @@ class UserInfo {
         returns: json["returns"].toDouble() ?? 0.0,
         investedBalanceBTC: json["investment_balance_btc"].toDouble() ?? 0.0,
         investedBalanceUSD: json["investment_balance_usd"].toDouble() ?? 0.0,
+        isKycVerified: json["is_kyc_verified"] ?? 0,
       );
 }
