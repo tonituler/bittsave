@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:six_cash/view/base/custom_snackbar.dart';
 import 'package:six_cash/view/screens/home/savings_pages/myPlans.dart';
 import 'package:six_cash/view/screens/home/savings_pages/savings_account.dart';
 
@@ -61,6 +62,11 @@ class _CreatAPlanState extends State<CreatAPlan> {
                   col: Colors.pink,
                   text: 'Next',
                   ontap: () {
+                    if (name.text.trim().isEmpty) {
+                      showCustomSnackBar("Plan name cannot be empty", isIcon: true);
+                      return;
+                    }
+
                     Navigator.push(
                       context,
                       MaterialPageRoute(

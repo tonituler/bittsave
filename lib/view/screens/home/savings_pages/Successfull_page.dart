@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:six_cash/helper/route_helper.dart';
 import 'package:six_cash/view/screens/deshboard/nav_bar.dart';
 
 import '../funding_options/request_from_a_riend/friend_identity.dart';
@@ -30,15 +32,11 @@ class _SuccessfullPageState extends State<SuccessfullPage> {
               ),
               Center(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 10.0, horizontal: 20),
+                  padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20),
                   child: Text(
                     'Your BTC savings plan as been created, Watch as your saving is gaining',
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                        color: Colors.grey,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 17),
+                    style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w500, fontSize: 17),
                   ),
                 ),
               ),
@@ -48,10 +46,20 @@ class _SuccessfullPageState extends State<SuccessfullPage> {
                   col: Colors.pink,
                   text: 'Back to Home',
                   ontap: () {
-                    Navigator.pushReplacement(
+                    Get.offAllNamed(RouteHelper.getNavBarRoute(), arguments: true).then((_) {
+                      Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => NavBarScreen()));
+                          builder: (context) => MyPlans(),
+                        ),
+                      );
+                    });
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => NavBarScreen(),
+                      ),
+                    );
                   },
                 ),
               ),

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:six_cash/app/extensions.dart';
@@ -124,6 +123,7 @@ class _SetLockPeriodState extends State<SetLockPeriod> {
       onTap: () {
         setState(() {
           selectedMonth = month["id"].toString();
+          selectedMonthName = month["period"].toString();
         });
       },
       child: Padding(

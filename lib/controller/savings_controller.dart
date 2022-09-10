@@ -62,11 +62,14 @@ class SavingsController extends GetxController implements GetxService {
     return false;
   }
 
-  Future<bool> planPay(String planId) async {
+  Future<bool> planPay(BuildContext context, String planId, String pin) async {
     _isLoading = true;
     update();
-    Response response = await transacRepo.payPlan(planId);
+    Response response = await transacRepo.payPlan(planId, pin);
     if (response.statusCode == 200) {
+      await checkPlan(planId);
+      Navigator.pop(context);
+      
       // print(response.body);
       _isLoading = false;
       update();
@@ -81,11 +84,13 @@ class SavingsController extends GetxController implements GetxService {
     return false;
   }
 
-  Future<bool> withdrawPlan(String planId) async {
+  Future<bool> withdrawPlan(BuildContext context, String planId, String pin) async {
     _isLoading = true;
     update();
-    Response response = await transacRepo.withdrawPlan(planId);
+    Response response = await transacRepo.withdrawPlan(planId, pin);
     if (response.statusCode == 200) {
+      await checkPlan(planId);
+      Navigator.pop(context);
       // print(response.body);
       _isLoading = false;
       update();
@@ -209,8 +214,7 @@ class SavingsController extends GetxController implements GetxService {
       _isInitLoading = true;
       funderInfo = null;
       update();
-      Response response =
-          await transacRepo.checkCustomerUsername(username: username);
+      Response response = await transacRepo.checkCustomerUsername(username: username);
       if (response.statusCode == 200) {
         funderInfo = response.body["data"];
         _isInitLoading = false;

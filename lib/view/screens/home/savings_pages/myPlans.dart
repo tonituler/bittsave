@@ -87,6 +87,7 @@ class _MyPlansState extends State<MyPlans> {
                           SizedBox(
                             height: 60,
                           ),
+                          if(widget.shouldNavigate)
                           BackButtons(),
                           Text(
                             'My Plans',
@@ -218,7 +219,7 @@ class _MyPlansState extends State<MyPlans> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Plan Balance',
+                            'Target amount',
                             style: TextStyle(
                                 color: ColorResources.COLOR_PRIMARY,
                                 fontSize: 10),

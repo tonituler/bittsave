@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:six_cash/app/extensions.dart';
 import 'package:six_cash/controller/deposit_controller.dart';
 import 'package:six_cash/controller/splash_controller.dart';
+import 'package:six_cash/helper/route_helper.dart';
 import 'package:six_cash/util/color_resources.dart';
 import 'package:six_cash/util/images.dart';
 import 'package:six_cash/view/base/buttons.dart';
@@ -32,8 +33,7 @@ class _FriendsIdentityState extends State<FriendsIdentity> {
   void initState() {
     super.initState();
 
-    Get.find<DepositController>()
-        .checkCustomerUsername(username: widget.username);
+    Get.find<DepositController>().checkCustomerUsername(username: widget.username);
   }
 
   @override
@@ -66,8 +66,7 @@ class _FriendsIdentityState extends State<FriendsIdentity> {
                   );
                 }
 
-                if (!controller.isInitLoading &&
-                    controller.funderInfo == null) {
+                if (!controller.isInitLoading && controller.funderInfo == null) {
                   return Container(
                     height: 400.h,
                     child: Center(
@@ -89,8 +88,7 @@ class _FriendsIdentityState extends State<FriendsIdentity> {
                             ),
                             Text(
                               "User information is not available",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w300, fontSize: 18),
+                              style: TextStyle(fontWeight: FontWeight.w300, fontSize: 18),
                             ),
                           ],
                         ),
@@ -105,9 +103,7 @@ class _FriendsIdentityState extends State<FriendsIdentity> {
                       margin: EdgeInsets.symmetric(horizontal: 0),
                       height: 500,
                       width: double.infinity,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10)),
+                      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10)),
                       child: Column(
                         children: [
                           Container(
@@ -119,15 +115,12 @@ class _FriendsIdentityState extends State<FriendsIdentity> {
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: ClipRRect(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10)),
+                              borderRadius: BorderRadius.all(Radius.circular(10)),
                               child: FadeInImage.assetNetwork(
                                 fit: BoxFit.cover,
-                                image:
-                                    "${Get.find<SplashController>().configModel.baseUrls.customerImageUrl}/${controller.funderInfo["image"]}",
+                                image: "${Get.find<SplashController>().configModel.baseUrls.customerImageUrl}/${controller.funderInfo["image"]}",
                                 placeholder: Images.avatar,
-                                imageErrorBuilder: (context, url, error) =>
-                                    Image.asset(
+                                imageErrorBuilder: (context, url, error) => Image.asset(
                                   Images.avatar,
                                   fit: BoxFit.cover,
                                 ),
@@ -136,15 +129,13 @@ class _FriendsIdentityState extends State<FriendsIdentity> {
                           ),
                           Text(
                             controller.funderInfo["name"],
-                            style: TextStyle(
-                                fontWeight: FontWeight.w300, fontSize: 14),
+                            style: TextStyle(fontWeight: FontWeight.w300, fontSize: 14),
                           ),
                           SizedBox(height: 40),
                           Container(
                             margin: EdgeInsets.symmetric(horizontal: 20),
                             decoration: BoxDecoration(
-                                border:
-                                    Border.all(width: 0.1, color: Colors.grey),
+                                border: Border.all(width: 0.1, color: Colors.grey),
                                 // color: Colors.lightGreenAccent,
                                 borderRadius: BorderRadius.circular(8)),
                             width: double.infinity,
@@ -154,38 +145,33 @@ class _FriendsIdentityState extends State<FriendsIdentity> {
                                 SizedBox(height: 5),
                                 Text(
                                   'are you sure?',
-                                  style: kLightTextStyle.copyWith(
-                                      color: Colors.grey,
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 12),
+                                  style: kLightTextStyle.copyWith(color: Colors.grey, fontWeight: FontWeight.w400, fontSize: 12),
                                 ),
                                 SizedBox(height: 10),
                                 Text(
                                   'This is wrong identity ',
-                                  style: kLightTextStyle.copyWith(
-                                      color: Colors.black,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w400),
+                                  style: kLightTextStyle.copyWith(color: Colors.black, fontSize: 16, fontWeight: FontWeight.w400),
                                 ),
                                 SizedBox(height: 7),
-                                CircleAvatar(
-                                  backgroundColor: Colors.pink,
-                                  radius: 10,
-                                  child: Icon(
-                                    Icons.clear,
-                                    color: Colors.white,
-                                    size: 15,
+                                GestureDetector(
+                                  onTap: () {
+                                    Get.offAllNamed(RouteHelper.getNavBarRoute(), arguments: true);
+                                  },
+                                  child: CircleAvatar(
+                                    backgroundColor: Colors.pink,
+                                    radius: 10,
+                                    child: Icon(
+                                      Icons.clear,
+                                      color: Colors.white,
+                                      size: 15,
+                                    ),
                                   ),
                                 ),
                               ],
                             ),
                           ),
                           SizedBox(height: 20),
-                          Text('Enter amount',
-                              style: kLightTextStyle.copyWith(
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.grey,
-                                  fontSize: 14)),
+                          Text('Enter amount', style: kLightTextStyle.copyWith(fontWeight: FontWeight.w400, color: Colors.grey, fontSize: 14)),
                           SizedBox(height: 8),
                           Expanded(
                             child: Center(
@@ -209,25 +195,22 @@ class _FriendsIdentityState extends State<FriendsIdentity> {
                                     // height: 80,
                                     child: TextField(
                                       decoration: InputDecoration(
-                                          border: InputBorder.none,
-                                          hintText: "0.00",
-                                          hintStyle: TextStyle(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.w700,
-                                            fontSize: 35.sp,
-                                          )),
+                                        border: InputBorder.none,
+                                        hintText: "0.00",
+                                        hintStyle: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 35.sp,
+                                        ),
+                                      ),
                                       controller: amount,
                                       keyboardType: TextInputType.number,
                                       onChanged: (String value) {
                                         // print(usdToNgn);
-                                        if (value.trim() != "" &&
-                                            usdToNgn != null &&
-                                            usdToNgn != "") {
+                                        if (value.trim() != "" && usdToNgn != null && usdToNgn != "") {
                                           try {
-                                            double val =
-                                                double.parse(value.trim());
-                                            double uToN =
-                                                double.parse(usdToNgn);
+                                            double val = double.parse(value.trim());
+                                            double uToN = double.parse(usdToNgn);
                                             amountInNaira = val * uToN;
                                             amountInDolar = val;
                                             setState(() {});
@@ -239,8 +222,9 @@ class _FriendsIdentityState extends State<FriendsIdentity> {
                                         }
                                       },
                                       style: TextStyle(
-                                          fontSize: 35.sp,
-                                          fontWeight: FontWeight.w700),
+                                        fontSize: 35.sp,
+                                        fontWeight: FontWeight.w700,
+                                      ),
                                     ),
                                   ),
                                 ],
@@ -266,12 +250,10 @@ class _FriendsIdentityState extends State<FriendsIdentity> {
                                   height: 54.h,
                                   onTap: () async {
                                     if (amountInDolar == 0) {
-                                      showCustomSnackBar(
-                                          "The amount can not be \$0");
+                                      showCustomSnackBar("The amount can not be \$0");
                                       return;
                                     }
-                                    Response response =
-                                        await controller.fundRequest({
+                                    Response response = await controller.fundRequest({
                                       "username": widget.username,
                                       "amount": amountInDolar,
                                       "note": "",
@@ -280,7 +262,14 @@ class _FriendsIdentityState extends State<FriendsIdentity> {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(builder: (contet) {
-                                          return RequestSuccessful();
+                                          return RequestSuccessful(
+                                            record: {
+                                              "username": widget.username,
+                                              "amount": amountInDolar,
+                                              "note": "",
+                                            },
+                                            funder:controller.funderInfo,
+                                          );
                                         }),
                                       );
                                     }

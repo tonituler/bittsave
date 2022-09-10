@@ -35,6 +35,7 @@ class ConfigModel {
     this.usdToNgn,
     this.buyBtcFee,
     this.sellBtcFee,
+    this.quotes,
     this.loanPeriod,
     this.loanToValueOptions,
     this.loanRepaymentOption,
@@ -73,6 +74,7 @@ class ConfigModel {
   String buyBtcFee;
   String sellBtcFee;
   
+  List<Map<String, dynamic>> quotes;
   List<Map<String, dynamic>> loanPeriod;
   List<Map<String, dynamic>> loanToValueOptions;
   List<Map<String, dynamic>> loanRepaymentOption;
@@ -110,6 +112,7 @@ class ConfigModel {
     usdToNgn: json["usd_ngn"].toString(),
     buyBtcFee: json["buy_btc_fee"].toString(),
     sellBtcFee: json["sell_btc_fee"].toString(),
+    quotes: List<Map<String, dynamic>>.from(json["quotes"]),
     loanPeriod: List<Map<String, dynamic>>.from(json["loan_period"]),
     loanToValueOptions: List<Map<String, dynamic>>.from(json["loan_to_value_options"]),
     loanRepaymentOption: List<Map<String, dynamic>>.from(json["loan_repayment_option"]),

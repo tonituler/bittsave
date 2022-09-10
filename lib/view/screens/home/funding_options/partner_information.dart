@@ -16,9 +16,7 @@ import 'package:six_cash/view/base/contact_shimmer.dart';
 import '../../../screens/home/funding_usd_wallet_page.dart';
 
 class PartnersInformation extends StatefulWidget {
-  PartnersInformation(
-      {Key key, @required this.amountInNaira, @required this.amountInDolar})
-      : super(key: key);
+  PartnersInformation({Key key, @required this.amountInNaira, @required this.amountInDolar}) : super(key: key);
   double amountInNaira;
   double amountInDolar;
 
@@ -75,49 +73,31 @@ class _PartnersInformationState extends State<PartnersInformation> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      LText(
-                          subtitle:
-                              '${PriceConverter.priceFormater(balance: widget.amountInNaira)} NGN',
-                          title: "Amount you'll send"),
+                      LText(subtitle: '${PriceConverter.priceFormater(balance: widget.amountInNaira)} NGN', title: "Amount you'll send"),
                       Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 20.0, vertical: 10),
+                        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               "Account Name",
-                              style: TextStyle(
-                                  fontSize: Dimensions.FONT_SIZE_LARGE,
-                                  fontWeight: FontWeight.w200,
-                                  color: Colors.black87),
+                              style: TextStyle(fontSize: Dimensions.FONT_SIZE_LARGE, fontWeight: FontWeight.w200, color: Colors.black87),
                             ),
                             SizedBox(height: 3),
                             Text(
                               controller.depositAgent.name,
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE),
+                              style: TextStyle(fontWeight: FontWeight.w700, fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE),
                             ),
                           ],
                         ),
                       ),
-                      LText(
-                          subtitle:
-                              '${controller.depositAgent.accountNo} - ${controller.depositAgent.bankName}',
-                          title: "Bank Transfer"),
-                      LText(
-                          subtitle: controller.depositAgent.references,
-                          title: "References"),
+                      LText(subtitle: '${controller.depositAgent.accountNo} - ${controller.depositAgent.bankName}', title: "Bank Transfer"),
+                      LText(subtitle: controller.depositAgent.references, title: "References"),
                       SizedBox(
                         height: 10,
                       ),
-                      CheckBox(
-                          text:
-                              'Do not put any crypto related reference in the narration or remarks e.g Crypto, BTC, Bittsave.'),
-                      CheckBox(
-                          text:
-                              'Copy the reference provides and paste it in your narration or remarks.'),
+                      CheckBox(text: 'Do not put any crypto related reference in the narration or remarks e.g Crypto, BTC, Bittsave.'),
+                      CheckBox(text: 'Copy the reference provides and paste it in your narration or remarks.'),
                       CheckBox(
                           text:
                               "Be sure to confirm that you've   paid the exact amount into the provided payment channel before clicking the button below."),
@@ -128,21 +108,16 @@ class _PartnersInformationState extends State<PartnersInformation> {
                           child: CountdownTimer(
                             endTime: endTime,
                             onEnd: onEnd,
-                            widgetBuilder:
-                                (context, CurrentRemainingTime time) {
+                            widgetBuilder: (context, CurrentRemainingTime time) {
                               if (time == null) {
                                 return Text(
                                   '00:00s',
-                                  style: TextStyle(
-                                      color: ColorResources.primaryColor,
-                                      fontWeight: FontWeight.w500),
+                                  style: TextStyle(color: ColorResources.primaryColor, fontWeight: FontWeight.w500),
                                 );
                               }
                               return Text(
                                 '${time.min ?? "00"}:${time.sec ?? "00"}s',
-                                style: TextStyle(
-                                    color: ColorResources.primaryColor,
-                                    fontWeight: FontWeight.w500),
+                                style: TextStyle(color: ColorResources.primaryColor, fontWeight: FontWeight.w500),
                               );
                             },
                           ),
@@ -153,11 +128,11 @@ class _PartnersInformationState extends State<PartnersInformation> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(left: 5.w, right: 20.w),
+                        padding: EdgeInsets.only(left: 5.w, right: 5.w),
                         child: GetBuilder<DepositController>(
                           builder: (controller) {
                             return buttonWithBorder(
-                              'Confirm Payment',
+                              'I have sent the money',
                               textColor: Colors.white,
                               buttonColor: ColorResources.primaryColor,
                               fontSize: 18.sp,
@@ -165,12 +140,9 @@ class _PartnersInformationState extends State<PartnersInformation> {
                               fontWeight: FontWeight.w400,
                               height: 54.h,
                               onTap: () async {
-                                Response response =
-                                    await controller.confirmDeposit(
-                                        controller.depositAgent.id.toString());
+                                Response response = await controller.confirmDeposit(controller.depositAgent.id.toString());
                                 if (response.body["message"] == "success") {
-                                  Get.offAllNamed(RouteHelper.getNavBarRoute(),
-                                      arguments: true);
+                                  Get.offAllNamed(RouteHelper.getNavBarRoute(), arguments: true);
                                 }
                               },
                             );
@@ -201,17 +173,12 @@ class _PartnersInformationState extends State<PartnersInformation> {
             children: [
               Text(
                 "$title",
-                style: TextStyle(
-                    fontSize: Dimensions.FONT_SIZE_LARGE,
-                    fontWeight: FontWeight.w200,
-                    color: Colors.black87),
+                style: TextStyle(fontSize: Dimensions.FONT_SIZE_LARGE, fontWeight: FontWeight.w200, color: Colors.black87),
               ),
               SizedBox(height: 3),
               Text(
                 "$subtitle",
-                style: TextStyle(
-                    fontWeight: FontWeight.w700,
-                    fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE),
+                style: TextStyle(fontWeight: FontWeight.w700, fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE),
               ),
             ],
           ),
@@ -220,8 +187,7 @@ class _PartnersInformationState extends State<PartnersInformation> {
             onPressed: () {
               FlutterClipboard.copy(subtitle).then((value) => print('copied'));
             },
-            icon:
-                Icon(Icons.copy, size: 16, color: ColorResources.primaryColor),
+            icon: Icon(Icons.copy, size: 16, color: ColorResources.primaryColor),
           ),
         ],
       ),
@@ -244,9 +210,7 @@ class _PartnersInformationState extends State<PartnersInformation> {
         ),
         title: Text(
           '$text',
-          style: TextStyle(
-              fontWeight: FontWeight.w400,
-              fontSize: Dimensions.FONT_SIZE_SMALL + 2),
+          style: TextStyle(fontWeight: FontWeight.w400, fontSize: Dimensions.FONT_SIZE_SMALL + 2),
         ),
       ),
     );

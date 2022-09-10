@@ -17,6 +17,11 @@ class RequestedMoneyRepo{
   Future<Response> approveRequestedMoney(int id, String pin) async {
     return await apiClient.postData('${AppConstants.ACCEPTED_REQUESTED_MONEY_URI}',{"id": id, "pin" :pin});
   }
+
+  Future<Response> updateRequestedMoney(String slug, int id, String pin) async {
+    return await apiClient.postData('${AppConstants.UPDATE_REQUESTED_MONEY_URI}/$slug',{"id": id, "pin" :pin});
+  }
+
   Future<Response> denyRequestedMoney(int id, String pin) async {
     return await apiClient.postData('${AppConstants.DENIED_REQUESTED_MONEY_URI}',{"id": id, "pin" :pin});
   }

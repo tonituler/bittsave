@@ -1,7 +1,10 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:six_cash/controller/home_controller.dart';
 import 'package:six_cash/controller/profile_screen_controller.dart';
+import 'package:six_cash/controller/splash_controller.dart';
 import 'package:six_cash/util/color_resources.dart';
 import 'package:six_cash/util/dimensions.dart';
 import 'package:six_cash/util/styles.dart';
@@ -33,7 +36,8 @@ class ShowName extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          ' ${'@babalola11'}',
+                          // ' ${'@babalola11'}',
+                          ' @${controller.userInfo.username}',
                           textAlign: TextAlign.start,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
@@ -47,10 +51,12 @@ class ShowName extends StatelessWidget {
                   )
                 : Text('hi_user'.tr,
                     style: montserratLight.copyWith(fontSize: Dimensions.FONT_SIZE_OVER_LARGE, color: ColorResources.whiteColor.withOpacity(0.7)))),
-        GetBuilder<HomeController>(builder: (controller) {
+        GetBuilder<SplashController>(builder: (controller) {
           return Text(
             // '${controller.greetingMessage()}',
-            'Hey, You have a great day',
+            (controller.configModel.quotes.isNotEmpty)
+                ? controller.configModel.quotes[new Random().nextInt(controller.configModel.quotes.length)]["value"]
+                : "",
             style: montserratRegular.copyWith(
               fontSize: Dimensions.FONT_SIZE_DEFAULT,
               color: ColorResources.blackColor.withOpacity(0.6),
