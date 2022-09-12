@@ -180,21 +180,21 @@ class _LoanApplicationState extends State<LoanApplication> {
                                     'Loan Calculator',
                                     style: TextStyle(fontWeight: FontWeight.w400, fontSize: 23),
                                   ),
-                                  Spacer(),
-                                  GestureDetector(
-                                    onTap: () {
-                                      Navigator.pop(context);
-                                    },
-                                    child: CircleAvatar(
-                                      backgroundColor: Colors.pink,
-                                      radius: 14,
-                                      child: Icon(
-                                        Icons.clear,
-                                        size: 20,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
+                                  // Spacer(),
+                                  // GestureDetector(
+                                  //   onTap: () {
+                                  //     Navigator.pop(context);
+                                  //   },
+                                  //   child: CircleAvatar(
+                                  //     backgroundColor: Colors.pink,
+                                  //     radius: 14,
+                                  //     child: Icon(
+                                  //       Icons.clear,
+                                  //       size: 20,
+                                  //       color: Colors.white,
+                                  //     ),
+                                  //   ),
+                                  // ),
                                 ],
                               ),
                             ),
@@ -325,8 +325,8 @@ class _LoanApplicationState extends State<LoanApplication> {
       // isDismissible: false,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(20.h),
-          topRight: Radius.circular(20.h),
+          topLeft: Radius.circular(40.h),
+          topRight: Radius.circular(40.h),
         ),
       ),
       builder: (context) {
@@ -334,8 +334,8 @@ class _LoanApplicationState extends State<LoanApplication> {
           height: 600.h,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(20.h),
-              topRight: Radius.circular(20.h),
+              topLeft: Radius.circular(40.h),
+              topRight: Radius.circular(40.h),
             ),
           ),
           child: SingleChildScrollView(

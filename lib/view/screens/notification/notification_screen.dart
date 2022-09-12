@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:six_cash/controller/notification_controller.dart';
 import 'package:six_cash/controller/splash_controller.dart';
-import 'package:six_cash/main.dart';
 import 'package:six_cash/util/color_resources.dart';
 import 'package:six_cash/util/dimensions.dart';
 import 'package:six_cash/util/images.dart';
 import 'package:six_cash/util/styles.dart';
-import 'package:six_cash/view/base/appbar_home_element.dart';
 import 'package:six_cash/view/base/custom_ink_well.dart';
 import 'package:six_cash/view/base/no_data_screen.dart';
 import 'package:six_cash/view/screens/home/funding_options/request_from_a_riend/friend_identity.dart';
@@ -37,11 +35,12 @@ class _NotificationScreenState extends State<NotificationScreen> {
           child: Container(
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                 BoldTextTitle(
-                    data: 'Notification',
-                  ),
+                SizedBox(height: 12),
+                BoldTextTitle(
+                  data: 'Notification',
+                ),
                 Expanded(
                   child: GetBuilder<NotificationController>(
                     builder: (notification) {
@@ -49,59 +48,98 @@ class _NotificationScreenState extends State<NotificationScreen> {
                           ? NotificationShimmer()
                           : notification.notificationList.length > 0
                               ? ListView.builder(
-                                  itemCount: notification.notificationList.length,
-                                  padding: EdgeInsets.symmetric(vertical: Dimensions.PADDING_SIZE_SMALL),
+                                  itemCount:
+                                      notification.notificationList.length,
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: Dimensions.PADDING_SIZE_SMALL),
                                   itemBuilder: (context, index) {
                                     return Container(
                                       color: Theme.of(context).cardColor,
-                                      margin: const EdgeInsets.symmetric(vertical: 5),
+                                      margin: const EdgeInsets.symmetric(
+                                          vertical: 5),
                                       child: CustomInkWell(
                                         onTap: () {
                                           showDialog(
                                               context: context,
-                                              builder: (context) => NotificationDialog(notificationModel: notification.notificationList[index]));
+                                              builder: (context) =>
+                                                  NotificationDialog(
+                                                      notificationModel:
+                                                          notification
+                                                                  .notificationList[
+                                                              index]));
                                         },
-                                        highlightColor: ColorResources.getPrimaryColor().withOpacity(0.1),
+                                        highlightColor:
+                                            ColorResources.getPrimaryColor()
+                                                .withOpacity(0.1),
                                         child: Padding(
                                           padding: const EdgeInsets.symmetric(
-                                              vertical: Dimensions.PADDING_SIZE_SMALL, horizontal: Dimensions.PADDING_SIZE_EXTRA_LARGE),
+                                              vertical:
+                                                  Dimensions.PADDING_SIZE_SMALL,
+                                              horizontal: Dimensions
+                                                  .PADDING_SIZE_EXTRA_LARGE),
                                           child: Row(
                                             children: [
                                               Column(
-                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
                                                 children: [
-                                                  Text(notification.notificationList[index].title,
+                                                  Text(
+                                                      notification
+                                                          .notificationList[
+                                                              index]
+                                                          .title,
                                                       style: montserratSemiBold.copyWith(
-                                                          fontSize: Dimensions.FONT_SIZE_DEFAULT, color: ColorResources.getTextColor())),
+                                                          fontSize: Dimensions
+                                                              .FONT_SIZE_DEFAULT,
+                                                          color: ColorResources
+                                                              .getTextColor())),
                                                   SizedBox(
-                                                    height: Dimensions.PADDING_SIZE_SMALL,
+                                                    height: Dimensions
+                                                        .PADDING_SIZE_SMALL,
                                                   ),
                                                   SizedBox(
-                                                    width: MediaQuery.of(context).size.width * 0.6,
-                                                    child: Text(notification.notificationList[index].description,
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width *
+                                                            0.6,
+                                                    child: Text(
+                                                        notification
+                                                            .notificationList[
+                                                                index]
+                                                            .description,
                                                         maxLines: 2,
-                                                        overflow: TextOverflow.ellipsis,
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
                                                         style: montserratRegular.copyWith(
-                                                            fontSize: Dimensions.FONT_SIZE_DEFAULT, color: ColorResources.getTextColor())),
+                                                            fontSize: Dimensions
+                                                                .FONT_SIZE_DEFAULT,
+                                                            color: ColorResources
+                                                                .getTextColor())),
                                                   ),
                                                 ],
                                               ),
                                               const Spacer(),
-                                              SizedBox(
-                                                height: Dimensions.NOTIFICATION_IMAGE_SIZE,
-                                                width: Dimensions.NOTIFICATION_IMAGE_SIZE,
-                                                child: ClipRRect(
-                                                  borderRadius: BorderRadius.circular(Dimensions.RADIUS_SIZE_EXTRA_SMALL),
-                                                  child: FadeInImage.assetNetwork(
-                                                    placeholder: Images.placeholder,
-                                                    height: 50,
-                                                    width: 50,
-                                                    fit: BoxFit.cover,
-                                                    image:
-                                                        '${Get.find<SplashController>().configModel.baseUrls.notificationImageUrl}/${notification.notificationList[index].image}',
-                                                    imageErrorBuilder: (c, o, s) => Image.asset(Images.placeholder, height: 50, width: 50, fit: BoxFit.cover),
-                                                  ),
+                                              ClipRRect(
+                                                borderRadius: BorderRadius
+                                                    .circular(Dimensions
+                                                        .RADIUS_SIZE_EXTRA_SMALL),
+                                                child: FadeInImage.assetNetwork(
+                                                  placeholder:
+                                                      Images.placeholder,
+                                                  height: 30,
+                                                  width: 30,
+                                                  fit: BoxFit.cover,
+                                                  image:
+                                                      '${Get.find<SplashController>().configModel.baseUrls.notificationImageUrl}/${notification.notificationList[index].image}',
+                                                  imageErrorBuilder:
+                                                      (c, o, s) => Image.asset(
+                                                          Images.placeholder,
+                                                          height: 30,
+                                                          width: 30,
+                                                          fit: BoxFit.cover),
                                                 ),
                                               )
                                             ],
@@ -115,7 +153,6 @@ class _NotificationScreenState extends State<NotificationScreen> {
                     },
                   ),
                 ),
-              
               ],
             ),
           ),

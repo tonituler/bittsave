@@ -23,10 +23,15 @@ class _PaymentDestinationState extends State<PaymentDestination> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  SizedBox(
+                    height: 20,
+                  ),
                   BackButtons(),
                   Padding(
                     padding: const EdgeInsets.only(left: 8),
-                    child: Text('Payment Destination', style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20)),
+                    child: Text('Payment Destination',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w700, fontSize: 20)),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 8.0, bottom: 10),
@@ -37,12 +42,16 @@ class _PaymentDestinationState extends State<PaymentDestination> {
                   ),
                   Container(
                     margin: EdgeInsets.symmetric(horizontal: 4, vertical: 20),
-                    padding: EdgeInsets.symmetric(horizontal: 2, vertical: 2),
+                    padding: EdgeInsets.symmetric(horizontal: 2, vertical: 0.5),
                     color: Colors.white,
                     child: getFunds(
-                      widget: Image.asset('assets/newImages/ telegram iIcon.png'),
+                      widget: Image.asset(
+                        'assets/newImages/naira.png',
+                        scale: 3,
+                      ),
                       title: "Nigeria",
-                      subTitle: 'You will be required to make a\nBank Transfer to your deposit',
+                      subTitle:
+                          'You will be required to make a\nBank Transfer to your deposit',
                       ontap: () {
                         Navigator.push(
                           context,

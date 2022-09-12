@@ -13,12 +13,10 @@ import 'package:six_cash/data/model/body/edit_profile_body.dart';
 import 'package:six_cash/util/color_resources.dart';
 import 'package:six_cash/util/dimensions.dart';
 import 'package:six_cash/util/images.dart';
-import 'package:six_cash/view/base/custom_app_bar.dart';
 import 'package:six_cash/view/base/custom_small_button.dart';
 import 'package:six_cash/view/screens/auth/other_info/widget/input_section.dart';
 import 'package:six_cash/view/screens/home/funding_options/request_from_a_riend/friend_identity.dart';
 import 'package:six_cash/view/screens/home/funding_usd_wallet_page.dart';
-import 'package:six_cash/view/screens/profile/widget/gender_section.dart';
 
 class EditProfileScreen extends StatefulWidget {
   const EditProfileScreen({Key key}) : super(key: key);
@@ -43,8 +41,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     lastNameController.text = profileController.userInfo.lName ?? '';
     emailController.text = profileController.userInfo.email ?? '';
     usernameController.text = profileController.userInfo.username ?? '';
-    Get.find<EditProfileController>().setGender(profileController.userInfo.gender ?? 'Male');
-    Get.find<EditProfileController>().setImage(profileController.userInfo.image ?? '');
+    Get.find<EditProfileController>()
+        .setGender(profileController.userInfo.gender ?? 'Male');
+    Get.find<EditProfileController>()
+        .setImage(profileController.userInfo.image ?? '');
   }
 
   @override
@@ -52,160 +52,190 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     return GetBuilder<EditProfileController>(builder: (controller) {
       return ModalProgressHUD(
         inAsyncCall: controller.isLoading,
-        progressIndicator: CircularProgressIndicator(color: Theme.of(context).primaryColor),
+        progressIndicator:
+            CircularProgressIndicator(color: Theme.of(context).primaryColor),
         child: WillPopScope(
           onWillPop: () => _onWillPop(context),
           child: BackGroundColr(
-            child: Scaffold(
-              backgroundColor: Colors.transparent,
-              appBar: AppBar(
-                leading: BackButtons(),
+            child: SafeArea(
+              child: Scaffold(
                 backgroundColor: Colors.transparent,
-                elevation: 0,
-              ),
-              // appBar: CustomAppbar(
-              //   title: 'edit_profile'.tr, onTap: (){
-              //    if(Get.find<ImageController>().getImage != null){
-              //      Get.find<ImageController>().removeImage();
-              //    }
+                // appBar: AppBar(
+                //   leading: BackButtons(),
+                //   backgroundColor: Colors.transparent,
+                //   elevation: 0,
+                // ),
+                // appBar: CustomAppbar(
+                //   title: 'edit_profile'.tr, onTap: (){
+                //    if(Get.find<ImageController>().getImage != null){
+                //      Get.find<ImageController>().removeImage();
+                //    }
 
-              //   Get.back();
-              // },),
-              body: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Container(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 20.0),
-                          child: BoldTextTitle(
-                            data: 'Profile Setting',
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 20.0),
-                          child: Text(
-                            'Edit your profile details here.',
-                            textAlign: TextAlign.start,
-                            style: TextStyle(
-                              color: Colors.grey,
-                              fontWeight: FontWeight.w300,
+                //   Get.back();
+                // },),
+                body: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    SizedBox(height: 20),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15.0),
+                      child: BackButtons(),
+                    ),
+                    Container(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20.0),
+                            child: BoldTextTitle(
+                              data: 'Profile Setting',
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Expanded(
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          const SizedBox(
-                            height: Dimensions.PADDING_SIZE_LARGE,
-                          ),
-                          Stack(
-                            clipBehavior: Clip.none,
-                            children: [
-                              GetBuilder<ImageController>(
-                                builder: (imageController) {
-                                  return imageController.getImage == null
-                                      ? GetBuilder<ProfileController>(builder: (proController) {
-                                          return Container(
-                                            height: 100,
-                                            width: 100,
-                                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(100)),
-                                            child: ClipRRect(
-                                              borderRadius: BorderRadius.circular(100),
-                                              child: FadeInImage.assetNetwork(
-                                                  imageErrorBuilder: (c, o, s) => Image.asset(Images.avatar, fit: BoxFit.cover),
-                                                  placeholder: Images.avatar,
-                                                  height: 100,
-                                                  width: 100,
-                                                  fit: BoxFit.cover,
-                                                  image:
-                                                      '${Get.find<SplashController>().configModel.baseUrls.customerImageUrl}/${proController.userInfo.image}'),
-                                            ),
-                                          );
-                                        })
-                                      : Container(
-                                          height: 100,
-                                          width: 100,
-                                          decoration: BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              border: Border.all(color: ColorResources.getPrimaryTextColor(), width: 2),
-                                              image: DecorationImage(
-                                                fit: BoxFit.cover,
-                                                image: FileImage(
-                                                  File(imageController.getImage.path),
-                                                ),
-                                              )),
-                                        );
-                                },
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20.0),
+                            child: Text(
+                              'Edit your profile details here.',
+                              textAlign: TextAlign.start,
+                              style: TextStyle(
+                                color: Colors.grey,
+                                fontWeight: FontWeight.w300,
                               ),
-                              Positioned(
-                                bottom: 5,
-                                right: -5,
-                                child: InkWell(
-                                  onTap: () => Get.find<AuthController>().requestCameraPermission(fromEditProfile: true),
-                                  child: Container(
-                                    padding: const EdgeInsets.all(5),
-                                    decoration: BoxDecoration(shape: BoxShape.circle, color: Theme.of(context).cardColor, boxShadow: [
-                                      BoxShadow(
-                                        color: ColorResources.getShadowColor().withOpacity(0.08),
-                                        blurRadius: 20,
-                                        offset: const Offset(0, 3),
-                                      )
-                                    ]),
-                                    child: Icon(
-                                      Icons.camera_alt,
-                                      size: 24,
-                                    ),
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                          const SizedBox(
-                            height: Dimensions.PADDING_SIZE_LARGE,
-                          ),
-                          // Padding(
-                          //   padding: const EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE),
-                          //   child: GenderSection(),
-                          // ),
-                          InputSection(
-                            phoneController: phoneController,
-                            usernameController: usernameController,
-                            fNameController: firstNameController,
-                            lNameController: lastNameController,
-                            emailController: emailController,
+                            ),
                           ),
                         ],
                       ),
                     ),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.only(
-                        left: Dimensions.PADDING_SIZE_DEFAULT, right: Dimensions.PADDING_SIZE_DEFAULT, bottom: Dimensions.PADDING_SIZE_DEFAULT),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: CustomSmallButton(
-                            onTap: () {
-                              _saveProfile(controller);
-                            },
-                            backgroundColor: Theme.of(context).primaryColor,
-                            text: 'save changes'.tr,
-                            textColor: ColorResources.getWhiteColor(),
-                          ),
+                    Expanded(
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            const SizedBox(
+                              height: Dimensions.PADDING_SIZE_LARGE,
+                            ),
+                            Stack(
+                              clipBehavior: Clip.none,
+                              children: [
+                                GetBuilder<ImageController>(
+                                  builder: (imageController) {
+                                    return imageController.getImage == null
+                                        ? GetBuilder<ProfileController>(
+                                            builder: (proController) {
+                                            return Container(
+                                              height: 100,
+                                              width: 100,
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          100)),
+                                              child: ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(100),
+                                                child: FadeInImage.assetNetwork(
+                                                    imageErrorBuilder: (c, o,
+                                                            s) =>
+                                                        Image.asset(
+                                                            Images.avatar,
+                                                            fit: BoxFit.cover),
+                                                    placeholder: Images.avatar,
+                                                    height: 100,
+                                                    width: 100,
+                                                    fit: BoxFit.cover,
+                                                    image:
+                                                        '${Get.find<SplashController>().configModel.baseUrls.customerImageUrl}/${proController.userInfo.image}'),
+                                              ),
+                                            );
+                                          })
+                                        : Container(
+                                            height: 100,
+                                            width: 100,
+                                            decoration: BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                border: Border.all(
+                                                    color: ColorResources
+                                                        .getPrimaryTextColor(),
+                                                    width: 2),
+                                                image: DecorationImage(
+                                                  fit: BoxFit.cover,
+                                                  image: FileImage(
+                                                    File(imageController
+                                                        .getImage.path),
+                                                  ),
+                                                )),
+                                          );
+                                  },
+                                ),
+                                Positioned(
+                                  bottom: 5,
+                                  right: -5,
+                                  child: InkWell(
+                                    onTap: () => Get.find<AuthController>()
+                                        .requestCameraPermission(
+                                            fromEditProfile: true),
+                                    child: Container(
+                                      padding: const EdgeInsets.all(5),
+                                      decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: Theme.of(context).cardColor,
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: ColorResources
+                                                      .getShadowColor()
+                                                  .withOpacity(0.08),
+                                              blurRadius: 20,
+                                              offset: const Offset(0, 3),
+                                            )
+                                          ]),
+                                      child: Icon(
+                                        Icons.camera_alt,
+                                        size: 24,
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                            const SizedBox(
+                              height: Dimensions.PADDING_SIZE_LARGE,
+                            ),
+                            // Padding(
+                            //   padding: const EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE),
+                            //   child: GenderSection(),
+                            // ),
+                            InputSection(
+                              phoneController: phoneController,
+                              usernameController: usernameController,
+                              fNameController: firstNameController,
+                              lNameController: lastNameController,
+                              emailController: emailController,
+                            ),
+                          ],
                         ),
-                      ],
+                      ),
                     ),
-                  )
-                ],
+                    Container(
+                      padding: const EdgeInsets.only(
+                          left: Dimensions.PADDING_SIZE_DEFAULT,
+                          right: Dimensions.PADDING_SIZE_DEFAULT,
+                          bottom: Dimensions.PADDING_SIZE_DEFAULT),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: CustomSmallButton(
+                              onTap: () {
+                                _saveProfile(controller);
+                              },
+                              backgroundColor: Theme.of(context).primaryColor,
+                              text: 'save changes'.tr,
+                              textColor: ColorResources.getWhiteColor(),
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
           ),

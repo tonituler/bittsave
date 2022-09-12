@@ -14,6 +14,8 @@ import 'package:six_cash/view/screens/settings_page/KYC.dart';
 import 'package:six_cash/view/screens/settings_page/payOut.dart';
 import 'package:six_cash/view/screens/settings_page/paymentOptions.dart';
 
+import '../home/funding_options/request_from_a_riend/bitsave_user_request.dart';
+
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key key}) : super(key: key);
 
@@ -81,17 +83,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               },
                             ),
                             CustomInkWell(
-                              child: menu.MenuItem(title: 'Payouts'),
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => PaymentOptions(),
-                                  ),
-                                );
-                              },
-                            ),
-                            CustomInkWell(
                                 child: menu.MenuItem(title: 'Payouts'),
                                 onTap: () {
                                   Navigator.push(
@@ -107,11 +98,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           title: "Request",
                           menuItem: [
                             CustomInkWell(
-                                child: menu.MenuItem(title: 'Request Status'),
+                                child: menu.MenuItem(title: 'New Request'),
+                                onTap: () => Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            BittSaveUserRequest()))),
+                            CustomInkWell(
+                                child: menu.MenuItem(title: 'Requests'),
                                 onTap: () => Get.toNamed(
                                     RouteHelper.getRequestedMoneyRoute())),
                             CustomInkWell(
-                                child: menu.MenuItem(title: 'Send Request'),
+                                child: menu.MenuItem(title: 'Request Status'),
                                 onTap: () => Get.toNamed(
                                     RouteHelper.getRequestedMoneyRoute(
                                         from: 'won'))),
