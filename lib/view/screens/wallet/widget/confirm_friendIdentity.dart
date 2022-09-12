@@ -5,6 +5,7 @@ import 'package:six_cash/app/extensions.dart';
 import 'package:six_cash/controller/splash_controller.dart';
 import 'package:six_cash/controller/wallet_controller.dart';
 import 'package:six_cash/helper/price_converter.dart';
+import 'package:six_cash/helper/route_helper.dart';
 import 'package:six_cash/util/color_resources.dart';
 import 'package:six_cash/util/images.dart';
 import 'package:six_cash/view/base/buttons.dart';
@@ -16,8 +17,7 @@ import '../../home/funding_options/fund_bit_express.dart';
 import '../../home/funding_usd_wallet_page.dart';
 
 class FriendsIdentity1 extends StatefulWidget {
-  FriendsIdentity1({Key key, @required this.username, @required this.type})
-      : super(key: key);
+  FriendsIdentity1({Key key, @required this.username, @required this.type}) : super(key: key);
   String username;
   String type;
 
@@ -36,8 +36,7 @@ class _FriendsIdentity1State extends State<FriendsIdentity1> {
     super.initState();
 
     SchedulerBinding.instance.addPostFrameCallback((_) {
-      Get.find<WalletController>()
-          .checkCustomerUsername(username: widget.username);
+      Get.find<WalletController>().checkCustomerUsername(username: widget.username);
     });
   }
 
@@ -71,8 +70,7 @@ class _FriendsIdentity1State extends State<FriendsIdentity1> {
                   );
                 }
 
-                if (!controller.isInitLoading &&
-                    controller.receipentInfo == null) {
+                if (!controller.isInitLoading && controller.receipentInfo == null) {
                   return Container(
                     height: 400.h,
                     child: Center(
@@ -94,8 +92,7 @@ class _FriendsIdentity1State extends State<FriendsIdentity1> {
                             ),
                             Text(
                               "User information is not available",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w300, fontSize: 18),
+                              style: TextStyle(fontWeight: FontWeight.w300, fontSize: 18),
                             ),
                           ],
                         ),
@@ -110,9 +107,7 @@ class _FriendsIdentity1State extends State<FriendsIdentity1> {
                       margin: EdgeInsets.symmetric(horizontal: 14),
                       height: 600,
                       width: double.infinity,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10)),
+                      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10)),
                       child: Column(
                         children: [
                           Container(
@@ -124,15 +119,12 @@ class _FriendsIdentity1State extends State<FriendsIdentity1> {
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: ClipRRect(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10)),
+                              borderRadius: BorderRadius.all(Radius.circular(10)),
                               child: FadeInImage.assetNetwork(
                                 fit: BoxFit.cover,
-                                image:
-                                    "${Get.find<SplashController>().configModel.baseUrls.customerImageUrl}/${controller.receipentInfo["image"]}",
+                                image: "${Get.find<SplashController>().configModel.baseUrls.customerImageUrl}/${controller.receipentInfo["image"]}",
                                 placeholder: Images.avatar,
-                                imageErrorBuilder: (context, url, error) =>
-                                    Image.asset(
+                                imageErrorBuilder: (context, url, error) => Image.asset(
                                   Images.avatar,
                                   fit: BoxFit.cover,
                                 ),
@@ -141,15 +133,13 @@ class _FriendsIdentity1State extends State<FriendsIdentity1> {
                           ),
                           Text(
                             controller.receipentInfo["name"],
-                            style: TextStyle(
-                                fontWeight: FontWeight.w300, fontSize: 14),
+                            style: TextStyle(fontWeight: FontWeight.w300, fontSize: 14),
                           ),
                           SizedBox(height: 40),
                           Container(
                             margin: EdgeInsets.symmetric(horizontal: 20),
                             decoration: BoxDecoration(
-                              border:
-                                  Border.all(width: 0.1, color: Colors.grey),
+                              border: Border.all(width: 0.1, color: Colors.grey),
                               // color: Colors.lightGreenAccent,
                               borderRadius: BorderRadius.circular(8),
                             ),
@@ -161,37 +151,43 @@ class _FriendsIdentity1State extends State<FriendsIdentity1> {
                                 Text(
                                   'are you sure',
                                   style: kLightTextStyle.copyWith(
-                                      color: Colors.grey,
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 12),
+                                    color: Colors.grey,
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 12,
+                                  ),
                                 ),
                                 SizedBox(height: 10),
                                 Text(
                                   'This is Wrong identity',
-                                  style: kLightTextStyle.copyWith(
-                                      color: Colors.black,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w400),
+                                  style: kLightTextStyle.copyWith(color: Colors.black, fontSize: 16, fontWeight: FontWeight.w400),
                                 ),
                                 SizedBox(height: 7),
-                                CircleAvatar(
-                                  backgroundColor: Colors.pink,
-                                  radius: 10,
-                                  child: Icon(
-                                    Icons.clear,
-                                    color: Colors.white,
-                                    size: 15,
+                                GestureDetector(
+                                  onTap: () {
+                                    Get.offAllNamed(RouteHelper.getNavBarRoute(), arguments: true);
+                                  },
+                                  child: CircleAvatar(
+                                    backgroundColor: Colors.pink,
+                                    radius: 10,
+                                    child: Icon(
+                                      Icons.clear,
+                                      color: Colors.white,
+                                      size: 15,
+                                    ),
                                   ),
                                 ),
                               ],
                             ),
                           ),
                           SizedBox(height: 20),
-                          Text('Enter amount',
-                              style: kLightTextStyle.copyWith(
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.grey,
-                                  fontSize: 14)),
+                          Text(
+                            'Enter amount',
+                            style: kLightTextStyle.copyWith(
+                              fontWeight: FontWeight.w400,
+                              color: Colors.grey,
+                              fontSize: 14,
+                            ),
+                          ),
                           SizedBox(height: 0),
                           Expanded(
                             flex: 0,
@@ -227,14 +223,10 @@ class _FriendsIdentity1State extends State<FriendsIdentity1> {
                                       keyboardType: TextInputType.number,
                                       onChanged: (String value) {
                                         // print(usdToNgn);
-                                        if (value.trim() != "" &&
-                                            usdToNgn != null &&
-                                            usdToNgn != "") {
+                                        if (value.trim() != "" && usdToNgn != null && usdToNgn != "") {
                                           try {
-                                            double val =
-                                                double.parse(value.trim());
-                                            double uToN =
-                                                double.parse(usdToNgn);
+                                            double val = double.parse(value.trim());
+                                            double uToN = double.parse(usdToNgn);
                                             amountInNaira = val * uToN;
                                             amountInDolar = val;
                                             setState(() {});
@@ -245,9 +237,7 @@ class _FriendsIdentity1State extends State<FriendsIdentity1> {
                                           setState(() {});
                                         }
                                       },
-                                      style: TextStyle(
-                                          fontSize: 35.sp,
-                                          fontWeight: FontWeight.w700),
+                                      style: TextStyle(fontSize: 35.sp, fontWeight: FontWeight.w700),
                                     ),
                                   ),
                                 ],
@@ -315,72 +305,59 @@ class _FriendsIdentity1State extends State<FriendsIdentity1> {
                           ),
                           SizedBox(height: 15),
                           Container(
-                            margin: const EdgeInsets.only(
-                                top: 10.0, right: 12, left: 0, bottom: 0),
+                            margin: const EdgeInsets.only(top: 10.0, right: 12, left: 0, bottom: 0),
                             padding: const EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Colors.black),
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: Colors.black),
                             child: Center(
                               child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: [
+                                  if(widget.type != "USD")
                                   InnerContainer(
                                     height: 50,
                                     col: Colors.white,
                                     data: 5,
                                     widget: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
+                                      mainAxisAlignment: MainAxisAlignment.center,
                                       children: [
                                         Text(
                                           "Amount in BTC",
-                                          style: kLightTextStyle.copyWith(
-                                              color: Colors.grey),
+                                          style: kLightTextStyle.copyWith(color: Colors.grey),
                                         ),
                                         SizedBox(height: 2),
                                         Text(
                                           '${PriceConverter.converDolarToBTC(amountInDolar)}BTC',
-                                          style: kLightTextStyle.copyWith(
-                                              fontWeight: FontWeight.w400,
-                                              color: Colors.black,
-                                              fontSize: 16.sp),
+                                          style: kLightTextStyle.copyWith(fontWeight: FontWeight.w400, color: Colors.black, fontSize: 16.sp),
                                         ),
                                       ],
                                     ),
                                     style: kLightTextStyle,
                                   ),
                                   Padding(
-                                    padding:
-                                        EdgeInsets.symmetric(horizontal: 5.w),
+                                    padding: EdgeInsets.symmetric(horizontal: 5.w),
                                     child: GetBuilder<WalletController>(
                                       builder: (walletController) {
                                         return buttonWithBorder(
                                           "Send Now",
                                           textColor: Colors.white,
-                                          buttonColor:
-                                              ColorResources.primaryColor,
+                                          buttonColor: ColorResources.primaryColor,
                                           fontSize: 18.sp,
                                           busy: walletController.isLoading,
                                           fontWeight: FontWeight.w400,
                                           height: 54.h,
                                           onTap: () async {
                                             if (amountInDolar == 0) {
-                                              showCustomSnackBar(
-                                                  "The amount can not be \$0");
+                                              showCustomSnackBar("The amount can not be \$0");
                                               return;
                                             }
                                             bool response;
                                             if (widget.type == "USD") {
-                                              response = await walletController
-                                                  .sendUSDToBTCWallet({
+                                              response = await walletController.sendUSDToBTCWallet({
                                                 "username": widget.username,
                                                 "amount": amountInDolar,
                                               });
                                             } else {
-                                              response = await walletController
-                                                  .sendBTCToUser({
+                                              response = await walletController.sendBTCToUser({
                                                 "username": widget.username,
                                                 "amount": amountInDolar,
                                               });
@@ -389,14 +366,11 @@ class _FriendsIdentity1State extends State<FriendsIdentity1> {
                                             if (response) {
                                               Navigator.push(
                                                 context,
-                                                MaterialPageRoute(
-                                                    builder: (contet) {
+                                                MaterialPageRoute(builder: (contet) {
                                                   return SendUsdFromFriend(
                                                     requestInfo: {
-                                                      ...controller
-                                                          .receipentInfo,
-                                                      "username":
-                                                          widget.username,
+                                                      ...controller.receipentInfo,
+                                                      "username": widget.username,
                                                       "amount": amountInDolar,
                                                     },
                                                   );
@@ -435,13 +409,7 @@ class BackGroundColr extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
           gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-            Colors.pink[50],
-            Color.fromARGB(0, 244, 235, 238),
-            Colors.grey[50]
-          ])),
+              begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [Colors.pink[50], Color.fromARGB(0, 244, 235, 238), Colors.grey[50]])),
       width: double.infinity,
       child: child,
     );

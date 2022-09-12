@@ -69,7 +69,7 @@ class _BTCTransferConfirmationState extends State<BTCTransferConfirmation> {
                           ),
                           SizedBox(height: 5),
                           Text(
-                            '${splashController.configModel.sellBtcFee} USD',
+                            '${(double.parse(splashController.configModel.buyBtcFee) / 100) * double.parse(widget.requestInfo["amount"].toString())} USD',
                             style: TextStyle(fontSize: 20),
                           ),
                           SizedBox(height: 15),
@@ -81,7 +81,7 @@ class _BTCTransferConfirmationState extends State<BTCTransferConfirmation> {
                           ),
                           SizedBox(height: 5),
                           Text(
-                            '${PriceConverter.priceFormater(balance: (double.parse(splashController.configModel.sellBtcFee) + double.parse(widget.requestInfo["amount"].toString())))} USD',
+                            '${PriceConverter.priceFormater(balance: ((double.parse(splashController.configModel.buyBtcFee) / 100) * double.parse(widget.requestInfo["amount"].toString()) + double.parse(widget.requestInfo["amount"].toString())))} USD',
                             style: TextStyle(fontSize: 20),
                           ),
                           SizedBox(height: 15),

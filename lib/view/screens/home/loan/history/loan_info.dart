@@ -42,7 +42,8 @@ class _LoanInfoState extends State<LoanInfo> {
                       BackButtons(),
                       BoldTextTitle(
                         data:
-                            '${widget.loanInfo.loanAmount} - N${PriceConverter.convertToNaira(double.parse(widget.loanInfo.loanAmount.toString()))}',
+                            // '\$${widget.loanInfo.loanAmount} - N${PriceConverter.convertToNaira(double.parse(widget.loanInfo.loanAmount.toString()))}',
+                            '\$${widget.loanInfo.loanAmount} - ${widget.loanInfo.refId}',
                       ),
                       SizedBox(height: 20),
                       subText('Total Payback'),

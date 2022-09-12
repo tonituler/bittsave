@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:six_cash/app/extensions.dart';
+import 'package:six_cash/controller/profile_screen_controller.dart';
+import 'package:six_cash/controller/screen_shot_widget_controller.dart';
 import 'package:six_cash/controller/splash_controller.dart';
 import 'package:six_cash/helper/price_converter.dart';
 import 'package:six_cash/util/images.dart';
@@ -95,27 +97,39 @@ class _SendUsdFromFriendState extends State<SendUsdFromFriend> {
                         style: TextStyle(fontWeight: FontWeight.w300, fontSize: 14),
                       ),
                       SizedBox(height: 30),
-                      Container(
-                        decoration: BoxDecoration(border: Border.all(width: 0.1), borderRadius: BorderRadius.circular(18)),
-                        margin: EdgeInsets.symmetric(horizontal: 10),
-                        padding: EdgeInsets.symmetric(horizontal: 12),
-                        // color: Colors.pink,
-                        width: double.infinity,
-                        child: ListTile(
-                          leading: Icon(
-                            Icons.qr_code_2_sharp,
+                      GestureDetector(
+                        onTap: () {
+                          Get.find<ScreenShootWidgetController>().qrCodeDownloadAndShare(
+                            qrCode: Get.find<ProfileController>().userInfo.qrCode,
+                            phoneNumber: Get.find<ProfileController>().userInfo.phone,
+                            isShare: true,
+                          );
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(width: 0.1),
+                            borderRadius: BorderRadius.circular(18),
                           ),
-                          trailing: Icon(Icons.share, color: ColorResources.primaryColor),
-                          title: Text(
-                            'share with your friend',
-                            maxLines: 1,
-                            style: TextStyle(color: Colors.black, fontWeight: FontWeight.w300, fontSize: 10),
-                          ),
-                          subtitle: Text(
-                            'Click here to share your QR Code',
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(fontSize: 10, fontWeight: FontWeight.w600),
+                          margin: EdgeInsets.symmetric(horizontal: 10),
+                          padding: EdgeInsets.symmetric(horizontal: 12),
+                          // color: Colors.pink,
+                          width: double.infinity,
+                          child: ListTile(
+                            leading: Icon(
+                              Icons.qr_code_2_sharp,
+                            ),
+                            trailing: Icon(Icons.share, color: ColorResources.primaryColor),
+                            title: Text(
+                              'share with your friend',
+                              maxLines: 1,
+                              style: TextStyle(color: Colors.black, fontWeight: FontWeight.w300, fontSize: 10),
+                            ),
+                            subtitle: Text(
+                              'Click here to share your QR Code',
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(fontSize: 10, fontWeight: FontWeight.w600),
+                            ),
                           ),
                         ),
                       ),

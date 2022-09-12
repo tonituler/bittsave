@@ -96,6 +96,8 @@ class _SendUsdState extends State<SendUsd> {
               Image.asset(
                 image,
                 scale: scale,
+                height: 50,
+                width: 50,
                 fit: BoxFit.cover,
                 filterQuality: FilterQuality.high,
               ),

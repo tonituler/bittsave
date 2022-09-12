@@ -34,11 +34,24 @@ class _SendUsdToFriendState extends State<SendUsdToFriend> {
                   BackButtons(),
                   Padding(
                     padding: const EdgeInsets.only(left: 8, bottom: 4),
-                    child: Text('Enter recipient username', style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20)),
+                    child: Text(
+                      'Enter recipient username',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        fontSize: 20,
+                      ),
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 8, bottom: 10),
-                    child: Text('Who do you want to send money to?', style: TextStyle(fontWeight: FontWeight.w400, fontSize: 14, color: Colors.grey)),
+                    child: Text(
+                      'Who do you want to send money to?',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 14,
+                        color: Colors.grey,
+                      ),
+                    ),
                   ),
                   SizedBox(height: 80),
                   Padding(
@@ -46,10 +59,11 @@ class _SendUsdToFriendState extends State<SendUsdToFriend> {
                     child: TextField(
                       controller: receipent,
                       decoration: InputDecoration(
-                          hintText: 'Bittsave Username',
-                          border: OutlineInputBorder(borderSide: BorderSide.none),
-                          filled: true,
-                          fillColor: Colors.pink[50],),
+                        hintText: 'Bittsave Username',
+                        border: OutlineInputBorder(borderSide: BorderSide.none),
+                        filled: true,
+                        fillColor: Colors.pink[50],
+                      ),
                     ),
                   ),
                   SizedBox(height: 50),

@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:flutter_contacts/properties/address.dart';
+
 UserInfo userInfoFromJson(String str) => UserInfo.fromJson(json.decode(str));
 
 // String userInfoToJson(UserInfo data) => json.encode(data.toJson());
@@ -30,6 +32,14 @@ class UserInfo {
     this.investedBalanceBTC,
     this.investedBalanceUSD,
     this.isKycVerified,
+
+    this.accountName,
+    this.accountNo,
+    this.bankName,
+    this.city,
+    this.stateRegion,
+    this.address,
+    this.country,
   });
 
   String username;
@@ -57,6 +67,14 @@ class UserInfo {
   double investedBalanceBTC;
   int isKycVerified;
 
+  String accountName;
+  String accountNo;
+  String bankName;
+  String stateRegion;
+  String city;
+  String address;
+  String country;
+
   factory UserInfo.fromJson(Map<String, dynamic> json) => UserInfo(
         username: json["username"],
         fName: json["f_name"],
@@ -82,5 +100,13 @@ class UserInfo {
         investedBalanceBTC: json["investment_balance_btc"].toDouble() ?? 0.0,
         investedBalanceUSD: json["investment_balance_usd"].toDouble() ?? 0.0,
         isKycVerified: json["is_kyc_verified"] ?? 0,
+
+        accountName: json["account_name"],
+        accountNo: json["account_no"],
+        bankName: json["bank_name"],
+        stateRegion: json["state_region"],
+        city: json["city"],
+        address: json["address"],
+        country: json["country:"],
       );
 }

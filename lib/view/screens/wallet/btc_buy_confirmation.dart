@@ -77,7 +77,7 @@ class _BTCBuyConfirmationState extends State<BTCBuyConfirmation> {
                           ),
                           SizedBox(height: 2),
                           Text(
-                            '${splashController.configModel.buyBtcFee} USD',
+                            '${(double.parse(splashController.configModel.buyBtcFee) / 100) * double.parse(widget.requestInfo["amount"].toString())} USD',
                             style: TextStyle(fontSize: 20),
                           ),
                           SizedBox(height: 10),
@@ -89,7 +89,7 @@ class _BTCBuyConfirmationState extends State<BTCBuyConfirmation> {
                           ),
                           SizedBox(height: 2),
                           Text(
-                            '${PriceConverter.priceFormater(balance: (double.parse(splashController.configModel.buyBtcFee) + double.parse(widget.requestInfo["amount"].toString())))} USD',
+                            '${PriceConverter.priceFormater(balance: ((double.parse(splashController.configModel.buyBtcFee) / 100) * double.parse(widget.requestInfo["amount"].toString()) + double.parse(widget.requestInfo["amount"].toString())))} USD',
                             style: TextStyle(fontSize: 20),
                           ),
                         ],

@@ -32,9 +32,7 @@ class _SendBTCtotate extends State<SendBTCto> {
                   BackButtons(),
                   Padding(
                     padding: const EdgeInsets.only(left: 8, bottom: 30),
-                    child: Text('Send BTC to',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w700, fontSize: 20)),
+                    child: Text('Send BTC to', style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20)),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 10.0, top: 60),
@@ -49,8 +47,7 @@ class _SendBTCtotate extends State<SendBTCto> {
                         TextField(
                           controller: walletAddress,
                           decoration: InputDecoration(
-                            contentPadding:
-                                EdgeInsets.only(top: 10, bottom: 10),
+                            contentPadding: EdgeInsets.only(top: 10, bottom: 10),
                             suffixIcon: Container(
                               height: 30,
                               width: 60,
@@ -64,11 +61,8 @@ class _SendBTCtotate extends State<SendBTCto> {
                                     });
                                   },
                                   child: Container(
-                                    decoration: BoxDecoration(
-                                        color: Colors.grey.withOpacity(0.5),
-                                        borderRadius: BorderRadius.circular(5)),
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 5, vertical: 5),
+                                    decoration: BoxDecoration(color: Colors.grey.withOpacity(0.5), borderRadius: BorderRadius.circular(5)),
+                                    padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
                                     child: Text(
                                       'Paste',
                                       textAlign: TextAlign.center,
@@ -83,8 +77,7 @@ class _SendBTCtotate extends State<SendBTCto> {
                               ),
                             ),
                             filled: true,
-                            border:
-                                OutlineInputBorder(borderSide: BorderSide.none),
+                            border: OutlineInputBorder(borderSide: BorderSide.none),
                             fillColor: Colors.grey[200],
                           ),
                         ),
@@ -105,20 +98,21 @@ class _SendBTCtotate extends State<SendBTCto> {
                             );
                           },
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 20.0, horizontal: 1),
+                            padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 1),
                             child: Container(
                               width: double.infinity,
                               height: 50,
                               child: Center(
-                                  child: Text(
-                                'Continue',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(color: Colors.white),
-                              )),
+                                child: Text(
+                                  'Continue',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
                               decoration: BoxDecoration(
-                                  color: Colors.pink,
-                                  borderRadius: BorderRadius.circular(8)),
+                                color: Colors.pink,
+                                borderRadius: BorderRadius.circular(8),
+                              ),
                             ),
                           ),
                         ),

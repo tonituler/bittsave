@@ -4,6 +4,7 @@ import 'package:six_cash/controller/profile_screen_controller.dart';
 import 'package:six_cash/data/api/api_checker.dart';
 import 'package:six_cash/data/model/agent_model.dart';
 import 'package:six_cash/data/model/savings_plan.dart';
+import 'package:six_cash/data/model/transaction_model.dart';
 import 'package:six_cash/data/repository/transaction_repo.dart';
 import 'package:six_cash/view/base/custom_snackbar.dart';
 
@@ -15,8 +16,8 @@ class WalletController extends GetxController implements GetxService {
   bool _isVerifying = false;
   bool _isSavingPreviewLoading = false;
   List<SavingsPlan> _savingsList;
-  List<Map<String, dynamic>> _usdHistory = [];
-  List<Map<String, dynamic>> _btcHistory = [];
+  List<Transactions> _usdHistory = [];
+  List<Transactions> _btcHistory = [];
   Map<String, dynamic> receipentInfo;
   Map<String, dynamic> planPreviewResponse;
 
@@ -25,8 +26,8 @@ class WalletController extends GetxController implements GetxService {
   bool get isSavingPreviewLoading => _isSavingPreviewLoading;
   bool get isVerifying => _isVerifying;
   List<SavingsPlan> get savingsList => _savingsList;
-  List<Map<String, dynamic>> get usdHistory => _usdHistory;
-  List<Map<String, dynamic>> get btcHistory => _btcHistory;
+  List<Transactions> get usdHistory => _usdHistory;
+  List<Transactions> get btcHistory => _btcHistory;
 
   Future<bool> sellBtc(Map<String, dynamic> data) async {
     _isLoading = true;
@@ -149,7 +150,13 @@ class WalletController extends GetxController implements GetxService {
   Future<bool> getUSDHistory() async {
     Response response = await transacRepo.getUSDHistory();
     if (response.statusCode == 200) {
-      _usdHistory = List<Map<String, dynamic>>.from(response.body["transactions"]);
+      List<Transactions> uList = [];
+
+      for (var item in List<Map<String, dynamic>>.from(response.body["transactions"])) {
+        uList.add(Transactions.fromJson(item));
+      }
+
+      _usdHistory = uList;
       return true;
     } else {
       print("response.hasError");
@@ -162,8 +169,14 @@ class WalletController extends GetxController implements GetxService {
   Future<bool> getBTCHistory() async {
     Response response = await transacRepo.getBTCHistory();
     if (response.statusCode == 200) {
-      _btcHistory = List<Map<String, dynamic>>.from(response.body["transactions"]);
-      
+      List<Transactions> uList = [];
+
+      for (var item in List<Map<String, dynamic>>.from(response.body["transactions"])) {
+        uList.add(Transactions.fromJson(item));
+      }
+
+      _btcHistory = uList;
+
       return true;
     } else {
       print("response.hasError");

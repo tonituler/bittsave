@@ -16,6 +16,7 @@ class Loan {
     this.currentBalance,
     this.collateral,
     this.paymentTimes,
+    this.refId,
   });
 
   int id;
@@ -29,6 +30,7 @@ class Loan {
   String currentBalance;
   String collateral;
   String paymentTimes;
+  String refId;
 
   factory Loan.fromJson(Map<String, dynamic> json) => Loan(
     id: json["id"],
@@ -42,5 +44,6 @@ class Loan {
     paymentTimes: json["payment_times"].toString(),
     collateral: json["collateral"].toString(),
     currentBalance: json["current_balance"].toString(),
+    refId: json["ref_id"].toString(),
   );
 }

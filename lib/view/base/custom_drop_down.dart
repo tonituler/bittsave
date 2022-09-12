@@ -35,38 +35,41 @@ class _CustomDropDownButtonState extends State<CustomDropDownButton> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 80,
       margin: EdgeInsets.only(top: 2.h, left: 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-              padding: EdgeInsets.only(bottom: 6.h),
-              child: Row(
-                children: [
-                  regularText(
-                    widget.title,
-                    fontSize: Dimensions.FONT_SIZE_DEFAULT,
-                    color: ColorResources.greyColor,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  Spacer(),
-                  if (widget.busy)
-                    SizedBox(
-                      child: CircularProgressIndicator(
-                        strokeWidth: 3,
-                        valueColor: AlwaysStoppedAnimation<Color>(Colors.black),
-                      ),
-                      height: 14.h,
-                      width: 14.h,
-                    )
-                ],
-              )),
+            padding: EdgeInsets.only(bottom: 6.h),
+            child: Row(
+              children: [
+                regularText(
+                  widget.title,
+                  fontSize: Dimensions.FONT_SIZE_DEFAULT,
+                  color: ColorResources.greyColor,
+                  fontWeight: FontWeight.w500,
+                ),
+                Spacer(),
+                if (widget.busy)
+                  SizedBox(
+                    child: CircularProgressIndicator(
+                      strokeWidth: 3,
+                      valueColor: AlwaysStoppedAnimation<Color>(Colors.black),
+                    ),
+                    height: 14.h,
+                    width: 14.h,
+                  )
+              ],
+            ),
+          ),
           Container(
             padding: EdgeInsets.symmetric(
               horizontal: 20.h,
             ),
             decoration: getDecoration(),
-            height: 50.h,
+            height: 50,
+            width: MediaQuery.of(context).size.width,
             alignment: Alignment.center,
             child: DropdownButton<String>(
               style: TextStyle(
@@ -80,8 +83,9 @@ class _CustomDropDownButtonState extends State<CustomDropDownButton> {
                 child: Text(
                   widget.hintText,
                   style: TextStyle(
-                      color: ColorResources.blackColor,
-                      fontSize: Dimensions.FONT_SIZE_LARGE),
+                    color: Colors.black,
+                    fontSize:17,
+                  ),
                 ),
               ),
               value: widget.value,
@@ -97,11 +101,14 @@ class _CustomDropDownButtonState extends State<CustomDropDownButton> {
                   value: value,
                   child: Padding(
                     padding: EdgeInsets.symmetric(vertical: 8.h),
-                    child: Text(value,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: Dimensions.FONT_SIZE_LARGE,
-                            fontWeight: FontWeight.w300)),
+                    child: Text(
+                      value,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: Dimensions.FONT_SIZE_LARGE,
+                        fontWeight: FontWeight.w300,
+                      ),
+                    ),
                   ),
                 );
               }).toList(),
@@ -118,8 +125,9 @@ class _CustomDropDownButtonState extends State<CustomDropDownButton> {
         color: widget.backgroundColor,
         borderRadius: BorderRadius.circular(5),
         border: Border.all(
-          width: 1.h,
+          width: 1,
           color: widget.backgroundColor,
+          style: BorderStyle.solid,
         ),
       );
     }
@@ -127,7 +135,6 @@ class _CustomDropDownButtonState extends State<CustomDropDownButton> {
     if (widget.bordered == DropDownType.Underline) {
       return BoxDecoration(
         color: widget.backgroundColor,
-        borderRadius: BorderRadius.circular(5),
         border: Border(
           bottom: BorderSide(
             width: 1.h,

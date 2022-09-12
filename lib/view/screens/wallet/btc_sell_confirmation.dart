@@ -79,7 +79,7 @@ class _BTCSellconfrimationState extends State<BTCSellconfrimation> {
                           ),
                           SizedBox(height: 2),
                           Text(
-                            '${splashController.configModel.sellBtcFee} USD',
+                            '${(double.parse(splashController.configModel.sellBtcFee) / 100) * double.parse(widget.requestInfo["amount"].toString())} USD',
                             style: TextStyle(fontSize: 20),
                           ),
                           SizedBox(height: 10),
@@ -93,7 +93,7 @@ class _BTCSellconfrimationState extends State<BTCSellconfrimation> {
                           ),
                           SizedBox(height: 2),
                           Text(
-                            '${PriceConverter.priceFormater(balance: (double.parse(splashController.configModel.sellBtcFee) + double.parse(widget.requestInfo["amount"].toString())))} USD',
+                            '${PriceConverter.priceFormater(balance: (((double.parse(splashController.configModel.sellBtcFee) / 100) * double.parse(widget.requestInfo["amount"].toString())) + double.parse(widget.requestInfo["amount"].toString())))} USD',
                             style: TextStyle(fontSize: 20),
                           ),
                         ],

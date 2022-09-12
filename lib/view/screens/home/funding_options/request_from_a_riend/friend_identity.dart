@@ -74,13 +74,18 @@ class _FriendsIdentityState extends State<FriendsIdentity> {
                         padding: EdgeInsets.symmetric(vertical: 100.h),
                         child: Column(
                           children: [
-                            CircleAvatar(
-                              backgroundColor: Colors.pink,
-                              radius: 25,
-                              child: Icon(
-                                Icons.clear,
-                                color: Colors.white,
-                                size: 22,
+                            GestureDetector(
+                              onTap: (){
+                                Get.offAllNamed(RouteHelper.getNavBarRoute(), arguments: true);
+                              },
+                              child: CircleAvatar(
+                                backgroundColor: Colors.pink,
+                                radius: 25,
+                                child: Icon(
+                                  Icons.clear,
+                                  color: Colors.white,
+                                  size: 22,
+                                ),
                               ),
                             ),
                             SizedBox(

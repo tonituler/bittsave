@@ -174,7 +174,8 @@ class _BuyBTCState extends State<BuyBTC> {
                               child: LightText(
                                   txAlign: TextAlign.center,
                                   text:
-                                      'Avalibale BTC Bal: \$${PriceConverter.priceFormater(balance: PriceConverter.converBTCToDolar(profileController.userInfo.btcBalance - profileController.userInfo.btcCollateralUsed))}',
+                                      // 'Available BTC Bal: \$${PriceConverter.priceFormater(balance: PriceConverter.converBTCToDolar(profileController.userInfo.btcBalance - profileController.userInfo.btcCollateralUsed))}',
+                                      'Available BTC Bal: \$${PriceConverter.priceFormater(balance:  profileController.userInfo.usdBalance)}',
                                   fontSize: 12.sp,
                                   col: ColorResources.whiteColor),
                             ),

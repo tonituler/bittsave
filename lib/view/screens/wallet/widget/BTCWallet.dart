@@ -3,12 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:six_cash/app/extensions.dart';
+import 'package:six_cash/controller/localization_controller.dart';
 import 'package:six_cash/controller/profile_screen_controller.dart';
 import 'package:six_cash/controller/wallet_controller.dart';
+import 'package:six_cash/data/model/transaction_model.dart';
+import 'package:six_cash/helper/date_converter.dart';
 import 'package:six_cash/helper/price_converter.dart';
+import 'package:six_cash/util/app_constants.dart';
 import 'package:six_cash/util/color_resources.dart';
 import 'package:six_cash/util/dimensions.dart';
+import 'package:six_cash/util/images.dart';
+import 'package:six_cash/util/styles.dart';
 import 'package:six_cash/view/screens/home/funding_usd_wallet_page.dart';
+import 'package:six_cash/view/screens/home/widget/bottom_sheet/ecpandable_bottom_sheet.dart';
 import 'package:six_cash/view/screens/home/widget/bottom_sheet/expandable_contant.dart';
 import 'package:six_cash/view/screens/wallet/buy_btc.dart';
 import 'package:six_cash/view/screens/wallet/recieve_Btc.dart';
@@ -29,501 +36,355 @@ class _BTCWalletScreenState extends State<BTCWalletScreen> {
   @override
   Widget build(BuildContext context) {
     return ExpandableBottomSheet(
-        enableToggle: true,
-        persistentContentHeight: 200,
-        background: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 10.0, top: 20, left: 8),
-                  child: BoldTextTitle(
-                    data: 'BTC Wallet',
-                  ),
+      enableToggle: true,
+      persistentContentHeight: 200,
+      background: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(bottom: 10.0, top: 20, left: 8),
+                child: BoldTextTitle(
+                  data: 'BTC Wallet',
                 ),
-                // SizedBox(),
-                Padding(
-                  padding: const EdgeInsets.only(left: 8.0, bottom: 25),
-                  child: Text(
-                    'Swipe right to view your USD wallet.',
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontWeight: FontWeight.w300,
-                      fontSize: Dimensions.FONT_SIZE_DEFAULT,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 10, right: 10, left: 5, bottom: 10),
-                  child: PhysicalModel(
-                    elevation: 8,
-                    color: Colors.pink,
-                    shadowColor: Colors.lightBlueAccent,
-                    borderRadius: BorderRadius.circular(20),
-                    child: GetBuilder<ProfileController>(builder: (profileController) {
-                      return Container(
-                        padding: EdgeInsets.all(20),
-                        height: 150,
-                        width: double.infinity,
-                        child: Column(
-                          children: [
-                            Row(
-                              children: [
-                                Text(
-                                  'BTC',
-                                  style: TextStyle(color: Colors.white, fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE, fontWeight: FontWeight.w500,),
-                                ),
-                                Spacer(),
-                                Container(
-                                  height: 30,
-                                  width: 30,
-                                  padding: EdgeInsets.all(0),
-                                  child: Image.asset(
-                                    "assets/image/btc.png",
-                                    height: 30,
-                                    width: 30,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 22,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 1.0),
-                              child: Text(
-                                '${profileController.userInfo.btcBalance}',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: Dimensions.FONT_SIZE_EXTRA_OVER_LARGE,
-                                ),
-                              ),
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  '\$${PriceConverter.priceFormater(balance: PriceConverter.converBTCToDolar(profileController.userInfo.btcBalance))}',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w200,
-                                    fontSize: Dimensions.FONT_SIZE_LARGE,
-                                  ),
-                                ),
-                                // Expanded(
-                                //   child: Text(
-                                //     ' ${PriceConverter.priceFormater(balance: profileController.userInfo.btcInSatoshis)} sats',
-                                //     style: TextStyle(
-                                //         color: Colors.white,
-                                //         fontWeight: FontWeight.w200,
-                                //         fontSize: Dimensions.FONT_SIZE_LARGE),
-                                //   ),
-                                // )
-                              ],
-                            ),
-                            // Text(
-                            //   '\$${PriceConverter.priceFormater(balance: PriceConverter.converBTCToDolar(profileController.userInfo.btcBalance))} | ${profileController.userInfo.btcInSatoshis} sats',
-                            //   style: TextStyle(color: Colors.white, fontWeight: FontWeight.w200, fontSize: Dimensions.FONT_SIZE_LARGE),
-                            // )
-                          ],
-                        ),
-                      );
-                    }),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      WalletIcons(
-                        ontap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => SellBtc(),
-                            ),
-                          );
-                        },
-                        icon: "Compass.png",
-                        label: "Sell",
-                      ),
-                      WalletIcons(
-                        ontap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => BuyBTC(),
-                            ),
-                          );
-                        },
-                        icon: "StopCircle.png",
-                        label: "Buy",
-                      ),
-                      WalletIcons(
-                        ontap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => SendBTC(),
-                            ),
-                          );
-                        },
-                        icon: "CaretCircleUp.png",
-                        label: "Send",
-                      ),
-                      WalletIcons(
-                        ontap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ReceiveBtc(),
-                            ),
-                          );
-                        },
-                        icon: "PlayCircle.png",
-                        label: "Receive",
-                      )
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-                  child: Divider(
-                    color: ColorResources.primaryColor,
-                    height: 2,
-                    thickness: 1,
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  'Recent Transactions',
+              ),
+              // SizedBox(),
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0, bottom: 25),
+                child: Text(
+                  'Swipe right to view your USD wallet.',
                   textAlign: TextAlign.left,
                   style: TextStyle(
                     color: Colors.grey,
                     fontWeight: FontWeight.w300,
-                    fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE - 2,
+                    fontSize: Dimensions.FONT_SIZE_DEFAULT,
                   ),
                 ),
-                SizedBox(
-                  height: 20,
-                ),
-                GetBuilder<WalletController>(
-                  builder: (controller) {
-                    return FutureBuilder(
-                      future: loadSavings(controller),
-                      builder: (context, snapshot) {
-                        if (snapshot.connectionState == ConnectionState.waiting) {
-                          isInitialLoad = true;
-                          return Container(
-                            height: 200,
-                            child: Center(
-                              child: CircularProgressIndicator(),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 10, right: 10, left: 5, bottom: 10),
+                child: PhysicalModel(
+                  elevation: 8,
+                  color: Colors.pink,
+                  shadowColor: Colors.lightBlueAccent,
+                  borderRadius: BorderRadius.circular(20),
+                  child: GetBuilder<ProfileController>(builder: (profileController) {
+                    return Container(
+                      padding: EdgeInsets.all(20),
+                      height: 150,
+                      width: double.infinity,
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Text(
+                                'BTC',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                              Spacer(),
+                              Container(
+                                height: 30,
+                                width: 30,
+                                padding: EdgeInsets.all(0),
+                                child: Image.asset(
+                                  "assets/image/btc.png",
+                                  height: 30,
+                                  width: 30,
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 22,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 1.0),
+                            child: Text(
+                              '${profileController.userInfo.btcBalance}',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600,
+                                fontSize: Dimensions.FONT_SIZE_EXTRA_OVER_LARGE,
+                              ),
                             ),
-                          );
-                        } else if (snapshot.hasError) {
-                          isInitialLoad = true;
-                          return Container();
-                        } else if (snapshot.hasData) {
-                          isInitialLoad = true;
-
-                          if (controller.btcHistory.isEmpty) {
-                            return Container();
-                          } else {
-                            return Column(
-                              children: controller.btcHistory.map((item) => savingItem(item)).toList(),
-                            );
-                          }
-                        } else {
-                          isInitialLoad = true;
-                          return Container(
-                            height: 200,
-                            child: Center(
-                              child: CircularProgressIndicator(),
-                            ),
-                          );
-                        }
-                      },
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                '\$${PriceConverter.priceFormater(balance: PriceConverter.converBTCToDolar(profileController.userInfo.btcBalance))}',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w200,
+                                  fontSize: Dimensions.FONT_SIZE_LARGE,
+                                ),
+                              ),
+                              // Expanded(
+                              //   child: Text(
+                              //     ' ${PriceConverter.priceFormater(balance: profileController.userInfo.btcInSatoshis)} sats',
+                              //     style: TextStyle(
+                              //         color: Colors.white,
+                              //         fontWeight: FontWeight.w200,
+                              //         fontSize: Dimensions.FONT_SIZE_LARGE),
+                              //   ),
+                              // )
+                            ],
+                          ),
+                          // Text(
+                          //   '\$${PriceConverter.priceFormater(balance: PriceConverter.converBTCToDolar(profileController.userInfo.btcBalance))} | ${profileController.userInfo.btcInSatoshis} sats',
+                          //   style: TextStyle(color: Colors.white, fontWeight: FontWeight.w200, fontSize: Dimensions.FONT_SIZE_LARGE),
+                          // )
+                        ],
+                      ),
                     );
-                  },
+                  }),
                 ),
-              ],
-            ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    WalletIcons(
+                      ontap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => SellBtc(),
+                          ),
+                        );
+                      },
+                      icon: "Compass.png",
+                      label: "Sell",
+                    ),
+                    WalletIcons(
+                      ontap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => BuyBTC(),
+                          ),
+                        );
+                      },
+                      icon: "StopCircle.png",
+                      label: "Buy",
+                    ),
+                    WalletIcons(
+                      ontap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => SendBTC(),
+                          ),
+                        );
+                      },
+                      icon: "CaretCircleUp.png",
+                      label: "Send",
+                    ),
+                    WalletIcons(
+                      ontap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ReceiveBtc(),
+                          ),
+                        );
+                      },
+                      icon: "PlayCircle.png",
+                      label: "Receive",
+                    )
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+                child: Divider(
+                  color: ColorResources.primaryColor,
+                  height: 2,
+                  thickness: 1,
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              // Text(
+              //   'Recent Transactions',
+              //   textAlign: TextAlign.left,
+              //   style: TextStyle(
+              //     color: Colors.grey,
+              //     fontWeight: FontWeight.w300,
+              //     fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE - 2,
+              //   ),
+              // ),
+              // SizedBox(
+              //   height: 20,
+              // ),
+            ],
           ),
         ),
-        persistentHeader: CustomPersistentHeader(),
-        expandableContent: CustomExpandableContant());
+      ),
+      persistentHeader: CustomPersistentHeader(),
+      expandableContent: CustomExpandableBottomSheet(
+        title: 'Recent Transactions',
+        child: transactionList(),
+      ),
+    );
   }
 
-  // Widget use() {
-  //   return SingleChildScrollView(
-  //     child: Container(
-  //       padding: EdgeInsets.only(left: 20, right: 20),
-  //       child: Column(
-  //         crossAxisAlignment: CrossAxisAlignment.start,
-  //         children: [
-  //           // SizedBox(height: 20),
-  //           // BackButtons(),
-  //           Padding(
-  //             padding: const EdgeInsets.only(left: 0.0, top: 1, bottom: 10),
-  //             child: BoldTextTitle(
-  //               data: 'How much do you want to deposit?',
-  //               fontSize: 24.sp,
-  //             ),
-  //           ),
-  //           GetBuilder<SplashController>(
-  //             builder: (config) => Padding(
-  //               padding: const EdgeInsets.only(left: 8.0, top: 30.0, bottom: 0),
-  //               child: LightText(
-  //                 txAlign: TextAlign.center,
-  //                 col: ColorResources.primaryColor,
-  //                 text:
-  //                     'Exchange rate: 1USD = ${config.configModel.usdToNgn} NGN',
-  //               ),
-  //             ),
-  //           ),
-  //           // Container(
-  //           //   color: Colors.pink,
-  //           //   margin: EdgeInsets.only(
-  //           //     top: 15,
-  //           //     bottom: 10,
-  //           //   ),
-  //           //   height: 150,
-  //           //   width: double.maxFinite,
-  //           //   child: Container(),
-  //           // ),
-  //           Container(
-  //             // height: 500,
-  //             margin:
-  //                 const EdgeInsets.only(top: 0.0, right: 0, left: 0, bottom: 0),
-  //             padding: const EdgeInsets.all(10),
-  //             decoration: BoxDecoration(
-  //                 borderRadius: BorderRadius.circular(10), color: Colors.pink),
-  //             child: Center(
-  //               child: Column(
-  //                 mainAxisAlignment: MainAxisAlignment.center,
-  //                 children: [
-  //                   SizedBox(height: 30),
-  //                   Center(
-  //                     child: Padding(
-  //                       padding: const EdgeInsets.symmetric(horizontal: 80),
-  //                       child: Row(
-  //                         mainAxisAlignment: MainAxisAlignment.center,
-  //                         // crossAxisAlignment: CrossAxisAlignment.center,
-  //                         children: [
-  //                           Text(
-  //                             '\$',
-  //                             textAlign: TextAlign.center,
-  //                             style: TextStyle(
-  //                               color: Colors.white,
-  //                               fontWeight: FontWeight.w900,
-  //                               fontSize: 47.sp,
-  //                             ),
-  //                           ),
-  //                           Expanded(
-  //                             child: TextField(
-  //                               decoration: InputDecoration(
-  //                                   border: InputBorder.none,
-  //                                   hintText: "0.00",
-  //                                   contentPadding: EdgeInsets.only(
-  //                                       left: 2, bottom: 0, right: 0),
-  //                                   hintStyle: TextStyle(
-  //                                     color: Colors.white,
-  //                                     fontWeight: FontWeight.w900,
-  //                                     fontSize: 52.sp,
-  //                                   )),
-  //                               controller: amount,
-  //                               keyboardType: TextInputType.number,
-  //                               onChanged: (String value) {
-  //                                 // print(usdToNgn);
-  //                                 if (value.trim() != "" &&
-  //                                     usdToNgn != null &&
-  //                                     usdToNgn != "") {
-  //                                   try {
-  //                                     double val = double.parse(value.trim());
-  //                                     double uToN = double.parse(usdToNgn);
-  //                                     amountInNaira = val * uToN;
-  //                                     amountInDolar = val;
-  //                                     setState(() {});
-  //                                   } catch (e) {}
-  //                                 }
-  //                               },
-  //                               style: TextStyle(
-  //                                   fontWeight: FontWeight.w900,
-  //                                   fontSize: 52.sp,
-  //                                   color: Colors.white),
-  //                             ),
-  //                           ),
-  //                           // SizedBox(
-  //                           //   width: 150,
-  //                           //   // height: 50,
-  //                           //   child: TextField(
-  //                           //     decoration: InputDecoration(
-  //                           //         border: InputBorder.none,
-  //                           //         hintText: "0.00",
-  //                           //         contentPadding: EdgeInsets.only(
-  //                           //             left: 2, bottom: 0, right: 0),
-  //                           //         hintStyle: TextStyle(
-  //                           //           color: Colors.white,
-  //                           //           fontWeight: FontWeight.w900,
-  //                           //           fontSize: 52.sp,
-  //                           //         )),
-  //                           //     controller: amount,
-  //                           //     keyboardType: TextInputType.number,
-  //                           //     onChanged: (String value) {
-  //                           //       // print(usdToNgn);
-  //                           //       if (value.trim() != "" &&
-  //                           //           usdToNgn != null &&
-  //                           //           usdToNgn != "") {
-  //                           //         try {
-  //                           //           double val =
-  //                           //               double.parse(value.trim());
-  //                           //           double uToN = double.parse(usdToNgn);
-  //                           //           amountInNaira = val * uToN;
-  //                           //           amountInDolar = val;
-  //                           //           setState(() {});
-  //                           //         } catch (e) {}
-  //                           //       }
-  //                           //     },
-  //                           //     style: TextStyle(
-  //                           //         fontWeight: FontWeight.w900,
-  //                           //         fontSize: 52.sp,
-  //                           //         color: Colors.white),
-  //                           //   ),
-  //                           // ),
-  //                         ],
-  //                       ),
-  //                     ),
-  //                   ),
-  //                   Padding(
-  //                     padding: const EdgeInsets.only(bottom: 30.0),
-  //                     child: LightText(
-  //                         txAlign: TextAlign.center,
-  //                         text: 'USD Bal: \$500.00',
-  //                         fontSize: 12.sp,
-  //                         col: ColorResources.whiteColor),
-  //                   ),
-  //                   InnerContainer(
-  //                     height: 50,
-  //                     col: Colors.white,
-  //                     data: 5,
-  //                     widget: Column(
-  //                       mainAxisAlignment: MainAxisAlignment.center,
-  //                       children: [
-  //                         Text(
-  //                           "you'll pay",
-  //                           style: kLightTextStyle.copyWith(color: Colors.pink),
-  //                         ),
-  //                         SizedBox(height: 2),
-  //                         Text(
-  //                           'N$amountInNaira',
-  //                           style: kLightTextStyle.copyWith(
-  //                               fontWeight: FontWeight.w400,
-  //                               color: Colors.black,
-  //                               fontSize: 16.sp),
-  //                         ),
-  //                       ],
-  //                     ),
-  //                     style: kLightTextStyle,
-  //                   ),
-  //                   Padding(
-  //                     padding:
-  //                         EdgeInsets.only(left: 5.w, right: 5.w, bottom: 5.w),
-  //                     child: GetBuilder<DepositController>(
-  //                       builder: (controller) {
-  //                         return buttonWithBorder(
-  //                           'Continue',
-  //                           textColor: Colors.white,
-  //                           buttonColor: ColorResources.blackColor,
-  //                           fontSize: 18.sp,
-  //                           busy: false,
-  //                           fontWeight: FontWeight.w400,
-  //                           height: 54.h,
-  //                           onTap: () async {
-  //                             Navigator.push(
-  //                               context,
-  //                               MaterialPageRoute(builder: (contet) {
-  //                                 return BankTransferPage(
-  //                                   amountInDolar: amountInDolar,
-  //                                   amountInNaira: amountInNaira,
-  //                                 );
-  //                               }),
-  //                             );
-  //                           },
-  //                         );
-  //                       },
-  //                     ),
-  //                   ),
-  //                 ],
-  //               ),
-  //             ),
-  //           )
-  //         ],
-  //       ),
-  //     ),
-  //   );
-  // }
-
-  Widget savingItem(dynamic plan) {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 5),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            width: 100,
-            height: 25,
-            child: Center(
-              child: Text(
-                (plan["transaction_type"].toLowerCase() == "send_money") ? 'You Send' : "You Deposit",
-                style: TextStyle(color: Colors.white),
-              ),
-            ),
-            color: ColorResources.primaryColor,
-          ),
-          InkWell(
-            onTap: () {},
-            child: Container(
-              width: double.infinity,
-              height: 60,
-              color: Colors.white,
-              padding: EdgeInsets.symmetric(horizontal: 14, vertical: 14),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        '\$${PriceConverter.priceFormater(balance: PriceConverter.converBTCToDolar(double.parse(plan["amount"].toString())))}',
-                        style: TextStyle(color: Colors.black, fontSize: 14.sp, fontWeight: FontWeight.w400),
-                      ),
-                      SizedBox(width: 10),
-                      Text(
-                        plan["user_info"]["name"],
-                        style: TextStyle(color: Colors.black, fontSize: 14.sp, fontWeight: FontWeight.w400),
-                      ),
-                      SizedBox(width: 10),
-                      Center(
-                        child: Text(
-                          formatedDate(plan["created_at"]),
-                          style: TextStyle(color: Colors.grey, fontSize: 10),
-                        ),
-                      ),
-                    ],
+  Widget transactionList() {
+    return GetBuilder<WalletController>(
+      builder: (controller) {
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: FutureBuilder(
+            future: loadSavings(controller),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                isInitialLoad = true;
+                return Container(
+                  height: 200,
+                  child: Center(
+                    child: CircularProgressIndicator(),
                   ),
+                );
+              } else if (snapshot.hasError) {
+                isInitialLoad = true;
+                return Container();
+              } else if (snapshot.hasData) {
+                isInitialLoad = true;
+
+                if (controller.btcHistory.isEmpty) {
+                  return Container();
+                } else {
+                  return Column(
+                    children: controller.btcHistory.map((item) => transactionItem(item)).toList(),
+                  );
+                }
+              } else {
+                isInitialLoad = true;
+                return Container(
+                  height: 200,
+                  child: Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                );
+              }
+            },
+          ),
+        );
+      },
+    );
+  }
+
+  Widget transactionItem(Transactions transactions){
+    String _userPhone = transactions.transactionType == AppConstants.SEND_MONEY
+        ? transactions.receiver.phone
+        : transactions.transactionType == AppConstants.RECEIVED_MONEY
+            ? transactions.sender.phone
+            : transactions.transactionType == AppConstants.ADD_MONEY
+                ? transactions.sender.phone
+                : transactions.transactionType == AppConstants.CASH_IN
+                    ? transactions.sender.phone
+                    : transactions.userInfo.phone;
+    String _userName = transactions.transactionType == AppConstants.SEND_MONEY
+        ? transactions.receiver.name
+        : transactions.transactionType == AppConstants.RECEIVED_MONEY
+            ? transactions.sender.name
+            : transactions.transactionType == AppConstants.ADD_MONEY
+                ? transactions.sender.name
+                : transactions.transactionType == AppConstants.CASH_IN
+                    ? transactions.sender.name
+                    : transactions.userInfo.name;
+
+    String _imageLogo = transactions.transactionType == AppConstants.SEND_MONEY
+        ? Images.send_money_image
+        : transactions.transactionType == AppConstants.RECEIVED_MONEY
+            ? Images.requestMoney_logo
+            : transactions.transactionType == AppConstants.ADD_MONEY
+                ? Images.addMoneyLogo3
+                : transactions.transactionType == AppConstants.CASH_OUT
+                    ? Images.cashOut_logo
+                    : Images.send_money_image;
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+      child: Stack(
+        children: [
+          Column(
+            children: [
+              Row(
+                children: [
+                  Container(height: 50, width: 50, child: Padding(padding: const EdgeInsets.all(8.0), child: Image.asset(_imageLogo))),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                    Text(
+                        transactions.transactionType == 'send_money'
+                            ? 'send_money'.tr
+                            : transactions.transactionType == 'cash_out'
+                                ? 'cash_out'.tr
+                                : transactions.transactionType == 'cash_in'
+                                    ? 'cash_in'.tr
+                                    : transactions.transactionType == 'received_money'
+                                        ? 'received_money'.tr
+                                        : 'add_money'.tr,
+                        style: montserratMedium.copyWith(fontSize: Dimensions.FONT_SIZE_DEFAULT)),
+                    SizedBox(height: Dimensions.PADDING_SIZE_SUPER_EXTRA_SMALL),
+                    Text(
+                      _userName ?? '',
+                      style: montserratRegular.copyWith(fontSize: Dimensions.FONT_SIZE_EXTRA_SMALL),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    SizedBox(height: Dimensions.PADDING_SIZE_SUPER_EXTRA_SMALL),
+
+                    Text(_userPhone ?? '', style: montserratMedium.copyWith(fontSize: Dimensions.FONT_SIZE_SMALL)),
+                    SizedBox(height: Dimensions.PADDING_SIZE_SUPER_EXTRA_SMALL),
+
+                    Text('TrxID: ${transactions.transactionId}', style: montserratRegular.copyWith(fontSize: Dimensions.FONT_SIZE_EXTRA_SMALL))
+                    // Text(DateConverter.localDateToIsoStringAMPM(DateTime.parse(transactions.createdAt)),style: robotoRegular.copyWith(fontSize: Dimensions.FONT_SIZE_EXTRA_SMALL, color: ColorResources.getHintColor()),),
+                  ]),
+                  Spacer(),
+                  Text(
+                      transactions.transactionType == 'send_money' || transactions.transactionType == 'cash_out'
+                          ? '- ${PriceConverter.convertPrice(context, double.parse(transactions.amount.toString()))}'
+                          : '+ ${PriceConverter.convertPrice(context, double.parse(transactions.amount.toString()))}',
+                      style: montserratMedium.copyWith(
+                          fontSize: Dimensions.FONT_SIZE_DEFAULT,
+                          color: transactions.transactionType == 'send_money' || transactions.transactionType == 'cash_out'
+                              ? Colors.redAccent
+                              : Colors.green)),
                 ],
               ),
-            ),
+              SizedBox(height: 5),
+              Divider(height: .125, color: ColorResources.getGreyColor()),
+            ],
           ),
+          Get.find<LocalizationController>().isLtr
+              ? Positioned(
+                  bottom: 3,
+                  right: 2,
+                  child: Text(
+                    DateConverter.localDateToIsoStringAMPM(DateTime.parse(transactions.createdAt)),
+                    style: montserratRegular.copyWith(fontSize: Dimensions.FONT_SIZE_EXTRA_SMALL, color: ColorResources.getHintColor()),
+                  ),
+                )
+              : Positioned(
+                  bottom: 3,
+                  left: 2,
+                  child: Text(
+                    DateConverter.localDateToIsoStringAMPM(DateTime.parse(transactions.createdAt)),
+                    style: montserratRegular.copyWith(fontSize: Dimensions.FONT_SIZE_EXTRA_SMALL, color: ColorResources.getHintColor()),
+                  ),
+                )
         ],
       ),
     );
