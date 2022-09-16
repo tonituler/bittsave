@@ -7,11 +7,13 @@ import 'package:six_cash/data/model/savings_plan.dart';
 import 'package:six_cash/data/model/transaction_model.dart';
 import 'package:six_cash/data/repository/transaction_repo.dart';
 import 'package:six_cash/view/base/custom_snackbar.dart';
+import 'package:six_cash/view/screens/wallet/usd_withdrawal_confirmation.dart';
 
 class WalletController extends GetxController implements GetxService {
   final TransactionRepo transacRepo;
   WalletController({@required this.transacRepo});
   bool _isLoading = false;
+  bool _isLoadingWithdrawal = false;
   bool _isInitLoading = false;
   bool _isVerifying = false;
   bool _isSavingPreviewLoading = false;
@@ -24,6 +26,7 @@ class WalletController extends GetxController implements GetxService {
   bool get isLoading => _isLoading;
   bool get isInitLoading => _isInitLoading;
   bool get isSavingPreviewLoading => _isSavingPreviewLoading;
+  bool get isLoadingWithdrawal => _isLoadingWithdrawal;
   bool get isVerifying => _isVerifying;
   List<SavingsPlan> get savingsList => _savingsList;
   List<Transactions> get usdHistory => _usdHistory;
@@ -141,6 +144,34 @@ class WalletController extends GetxController implements GetxService {
       print("response.hasError");
       print(response.bodyString);
       _isLoading = false;
+      ApiChecker.checkApi(response);
+    }
+    update();
+    return false;
+  }
+
+  Future<bool> withdrawUSD(BuildContext context, String amount, String accountType) async {
+    _isLoadingWithdrawal = true;
+    update();
+    Response response = await transacRepo.walletWithdraw(data: {
+      "amount": amount,
+      "account_type": accountType,
+    });
+    if (response.statusCode == 200) {
+      // print(response.body);
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => UsdWithdrawalConfirmation(),
+        ),
+      );
+      _isLoadingWithdrawal = false;
+      update();
+      return true;
+    } else {
+      print("response.hasError");
+      print(response.bodyString);
+      _isLoadingWithdrawal = false;
       ApiChecker.checkApi(response);
     }
     update();

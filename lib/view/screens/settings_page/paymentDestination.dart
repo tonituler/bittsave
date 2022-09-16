@@ -41,7 +41,7 @@ class _PaymentDestinationState extends State<PaymentDestination> {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.symmetric(horizontal: 4, vertical: 20),
+                    margin: EdgeInsets.symmetric(horizontal: 4, vertical: 10),
                     padding: EdgeInsets.symmetric(horizontal: 2, vertical: 0.5),
                     color: Colors.white,
                     child: getFunds(
@@ -49,14 +49,42 @@ class _PaymentDestinationState extends State<PaymentDestination> {
                         'assets/newImages/naira.png',
                         scale: 3,
                       ),
-                      title: "Nigeria",
+                      title: "Nigeria (NGN)",
                       subTitle:
                           'You will be required to make a\nBank Transfer to your deposit',
                       ontap: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => AddPaymentAccount(),
+                            builder: (context) => AddPaymentAccount(
+                              accountType: 'ngn',
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.symmetric(horizontal: 4, vertical: 10),
+                    padding: EdgeInsets.symmetric(horizontal: 2, vertical: 0.5),
+                    color: Colors.white,
+                    child: getFunds(
+                      widget: Image.asset(
+                        'assets/image/dollar2.png',
+                        height: 100,
+                        width: 100,
+                        // scale: 3,
+                      ),
+                      title: "Nigeria (USD)",
+                      subTitle:
+                          'You will be required to make a\nBank Transfer to your deposit',
+                      ontap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => AddPaymentAccount(
+                              accountType: "usd",
+                            ),
                           ),
                         );
                       },

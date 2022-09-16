@@ -10,47 +10,65 @@ import 'package:six_cash/helper/route_helper.dart';
 import 'package:six_cash/view/base/animated_custom_dialog.dart';
 import 'package:six_cash/view/base/custom_snackbar.dart';
 import 'package:six_cash/view/base/logout_dialog.dart';
+import 'package:six_cash/view/screens/settings_page/accountAddedSuccessfull.dart';
 
 import 'bootom_slider_controller.dart';
 
 class ProfileController extends GetxController implements GetxService {
   final ProfileRepo profileRepo;
   ProfileController({@required this.profileRepo});
-  final BottomSliderController bottomSliderController =
-      Get.find<BottomSliderController>();
+  final BottomSliderController bottomSliderController = Get.find<BottomSliderController>();
   UserInfo _userInfo;
   bool _isLoading = false;
 
+  bool _isLoadingAccountUpdate = false;
+
   UserInfo get userInfo => _userInfo;
   bool get isLoading => _isLoading;
+  bool get isLoadingAccountUpdate => _isLoadingAccountUpdate;
+
   String _gender = 'Male';
   String get gender => _gender;
   // String _occupation = occupationData[1]['title'];
   // String get occupation => _occupation;
   int select = 0;
 
+  set isLoadingAccountUpdate(bool status) {
+    _isLoadingAccountUpdate = status;
+  }
 
   Future<Response> profileData({bool loading = false}) async {
-      _isLoading = true;
-      update();
-      Response response = await profileRepo.getProfileDataApi();
-      if (response.statusCode == 200) {
-        _userInfo = UserInfo.fromJson(response.body);
-        Get.find<AuthController>().setCustomerName('${_userInfo.fName} ${_userInfo.lName}');
-        Get.find<AuthController>().setCustomerQrCode(_userInfo.qrCode);
-        _isLoading = false;
-      } else {
-        ApiChecker.checkApi(response);
-      }
-      update();
+    _isLoading = true;
+    update();
+    Response response = await profileRepo.getProfileDataApi();
+    if (response.statusCode == 200) {
+      _userInfo = UserInfo.fromJson(response.body);
+      Get.find<AuthController>().setCustomerName('${_userInfo.fName} ${_userInfo.lName}');
+      Get.find<AuthController>().setCustomerQrCode(_userInfo.qrCode);
+      _isLoading = false;
+    } else {
+      ApiChecker.checkApi(response);
+    }
+    update();
     return response;
+  }
 
+  Future<Response> getProfileData({bool loading = false}) async {
+    _isLoading = true;
+    update();
+    Response response = await profileRepo.getProfileDataApi();
+    if (response.statusCode == 200) {
+      _userInfo = UserInfo.fromJson(response.body);
+      _isLoading = false;
+    } else {
+      ApiChecker.checkApi(response);
+    }
+    update();
+    return response;
   }
 
   Future<void> changePin({@required String oldPassword, @required String newPassword, @required String confirmPassword}) async {
-    if ((oldPassword.length < 4) ||
-        (newPassword.length < 4) ||
-        (confirmPassword.length < 4)) {
+    if ((oldPassword.length < 4) || (newPassword.length < 4) || (confirmPassword.length < 4)) {
       showCustomSnackBar('please_input_4_digit_pin'.tr);
     } else if (newPassword != confirmPassword) {
       showCustomSnackBar('pin_not_match'.tr);
@@ -60,8 +78,7 @@ class ProfileController extends GetxController implements GetxService {
       Response response = await profileRepo.changePinApi(oldPin: oldPassword, newPin: newPassword, confirmPin: confirmPassword);
       if (response.statusCode == 200) {
         Get.offAllNamed(RouteHelper.getLoginRoute(
-          countryCode: Get.find<AuthController>().getCustomerCountryCode(),
-            phoneNumber: Get.find<AuthController>().getCustomerNumber()));
+            countryCode: Get.find<AuthController>().getCustomerCountryCode(), phoneNumber: Get.find<AuthController>().getCustomerNumber()));
       } else {
         // Get.back();
         ApiChecker.checkApi(response);
@@ -106,7 +123,29 @@ class ProfileController extends GetxController implements GetxService {
     update();
   }
 
-
+  Future<void> updateAccountInfo(BuildContext context, String slug, Map<String, Object> _body) async {
+    _isLoadingAccountUpdate = true;
+    update();
+    Response response = await profileRepo.updateAccountInfo((slug == "create") ? "add-bank" : "edit-bank", {..._body});
+    // await getProfileData(loading: false);
+    if (response.statusCode == 200) {
+      await getProfileData(loading: false);
+      showCustomSnackBar(response.body['message'], isError: false);
+      _isLoadingAccountUpdate = false;
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => AccountAdded(
+            slug: slug,
+          ),
+        ),
+      );
+    } else {
+      ApiChecker.checkApi(response);
+      _isLoadingAccountUpdate = false;
+    }
+    update();
+  }
 
   void routeToTwoFactorAuthScreen(String getPin) {
     pinVerify(getPin);
@@ -134,7 +173,6 @@ class ProfileController extends GetxController implements GetxService {
       print('Switch Button is ON');
       Get.find<ThemeController>().toggleTheme();
       update();
-
     } else {
       _isSwitched = false;
       textValue = 'Switch Button is OFF';
@@ -145,7 +183,8 @@ class ProfileController extends GetxController implements GetxService {
   }
 
   void logOut(BuildContext context) {
-    showAnimatedDialog(context,
+    showAnimatedDialog(
+        context,
         CustomDialog(
           icon: Icons.logout,
           title: 'logout'.tr,
@@ -153,13 +192,13 @@ class ProfileController extends GetxController implements GetxService {
           onTapFalseText: 'clear_logout'.tr,
           onTapTrueText: 'logout'.tr,
           isFailed: true,
-          onTapFalse: (){
+          onTapFalse: () {
             Get.find<AuthController>().change(0);
             Get.find<AuthController>().logout();
             Get.find<SplashController>().removeSharedData();
             Navigator.pop(context);
           },
-          onTapTrue: (){
+          onTapTrue: () {
             Get.find<AuthController>().logout();
             Navigator.of(context).pop(true);
           },
@@ -168,7 +207,7 @@ class ProfileController extends GetxController implements GetxService {
         isFlip: true);
   }
 
-  setGender(String select){
+  setGender(String select) {
     _gender = select;
     update();
   }

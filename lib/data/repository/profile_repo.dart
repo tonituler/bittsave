@@ -37,6 +37,8 @@ class ProfileRepo {
     return await apiClient.postData(AppConstants.CUSTOMER_UPDATE_TWO_FACTOR,_body);
   }
 
-
+  Future<Response> updateAccountInfo(String slug, Map<String, Object> _body) async {
+    return await apiClient.postData(AppConstants.CUSTOMER_ADD_UPDATE_BANK + slug,_body);
+  }
 
 }

@@ -23,16 +23,12 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
 
-    bool _firstTime = true;
-    _onConnectivityChanged = Connectivity()
-        .onConnectivityChanged
-        .listen((ConnectivityResult result) {
+    // bool _firstTime = true;
+    bool _firstTime = false;
+    _onConnectivityChanged = Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
       if (!_firstTime) {
-        bool isNotConnected = result != ConnectivityResult.wifi &&
-            result != ConnectivityResult.mobile;
-        isNotConnected
-            ? SizedBox()
-            : ScaffoldMessenger.of(context).hideCurrentSnackBar();
+        bool isNotConnected = result != ConnectivityResult.wifi && result != ConnectivityResult.mobile;
+        isNotConnected ? SizedBox() : ScaffoldMessenger.of(context).hideCurrentSnackBar();
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           backgroundColor: isNotConnected ? Colors.red : Colors.green,
           duration: Duration(seconds: isNotConnected ? 6000 : 3),
@@ -65,14 +61,9 @@ class _SplashScreenState extends State<SplashScreen> {
       if (value.isOk)
         Timer(Duration(seconds: 1), () async {
           Get.find<SplashController>().initSharedData().then((value) {
-            (Get.find<AuthController>().getCustomerName().isNotEmpty &&
-                    (Get.find<SplashController>().configModel.companyName !=
-                        null))
+            (Get.find<AuthController>().getCustomerName().isNotEmpty && (Get.find<SplashController>().configModel.companyName != null))
                 ? Get.offNamed(RouteHelper.getLoginRoute(
-                    countryCode:
-                        Get.find<AuthController>().getCustomerCountryCode(),
-                    phoneNumber:
-                        Get.find<AuthController>().getCustomerNumber()))
+                    countryCode: Get.find<AuthController>().getCustomerCountryCode(), phoneNumber: Get.find<AuthController>().getCustomerNumber()))
                 : Get.offNamed(RouteHelper.getChoseLoginRegRoute());
           });
 
@@ -88,8 +79,7 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Image.asset(Images.splashScreen,
-                height: MediaQuery.of(context).size.height),
+            Image.asset(Images.splashScreen, height: MediaQuery.of(context).size.height),
           ],
         ),
       ),

@@ -13,7 +13,8 @@ import '../home/funding_options/fund_bit_express.dart';
 import '../home/funding_usd_wallet_page.dart';
 
 class AmounttoWithdraw extends StatefulWidget {
-  const AmounttoWithdraw({Key key}) : super(key: key);
+  AmounttoWithdraw({Key key, @required this.accountType}) : super(key: key);
+  String accountType;
 
   @override
   State<AmounttoWithdraw> createState() => _AmounttoWithdrawState();
@@ -201,6 +202,7 @@ class _AmounttoWithdrawState extends State<AmounttoWithdraw> {
                                           return WitdrawalConfirmation(
                                             requestInfo: {
                                               "amount": amountInDolar,
+                                              "account_type": widget.accountType,
                                             },
                                           );
                                         }),

@@ -12,6 +12,7 @@ import 'package:six_cash/view/screens/profile/widget/profile_shimmer.dart';
 import 'package:six_cash/view/screens/profile/widget/user_info.dart';
 import 'package:six_cash/view/screens/settings_page/KYC.dart';
 import 'package:six_cash/view/screens/settings_page/payOut.dart';
+import 'package:six_cash/view/screens/settings_page/paymentDestination.dart';
 import 'package:six_cash/view/screens/settings_page/paymentOptions.dart';
 
 import '../home/funding_options/request_from_a_riend/bitsave_user_request.dart';
@@ -37,16 +38,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
               builder: (progressController) {
                 return ModalProgressHUD(
                   inAsyncCall: progressController.isLoading,
-                  progressIndicator: CircularProgressIndicator(
-                      color: Theme.of(context).primaryColor),
+                  progressIndicator: CircularProgressIndicator(color: Theme.of(context).primaryColor),
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
-                        GetBuilder<ProfileController>(
-                            builder: (profileController) {
-                          return profileController.isLoading
-                              ? ProfileShimmer()
-                              : UserInfo(profileController: profileController);
+                        GetBuilder<ProfileController>(builder: (profileController) {
+                          return profileController.isLoading ? ProfileShimmer() : UserInfo(profileController: profileController);
                         }),
                         menu.MenuSegment(
                           title: "General",
@@ -55,18 +52,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               child: menu.MenuItem(title: 'Profile Settings'),
                               onTap: () {
                                 Get.toNamed(RouteHelper.getEditProfileRoute())
-                                    .then((value) =>
-                                        Get.find<ProfileController>()
-                                            .profileData(loading: true));
+                                    .then((value) => Get.find<ProfileController>().profileData(loading: true));
                               },
                             ),
-                            CustomInkWell(
-                                child: menu.MenuItem(title: 'History'),
-                                onTap: () => Get.toNamed(RouteHelper.history)),
-                            CustomInkWell(
-                                child: menu.MenuItem(title: 'Notification'),
-                                onTap: () =>
-                                    Get.toNamed(RouteHelper.notification)),
+                            CustomInkWell(child: menu.MenuItem(title: 'History'), onTap: () => Get.toNamed(RouteHelper.history)),
+                            CustomInkWell(child: menu.MenuItem(title: 'Notification'), onTap: () => Get.toNamed(RouteHelper.notification)),
                           ],
                         ),
                         menu.MenuSegment(
@@ -76,43 +66,46 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               child: menu.MenuItem(title: 'Payment Options'),
                               onTap: () {
                                 Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            PaymentOptions()));
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => PaymentDestination(),
+                                    // builder: (context) => PaymentOptions(),
+                                  ),
+                                );
                               },
                             ),
                             CustomInkWell(
-                                child: menu.MenuItem(title: 'Payouts'),
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => PayOut(),
-                                    ),
-                                  );
-                                }),
+                              child: menu.MenuItem(title: 'Payouts'),
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => PayOut(),
+                                  ),
+                                );
+                              },
+                            ),
                           ],
                         ),
                         menu.MenuSegment(
                           title: "Request",
                           menuItem: [
                             CustomInkWell(
-                                child: menu.MenuItem(title: 'New Request'),
-                                onTap: () => Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            BittSaveUserRequest()))),
+                              child: menu.MenuItem(title: 'New Request'),
+                              onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => BittSaveUserRequest(),
+                                ),
+                              ),
+                            ),
+                            CustomInkWell(child: menu.MenuItem(title: 'Requests'), onTap: () => Get.toNamed(RouteHelper.getRequestedMoneyRoute())),
                             CustomInkWell(
-                                child: menu.MenuItem(title: 'Requests'),
-                                onTap: () => Get.toNamed(
-                                    RouteHelper.getRequestedMoneyRoute())),
-                            CustomInkWell(
-                                child: menu.MenuItem(title: 'Request Status'),
-                                onTap: () => Get.toNamed(
-                                    RouteHelper.getRequestedMoneyRoute(
-                                        from: 'won'))),
+                              child: menu.MenuItem(title: 'Request Status'),
+                              onTap: () => Get.toNamed(
+                                RouteHelper.getRequestedMoneyRoute(from: 'won'),
+                              ),
+                            ),
                           ],
                         ),
                         menu.MenuSegment(
@@ -120,8 +113,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           menuItem: [
                             CustomInkWell(
                               child: menu.MenuItem(title: 'Change Pin'),
-                              onTap: () =>
-                                  Get.toNamed(RouteHelper.getChangePinRoute()),
+                              onTap: () => Get.toNamed(RouteHelper.getChangePinRoute()),
                             ),
                           ],
                         ),
@@ -131,10 +123,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             CustomInkWell(
                               child: menu.MenuItem(title: 'Step 1'),
                               onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => KYC()));
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => KYC()));
                               },
                             ),
                           ],
@@ -148,9 +137,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 Get.toNamed(RouteHelper.getSupportRoute());
                               },
                             ),
-                            CustomInkWell(
-                                child: menu.MenuItem(title: 'FAQs'),
-                                onTap: () => Get.toNamed(RouteHelper.faq)),
+                            CustomInkWell(child: menu.MenuItem(title: 'FAQs'), onTap: () => Get.toNamed(RouteHelper.faq)),
                           ],
                         ),
                         menu.MenuSegment(
@@ -162,12 +149,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 Get.toNamed(RouteHelper.about_us);
                               },
                             ),
-                            CustomInkWell(
-                                child: menu.MenuItem(title: 'Term of Use'),
-                                onTap: () => Get.toNamed(RouteHelper.terms)),
-                            CustomInkWell(
-                                child: menu.MenuItem(title: 'Privacy Policy'),
-                                onTap: () => Get.toNamed(RouteHelper.privacy)),
+                            CustomInkWell(child: menu.MenuItem(title: 'Term of Use'), onTap: () => Get.toNamed(RouteHelper.terms)),
+                            CustomInkWell(child: menu.MenuItem(title: 'Privacy Policy'), onTap: () => Get.toNamed(RouteHelper.privacy)),
                           ],
                         ),
                         menu.MenuSegment(

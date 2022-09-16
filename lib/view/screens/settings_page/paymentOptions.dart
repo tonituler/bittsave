@@ -34,10 +34,11 @@ class _PaymentOptionsState extends State<PaymentOptions> {
                       InkWell(
                         onTap: () {
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      CompletePaymentOption()));
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => CompletePaymentOption(),
+                            ),
+                          );
                         },
                         child: CircleAvatar(
                           backgroundColor: Colors.white,
@@ -51,21 +52,26 @@ class _PaymentOptionsState extends State<PaymentOptions> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 10.0),
-                    child: Text('Payment Options',
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 22)),
+                    child: Text(
+                      'Payment Options',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 22,
+                      ),
+                    ),
                   ),
                   SizedBox(height: 8),
                   Padding(
                     padding: const EdgeInsets.only(left: 10.0),
                     child: Text(
-                        'Bank account and mobile money account can be found here',
-                        style: TextStyle(
-                            color: Colors.grey,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 13)),
+                      'Bank account and mobile money account can be found here',
+                      style: TextStyle(
+                        color: Colors.grey,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 13,
+                      ),
+                    ),
                   ),
                   SizedBox(height: 60),
                   Center(
@@ -78,8 +84,7 @@ class _PaymentOptionsState extends State<PaymentOptions> {
                   Center(
                     child: Text(
                       'No payment options',
-                      style:
-                          TextStyle(fontSize: 23, fontWeight: FontWeight.w600),
+                      style: TextStyle(fontSize: 23, fontWeight: FontWeight.w600),
                     ),
                   ),
                   SizedBox(height: 7),
@@ -87,8 +92,7 @@ class _PaymentOptionsState extends State<PaymentOptions> {
                     child: Text(
                       'You have not added any payment options',
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 14.5, fontWeight: FontWeight.w400),
+                      style: TextStyle(fontSize: 14.5, fontWeight: FontWeight.w400),
                     ),
                   ),
                   SizedBox(height: 20),

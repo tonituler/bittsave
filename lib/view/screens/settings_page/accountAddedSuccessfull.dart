@@ -4,7 +4,8 @@ import '../deshboard/nav_bar.dart';
 import '../home/funding_options/request_from_a_riend/friend_identity.dart';
 
 class AccountAdded extends StatefulWidget {
-  const AccountAdded({Key key}) : super(key: key);
+  AccountAdded({Key key, @required this.slug}) : super(key: key);
+  String slug;
 
   @override
   State<AccountAdded> createState() => _AccountAddedState();
@@ -22,7 +23,7 @@ class _AccountAddedState extends State<AccountAdded> {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 12.0),
               child: Text(
-                'Account added',
+                'Account ' + ((widget.slug == "create") ? "Added" : "Updated"),
                 style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
               ),
             ),
@@ -37,14 +38,12 @@ class _AccountAddedState extends State<AccountAdded> {
             SizedBox(height: 150),
             InkWell(
               onTap: () {
-                Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) {
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
                   return NavBarScreen();
                 }));
               },
               child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 30.0, horizontal: 20),
+                padding: const EdgeInsets.symmetric(vertical: 30.0, horizontal: 20),
                 child: Container(
                   width: double.infinity,
                   height: 40,
@@ -54,9 +53,7 @@ class _AccountAddedState extends State<AccountAdded> {
                     textAlign: TextAlign.center,
                     style: TextStyle(color: Colors.white),
                   )),
-                  decoration: BoxDecoration(
-                      color: Colors.pink,
-                      borderRadius: BorderRadius.circular(8)),
+                  decoration: BoxDecoration(color: Colors.pink, borderRadius: BorderRadius.circular(8)),
                 ),
               ),
             ),
