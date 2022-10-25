@@ -21,7 +21,7 @@ class OtherInfoScreen extends StatefulWidget {
 }
 
 class _OtherInfoScreenState extends State<OtherInfoScreen> {
-  TextEditingController occupationTextController = TextEditingController();
+  TextEditingController usernameTextController = TextEditingController();
   TextEditingController fNameTextController = TextEditingController();
   TextEditingController lNameTextController = TextEditingController();
   TextEditingController emailTextController = TextEditingController();
@@ -52,12 +52,11 @@ class _OtherInfoScreenState extends State<OtherInfoScreen> {
                       height: Dimensions.PADDING_SIZE_LARGE,
                     ),
                     //OccupationSelectionSection(),
-                    InputSection(
-                      usernameController: occupationTextController,
+                    InputSection2(
+                      usernameController: usernameTextController,
                       fNameController: fNameTextController,
                       lNameController: lNameTextController,
                       emailController: emailTextController,
-                      phoneController: emailTextController,
                     ),
                     const SizedBox(
                       height: Dimensions.PADDING_SIZE_EXTRA_OVER_LARGE,
@@ -87,7 +86,7 @@ class _OtherInfoScreenState extends State<OtherInfoScreen> {
                             fName: fNameTextController.text,
                             lName: lNameTextController.text,
                             email: emailTextController.text,
-                            occupation: occupationTextController.text,
+                            username: usernameTextController.text,
                           ));
                         }
                       }
@@ -97,7 +96,7 @@ class _OtherInfoScreenState extends State<OtherInfoScreen> {
                           fName: fNameTextController.text,
                           lName: lNameTextController.text,
                           email: emailTextController.text,
-                          occupation: occupationTextController.text,
+                          username: usernameTextController.text,
                         ));
                       }
                       //showCustomSnackBar('Successfully done', context, isError: false);

@@ -16,8 +16,8 @@ import 'package:six_cash/view/screens/auth/pin_set/widget/appbar_section.dart';
 import 'package:six_cash/view/screens/auth/pin_set/widget/password_section.dart';
 
 class PinSetScreen extends StatelessWidget {
-  final String occupation, fName,lName,email;
-   PinSetScreen({Key key, this.occupation, this.fName, this.lName, this.email}) : super(key: key);
+  final String username,fName,lName,email;
+   PinSetScreen({Key key, this.username, this.fName, this.lName, this.email}) : super(key: key);
 
   final TextEditingController passController = TextEditingController();
   final TextEditingController confirmPassController = TextEditingController();
@@ -79,7 +79,7 @@ class PinSetScreen extends StatelessWidget {
 
                       String _password =  passController.text;
                       String _gender =  Get.find<ProfileController>().gender;
-                      String _occupation =  occupation;
+                      String _username =  username;
                       String _fName =  fName;
                       String _lName =  lName;
                       String _email =  /*email=='' ? null :*/ email;
@@ -91,7 +91,7 @@ class PinSetScreen extends StatelessWidget {
                         fName: _fName,
                         lName: _lName,
                         gender: _gender,
-                        occupation: _occupation,
+                        username: _username,
                         email: _email,
                         phone: _phoneNumber,
                         otp: _otp,

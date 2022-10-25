@@ -3,9 +3,9 @@ import 'package:six_cash/util/color_resources.dart';
 
 ThemeData dark = ThemeData(
   fontFamily: 'Roboto',
-  primaryColor: Color(0xFF689da7),
+  primaryColor: Color(0xFF950035),
   brightness: Brightness.dark,
-  secondaryHeaderColor: Color(0xFFaaa818),
+  secondaryHeaderColor: Color.fromARGB(255, 176, 73, 109),
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
     backgroundColor: Colors.black,
     selectedItemColor: ColorResources.themeDarkBackgroundColor,

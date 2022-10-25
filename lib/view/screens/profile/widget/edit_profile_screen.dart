@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:get/get.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:six_cash/controller/auth_controller.dart';
@@ -35,16 +36,16 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   @override
   void initState() {
     super.initState();
-    ProfileController profileController = Get.find<ProfileController>();
-    phoneController.text = profileController.userInfo.phone ?? '';
-    firstNameController.text = profileController.userInfo.fName ?? '';
-    lastNameController.text = profileController.userInfo.lName ?? '';
-    emailController.text = profileController.userInfo.email ?? '';
-    usernameController.text = profileController.userInfo.username ?? '';
-    Get.find<EditProfileController>()
-        .setGender(profileController.userInfo.gender ?? 'Male');
-    Get.find<EditProfileController>()
-        .setImage(profileController.userInfo.image ?? '');
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      ProfileController profileController = Get.find<ProfileController>();
+      phoneController.text = profileController.userInfo.phone ?? '';
+      firstNameController.text = profileController.userInfo.fName ?? '';
+      lastNameController.text = profileController.userInfo.lName ?? '';
+      emailController.text = profileController.userInfo.email ?? '';
+      usernameController.text = profileController.userInfo.username ?? '';
+      Get.find<EditProfileController>().setGender(profileController.userInfo.gender ?? 'Male');
+      Get.find<EditProfileController>().setImage(profileController.userInfo.image ?? '');
+    });
   }
 
   @override
@@ -52,8 +53,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     return GetBuilder<EditProfileController>(builder: (controller) {
       return ModalProgressHUD(
         inAsyncCall: controller.isLoading,
-        progressIndicator:
-            CircularProgressIndicator(color: Theme.of(context).primaryColor),
+        progressIndicator: CircularProgressIndicator(color: Theme.of(context).primaryColor),
         child: WillPopScope(
           onWillPop: () => _onWillPop(context),
           child: BackGroundColr(
@@ -120,30 +120,22 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 GetBuilder<ImageController>(
                                   builder: (imageController) {
                                     return imageController.getImage == null
-                                        ? GetBuilder<ProfileController>(
-                                            builder: (proController) {
+                                        ? GetBuilder<ProfileController>(builder: (proController) {
                                             return Container(
                                               height: 100,
                                               width: 100,
-                                              decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          100)),
+                                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(100)),
                                               child: ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(100),
+                                                borderRadius: BorderRadius.circular(100),
                                                 child: FadeInImage.assetNetwork(
-                                                    imageErrorBuilder: (c, o,
-                                                            s) =>
-                                                        Image.asset(
-                                                            Images.avatar,
-                                                            fit: BoxFit.cover),
-                                                    placeholder: Images.avatar,
-                                                    height: 100,
-                                                    width: 100,
-                                                    fit: BoxFit.cover,
-                                                    image:
-                                                        '${Get.find<SplashController>().configModel.baseUrls.customerImageUrl}/${proController.userInfo.image}'),
+                                                  imageErrorBuilder: (c, o, s) => Image.asset(Images.avatar, fit: BoxFit.cover),
+                                                  placeholder: Images.avatar,
+                                                  height: 100,
+                                                  width: 100,
+                                                  fit: BoxFit.cover,
+                                                  image:
+                                                      '${Get.find<SplashController>().configModel.baseUrls.customerImageUrl}/${proController.userInfo.image}',
+                                                ),
                                               ),
                                             );
                                           })
@@ -151,18 +143,15 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                             height: 100,
                                             width: 100,
                                             decoration: BoxDecoration(
-                                                shape: BoxShape.circle,
-                                                border: Border.all(
-                                                    color: ColorResources
-                                                        .getPrimaryTextColor(),
-                                                    width: 2),
-                                                image: DecorationImage(
-                                                  fit: BoxFit.cover,
-                                                  image: FileImage(
-                                                    File(imageController
-                                                        .getImage.path),
-                                                  ),
-                                                )),
+                                              shape: BoxShape.circle,
+                                              border: Border.all(color: ColorResources.getPrimaryTextColor(), width: 2),
+                                              image: DecorationImage(
+                                                fit: BoxFit.cover,
+                                                image: FileImage(
+                                                  File(imageController.getImage.path),
+                                                ),
+                                              ),
+                                            ),
                                           );
                                   },
                                 ),
@@ -170,23 +159,16 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                   bottom: 5,
                                   right: -5,
                                   child: InkWell(
-                                    onTap: () => Get.find<AuthController>()
-                                        .requestCameraPermission(
-                                            fromEditProfile: true),
+                                    onTap: () => Get.find<AuthController>().requestCameraPermission(fromEditProfile: true),
                                     child: Container(
                                       padding: const EdgeInsets.all(5),
-                                      decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: Theme.of(context).cardColor,
-                                          boxShadow: [
-                                            BoxShadow(
-                                              color: ColorResources
-                                                      .getShadowColor()
-                                                  .withOpacity(0.08),
-                                              blurRadius: 20,
-                                              offset: const Offset(0, 3),
-                                            )
-                                          ]),
+                                      decoration: BoxDecoration(shape: BoxShape.circle, color: Theme.of(context).cardColor, boxShadow: [
+                                        BoxShadow(
+                                          color: ColorResources.getShadowColor().withOpacity(0.08),
+                                          blurRadius: 20,
+                                          offset: const Offset(0, 3),
+                                        )
+                                      ]),
                                       child: Icon(
                                         Icons.camera_alt,
                                         size: 24,
@@ -216,9 +198,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     ),
                     Container(
                       padding: const EdgeInsets.only(
-                          left: Dimensions.PADDING_SIZE_DEFAULT,
-                          right: Dimensions.PADDING_SIZE_DEFAULT,
-                          bottom: Dimensions.PADDING_SIZE_DEFAULT),
+                          left: Dimensions.PADDING_SIZE_DEFAULT, right: Dimensions.PADDING_SIZE_DEFAULT, bottom: Dimensions.PADDING_SIZE_DEFAULT),
                       child: Row(
                         children: [
                           Expanded(

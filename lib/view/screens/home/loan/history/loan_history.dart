@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
+import 'package:intl/intl.dart';
 import 'package:six_cash/app/extensions.dart';
 import 'package:six_cash/controller/loan_controller.dart';
 import 'package:six_cash/controller/splash_controller.dart';
@@ -693,12 +694,12 @@ class _LoanHistoryState extends State<LoanHistory> {
             decoration: BoxDecoration(
                 color: (loan.status?.toLowerCase() == "completed")
                     ? Colors.green
-                    : Colors.pink,
+                    : (loan.status?.toLowerCase() == "due") ? Colors.grey : Colors.pink,
                 borderRadius: BorderRadius.only(topRight: Radius.circular(10))),
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
               child: Text(
-                '${loan.status}',
+                '${capitalizeOnlyFirstLater(loan.status)}',
                 textAlign: TextAlign.left,
                 style: TextStyle(color: Colors.white, fontSize: 10),
               ),
@@ -707,7 +708,7 @@ class _LoanHistoryState extends State<LoanHistory> {
           Container(
             width: double.infinity,
             // height: 110,
-            color: Colors.white.withOpacity(0.3),
+            color: Colors.grey.withOpacity(0.1),
             padding: EdgeInsets.symmetric(horizontal: 14, vertical: 14),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -761,7 +762,7 @@ class _LoanHistoryState extends State<LoanHistory> {
                     SizedBox(width: 4),
                     Center(
                       child: Text(
-                        '9:29 PM | 21-June-2022',
+                        formatedDate(loan.dueDate),
                         style: TextStyle(color: Colors.grey, fontSize: 10),
                       ),
                     ),
@@ -838,6 +839,12 @@ class _LoanHistoryState extends State<LoanHistory> {
     );
   }
 
+  String capitalizeOnlyFirstLater(String value) {
+    if(value.trim().isEmpty) return "";
+
+    return "${value[0].toUpperCase()}${value.substring(1)}";
+  }
+
   getRepaymentId(List<Map<String, dynamic>> options, String value) {
     options.forEach((Map<String, dynamic> element) {
       if (element["name"] == value) {
@@ -846,6 +853,17 @@ class _LoanHistoryState extends State<LoanHistory> {
         });
       }
     });
+  }
+
+  String formatedDate(String date) {
+    DateTime dT = DateTime.parse(date);
+
+    return DateFormat('hh:mm a')
+            .format(DateTime(0, dT.month, dT.day, dT.hour, dT.minute)) +
+        " | " "${dT.day}-" +
+        DateFormat('MMM').format(DateTime(0, dT.month)) +
+        "-" +
+        dT.year.toString();
   }
 
   Widget AlertPage() {

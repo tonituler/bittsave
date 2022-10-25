@@ -9,7 +9,7 @@ class SignUpBody {
   String password;
   String otp;
   String gender;
-  String occupation;
+  String username;
 
   SignUpBody({
     @required this.fName,
@@ -19,7 +19,7 @@ class SignUpBody {
     @required this.password,
     this.otp,
     @required this.gender,
-    @required this.occupation
+    @required this.username
   });
 
   SignUpBody.fromJson(Map<String, dynamic> json) {
@@ -30,7 +30,7 @@ class SignUpBody {
     password = json['password'];
     otp = json['otp'];
     gender = json['gender'];
-    occupation = json['occupation'];
+    username = json['username'];
   }
 
   Map<String, dynamic> toJson() {
@@ -42,7 +42,7 @@ class SignUpBody {
     data['password'] = this.password;
     data['otp'] = this.otp;
     data['gender'] = this.gender;
-    data['occupation'] = this.occupation;
+    data['username'] = this.username;
     return data;
   }
 }

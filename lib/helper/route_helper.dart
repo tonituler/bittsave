@@ -102,7 +102,7 @@ class RouteHelper {
   static  getSelfieRoute({@required bool fromEditProfile}) => '$selfie_screen?page=${fromEditProfile?'edit-profile':'verify'}';
   static  getNavBarRoute() => '$navbar';
   static  getOtherInformationRoute() => '$other_info_screen';
-  static  getPinSetRoute({@required String occupation, @required String fName,@required String lName, String email}) => '$pin_set_screen?occupation=$occupation&f-name=$fName&l-name=$lName&email=$email';
+  static  getPinSetRoute({@required String username, @required String fName,@required String lName, String email}) => '$pin_set_screen?username=$username&f-name=$fName&l-name=$lName&email=$email';
   static  getRequestMoneyRoute({String phoneNumber,@required bool fromEdit}) => '$requestMoney?phone-number=$phoneNumber&from-edit=${fromEdit?'edit-number':'home'}';
   static  getForgetPassRoute({@required String countryCode,@required String phoneNumber}) => '$f_phone_number_screen?country-code=$countryCode&phone-number=$phoneNumber';
   static  getRequestMoneyBalanceInputRoute() => '$requestMoney_balance_input';
@@ -160,7 +160,7 @@ class RouteHelper {
     GetPage(name: verify_screen, page: () => VerificationScreen()),
     GetPage(name: selfie_screen, page: () => SelfieCaptureScreen(fromEditProfile: Get.parameters['page'] == 'edit-profile')),
     GetPage(name: other_info_screen, page: () => OtherInfoScreen()),
-    GetPage(name: pin_set_screen, page: () => PinSetScreen(occupation: Get.parameters['occupation'], fName: Get.parameters['f-name'],lName: Get.parameters['l-name'],email: Get.parameters['email'],)),
+    GetPage(name: pin_set_screen, page: () => PinSetScreen(username: Get.parameters['username'], fName: Get.parameters['f-name'],lName: Get.parameters['l-name'],email: Get.parameters['email'],)),
     GetPage(name: welcome_screen, page: () => WelcomeScreen(countryCode: Get.parameters['country-code'].replaceAll(' ', '+'),phoneNumber: Get.parameters['phone-number'],)),
     GetPage(name: login_screen, page: () => LoginScreen(countryCode: Get.parameters['country-code'].replaceAll(' ', '+'),phoneNumber: Get.parameters['phone-number'])),
     GetPage(name: f_phone_number_screen, page: () => FphoneNumberScreen(countryCode: Get.parameters['country-code'].replaceAll(' ', '+'),phoneNumber: Get.parameters['phone-number'],)),

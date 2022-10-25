@@ -33,10 +33,7 @@ class _ReceiveBtcState extends State<ReceiveBtc> {
                     margin: EdgeInsets.only(top: 30),
                     padding: EdgeInsets.symmetric(horizontal: 2, vertical: 2),
                     child: getFunds(
-                      widget: Icon(
-                        Icons.currency_bitcoin_outlined,
-                        color: Colors.white,
-                      ),
+                      widget: Image.asset("assets/image/bitc.png", scale: 2),
                       title: "Receive via Lightning",
                       subTitle:
                           'Send BTC to a wallet address directly from your USD wallet',
@@ -47,10 +44,7 @@ class _ReceiveBtcState extends State<ReceiveBtc> {
                     margin: EdgeInsets.only(top: 5),
                     padding: EdgeInsets.symmetric(horizontal: 2, vertical: 2),
                     child: getFunds(
-                      widget: Icon(
-                        Icons.currency_bitcoin_outlined,
-                        color: Colors.white,
-                      ),
+                      widget: Image.asset("assets/image/bitc.png", scale: 2),
                       title: "Lightning Address",
                       subTitle: 'Send USD to other bitsave users',
                       ontap: () {},

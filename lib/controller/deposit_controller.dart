@@ -18,8 +18,8 @@ import 'package:six_cash/helper/route_helper.dart';
 import 'package:six_cash/view/base/custom_snackbar.dart';
 
 class DepositController extends GetxController implements GetxService {
-  final TransactionRepo transacRepo;
-  DepositController({@required this.transacRepo});
+  final TransactionRepo transactionRepo;
+  DepositController({@required this.transactionRepo});
   bool _isLoading = false;
   bool _isInitLoading = false;
   bool _isVerifying = false;
@@ -34,7 +34,7 @@ class DepositController extends GetxController implements GetxService {
   Future<Response> depositRequest(double amount) async {
     _isLoading = true;
     update();
-    Response response = await transacRepo.depositRequest(amount: amount);
+    Response response = await transactionRepo.depositRequest(amount: amount);
     if (response.statusCode == 200) {
       // print(response.body);
       _isLoading = false;
@@ -53,7 +53,7 @@ class DepositController extends GetxController implements GetxService {
     _isInitLoading = true;
 
     // update();
-    Response response = await transacRepo.findAgent();
+    Response response = await transactionRepo.findAgent();
     print("here");
     if (response.statusCode == 200) {
       _isInitLoading = false;
@@ -69,7 +69,7 @@ class DepositController extends GetxController implements GetxService {
   Future<Response> confirmDeposit(String depositId) async {
     _isLoading = true;
     update();
-    Response response = await transacRepo.confirmDeposit(depositId: depositId);
+    Response response = await transactionRepo.confirmDeposit(depositId: depositId);
     if (response.statusCode == 200) {
       // print(response.body);
       _isLoading = false;
@@ -87,7 +87,7 @@ class DepositController extends GetxController implements GetxService {
   Future<Response> fundRequest(Map<String, dynamic> credentials) async {
     _isLoading = true;
     update();
-    Response response = await transacRepo.fundRequest(credentials);
+    Response response = await transactionRepo.fundRequest(credentials);
     if (response.statusCode == 200) {
       // print(response.body);
       _isLoading = false;
@@ -111,7 +111,7 @@ class DepositController extends GetxController implements GetxService {
       _isInitLoading = true;
       funderInfo = null;
       update();
-      Response response = await transacRepo.checkCustomerUsername(username: username);
+      Response response = await transactionRepo.checkCustomerUsername(username: username);
       if (response.statusCode == 200) {
         funderInfo = response.body["data"];
         _isInitLoading = false;

@@ -77,11 +77,13 @@ class AuthController extends GetxController implements GetxService {
   Future<void> requestCameraPermission({@required bool fromEditProfile}) async {
     var serviceStatus = await Permission.camera.status;
     if(serviceStatus.isGranted){
-      Get.offNamed(RouteHelper.getSelfieRoute(fromEditProfile: fromEditProfile));
+      Get.toNamed(RouteHelper.getSelfieRoute(fromEditProfile: fromEditProfile));
+      // Get.offNamed(RouteHelper.getSelfieRoute(fromEditProfile: fromEditProfile));
     }else{
       final status = await Permission.camera.request();
       if (status == PermissionStatus.granted) {
-        Get.offNamed(RouteHelper.getSelfieRoute(fromEditProfile: fromEditProfile));
+        Get.toNamed(RouteHelper.getSelfieRoute(fromEditProfile: fromEditProfile));
+        // Get.offNamed(RouteHelper.getSelfieRoute(fromEditProfile: fromEditProfile));
       } else if (status == PermissionStatus.denied) {
         Get.find<SelfieController>().showDeniedDialog(fromEditProfile: fromEditProfile);
       } else if (status == PermissionStatus.permanentlyDenied) {
@@ -129,7 +131,8 @@ class AuthController extends GetxController implements GetxService {
         'phone': signUpBody.phone,
         'password': signUpBody.password,
         'gender': signUpBody.gender,
-        'occupation': signUpBody.occupation,
+        'username': signUpBody.username,
+        'occupation': "NILL",
       };
       if(signUpBody.otp != null) {
         _allCustomerInfo.addAll({'otp': signUpBody.otp});

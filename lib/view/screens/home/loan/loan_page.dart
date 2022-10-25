@@ -38,87 +38,89 @@ class _LoanApplicationState extends State<LoanApplication> {
         body: Stack(
       children: [
         BackGroundColr(
-          child: Container(
-            padding: EdgeInsets.only(left: 16, right: 16, top: 35),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: 20),
-                BackButtons(),
-                BoldTextTitle(
-                  data: 'Apply for a Loan',
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 10.0),
-                  child: Text(
-                    'Taking out a loan means you can put your plans into action much earlier',
-                    style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w300),
+          child: SingleChildScrollView(
+            child: Container(
+              padding: EdgeInsets.only(left: 16, right: 16, top: 35),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 20),
+                  BackButtons(),
+                  BoldTextTitle(
+                    data: 'Apply for a Loan',
                   ),
-                ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: Cont32(
-                        onTap: () {
-                          bottomLoanApkSheet();
-                        },
-                        title: 'Take a\nLoan',
-                        subtitle: 'Borrow money\nto meet your\nneeds',
-                        avatar: Image.asset(
-                          'assets/newImages/Radar 02.png',
-                          width: 60,
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0),
+                    child: Text(
+                      'Taking out a loan means you can put your plans into action much earlier',
+                      style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w300),
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Cont32(
+                          onTap: () {
+                            bottomLoanApkSheet();
+                          },
+                          title: 'Take a\nLoan',
+                          subtitle: 'Borrow money\nto meet your\nneeds',
+                          avatar: Image.asset(
+                            'assets/newImages/Radar 02.png',
+                            width: 60,
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 7),
+                      Expanded(
+                        child: Cont32(
+                          onTap: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) {
+                              return LoanHistory();
+                            }));
+                          },
+                          title: 'Your Loan\nHistory',
+                          subtitle: 'Monitor and know\nthe status of your\nloan today',
+                          avatar: Image.asset(
+                            'assets/newImages/Radar 01.png',
+                            width: 60,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 80.0),
+                    child: Text(
+                      'Try our loan calculator to get estimates and secure the best option for your needs and wants',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      bottomLoanCalculationSheet();
+                    },
+                    child: Container(
+                      margin: EdgeInsets.symmetric(vertical: 20),
+                      height: 55,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                          border: Border.all(width: 0.2, color: Colors.pink), color: Colors.white, borderRadius: BorderRadius.circular(12)),
+                      child: Center(
+                        child: Text(
+                          'Loan Calculator',
+                          style: TextStyle(
+                            color: Colors.pink,
+                            fontWeight: FontWeight.w400,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
                       ),
                     ),
-                    SizedBox(width: 7),
-                    Expanded(
-                      child: Cont32(
-                        onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) {
-                            return LoanHistory();
-                          }));
-                        },
-                        title: 'Your Loan\nHistory',
-                        subtitle: 'Monitor and know\nthe status of your\nloan today',
-                        avatar: Image.asset(
-                          'assets/newImages/Radar 01.png',
-                          width: 60,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 80.0),
-                  child: Text(
-                    'Try our loan calculator to get estimates and secure the best option for your needs and wants',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
                   ),
-                ),
-                GestureDetector(
-                  onTap: () {
-                    bottomLoanCalculationSheet();
-                  },
-                  child: Container(
-                    margin: EdgeInsets.symmetric(vertical: 20),
-                    height: 55,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                        border: Border.all(width: 0.2, color: Colors.pink), color: Colors.white, borderRadius: BorderRadius.circular(12)),
-                    child: Center(
-                      child: Text(
-                        'Loan Calculator',
-                        style: TextStyle(
-                          color: Colors.pink,
-                          fontWeight: FontWeight.w400,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
@@ -148,160 +150,162 @@ class _LoanApplicationState extends State<LoanApplication> {
               topRight: Radius.circular(20.h),
             ),
           ),
-          child: SingleChildScrollView(
-            child: GetBuilder<LoanController>(
-              builder: (controller) {
-                return GetBuilder<SplashController>(builder: (splashController) {
-                  return StatefulBuilder(builder: (context, updateState) {
-                    return Container(
-                      padding: EdgeInsets.only(top: 10),
+          child: GetBuilder<LoanController>(
+            builder: (controller) {
+              return GetBuilder<SplashController>(builder: (splashController) {
+                return StatefulBuilder(builder: (context, updateState) {
+                  return Container(
+                    padding: EdgeInsets.only(top: 10),
+                    decoration: BoxDecoration(
+                      color: Colors.grey[50],
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(20.h),
+                        topRight: Radius.circular(20.h),
+                      ),
+                    ),
+                    child: Container(
+                      height: MediaQuery.of(context).size.height / 1.48,
+                      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                      alignment: Alignment.center,
                       decoration: BoxDecoration(
-                        color: Colors.grey[50],
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(20.h),
-                          topRight: Radius.circular(20.h),
-                        ),
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(topRight: Radius.circular(20), topLeft: Radius.circular(20)),
                       ),
-                      child: Container(
-                        height: MediaQuery.of(context).size.height / 1.48,
-                        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.only(topRight: Radius.circular(20), topLeft: Radius.circular(20)),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              child: Row(
-                                children: [
-                                  Text(
-                                    'Loan Calculator',
-                                    style: TextStyle(fontWeight: FontWeight.w400, fontSize: 23),
-                                  ),
-                                  // Spacer(),
-                                  // GestureDetector(
-                                  //   onTap: () {
-                                  //     Navigator.pop(context);
-                                  //   },
-                                  //   child: CircleAvatar(
-                                  //     backgroundColor: Colors.pink,
-                                  //     radius: 14,
-                                  //     child: Icon(
-                                  //       Icons.clear,
-                                  //       size: 20,
-                                  //       color: Colors.white,
-                                  //     ),
-                                  //   ),
-                                  // ),
-                                ],
-                              ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            child: Row(
+                              children: [
+                                Text(
+                                  'Loan Calculator',
+                                  style: TextStyle(fontWeight: FontWeight.w400, fontSize: 23),
+                                ),
+                                // Spacer(),
+                                // GestureDetector(
+                                //   onTap: () {
+                                //     Navigator.pop(context);
+                                //   },
+                                //   child: CircleAvatar(
+                                //     backgroundColor: Colors.pink,
+                                //     radius: 14,
+                                //     child: Icon(
+                                //       Icons.clear,
+                                //       size: 20,
+                                //       color: Colors.white,
+                                //     ),
+                                //   ),
+                                // ),
+                              ],
                             ),
-                            SingleChildScrollView(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  SizedBox(
-                                    height: 20,
+                          ),
+                          SingleChildScrollView(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                regularText(
+                                  "Loan amount",
+                                  fontSize: Dimensions.FONT_SIZE_DEFAULT,
+                                  color: ColorResources.greyColor,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                                TextFld(
+                                  kTextField.copyWith(
+                                    hintText: 'Loan Amount',
                                   ),
-                                  regularText(
-                                    "Loan amount",
-                                    fontSize: Dimensions.FONT_SIZE_DEFAULT,
-                                    color: ColorResources.greyColor,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                  TextFld(
-                                    kTextField.copyWith(
-                                      hintText: 'Loan Amount',
-                                    ),
-                                    controller: amount,
-                                  ),
-                                  CustomDropDownButton(
-                                    title: 'Select a repayment period (Month)',
-                                    hintText: 'Choose month',
-                                    value: planPeriod,
-                                    busy: false,
-                                    onChanged: (a) {
-                                      planPeriod = a;
-                                      updateState(() {});
-                                    },
-                                    list: splashController.configModel.planPeriod.map((e) => e["period"].toString()).toList(),
-                                  ),
-                                  CustomDropDownButton(
-                                    title: 'Select a loan to value',
-                                    hintText: 'Choose a value',
-                                    value: loanToValue,
-                                    busy: false,
-                                    onChanged: (a) {
-                                      loanToValue = a;
-                                      updateState(() {});
-                                    },
-                                    list: splashController.configModel.loanToValueOptions.map((e) => e["value"].toString()).toList(),
-                                  ),
-                                  CustomDropDownButton(
-                                    title: 'Select a repayment type',
-                                    hintText: 'Choose type',
-                                    value: repaymentOption,
-                                    busy: false,
-                                    onChanged: (a) {
-                                      repaymentOption = a;
-                                      getRepaymentId(splashController.configModel.loanRepaymentOption, a);
-                                      updateState(() {});
-                                    },
-                                    list: splashController.configModel.loanRepaymentOption.map((e) => e["name"].toString()).toList(),
-                                  ),
-                                  SizedBox(
-                                    height: 40.h,
-                                  ),
-                                  Container(
-                                    height: 50,
-                                    width: MediaQuery.of(context).size.width,
-                                    padding: EdgeInsets.symmetric(horizontal: 5.w),
-                                    child: buttonWithBorder(
-                                      'Calculate Loan',
-                                      textColor: Colors.white,
-                                      buttonColor: ColorResources.primaryColor,
-                                      fontSize: 18.sp,
-                                      busy: controller.isLoading,
-                                      fontWeight: FontWeight.w400,
-                                      height: 54.h,
-                                      onTap: () async {
-                                        if (amount.text.trim() == "" || planPeriod == null || repaymentOptionId == null || loanToValue == null) {
-                                          showCustomSnackBar('Complete the loan form before submitting');
-                                          return;
-                                        }
-                                        await controller.calculateLoan({
-                                          "loan_amount": amount.text,
-                                          "period": planPeriod,
-                                          'repayment_option': repaymentOptionId,
-                                          'loan_to_value': loanToValue,
-                                        });
+                                  controller: amount,
+                                  keyboardType: TextInputType.number,
+                                ),
+                                CustomDropDownButton(
+                                  title: 'Select a repayment period (Month)',
+                                  hintText: 'Choose month',
+                                  value: planPeriod,
+                                  borderColor: Colors.grey,
+                                  busy: false,
+                                  onChanged: (a) {
+                                    planPeriod = a;
+                                    updateState(() {});
+                                  },
+                                  list: splashController.configModel.planPeriod.map((e) => e["period"].toString()).toList(),
+                                ),
+                                CustomDropDownButton(
+                                  title: 'Select a loan to value',
+                                  hintText: 'Choose a value',
+                                  value: loanToValue,
+                                   borderColor: Colors.grey,
+                                  busy: false,
+                                  onChanged: (a) {
+                                    loanToValue = a;
+                                    updateState(() {});
+                                  },
+                                  list: splashController.configModel.loanToValueOptions.map((e) => e["value"].toString()).toList(),
+                                ),
+                                CustomDropDownButton(
+                                  title: 'Select a repayment type',
+                                  hintText: 'Choose type',
+                                  value: repaymentOption,
+                                   borderColor: Colors.grey,
+                                  busy: false,
+                                  onChanged: (a) {
+                                    repaymentOption = a;
+                                    getRepaymentId(splashController.configModel.loanRepaymentOption, a);
+                                    updateState(() {});
+                                  },
+                                  list: splashController.configModel.loanRepaymentOption.map((e) => e["name"].toString()).toList(),
+                                ),
+                                SizedBox(
+                                  height: 40.h,
+                                ),
+                                Container(
+                                  height: 50,
+                                  width: MediaQuery.of(context).size.width,
+                                  padding: EdgeInsets.symmetric(horizontal: 5.w),
+                                  child: buttonWithBorder(
+                                    'Calculate Loan',
+                                    textColor: Colors.white,
+                                    buttonColor: ColorResources.primaryColor,
+                                    fontSize: 18.sp,
+                                    busy: controller.isLoading,
+                                    fontWeight: FontWeight.w400,
+                                    height: 54.h,
+                                    onTap: () async {
+                                      if (amount.text.trim() == "" || planPeriod == null || repaymentOptionId == null || loanToValue == null) {
+                                        showCustomSnackBar('Complete the loan form before submitting');
+                                        return;
+                                      }
+                                      await controller.calculateLoan({
+                                        "loan_amount": amount.text,
+                                        "period": planPeriod,
+                                        'repayment_option': repaymentOptionId,
+                                        'loan_to_value': loanToValue,
+                                      });
 
-                                        if (controller.loanCalculationResult != null) {
-                                          setState(() {
-                                            _show = true;
-                                          });
-                                          Navigator.pop(context);
-                                          setState(() {
-                                            _show = true;
-                                          });
-                                          showLoanResult();
-                                        }
-                                      },
-                                    ),
+                                      if (controller.loanCalculationResult != null) {
+                                        setState(() {
+                                          _show = true;
+                                        });
+                                        Navigator.pop(context);
+                                        setState(() {
+                                          _show = true;
+                                        });
+                                        showLoanResult();
+                                      }
+                                    },
                                   ),
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
+                                ),
+                              ],
+                            ),
+                          )
+                        ],
                       ),
-                    );
-                  });
+                    ),
+                  );
                 });
-              },
-            ),
+              });
+            },
           ),
         );
       },
@@ -338,28 +342,28 @@ class _LoanApplicationState extends State<LoanApplication> {
               topRight: Radius.circular(40.h),
             ),
           ),
-          child: SingleChildScrollView(
-            child: GetBuilder<LoanController>(
-              builder: (controller) {
-                return GetBuilder<SplashController>(builder: (splashController) {
-                  return StatefulBuilder(builder: (context, updateState) {
-                    return Container(
-                      padding: EdgeInsets.only(top: 10),
-                      decoration: BoxDecoration(
-                        color: Colors.grey[50],
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(20.h),
-                          topRight: Radius.circular(20.h),
-                        ),
+          child: GetBuilder<LoanController>(
+            builder: (controller) {
+              return GetBuilder<SplashController>(builder: (splashController) {
+                return StatefulBuilder(builder: (context, updateState) {
+                  return Container(
+                    padding: EdgeInsets.only(top: 10),
+                    decoration: BoxDecoration(
+                      color: Colors.grey[50],
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(20.h),
+                        topRight: Radius.circular(20.h),
                       ),
-                      child: Container(
-                        height: MediaQuery.of(context).size.height / 1.48,
-                        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.only(topRight: Radius.circular(20), topLeft: Radius.circular(20)),
-                        ),
+                    ),
+                    child: Container(
+                      height: MediaQuery.of(context).size.height / 1.48,
+                      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(topRight: Radius.circular(20), topLeft: Radius.circular(20)),
+                      ),
+                      child: SingleChildScrollView(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -406,11 +410,13 @@ class _LoanApplicationState extends State<LoanApplication> {
                                       hintText: 'Loan Amount',
                                     ),
                                     controller: amount,
+                                    keyboardType: TextInputType.number,
                                   ),
                                   CustomDropDownButton(
                                     title: 'Select a repayment period (Month)',
                                     hintText: 'Choose month',
                                     value: planPeriod,
+                                    borderColor: Colors.grey,
                                     busy: false,
                                     onChanged: (a) {
                                       planPeriod = a;
@@ -422,6 +428,7 @@ class _LoanApplicationState extends State<LoanApplication> {
                                     title: 'Select a loan to value',
                                     hintText: 'Choose a value',
                                     value: loanToValue,
+                                    borderColor: Colors.grey,
                                     busy: false,
                                     onChanged: (a) {
                                       loanToValue = a;
@@ -433,6 +440,7 @@ class _LoanApplicationState extends State<LoanApplication> {
                                     title: 'Select a repayment type',
                                     hintText: 'Choose a value',
                                     value: repaymentOption,
+                                    borderColor: Colors.grey,
                                     busy: false,
                                     onChanged: (a) {
                                       repaymentOption = a;
@@ -503,11 +511,11 @@ class _LoanApplicationState extends State<LoanApplication> {
                           ],
                         ),
                       ),
-                    );
-                  });
+                    ),
+                  );
                 });
-              },
-            ),
+              });
+            },
           ),
         );
       },
@@ -621,12 +629,13 @@ class _LoanApplicationState extends State<LoanApplication> {
     );
   }
 
-  Widget TextFld(deco, {TextEditingController controller}) {
+  Widget TextFld(deco, {TextEditingController controller, TextInputType keyboardType = TextInputType.number}) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: TextField(
         decoration: deco,
         controller: controller,
+        keyboardType: keyboardType,
       ),
     );
   }

@@ -16,15 +16,16 @@ import 'package:six_cash/view/base/my_dialog.dart';
 import 'package:six_cash/view/screens/auth/selfie_capture/widget/selfie_app_bar.dart';
 import 'package:six_cash/view/screens/auth/selfie_capture/widget/text_section.dart';
 
-class SelfieCaptureScreen extends StatefulWidget {
+class CardCaptureScreen extends StatefulWidget {
   final bool fromEditProfile;
-  SelfieCaptureScreen({Key key, @required this.fromEditProfile}) : super(key: key);
+  final Function updateState;
+  CardCaptureScreen({Key key, @required this.fromEditProfile, @required this.updateState}) : super(key: key);
 
   @override
-  State<SelfieCaptureScreen> createState() => _SelfieCaptureScreenState();
+  State<CardCaptureScreen> createState() => _CardCaptureScreenState();
 }
 
-class _SelfieCaptureScreenState extends State<SelfieCaptureScreen> {
+class _CardCaptureScreenState extends State<CardCaptureScreen> {
   CameraController controller;
   XFile imageFile;
   bool isBack = false;
@@ -33,19 +34,11 @@ class _SelfieCaptureScreenState extends State<SelfieCaptureScreen> {
   void initState() {
     super.initState();
 
-    if (widget.fromEditProfile) {
-      controller = CameraController(
-        cameras[1],
-        ResolutionPreset.medium,
-        enableAudio: false,
-      );
-    } else {
-      controller = CameraController(
-        cameras[0],
-        ResolutionPreset.medium,
-        enableAudio: false,
-      );
-    }
+    controller = CameraController(
+      cameras[0],
+      ResolutionPreset.medium,
+      enableAudio: false,
+    );
 
     controller.initialize().then((_) {
       if (!mounted) {
@@ -79,28 +72,30 @@ class _SelfieCaptureScreenState extends State<SelfieCaptureScreen> {
       },
       child: Scaffold(
         backgroundColor: Theme.of(context).canvasColor,
-        appBar: SelfieAppbar(
-          fromEditProfile: widget.fromEditProfile,
-          showIcon: imageFile == null ? false : true,
-          onTap: () {
-            imageFile = null;
-            setState(() {});
-          },
-        ),
+        appBar: CardCaptureAppbar(
+            fromEditProfile: widget.fromEditProfile,
+            showIcon: imageFile == null ? false : true,
+            onTap: () {
+              imageFile = null;
+              setState(() {});
+            },
+            onAccept: () {
+            widget. updateState();
+            }),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_DEFAULT),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Container(
-                height: tmp.width * 0.6,
+                height: 250,
                 width: tmp.width * 0.6,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                 ),
                 child: imageFile == null
                     ? ClipRRect(
-                        borderRadius: BorderRadius.circular(tmp.width * 0.6),
+                        borderRadius: BorderRadius.circular(0),
                         child: OverflowBox(
                           child: CameraPreview(
                             controller,
@@ -111,7 +106,7 @@ class _SelfieCaptureScreenState extends State<SelfieCaptureScreen> {
                         alignment: Alignment.center,
                         transform: Matrix4.rotationY(math.pi),
                         child: ClipRRect(
-                          borderRadius: BorderRadius.circular(tmp.width * 0.6),
+                          borderRadius: BorderRadius.circular(0),
                           child: Image.file(
                             File(imageFile.path),
                             fit: BoxFit.fill,
@@ -143,7 +138,7 @@ class _SelfieCaptureScreenState extends State<SelfieCaptureScreen> {
                   imageFile = await controller.takePicture();
                   print(File(imageFile.path));
                   print(imageFile.path);
-                  Get.find<ImageController>().setImage(File(imageFile.path));
+                  Get.find<ImageController>().setKycImage(File(imageFile.path));
                   setState(() {});
                 }
               },
@@ -155,29 +150,6 @@ class _SelfieCaptureScreenState extends State<SelfieCaptureScreen> {
   }
 
   Future _onWillPop(BuildContext context) async {
-    if (widget.fromEditProfile == false) {
-      showAnimatedDialog(
-          context,
-          MyDialog(
-            icon: Icons.clear,
-            title: 'alert'.tr,
-            description: 'your_information_will_remove'.tr,
-            isFailed: true,
-            showTwoBtn: true,
-            onTap: () {
-              if (Get.find<ImageController>().getImage != null) {
-                Get.find<ImageController>().removeImage();
-                Get.find<AuthController>().change(0);
-                return Get.offAllNamed(RouteHelper.getChoseLoginRegRoute());
-              } else {
-                return Get.offAllNamed(RouteHelper.getChoseLoginRegRoute());
-              }
-            },
-          ),
-          dismissible: false,
-          isFlip: true);
-    } else {
-      return Get.back();
-    }
+    return Get.back();
   }
 }

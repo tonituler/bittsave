@@ -10,8 +10,8 @@ import 'package:six_cash/view/base/custom_snackbar.dart';
 import 'package:six_cash/view/screens/wallet/usd_withdrawal_confirmation.dart';
 
 class WalletController extends GetxController implements GetxService {
-  final TransactionRepo transacRepo;
-  WalletController({@required this.transacRepo});
+  final TransactionRepo transactionRepo;
+  WalletController({@required this.transactionRepo});
   bool _isLoading = false;
   bool _isLoadingWithdrawal = false;
   bool _isInitLoading = false;
@@ -35,7 +35,7 @@ class WalletController extends GetxController implements GetxService {
   Future<bool> sellBtc(Map<String, dynamic> data) async {
     _isLoading = true;
     update();
-    Response response = await transacRepo.sellBTC(data: data);
+    Response response = await transactionRepo.sellBTC(data: data);
     if (response.statusCode == 200) {
       // print(response.body);
       _isLoading = false;
@@ -54,7 +54,7 @@ class WalletController extends GetxController implements GetxService {
   Future<bool> buyBtc(Map<String, dynamic> data) async {
     _isLoading = true;
     update();
-    Response response = await transacRepo.buyBTC(data: data);
+    Response response = await transactionRepo.buyBTC(data: data);
     if (response.statusCode == 200) {
       // print(response.body);
       _isLoading = false;
@@ -73,7 +73,7 @@ class WalletController extends GetxController implements GetxService {
   Future<bool> sendBTCToWallet(Map<String, dynamic> data) async {
     _isLoading = true;
     update();
-    Response response = await transacRepo.sendBTCToBTC(data: data);
+    Response response = await transactionRepo.sendBTCToBTC(data: data);
     if (response.statusCode == 200) {
       // print(response.body);
       _isLoading = false;
@@ -98,7 +98,7 @@ class WalletController extends GetxController implements GetxService {
       _isInitLoading = true;
       receipentInfo = null;
       update();
-      Response response = await transacRepo.checkCustomerUsername(username: username);
+      Response response = await transactionRepo.checkCustomerUsername(username: username);
       if (response.statusCode == 200) {
         receipentInfo = response.body["data"];
         _isInitLoading = false;
@@ -115,7 +115,7 @@ class WalletController extends GetxController implements GetxService {
   Future<bool> sendBTCToUser(Map<String, dynamic> credentials) async {
     _isLoading = true;
     update();
-    Response response = await transacRepo.sendBTCToUser(data: credentials);
+    Response response = await transactionRepo.sendBTCToUser(data: credentials);
     if (response.statusCode == 200) {
       _isLoading = false;
       update();
@@ -134,7 +134,7 @@ class WalletController extends GetxController implements GetxService {
   Future<bool> sendUSDToBTCWallet(Map<String, dynamic> data) async {
     _isLoading = true;
     update();
-    Response response = await transacRepo.sendUSDToBTCUser(data: data);
+    Response response = await transactionRepo.sendUSDToBTCUser(data: data);
     if (response.statusCode == 200) {
       // print(response.body);
       _isLoading = false;
@@ -153,7 +153,7 @@ class WalletController extends GetxController implements GetxService {
   Future<bool> withdrawUSD(BuildContext context, String amount, String accountType) async {
     _isLoadingWithdrawal = true;
     update();
-    Response response = await transacRepo.walletWithdraw(data: {
+    Response response = await transactionRepo.walletWithdraw(data: {
       "amount": amount,
       "account_type": accountType,
     });
@@ -179,7 +179,7 @@ class WalletController extends GetxController implements GetxService {
   }
 
   Future<bool> getUSDHistory() async {
-    Response response = await transacRepo.getUSDHistory();
+    Response response = await transactionRepo.getUSDHistory();
     if (response.statusCode == 200) {
       List<Transactions> uList = [];
 
@@ -198,7 +198,7 @@ class WalletController extends GetxController implements GetxService {
   }
 
   Future<bool> getBTCHistory() async {
-    Response response = await transacRepo.getBTCHistory();
+    Response response = await transactionRepo.getBTCHistory();
     if (response.statusCode == 200) {
       List<Transactions> uList = [];
 

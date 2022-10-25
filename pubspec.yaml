@@ -1,7 +1,7 @@
 name: six_cash
 description: A new Flutter application.
 publish_to: 'none' #
-version: 1.0.0+1
+version: 1.0.2+4
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -34,6 +34,7 @@ dependencies:
   country_code_picker: ^2.0.2
   flutter_onboarding_slider: ^1.0.7
   # camera: 0.9.4+21
+  camera: 
   # camera: 0.9.8+1
   # camera: ^0.9.4+21
   http: ^0.13.4
@@ -44,7 +45,6 @@ dependencies:
   device_preview: ^1.0.0
   flutter_html: ^3.0.0-alpha.1
   shimmer: ^2.0.0-nullsafety.0
-  # permission_handler: ^9.2.0
   permission_handler: ^10.0.0
   share_plus: ^4.0.3
   screenshot: ^1.2.3

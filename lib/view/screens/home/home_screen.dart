@@ -34,8 +34,10 @@ import 'package:six_cash/view/screens/home/widget/first_card_portion.dart';
 import 'package:six_cash/view/screens/home/widget/linked_website_portion.dart';
 import 'package:six_cash/view/screens/home/widget/secend_card_portion.dart';
 import 'package:six_cash/view/screens/home/widget/shimmer/banner_shimmer.dart';
+import 'package:six_cash/view/screens/home/widget/shimmer/home_screen_shimmer.dart';
 import 'package:six_cash/view/screens/home/widget/shimmer/web_site_shimmer.dart';
 import 'package:six_cash/view/screens/home/widget/third_card_portion.dart';
+import 'package:six_cash/view/screens/settings_page/KYC.dart';
 
 import '../../../helper/route_helper.dart';
 
@@ -52,6 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
     await Get.find<ProfileController>().profileData(loading: true).then((value) {
       if (value.isOk) {
         // Get.find<BannerController>().getBannerList(reload);
+        Get.find<RequestedMoneyController>().getDashboardRequestedMoneyList(1, context, reload: reload);
         Get.find<RequestedMoneyController>().getRequestedMoneyList(1, context, reload: reload);
         Get.find<RequestedMoneyController>().getOwnRequestedMoneyList(1, reload: reload);
         Get.find<TransactionHistoryController>().getDepositRequest(reload: reload);
@@ -225,6 +228,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ],
                               ),
                             ),
+                          if (profileController.userInfo == null)
+                            Container(
+                              height: 420,
+                              width: MediaQuery.of(context).size.width,
+                              child: HomeScreenShimmer(),
+                            ),
+
                           if (profileController.userInfo != null)
                             Padding(
                               padding: const EdgeInsets.only(left: 15, right: 15),
@@ -502,59 +512,70 @@ class _HomeScreenState extends State<HomeScreen> {
                               ],
                             ),
                           ),
-                          if (profileController.userInfo != null && profileController.userInfo.isKycVerified == 0)
-                            Container(
-                              margin: EdgeInsets.all(20),
-                              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                              width: double.infinity,
-                              height: 60,
-                              decoration: BoxDecoration(color: ColorResources.primaryColor, borderRadius: BorderRadius.circular(10)),
-                              child: Row(
-                                children: [
-                                  Image.asset(
-                                    "assets/image/verify_dentity_icon.png",
-                                    height: 15,
+                          if (profileController.userInfo != null && profileController.userInfo.isKycVerified != 2)
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => KYC(),
                                   ),
-                                  SizedBox(
-                                    width: 20,
-                                  ),
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                    children: [
-                                      Text(
-                                        'Verify your Identity',
-                                        textAlign: TextAlign.start,
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: montserratLight.copyWith(
-                                          fontSize: Dimensions.FONT_SIZE_DEFAULT,
-                                          color: ColorResources.whiteColor,
+                                );
+                              },
+                              child: Container(
+                                margin: EdgeInsets.all(20),
+                                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                                width: double.infinity,
+                                height: 60,
+                                decoration: BoxDecoration(color: ColorResources.primaryColor, borderRadius: BorderRadius.circular(10)),
+                                child: Row(
+                                  children: [
+                                    Image.asset(
+                                      "assets/image/verify_dentity_icon.png",
+                                      height: 15,
+                                    ),
+                                    SizedBox(
+                                      width: 20,
+                                    ),
+                                    Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Text(
+                                          'Verify your Identity',
+                                          textAlign: TextAlign.start,
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: montserratLight.copyWith(
+                                            fontSize: Dimensions.FONT_SIZE_DEFAULT,
+                                            color: ColorResources.whiteColor,
+                                          ),
                                         ),
-                                      ),
-                                      Text(
-                                        'We need to know you, so you can access all \nour features and help us keep your account safe',
-                                        textAlign: TextAlign.start,
-                                        maxLines: 2,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: montserratLight.copyWith(
-                                          fontSize: Dimensions.FONT_SIZE_SMALL,
-                                          color: ColorResources.whiteColor.withOpacity(0.6),
+                                        Text(
+                                          'We need to know you, so you can access all \nour features and help us keep your account safe',
+                                          textAlign: TextAlign.start,
+                                          maxLines: 2,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: montserratLight.copyWith(
+                                            fontSize: Dimensions.FONT_SIZE_SMALL,
+                                            color: ColorResources.whiteColor.withOpacity(0.6),
+                                          ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
+
                           GetBuilder<RequestedMoneyController>(builder: (requestedMoneyController) {
-                            if (requestedMoneyController.isLoadingRequestedMoney) {
+                            if (requestedMoneyController.isLoadingDashboardRequestedMoney) {
                               return BannerShimmer();
                             }
 
                             return Column(
                               children: [
-                                ...requestedMoneyController.pendingRequestedMoneyList.map((item) {
+                                ...requestedMoneyController.pendingDashboardRequestedMoneyList.map((item) {
                                   return requestMoneyCard(item);
                                 }).toList(),
                               ],
@@ -765,7 +786,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        showPinBottomSheet("later", request.id);
+                        showConfirmUpdateRequestBottomSheet("later", request.id);
                       },
                       child: Container(
                         padding: EdgeInsets.symmetric(vertical: 4, horizontal: 15),
@@ -888,6 +909,100 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       );
                     }),
+                  ],
+                ),
+              ),
+            );
+          });
+        });
+  }
+
+  showConfirmUpdateRequestBottomSheet(String slug, int id) {
+    showModalBottomSheet(
+        isScrollControlled: true,
+        context: Get.context,
+        isDismissible: true,
+        enableDrag: false,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(Dimensions.RADIUS_SIZE_LARGE),
+          ),
+        ),
+        builder: (context) {
+          return StatefulBuilder(builder: (context, updateState) {
+            return Container(
+              height: 300,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: 20),
+                    Padding(
+                      padding: const EdgeInsets.only(top: Dimensions.PADDING_SIZE_EXTRA_EXTRA_LARGE, bottom: Dimensions.PADDING_SIZE_DEFAULT),
+                      child: Text(
+                        'Are you sure you want to differ this request',
+                        textAlign: TextAlign.center,
+                        style: montserratMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE + 5),
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        GetBuilder<RequestedMoneyController>(builder: (requestedMoneyController) {
+                          return Container(
+                            height: 50,
+                            width: MediaQuery.of(context).size.width * 0.4,
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 5.w,
+                            ),
+                            margin: EdgeInsets.symmetric(
+                              vertical: 35.w,
+                            ),
+                            child: buttonWithBorder(
+                              'Yes',
+                              textColor: Colors.white,
+                              buttonColor: ColorResources.primaryColor,
+                              fontSize: 18.sp,
+                              busy: requestedMoneyController.isLoadingUpdateRequestedMoney,
+                              fontWeight: FontWeight.w400,
+                              height: 54.h,
+                              onTap: () async {
+                                await requestedMoneyController.updateRequest(context, slug, id, "");
+                              },
+                            ),
+                          );
+                        }),
+                        GetBuilder<RequestedMoneyController>(builder: (requestedMoneyController) {
+                          return Container(
+                            height: 50,
+                            width: MediaQuery.of(context).size.width * 0.4,
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 5.w,
+                            ),
+                            margin: EdgeInsets.symmetric(
+                              vertical: 35.w,
+                            ),
+                            child: buttonWithBorder(
+                              'No',
+                              textColor: ColorResources.primaryColor,
+                              buttonColor: ColorResources.whiteColor,
+                              borderColor: ColorResources.primaryColor,
+                              borderRadius: 10,
+                              fontSize: 18.sp,
+                              busy: false,
+                              diabled: requestedMoneyController.isLoadingUpdateRequestedMoney,
+                              fontWeight: FontWeight.w400,
+                              height: 54.h,
+                              onTap: () async {
+                                Navigator.pop(context);
+                              },
+                            ),
+                          );
+                        })
+                      ],
+                    ),
                   ],
                 ),
               ),
@@ -1035,7 +1150,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 text: TextSpan(
                   children: [
                     TextSpan(
-                      text: 'Amount - \$${deposit.amount}',
+                      text: 'Amount - ₦${deposit.amount}',
                       style: TextStyle(
                         fontWeight: FontWeight.w400,
                         color: ColorResources.blackColor,

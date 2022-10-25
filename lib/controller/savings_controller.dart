@@ -7,8 +7,8 @@ import 'package:six_cash/data/repository/transaction_repo.dart';
 import 'package:six_cash/view/base/custom_snackbar.dart';
 
 class SavingsController extends GetxController implements GetxService {
-  final TransactionRepo transacRepo;
-  SavingsController({@required this.transacRepo});
+  final TransactionRepo transactionRepo;
+  SavingsController({@required this.transactionRepo});
   bool _isLoading = false;
   bool _isInitLoading = false;
   bool _isVerifying = false;
@@ -27,7 +27,7 @@ class SavingsController extends GetxController implements GetxService {
   Future<bool> planApply(Map<String, dynamic> data) async {
     _isLoading = true;
     update();
-    Response response = await transacRepo.savingsApply(data: data);
+    Response response = await transactionRepo.savingsApply(data: data);
     if (response.statusCode == 200) {
       // print(response.body);
       _isLoading = false;
@@ -46,7 +46,7 @@ class SavingsController extends GetxController implements GetxService {
   Future<bool> planPreview(Map<String, dynamic> data) async {
     _isSavingPreviewLoading = true;
     update();
-    Response response = await transacRepo.planPreview(data);
+    Response response = await transactionRepo.planPreview(data);
     if (response.statusCode == 200) {
       planPreviewResponse = response.body;
       _isSavingPreviewLoading = false;
@@ -65,7 +65,7 @@ class SavingsController extends GetxController implements GetxService {
   Future<bool> planPay(BuildContext context, String planId, String pin) async {
     _isLoading = true;
     update();
-    Response response = await transacRepo.payPlan(planId, pin);
+    Response response = await transactionRepo.payPlan(planId, pin);
     if (response.statusCode == 200) {
       await checkPlan(planId);
       Navigator.pop(context);
@@ -87,7 +87,7 @@ class SavingsController extends GetxController implements GetxService {
   Future<bool> withdrawPlan(BuildContext context, String planId, String pin) async {
     _isLoading = true;
     update();
-    Response response = await transacRepo.withdrawPlan(planId, pin);
+    Response response = await transactionRepo.withdrawPlan(planId, pin);
     if (response.statusCode == 200) {
       await checkPlan(planId);
       Navigator.pop(context);
@@ -112,10 +112,10 @@ class SavingsController extends GetxController implements GetxService {
       ...planDetails.toJson(),
       ...data,
     });
-    Response response = await transacRepo.updateSavings(data: data);
+    Response response = await transactionRepo.updateSavings(data: data);
     // Get.put(TransactionRepo(
-    //     apiClient: transacRepo.apiClient,
-    //     sharedPreferences: transacRepo.sharedPreferences));
+    //     apiClient: transactionRepo.apiClient,
+    //     sharedPreferences: transactionRepo.sharedPreferences));
     if (response.statusCode == 200) {
       // planDetails = {
       //   ...planDetails,
@@ -136,7 +136,7 @@ class SavingsController extends GetxController implements GetxService {
   }
 
   Future<bool> checkPlan(String planId) async {
-    Response response = await transacRepo.checkPlan(planId);
+    Response response = await transactionRepo.checkPlan(planId);
     if (response.statusCode == 200) {
       print(response.body);
       planDetails = SavingsPlan.fromJson(response.body);
@@ -156,7 +156,7 @@ class SavingsController extends GetxController implements GetxService {
     // Response response;
 
     // update();
-    Response response = await transacRepo.planList();
+    Response response = await transactionRepo.planList();
     if (response.statusCode == 200) {
       _isInitLoading = false;
       _savingsList = savingsPlanFromJson(response.body["listed_plan"]);
@@ -172,7 +172,7 @@ class SavingsController extends GetxController implements GetxService {
   Future<Response> confirmDeposit(String depositId) async {
     _isLoading = true;
     update();
-    Response response = await transacRepo.confirmDeposit(depositId: depositId);
+    Response response = await transactionRepo.confirmDeposit(depositId: depositId);
     if (response.statusCode == 200) {
       // print(response.body);
       _isLoading = false;
@@ -190,7 +190,7 @@ class SavingsController extends GetxController implements GetxService {
   Future<Response> fundRequest(Map<String, dynamic> credentials) async {
     _isLoading = true;
     update();
-    Response response = await transacRepo.fundRequest(credentials);
+    Response response = await transactionRepo.fundRequest(credentials);
     if (response.statusCode == 200) {
       // print(response.body);
       _isLoading = false;
@@ -214,7 +214,7 @@ class SavingsController extends GetxController implements GetxService {
       _isInitLoading = true;
       funderInfo = null;
       update();
-      Response response = await transacRepo.checkCustomerUsername(username: username);
+      Response response = await transactionRepo.checkCustomerUsername(username: username);
       if (response.statusCode == 200) {
         funderInfo = response.body["data"];
         _isInitLoading = false;

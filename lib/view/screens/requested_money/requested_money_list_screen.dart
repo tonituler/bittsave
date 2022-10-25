@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:get/get.dart';
 import 'package:six_cash/controller/requested_money_controller.dart';
 import 'package:six_cash/data/model/response/requested_money_model.dart';
@@ -9,26 +10,45 @@ import 'package:six_cash/view/base/custom_app_bar.dart';
 import 'package:six_cash/view/screens/home/funding_options/request_from_a_riend/friend_identity.dart';
 import 'package:six_cash/view/screens/requested_money/widget/requested_money_screen.dart';
 
-class RequestedMoneyListScreen extends StatelessWidget {
+class RequestedMoneyListScreen extends StatefulWidget {
   final bool isOwn;
-  final ScrollController _scrollController = ScrollController();
 
   RequestedMoneyListScreen({Key key, @required this.isOwn}) : super(key: key);
 
   @override
+  State<RequestedMoneyListScreen> createState() => _RequestedMoneyListScreenState();
+}
+
+class _RequestedMoneyListScreenState extends State<RequestedMoneyListScreen> {
+  final ScrollController _scrollController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      if (widget.isOwn) {
+        Get.find<RequestedMoneyController>().getOwnRequestedMoneyList(1, reload: true);
+      } else {
+        Get.find<RequestedMoneyController>().getRequestedMoneyList(1, context, reload: true);
+      }
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
+    print("own is ${widget.isOwn}");
     return BackGroundColr(
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: CustomAppbar(
-            title: isOwn ? 'send_requests'.tr : 'requests'.tr,
+            title: widget.isOwn ? 'send_requests'.tr : 'requests'.tr,
             onTap: () {
               Get.back();
             }),
         body: RefreshIndicator(
           backgroundColor: Colors.transparent,
           onRefresh: () async {
-            if (isOwn) {
+            if (widget.isOwn) {
               await Get.find<RequestedMoneyController>().getOwnRequestedMoneyList(1, reload: true);
             } else {
               await Get.find<RequestedMoneyController>().getRequestedMoneyList(1, context, reload: true);
@@ -51,27 +71,36 @@ class RequestedMoneyListScreen extends StatelessWidget {
                       builder: (requestMoneyController) {
                         return ListView(shrinkWrap: true, scrollDirection: Axis.horizontal, children: [
                           RequestTypeButton(
-                              text: 'pending'.tr,
-                              index: 0,
-                              requestMoneyList:
-                                  isOwn ? requestMoneyController.ownPendingRequestedMoneyList : requestMoneyController.pendingRequestedMoneyList),
+                            text: 'pending'.tr,
+                            index: 0,
+                            // requestMoneyList: requestMoneyController.ownPendingRequestedMoneyList,
+                            requestMoneyList:
+                                widget.isOwn ? requestMoneyController.ownPendingRequestedMoneyList : requestMoneyController.pendingRequestedMoneyList,
+                          ),
                           SizedBox(width: 10),
                           RequestTypeButton(
-                              text: 'accepted'.tr,
-                              index: 1,
-                              requestMoneyList:
-                                  isOwn ? requestMoneyController.ownAcceptedRequestedMoneyList : requestMoneyController.acceptedRequestedMoneyList),
+                            text: 'accepted'.tr,
+                            index: 1,
+                            // requestMoneyList: requestMoneyController.ownAcceptedRequestedMoneyList,
+                            requestMoneyList: widget.isOwn
+                                ? requestMoneyController.ownAcceptedRequestedMoneyList
+                                : requestMoneyController.acceptedRequestedMoneyList,
+                          ),
                           SizedBox(width: 10),
                           RequestTypeButton(
-                              text: 'denied'.tr,
-                              index: 2,
-                              requestMoneyList:
-                                  isOwn ? requestMoneyController.ownDeniedRequestedMoneyList : requestMoneyController.deniedRequestedMoneyList),
+                            text: 'denied'.tr,
+                            index: 2,
+                            // requestMoneyList: requestMoneyController.ownDeniedRequestedMoneyList,
+                            requestMoneyList:
+                                widget.isOwn ? requestMoneyController.ownDeniedRequestedMoneyList : requestMoneyController.deniedRequestedMoneyList,
+                          ),
                           SizedBox(width: 10),
                           RequestTypeButton(
-                              text: 'all'.tr,
-                              index: 3,
-                              requestMoneyList: isOwn ? requestMoneyController.ownRequestList : requestMoneyController.requestedMoneyList),
+                            text: 'all'.tr,
+                            index: 3,
+                            // requestMoneyList: requestMoneyController.ownRequestList,
+                            requestMoneyList: widget.isOwn ? requestMoneyController.ownRequestList : requestMoneyController.requestedMoneyList,
+                          ),
                         ]);
                       },
                     ),
@@ -83,7 +112,7 @@ class RequestedMoneyListScreen extends StatelessWidget {
                     child: RequestedMoneyScreen(
                       scrollController: _scrollController,
                       isHome: false,
-                      isOwn: isOwn,
+                      isOwn: widget.isOwn,
                     ),
                   ),
                 ),
@@ -118,11 +147,13 @@ class RequestTypeButton extends StatelessWidget {
             border: Border.all(width: .5, color: ColorResources.getGreyColor())),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_DEFAULT, vertical: Dimensions.PADDING_SIZE_EXTRA_SMALL),
-          child: Text(text + '(${requestMoneyList.length})',
-              style: montserratSemiBold.copyWith(
-                  color: Get.find<RequestedMoneyController>().requestTypeIndex == index
-                      ? ColorResources.blackColor
-                      : ColorResources.getPrimaryTextColor())),
+          child: Text(
+            text + '(${requestMoneyList.length})',
+            style: montserratSemiBold.copyWith(
+              color:
+                  Get.find<RequestedMoneyController>().requestTypeIndex == index ? ColorResources.whiteColor : ColorResources.getPrimaryTextColor(),
+            ),
+          ),
         ),
       ),
     );

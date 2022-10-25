@@ -15,6 +15,7 @@ class CustomDropDownButton extends StatefulWidget {
   final bool busy;
   final DropDownType bordered;
   final Color backgroundColor;
+  final Color borderColor;
 
   CustomDropDownButton({
     this.list,
@@ -25,6 +26,7 @@ class CustomDropDownButton extends StatefulWidget {
     this.busy = false,
     this.bordered = DropDownType.Underline,
     this.backgroundColor = Colors.transparent,
+    this.borderColor = Colors.transparent,
   });
 
   @override
@@ -126,7 +128,7 @@ class _CustomDropDownButtonState extends State<CustomDropDownButton> {
         borderRadius: BorderRadius.circular(5),
         border: Border.all(
           width: 1,
-          color: widget.backgroundColor,
+          color: widget.borderColor,
           style: BorderStyle.solid,
         ),
       );
@@ -138,7 +140,7 @@ class _CustomDropDownButtonState extends State<CustomDropDownButton> {
         border: Border(
           bottom: BorderSide(
             width: 1.h,
-            color: widget.backgroundColor,
+            color: widget.borderColor,
           ),
         ),
       );

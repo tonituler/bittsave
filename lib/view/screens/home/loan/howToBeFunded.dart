@@ -124,7 +124,7 @@ class _HowToBeFundedState extends State<HowToBeFunded> {
                       SizedBox(height: 16),
                       subText('Payable Amount'),
                       titleText(
-                          '${PriceConverter.priceFormater(balance: (PriceConverter.convertToNaira(double.parse(splashController.configModel.loanCommissionUsd) / 100) * double.parse(widget.loanInfo["loan_amount"].toString()) + PriceConverter.convertToNaira(double.parse(widget.loanInfo["loan_amount"].toString()))))} NGN'),
+                          '${PriceConverter.priceFormater(balance: (PriceConverter.convertToNaira(double.parse(widget.loanInfo["loan_amount"].toString()))) - PriceConverter.convertToNaira(double.parse(splashController.configModel.loanCommissionUsd) / 100) * double.parse(widget.loanInfo["loan_amount"].toString()))} NGN'),
                       SizedBox(height: 40),
                       Container(
                         height: 50,
@@ -242,7 +242,7 @@ class _HowToBeFundedState extends State<HowToBeFunded> {
                         titleText('\$${PriceConverter.priceFormater(balance: ((double.parse(splashController.configModel.loanCommissionUsd.toString()) / 100) * double.parse(widget.loanInfo["loan_amount"].toString())))}'),
                         SizedBox(height: 16),
                         subText('Payment Amount'),
-                        titleText('\$${PriceConverter.priceFormater(balance:(double.parse(widget.loanCalculation["loan_amount"].toString()) + ((double.parse(splashController.configModel.loanCommissionUsd.toString()) / 100) * double.parse(widget.loanInfo["loan_amount"].toString()))))}'),
+                        titleText('\$${PriceConverter.priceFormater(balance:(double.parse(widget.loanCalculation["loan_amount"].toString()) - ((double.parse(splashController.configModel.loanCommissionUsd.toString()) / 100) * double.parse(widget.loanInfo["loan_amount"].toString()))))}'),
                         SizedBox(height: 40),
                         Container(
                           height: 50,

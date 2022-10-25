@@ -9,8 +9,13 @@ class RequestedMoneyRepo{
   RequestedMoneyRepo({@required this.apiClient});
 
   Future<Response> getRequestedMoneyList() async {
+    return await apiClient.getData('${AppConstants.GET_REQUESTED_MONEY}');
+  }
+
+  Future<Response> getDashboardRequestedMoneyList() async {
     return await apiClient.getData('${AppConstants.REQUESTED_MONEY_URI}');
   }
+
   Future<Response> getOwnRequestedMoneyList() async {
     return await apiClient.getData('${AppConstants.WON_REQUESTED_MONEY}');
   }

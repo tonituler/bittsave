@@ -74,7 +74,7 @@ class _InputSectionState extends State<InputSection> {
               fillColor: Colors.grey.withOpacity(0.1),
               hintText: 'Username'.tr,
               isShowBorder: true,
-              readOnly: false,
+              readOnly: true,
               controller: widget.usernameController,
               focusNode: usernameFocus,
               nextFocus: emailNameFocus,
@@ -114,3 +114,99 @@ class _InputSectionState extends State<InputSection> {
     });
   }
 }
+
+
+class InputSection2 extends StatefulWidget {
+  final TextEditingController fNameController, 
+  lNameController, 
+  usernameController, 
+  emailController;
+
+  InputSection2({
+    Key key,
+    this.usernameController,
+    this.fNameController,
+    this.lNameController,
+    this.emailController,
+  }) : super(key: key);
+
+  @override
+  State<InputSection2> createState() => _InputSection2State();
+}
+
+class _InputSection2State extends State<InputSection2> {
+  final FocusNode firstNameFocus = FocusNode();
+  final FocusNode lastNameFocus = FocusNode();
+  final FocusNode emailNameFocus = FocusNode();
+  final FocusNode usernameFocus = FocusNode();
+
+  @override
+  Widget build(BuildContext context) {
+    return GetBuilder<ProfileController>(builder: (controller) {
+      return Container(
+        padding: const EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE, vertical: Dimensions.PADDING_SIZE_LARGE),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text("First name"),
+            CustomTextField(
+              fillColor: Colors.grey.withOpacity(0.1),
+              hintText: 'first_name'.tr,
+              isShowBorder: true,
+              controller: widget.fNameController,
+              focusNode: firstNameFocus,
+              nextFocus: lastNameFocus,
+              inputType: TextInputType.name,
+              capitalization: TextCapitalization.words,
+            ),
+            const SizedBox(
+              height: Dimensions.PADDING_SIZE_LARGE,
+            ),
+            Text("Last name"),
+            CustomTextField(
+              fillColor: Colors.grey.withOpacity(0.1),
+              hintText: 'last_name'.tr,
+              isShowBorder: true,
+              controller: widget.lNameController,
+              focusNode: lastNameFocus,
+              nextFocus: usernameFocus,
+              inputType: TextInputType.name,
+              capitalization: TextCapitalization.words,
+            ),
+            const SizedBox(
+              height: Dimensions.PADDING_SIZE_EXTRA_EXTRA_LARGE,
+            ),
+            Text("Username"),
+            CustomTextField(
+              fillColor: Colors.grey.withOpacity(0.1),
+              hintText: 'Username'.tr,
+              isShowBorder: true,
+              readOnly: false,
+              controller: widget.usernameController,
+              focusNode: usernameFocus,
+              nextFocus: emailNameFocus,
+              inputType: TextInputType.name,
+              capitalization: TextCapitalization.words,
+            ),
+            const SizedBox(
+              height: Dimensions.PADDING_SIZE_LARGE,
+            ),
+            Text("Email Address"),
+                CustomTextField(
+                  fillColor: Colors.grey.withOpacity(0.1),
+                  hintText: 'type_email_address'.tr,
+                  isShowBorder: true,
+                  readOnly: false,
+                  controller: widget.emailController,
+                  focusNode: emailNameFocus,
+                  nextFocus: emailNameFocus,
+                  inputType: TextInputType.emailAddress,
+                ),
+           
+          ],
+        ),
+      );
+    });
+  }
+}
+

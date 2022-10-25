@@ -99,7 +99,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 ),
                               ),
                             ),
-                            CustomInkWell(child: menu.MenuItem(title: 'Requests'), onTap: () => Get.toNamed(RouteHelper.getRequestedMoneyRoute())),
+                            CustomInkWell(
+                              child: menu.MenuItem(title: 'Requests'),
+                              onTap: () => Get.toNamed(
+                                RouteHelper.getRequestedMoneyRoute(),
+                              ),
+                            ),
                             CustomInkWell(
                               child: menu.MenuItem(title: 'Request Status'),
                               onTap: () => Get.toNamed(
@@ -123,7 +128,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             CustomInkWell(
                               child: menu.MenuItem(title: 'Step 1'),
                               onTap: () {
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => KYC()));
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => KYC(),
+                                  ),
+                                );
                               },
                             ),
                           ],

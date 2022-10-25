@@ -48,6 +48,7 @@ class AppConstants {
   static const String CHECK_CUSTOMER_URI = '/api/v1/check-customer';
   static const String CHECK_AGENT_URI = '/api/v1/check-agent';
   static const String WON_REQUESTED_MONEY = '/api/v1/customer/get-own-requested-money';
+  static const String GET_REQUESTED_MONEY = '/api/v1/customer/get-requested-money';
   static const String CUSTOMER_ADD_BANK = '/api/v1/customer/add-bank';
   static const String CUSTOMER_ADD_UPDATE_BANK = '/api/v1/customer/';
 

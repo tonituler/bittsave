@@ -39,8 +39,10 @@ class UserInfo {
     this.city,
     this.stateRegion,
     this.address,
+    this.houseNo,
     this.country,
     this.bankAccounts,
+    this.identification,
   });
 
   String username;
@@ -74,7 +76,9 @@ class UserInfo {
   String stateRegion;
   String city;
   String address;
+  String houseNo;
   String country;
+  String identification;
   List<dynamic> bankAccounts;
 
   factory UserInfo.fromJson(Map<String, dynamic> json) => UserInfo(
@@ -109,7 +113,9 @@ class UserInfo {
         stateRegion: json["state_region"],
         city: json["city"],
         address: json["address"],
+        houseNo: json["house_no"],
         country: json["country:"],
+        identification: json["identification:"],
         bankAccounts: json["bank_accounts"],
       );
 }

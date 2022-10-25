@@ -39,15 +39,19 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
                     child: Center(
                       child: Icon(
                         Icons.arrow_back_ios_new,
-                        size: Dimensions.ARROW_ICON_SIZE,
-                        color: ColorResources.blackColor,
+                        size: Dimensions.ARROW_ICON_SIZE + 8,
+                        color: ColorResources.primaryColor,
                       ),
                     ),
                   ),
                 ),
-                Text(
-                  title,
-                  style: montserratMedium.copyWith(fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE, color: ColorResources.blackColor),
+                Expanded(
+                  child: Center(
+                    child: Text(
+                      title,
+                      style: montserratMedium.copyWith(fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE, color: ColorResources.primaryColor),
+                    ),
+                  ),
                 ),
                 SizedBox(),
               ],

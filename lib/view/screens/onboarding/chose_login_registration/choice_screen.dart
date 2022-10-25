@@ -43,10 +43,11 @@ class ChoiceScreen extends StatelessWidget {
                               Image.asset(
                                 AppConstants.onboardList[index].image,
                                 filterQuality: FilterQuality.high,
+                                height: MediaQuery.of(context).size.height - 250,
+                                width: MediaQuery.of(context).size.width,
                               ),
                               Container(
-                                margin: EdgeInsets.only(
-                                    top: 10, left: 20, bottom: 5),
+                                margin: EdgeInsets.only(top: 10, left: 20, bottom: 5),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment: MainAxisAlignment.start,
@@ -55,27 +56,21 @@ class ChoiceScreen extends StatelessWidget {
                                       AppConstants.onboardList[index].title,
                                       style: montserratSemiBold.copyWith(
                                         color: ColorResources.getBlackColor(),
-                                        fontSize:
-                                            Dimensions.FONT_SIZE_EXTRA_LARGE,
+                                        fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE,
                                       ),
                                     ),
                                     SizedBox(
                                       height: 5,
                                     ),
                                     Padding(
-                                      padding:
-                                          EdgeInsets.symmetric(vertical: 2),
+                                      padding: EdgeInsets.symmetric(vertical: 2),
                                       child: Text(
-                                        AppConstants
-                                            .onboardList[index].subtitle,
+                                        AppConstants.onboardList[index].subtitle,
                                         maxLines: 3,
                                         overflow: TextOverflow.ellipsis,
                                         style: montserratMedium.copyWith(
-                                          color: ColorResources
-                                                  .getOnboardGreyColor()
-                                              .withOpacity(0.5),
-                                          fontSize:
-                                              Dimensions.FONT_SIZE_DEFAULT,
+                                          color: ColorResources.getOnboardGreyColor().withOpacity(0.5),
+                                          fontSize: Dimensions.FONT_SIZE_DEFAULT,
                                         ),
                                         textAlign: TextAlign.left,
                                       ),
@@ -90,20 +85,16 @@ class ChoiceScreen extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 17.0),
-                  child: Align(
-                      alignment: Alignment.topLeft, child: IndicatorSection()),
+                  child: Align(alignment: Alignment.topLeft, child: IndicatorSection()),
                 ),
-                const SizedBox(
-                    height: Dimensions.PADDING_SIZE_EXTRA_OVER_LARGE),
+                const SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_OVER_LARGE),
               ],
             ),
           ),
           Container(
             // color: Colors.pink,
             padding: const EdgeInsets.only(
-                left: Dimensions.PADDING_SIZE_DEFAULT,
-                right: Dimensions.PADDING_SIZE_DEFAULT,
-                bottom: Dimensions.PADDING_SIZE_EXTRA_EXTRA_LARGE),
+                left: Dimensions.PADDING_SIZE_DEFAULT, right: Dimensions.PADDING_SIZE_DEFAULT, bottom: Dimensions.PADDING_SIZE_EXTRA_EXTRA_LARGE),
             child: GetBuilder<AuthController>(builder: (controller) {
               return Row(
                 children: [
@@ -113,9 +104,7 @@ class ChoiceScreen extends StatelessWidget {
                         if (controller.page < 2) {
                           int nextPage = controller.page + 1;
                           controller.change(nextPage);
-                          pageContoller.animateToPage(nextPage,
-                              curve: Curves.easeInOut,
-                              duration: Duration(milliseconds: 400));
+                          pageContoller.animateToPage(nextPage, curve: Curves.easeInOut, duration: Duration(milliseconds: 400));
                         } else {
                           Get.toNamed(RouteHelper.getRegistrationRoute());
                         }

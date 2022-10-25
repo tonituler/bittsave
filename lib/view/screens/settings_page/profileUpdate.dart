@@ -26,9 +26,7 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                   BackButtons(),
                   Padding(
                     padding: const EdgeInsets.only(left: 8),
-                    child: Text('Update Bank Account',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w700, fontSize: 20)),
+                    child: Text('Update Bank Account', style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20)),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 8.0),
@@ -41,24 +39,23 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                   textCont('Account Number', '020202020202'),
                   textCont('Account Name', 'Babalola Anthony'),
                   textCont2(
-                      "Bank Name",
-                      "Select a bank",
-                      Icon(
-                        Icons.keyboard_arrow_down_sharp,
-                        color: Colors.pink,
-                        size: 22,
-                      )),
+                    "Bank Name",
+                    "Select a bank",
+                    Icon(
+                      Icons.keyboard_arrow_down_sharp,
+                      color: Colors.pink,
+                      size: 22,
+                    ),
+                  ),
                   SizedBox(height: 20),
                   InkWell(
                     onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) {
                         return ConfirmationPage();
                       }));
                     },
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 20.0, horizontal: 12),
+                      padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 12),
                       child: Container(
                         width: double.infinity,
                         height: 40,
@@ -68,9 +65,7 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                           textAlign: TextAlign.center,
                           style: TextStyle(color: Colors.white),
                         )),
-                        decoration: BoxDecoration(
-                            color: Colors.pink,
-                            borderRadius: BorderRadius.circular(8)),
+                        decoration: BoxDecoration(color: Colors.pink, borderRadius: BorderRadius.circular(8)),
                       ),
                     ),
                   ),

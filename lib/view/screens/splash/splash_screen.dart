@@ -60,12 +60,12 @@ class _SplashScreenState extends State<SplashScreen> {
     Get.find<SplashController>().getConfigData().then((value) {
       if (value.isOk)
         Timer(Duration(seconds: 1), () async {
-          Get.find<SplashController>().initSharedData().then((value) {
-            (Get.find<AuthController>().getCustomerName().isNotEmpty && (Get.find<SplashController>().configModel.companyName != null))
-                ? Get.offNamed(RouteHelper.getLoginRoute(
-                    countryCode: Get.find<AuthController>().getCustomerCountryCode(), phoneNumber: Get.find<AuthController>().getCustomerNumber()))
-                : Get.offNamed(RouteHelper.getChoseLoginRegRoute());
-          });
+          // Get.find<SplashController>().initSharedData().then((value) {
+          //   (Get.find<AuthController>().getCustomerName().isNotEmpty && (Get.find<SplashController>().configModel.companyName != null))
+          //       ? Get.offNamed(RouteHelper.getLoginRoute(
+          //           countryCode: Get.find<AuthController>().getCustomerCountryCode(), phoneNumber: Get.find<AuthController>().getCustomerNumber()))
+          //       : Get.offNamed(RouteHelper.getChoseLoginRegRoute());
+          // });
 
           Get.offNamed(RouteHelper.getChoseLoginRegRoute());
         });
@@ -79,7 +79,12 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Image.asset(Images.splashScreen, height: MediaQuery.of(context).size.height),
+            Image.asset(
+              Images.splashScreen,
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              fit: BoxFit.cover,
+            ),
           ],
         ),
       ),

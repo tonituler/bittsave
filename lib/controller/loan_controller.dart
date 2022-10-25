@@ -19,8 +19,8 @@ import 'package:six_cash/helper/route_helper.dart';
 import 'package:six_cash/view/base/custom_snackbar.dart';
 
 class LoanController extends GetxController implements GetxService {
-  final TransactionRepo transacRepo;
-  LoanController({@required this.transacRepo});
+  final TransactionRepo transactionRepo;
+  LoanController({@required this.transactionRepo});
   bool _isLoading = false;
   bool _isInitLoading = false;
   bool _isVerifying = false;
@@ -38,7 +38,7 @@ class LoanController extends GetxController implements GetxService {
     _isLoading = true;
     loanCalculationResult = null;
     update();
-    Response response = await transacRepo.loanCalculation(data: data);
+    Response response = await transactionRepo.loanCalculation(data: data);
     if (response.statusCode == 200) {
       loanCalculationResult = response.body;
       print(response.body);
@@ -57,7 +57,7 @@ class LoanController extends GetxController implements GetxService {
   Future<bool> requestLoan(Map<String, dynamic> data) async {
     _isLoading = true;
     update();
-    Response response = await transacRepo.loanApply(data: data);
+    Response response = await transactionRepo.loanApply(data: data);
     if (response.statusCode == 200) {
       print(response.body);
       _isLoading = false;
@@ -77,7 +77,7 @@ class LoanController extends GetxController implements GetxService {
     _isLoading = true;
     update();
 
-    Response response = await transacRepo.loanList();
+    Response response = await transactionRepo.loanList();
     if (response.statusCode == 200) {
       print(response.body);
       if (Map<String, dynamic>.from(response.body).containsKey("listed_loan")) {
@@ -99,7 +99,7 @@ class LoanController extends GetxController implements GetxService {
   Future<bool> payLoan({@required String loanId}) async {
      _isLoading = true;
     update();
-    Response response = await transacRepo.loanPay(loanId: loanId);
+    Response response = await transactionRepo.loanPay(loanId: loanId);
     if (response.statusCode == 200) {
       print(response.body);
       _isLoading = false;

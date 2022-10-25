@@ -1,4 +1,6 @@
 PODS:
+  - camera_avfoundation (0.0.1):
+    - Flutter
   - connectivity (0.0.1):
     - Flutter
     - Reachability
@@ -101,6 +103,7 @@ PODS:
     - Flutter
 
 DEPENDENCIES:
+  - camera_avfoundation (from `.symlinks/plugins/camera_avfoundation/ios`)
   - connectivity (from `.symlinks/plugins/connectivity/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - firebase_messaging (from `.symlinks/plugins/firebase_messaging/ios`)
@@ -136,6 +139,8 @@ SPEC REPOS:
     - Reachability
 
 EXTERNAL SOURCES:
+  camera_avfoundation:
+    :path: ".symlinks/plugins/camera_avfoundation/ios"
   connectivity:
     :path: ".symlinks/plugins/connectivity/ios"
   firebase_core:
@@ -174,6 +179,7 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/webview_flutter_wkwebview/ios"
 
 SPEC CHECKSUMS:
+  camera_avfoundation: 07c77549ea54ad95d8581be86617c094a46280d9
   connectivity: c4130b2985d4ef6fd26f9702e886bd5260681467
   Firebase: 7703fc4022824b6d6db1bf7bea58d13b8e17ec46
   firebase_core: c1cdfa024dc7f3d1ba8055a2ae323dba3dce4fa1

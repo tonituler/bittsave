@@ -83,10 +83,10 @@ Future<Map<String, Map<String, String>>> init() async {
 
   Get.lazyPut(() => MenuController());
   Get.lazyPut(() => AuthController(authRepo: Get.find()));
-  Get.lazyPut(() => DepositController(transacRepo: Get.find()));
-  Get.lazyPut(() => SavingsController(transacRepo: Get.find()));
-  Get.lazyPut(() => WalletController(transacRepo: Get.find()));
-  Get.lazyPut(() => LoanController(transacRepo: Get.find()));
+  Get.lazyPut(() => DepositController(transactionRepo: Get.find()));
+  Get.lazyPut(() => SavingsController(transactionRepo: Get.find()));
+  Get.lazyPut(() => WalletController(transactionRepo: Get.find()));
+  Get.lazyPut(() => LoanController(transactionRepo: Get.find()));
   Get.lazyPut(() => HomeController());
   Get.lazyPut(() => CreateAccountController());
   Get.lazyPut(() => VarificationController(authRepo: Get.find()));
