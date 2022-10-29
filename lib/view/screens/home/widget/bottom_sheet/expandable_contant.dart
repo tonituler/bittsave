@@ -9,7 +9,8 @@ class CustomExpandableContant extends StatefulWidget {
   const CustomExpandableContant({Key key}) : super(key: key);
 
   @override
-  State<CustomExpandableContant> createState() => _CustomExpandableContantState();
+  State<CustomExpandableContant> createState() =>
+      _CustomExpandableContantState();
 }
 
 class _CustomExpandableContantState extends State<CustomExpandableContant> {
@@ -27,7 +28,8 @@ class _CustomExpandableContantState extends State<CustomExpandableContant> {
           Expanded(
             flex: 0,
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE),
+              padding: const EdgeInsets.symmetric(
+                  horizontal: Dimensions.PADDING_SIZE_LARGE),
               child: Text(
                 'all_transaction'.tr,
                 style: montserratMedium.copyWith(
@@ -44,7 +46,9 @@ class _CustomExpandableContantState extends State<CustomExpandableContant> {
             flex: 10,
             child: Container(
               color: ColorResources.getBackgroundColor(),
-              child: SingleChildScrollView(child: TransactionViewScreen(scrollController: scrollController, isHome: true)),
+              child: SingleChildScrollView(
+                  child: TransactionViewScreen(
+                      scrollController: scrollController, isHome: true)),
             ),
           ),
         ],

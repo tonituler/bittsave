@@ -22,9 +22,14 @@ class ForPersonWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsets.only(top: Dimensions.PADDING_SIZE_DEFAULT, left: Dimensions.PADDING_SIZE_LARGE, right: Dimensions.PADDING_SIZE_LARGE),
+            padding: EdgeInsets.only(
+                top: Dimensions.PADDING_SIZE_DEFAULT,
+                left: Dimensions.PADDING_SIZE_LARGE,
+                right: Dimensions.PADDING_SIZE_LARGE),
             child: Text('for_person'.tr,
-                style: montserratSemiBold.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE, color: ColorResources.getGreyBaseGray1())),
+                style: montserratSemiBold.copyWith(
+                    fontSize: Dimensions.FONT_SIZE_LARGE,
+                    color: ColorResources.getGreyBaseGray1())),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -32,7 +37,9 @@ class ForPersonWidget extends StatelessWidget {
               Expanded(child: PreviewContactTile(contactModel: contactModel)),
             ],
           ),
-          Container(height: Dimensions.DIVIDER_SIZE_MEDIUM, color: ColorResources.BACKGROUND_COLOR),
+          Container(
+              height: Dimensions.DIVIDER_SIZE_MEDIUM,
+              color: ColorResources.BACKGROUND_COLOR),
         ],
       ),
     );

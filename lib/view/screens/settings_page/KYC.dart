@@ -10,10 +10,9 @@ import 'package:six_cash/view/screens/settings_page/kyc_two_steps.dart';
 import '../../../util/dimensions.dart';
 import '../home/funding_options/request_from_a_riend/friend_identity.dart';
 import '../home/funding_usd_wallet_page.dart';
-import '../home/savings_pages/myPlans.dart';
 
 class KYC extends StatefulWidget {
-  const KYC({Key key}) : super(key: key);
+  const KYC({Key key, one, two}) : super(key: key);
 
   @override
   State<KYC> createState() => _KYCState();
@@ -37,7 +36,9 @@ class _KYCState extends State<KYC> {
                     BackButtons(),
                     Padding(
                       padding: const EdgeInsets.only(left: 8),
-                      child: Text('KYC Requirement', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20)),
+                      child: Text('KYC Requirement',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w500, fontSize: 20)),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0, bottom: 10),
@@ -56,10 +57,10 @@ class _KYCState extends State<KYC> {
                           ContJ(
                               Image.asset(
                                 'assets/newImages/User.png',
-                                scale: 3,
+                                scale: 2,
                               ),
-                              'Usd Wallet',
-                              'You can have your money settled in USD. Take note of the price changes in Bitcoin.',
+                              'Personal Details',
+                              'Kindly provide the personal Information requested so as to validate your identity',
                               Colors.pink,
                               Container(
                                 padding: EdgeInsets.all(2),
@@ -78,10 +79,10 @@ class _KYCState extends State<KYC> {
                           ContJ(
                             Image.asset(
                               'assets/newImages/Table Lamp.png',
-                              scale: 3,
+                              scale: 2,
                             ),
                             'Document Upload',
-                            'You are required to take a photograph of the front or both sides of your government approved ID',
+                            'You are required to take a photograph of your government approved ID',
                             Colors.pink,
                             kycStatus(profileController.userInfo),
                           ),
@@ -93,7 +94,9 @@ class _KYCState extends State<KYC> {
                                 backgroundColor: Colors.pink[50],
                                 child: Checkbox(
                                   value: isChecked,
-                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10))),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(10))),
                                   onChanged: (value) {
                                     setState(() {
                                       isChecked = value;
@@ -125,7 +128,9 @@ class _KYCState extends State<KYC> {
                               busy: false,
                               fontWeight: FontWeight.w400,
                               height: 54.h,
-                              diabled: (!isChecked || profileController.userInfo.isKycVerified == 2),
+                              diabled: (!isChecked ||
+                                  profileController.userInfo.isKycVerified ==
+                                      2),
                               onTap: () async {
                                 Navigator.push(
                                   context,
@@ -154,7 +159,7 @@ class _KYCState extends State<KYC> {
       return Container(
         padding: EdgeInsets.all(2),
         child: Text(
-          ' Submitted',
+          'Submitted',
           style: TextStyle(
             color: Colors.grey,
             fontSize: 10,
@@ -163,7 +168,8 @@ class _KYCState extends State<KYC> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(4),
           color: ColorResources.primaryColor.withOpacity(0.2),
-          border: Border.all(color: ColorResources.primaryColor.withOpacity(0.2), width: 1),
+          border: Border.all(
+              color: ColorResources.primaryColor.withOpacity(0.2), width: 1),
         ),
       );
     }
@@ -203,20 +209,26 @@ class _KYCState extends State<KYC> {
     );
   }
 
-  Widget ContJ(Widget widget, String text1, String text2, Color col, Widget child2) {
+  Widget ContJ(
+      Widget widget, String text1, String text2, Color col, Widget child2) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
       padding: EdgeInsets.all(7),
-      decoration: BoxDecoration(color: Colors.white, border: Border.all(color: col, width: 0.8), borderRadius: BorderRadius.circular(12)),
+      decoration: BoxDecoration(
+          color: Colors.white,
+          border: Border.all(color: col, width: 0.8),
+          borderRadius: BorderRadius.circular(12)),
       child: ListTile(
         leading: widget,
         title: Text(
           text1,
-          style: TextStyle(fontSize: Dimensions.FONT_SIZE_DEFAULT, fontWeight: FontWeight.w500),
+          style: TextStyle(
+              fontSize: Dimensions.FONT_SIZE_DEFAULT,
+              fontWeight: FontWeight.w500),
         ),
         subtitle: Text(
           text2,
-          style: TextStyle(fontSize: 11.5),
+          style: TextStyle(fontSize: 10.5),
         ),
         trailing: child2,
       ),
@@ -227,7 +239,9 @@ class _KYCState extends State<KYC> {
     return Container(
       width: 20,
       height: 20,
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), border: Border.all(color: Colors.pink, width: 1)),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(color: Colors.pink, width: 1)),
     );
   }
 }

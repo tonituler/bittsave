@@ -17,7 +17,8 @@ import 'bootom_slider_controller.dart';
 class ProfileController extends GetxController implements GetxService {
   final ProfileRepo profileRepo;
   ProfileController({@required this.profileRepo});
-  final BottomSliderController bottomSliderController = Get.find<BottomSliderController>();
+  final BottomSliderController bottomSliderController =
+      Get.find<BottomSliderController>();
   UserInfo _userInfo;
   bool _isLoading = false;
 
@@ -43,7 +44,8 @@ class ProfileController extends GetxController implements GetxService {
     Response response = await profileRepo.getProfileDataApi();
     if (response.statusCode == 200) {
       _userInfo = UserInfo.fromJson(response.body);
-      Get.find<AuthController>().setCustomerName('${_userInfo.fName} ${_userInfo.lName}');
+      Get.find<AuthController>()
+          .setCustomerName('${_userInfo.fName} ${_userInfo.lName}');
       Get.find<AuthController>().setCustomerQrCode(_userInfo.qrCode);
       _isLoading = false;
     } else {
@@ -67,18 +69,27 @@ class ProfileController extends GetxController implements GetxService {
     return response;
   }
 
-  Future<void> changePin({@required String oldPassword, @required String newPassword, @required String confirmPassword}) async {
-    if ((oldPassword.length < 4) || (newPassword.length < 4) || (confirmPassword.length < 4)) {
+  Future<void> changePin(
+      {@required String oldPassword,
+      @required String newPassword,
+      @required String confirmPassword}) async {
+    if ((oldPassword.length < 4) ||
+        (newPassword.length < 4) ||
+        (confirmPassword.length < 4)) {
       showCustomSnackBar('please_input_4_digit_pin'.tr);
     } else if (newPassword != confirmPassword) {
       showCustomSnackBar('pin_not_match'.tr);
     } else {
       _isLoading = true;
       update();
-      Response response = await profileRepo.changePinApi(oldPin: oldPassword, newPin: newPassword, confirmPin: confirmPassword);
+      Response response = await profileRepo.changePinApi(
+          oldPin: oldPassword,
+          newPin: newPassword,
+          confirmPin: confirmPassword);
       if (response.statusCode == 200) {
         Get.offAllNamed(RouteHelper.getLoginRoute(
-            countryCode: Get.find<AuthController>().getCustomerCountryCode(), phoneNumber: Get.find<AuthController>().getCustomerNumber()));
+            countryCode: Get.find<AuthController>().getCustomerCountryCode(),
+            phoneNumber: Get.find<AuthController>().getCustomerNumber()));
       } else {
         // Get.back();
         ApiChecker.checkApi(response);
@@ -123,10 +134,12 @@ class ProfileController extends GetxController implements GetxService {
     update();
   }
 
-  Future<void> updateAccountInfo(BuildContext context, String slug, Map<String, Object> _body) async {
+  Future<void> updateAccountInfo(
+      BuildContext context, String slug, Map<String, Object> _body) async {
     _isLoadingAccountUpdate = true;
     update();
-    Response response = await profileRepo.updateAccountInfo((slug == "create") ? "add-bank" : "edit-bank", {..._body});
+    Response response = await profileRepo.updateAccountInfo(
+        (slug == "create") ? "add-bank" : "edit-bank", {..._body});
     // await getProfileData(loading: false);
     if (response.statusCode == 200) {
       await getProfileData(loading: false);

@@ -18,8 +18,8 @@ import 'package:six_cash/view/screens/auth/selfie_capture/widget/text_section.da
 
 class SelfieCaptureScreen extends StatefulWidget {
   final bool fromEditProfile;
-  SelfieCaptureScreen({Key key, @required this.fromEditProfile}) : super(key: key);
-
+  SelfieCaptureScreen({Key key, @required this.fromEditProfile})
+      : super(key: key);
   @override
   State<SelfieCaptureScreen> createState() => _SelfieCaptureScreenState();
 }
@@ -28,7 +28,6 @@ class _SelfieCaptureScreenState extends State<SelfieCaptureScreen> {
   CameraController controller;
   XFile imageFile;
   bool isBack = false;
-
   @override
   void initState() {
     super.initState();
@@ -46,7 +45,6 @@ class _SelfieCaptureScreenState extends State<SelfieCaptureScreen> {
         enableAudio: false,
       );
     }
-
     controller.initialize().then((_) {
       if (!mounted) {
         return;
@@ -88,7 +86,8 @@ class _SelfieCaptureScreenState extends State<SelfieCaptureScreen> {
           },
         ),
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_DEFAULT),
+          padding: const EdgeInsets.symmetric(
+              horizontal: Dimensions.PADDING_SIZE_DEFAULT),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -125,7 +124,8 @@ class _SelfieCaptureScreenState extends State<SelfieCaptureScreen> {
         ),
         bottomNavigationBar: Container(
           color: ColorResources.getPrimaryColor(),
-          padding: const EdgeInsets.symmetric(vertical: Dimensions.PADDING_SIZE_EXTRA_LARGE),
+          padding: const EdgeInsets.symmetric(
+              vertical: Dimensions.PADDING_SIZE_EXTRA_LARGE),
           child: Container(
             padding: const EdgeInsets.all(Dimensions.PADDING_SIZE_EXTRA_SMALL),
             decoration: BoxDecoration(
