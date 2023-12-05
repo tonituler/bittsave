@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,22 +8,24 @@ import 'package:six_cash/controller/wallet_controller.dart';
 import 'package:six_cash/util/color_resources.dart';
 import 'package:six_cash/util/dimensions.dart';
 import 'package:six_cash/view/base/buttons.dart';
+import 'package:six_cash/view/base/custom_drop_down.dart';
 import 'package:six_cash/view/base/custom_text_field.dart';
 import 'package:six_cash/view/base/text_widgets.dart';
 
 import '../home/funding_options/request_from_a_riend/friend_identity.dart';
 import '../home/funding_usd_wallet_page.dart';
 
-class ReceiveBtc extends StatefulWidget {
-  const ReceiveBtc({Key key}) : super(key: key);
+class ReceiveUsd extends StatefulWidget {
+  const ReceiveUsd({Key key}) : super(key: key);
 
   @override
-  State<ReceiveBtc> createState() => _ReceiveBtcState();
+  State<ReceiveUsd> createState() => _ReceiveUsdState();
 }
 
-class _ReceiveBtcState extends State<ReceiveBtc> {
+class _ReceiveUsdState extends State<ReceiveUsd> {
   bool isInitialLoad = false;
   bool isRequeryLoading = false;
+  String payCurrency = "USDT";
   final TextEditingController amount = TextEditingController();
 
   @override
@@ -56,7 +56,7 @@ class _ReceiveBtcState extends State<ReceiveBtc> {
                   BackButtons(),
                   Padding(
                     padding: const EdgeInsets.only(left: 8, bottom: 10),
-                    child: Text('Trasaction History', style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20)),
+                    child: Text('Transaction History', style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20)),
                   ),
                   transactionList(),
                 ],
@@ -90,22 +90,11 @@ class _ReceiveBtcState extends State<ReceiveBtc> {
               } else if (snapshot.hasData) {
                 isInitialLoad = true;
 
-                if (controller.btcHistory.isEmpty) {
+                if (controller.usdCoinHistory.isEmpty) {
                   return Container();
                 } else {
                   return Column(
-                    // children: [],
-                    // {
-                    //   id: 11,
-                    //   amount: 100,
-                    //   payment_method: btc,
-                    //   status: waiting,
-                    //   tran_id: Aj1671788318,
-                    //   address: 3BMCBhErZo1SWxLxbzsTFeHDWHVu2pdJgq,
-                    //   payment_id: 5696554785,
-                    //   description: lateef_100_1671788318
-                    // },
-                    children: controller.btcCoinHistory.map((item) {
+                    children: controller.usdCoinHistory.map((item) {
                       return Container(
                         decoration: BoxDecoration(border: Border(bottom: BorderSide(width: 1, color: Colors.grey.withOpacity(0.5)))),
                         child: ListTile(
@@ -126,7 +115,10 @@ class _ReceiveBtcState extends State<ReceiveBtc> {
                           ),
                           trailing: Text(
                             item["status"],
-                            style: TextStyle(fontWeight: FontWeight.bold, color: statusColor(item["status"])),
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: statusColor(item["status"]),
+                            ),
                           ),
                         ),
                       );
@@ -154,7 +146,7 @@ class _ReceiveBtcState extends State<ReceiveBtc> {
       return false;
     }
 
-    return controller.getNOWPayments("btc");
+    return controller.getNOWPayments("usd");
   }
 
   Widget paymentSheet() {
@@ -191,7 +183,7 @@ class _ReceiveBtcState extends State<ReceiveBtc> {
                       ),
                     ),
                     child: Container(
-                      height: 220,
+                      height: 300,
                       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 5),
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
@@ -206,7 +198,7 @@ class _ReceiveBtcState extends State<ReceiveBtc> {
                               child: Row(
                                 children: [
                                   Text(
-                                    'DEPOSIT BTC',
+                                    'DEPOSIT USD',
                                     style: TextStyle(fontWeight: FontWeight.w400, fontSize: 23),
                                   ),
                                   Spacer(),
@@ -246,6 +238,21 @@ class _ReceiveBtcState extends State<ReceiveBtc> {
                                     controller: amount,
                                   ),
                                   SizedBox(
+                                    height: 5,
+                                  ),
+                                  CustomDropDownButton(
+                                    title: 'Select payment currency',
+                                    hintText: 'Choose currency',
+                                    value: payCurrency,
+                                    borderColor: Colors.grey,
+                                    busy: false,
+                                    onChanged: (a) {
+                                      payCurrency = a;
+                                      updateState(() {});
+                                    },
+                                    list: ["USDC", "USDT"],
+                                  ),
+                                  SizedBox(
                                     height: 40.h,
                                   ),
                                   Container(
@@ -262,11 +269,13 @@ class _ReceiveBtcState extends State<ReceiveBtc> {
                                       height: 54.h,
                                       onTap: () async {
                                         updateState(() {});
+                                        if (amount.text == "") return;
                                         await controller.createNOWPayment({
                                           "price_amount": amount.text,
-                                          "pay_currency": "btc",
+                                          "pay_currency": payCurrency,
                                         });
                                         amount.text = "";
+                                        payCurrency = "USDT";
                                         setState(() {});
                                         Navigator.of(context).pop();
                                       },
@@ -448,9 +457,7 @@ class _ReceiveBtcState extends State<ReceiveBtc> {
                               updateState(() {
                                 isRequeryLoading = true;
                               });
-                              await controller.requeryNOWPayment({
-                                "payment_id": record["payment_id"],
-                              });
+                              await controller.requeryNOWPayment({"payment_id": record["payment_id"]});
                               updateState(() {
                                 isRequeryLoading = false;
                               });

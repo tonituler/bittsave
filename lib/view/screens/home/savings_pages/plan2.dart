@@ -270,86 +270,90 @@ class _Plan2State extends State<SavingPlan> {
         ),
         builder: (context) {
           return StatefulBuilder(builder: (context, updateState) {
-            return Container(
-              height: 300,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: Dimensions.PADDING_SIZE_EXTRA_EXTRA_LARGE, bottom: Dimensions.PADDING_SIZE_DEFAULT),
-                      child: Text(
-                        'Enter your transaction PIN',
-                        style: montserratMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE),
-                      ),
-                    ),
-                    SizedBox(height: 20),
-                    Container(
-                      alignment: Alignment.center,
-                      height: 50,
-                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(27.0), color: ColorResources.getGreyBaseGray6()),
-                      child: TextField(
-                        controller: _pinCodeFieldController,
-                        obscureText: true,
-                        maxLength: 4,
-                        textAlign: TextAlign.center,
-                        // hintCharacter: '•',
-                        onChanged: (value) {
-                          updateState(() {});
-                        },
-                        keyboardType: TextInputType.number,
-                        inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))],
-                        decoration: InputDecoration(
-                          hintText: 'PIN',
-                          hintStyle: TextStyle(
-                            color: Colors.pink,
-                            fontSize: 18,
-                          ),
-                          contentPadding: const EdgeInsets.all(0),
-                          border: InputBorder.none,
-                          enabledBorder: InputBorder.none,
-                          focusedBorder: InputBorder.none,
-                          disabledBorder: InputBorder.none,
+            return Padding(
+              padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom,
+              ),
+              child: Container(
+                height: 300,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: Dimensions.PADDING_SIZE_EXTRA_EXTRA_LARGE, bottom: Dimensions.PADDING_SIZE_DEFAULT),
+                        child: Text(
+                          'Enter your transaction PIN',
+                          style: montserratMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE),
                         ),
                       ),
-                    ),
-                    GetBuilder<SavingsController>(builder: (savingsController) {
-                      return Container(
+                      SizedBox(height: 20),
+                      Container(
+                        alignment: Alignment.center,
                         height: 50,
-                        width: MediaQuery.of(context).size.width,
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 5.w,
-                        ),
-                        margin: EdgeInsets.symmetric(
-                          vertical: 35.w,
-                        ),
-                        child: buttonWithBorder(
-                          'Submit',
-                          textColor: Colors.white,
-                          buttonColor: ColorResources.primaryColor,
-                          fontSize: 18.sp,
-                          busy: isWithdrawing,
-                          fontWeight: FontWeight.w400,
-                          height: 54.h,
-                          onTap: () async {
-                            isWithdrawing = true;
-                            updateState(() {});
-                            if (slug == "pay") {
-                              await savingsController.planPay(context, id.toString(), _pinCodeFieldController.text);
-                            }
-                            if (slug == "withdraw") {
-                              
-                              await savingsController.withdrawPlan(context, id.toString(), _pinCodeFieldController.text);
-                            }
-                            _pinCodeFieldController.text = "";
-                            isWithdrawing = false;
+                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(27.0), color: ColorResources.getGreyBaseGray6()),
+                        child: TextField(
+                          controller: _pinCodeFieldController,
+                          obscureText: true,
+                          maxLength: 4,
+                          textAlign: TextAlign.center,
+                          // hintCharacter: '•',
+                          onChanged: (value) {
                             updateState(() {});
                           },
+                          keyboardType: TextInputType.number,
+                          inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))],
+                          decoration: InputDecoration(
+                            hintText: 'PIN',
+                            hintStyle: TextStyle(
+                              color: Colors.pink,
+                              fontSize: 18,
+                            ),
+                            contentPadding: const EdgeInsets.all(0),
+                            border: InputBorder.none,
+                            enabledBorder: InputBorder.none,
+                            focusedBorder: InputBorder.none,
+                            disabledBorder: InputBorder.none,
+                          ),
                         ),
-                      );
-                    }),
-                  ],
+                      ),
+                      GetBuilder<SavingsController>(builder: (savingsController) {
+                        return Container(
+                          height: 50,
+                          width: MediaQuery.of(context).size.width,
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 5.w,
+                          ),
+                          margin: EdgeInsets.symmetric(
+                            vertical: 35.w,
+                          ),
+                          child: buttonWithBorder(
+                            'Submit',
+                            textColor: Colors.white,
+                            buttonColor: ColorResources.primaryColor,
+                            fontSize: 18.sp,
+                            busy: isWithdrawing,
+                            fontWeight: FontWeight.w400,
+                            height: 54.h,
+                            onTap: () async {
+                              isWithdrawing = true;
+                              updateState(() {});
+                              if (slug == "pay") {
+                                await savingsController.planPay(context, id.toString(), _pinCodeFieldController.text);
+                              }
+                              if (slug == "withdraw") {
+                                await savingsController.withdrawPlan(context, id.toString(), _pinCodeFieldController.text);
+                              }
+                              _pinCodeFieldController.text = "";
+                              isWithdrawing = false;
+                              updateState(() {});
+                            },
+                          ),
+                        );
+                      }),
+                    ],
+                  ),
                 ),
               ),
             );

@@ -192,28 +192,56 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               lNameController: lastNameController,
                               emailController: emailController,
                             ),
+
+                            SizedBox(
+                              height: 30,
+                            ),
+                            Container(
+                              padding: const EdgeInsets.only(
+                                  left: Dimensions.PADDING_SIZE_DEFAULT,
+                                  right: Dimensions.PADDING_SIZE_DEFAULT,
+                                  bottom: Dimensions.PADDING_SIZE_DEFAULT),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: CustomSmallButton(
+                                      onTap: () {
+                                        _saveProfile(controller);
+                                      },
+                                      backgroundColor: Theme.of(context).primaryColor,
+                                      text: 'save changes'.tr,
+                                      textColor: ColorResources.getWhiteColor(),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
                           ],
                         ),
                       ),
                     ),
-                    Container(
-                      padding: const EdgeInsets.only(
-                          left: Dimensions.PADDING_SIZE_DEFAULT, right: Dimensions.PADDING_SIZE_DEFAULT, bottom: Dimensions.PADDING_SIZE_DEFAULT),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: CustomSmallButton(
-                              onTap: () {
-                                _saveProfile(controller);
-                              },
-                              backgroundColor: Theme.of(context).primaryColor,
-                              text: 'save changes'.tr,
-                              textColor: ColorResources.getWhiteColor(),
-                            ),
-                          ),
-                        ],
-                      ),
-                    )
+                    // SizedBox(height: 10,),
+                    // Container(
+                    //   padding: const EdgeInsets.only(
+                    //       left: Dimensions.PADDING_SIZE_DEFAULT, right: Dimensions.PADDING_SIZE_DEFAULT, bottom: Dimensions.PADDING_SIZE_DEFAULT),
+                    //   child: Row(
+                    //     children: [
+                    //       Expanded(
+                    //         child: CustomSmallButton(
+                    //           onTap: () {
+                    //             _saveProfile(controller);
+                    //           },
+                    //           backgroundColor: Theme.of(context).primaryColor,
+                    //           text: 'save changes'.tr,
+                    //           textColor: ColorResources.getWhiteColor(),
+                    //         ),
+                    //       ),
+                    //     ],
+                    //   ),
+                    // )
                   ],
                 ),
               ),

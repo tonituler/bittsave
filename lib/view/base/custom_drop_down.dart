@@ -37,7 +37,7 @@ class _CustomDropDownButtonState extends State<CustomDropDownButton> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 80,
+      height: 85,
       margin: EdgeInsets.only(top: 2.h, left: 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,7 +70,7 @@ class _CustomDropDownButtonState extends State<CustomDropDownButton> {
               horizontal: 20.h,
             ),
             decoration: getDecoration(),
-            height: 50,
+            height: 60,
             width: MediaQuery.of(context).size.width,
             alignment: Alignment.center,
             child: DropdownButton<String>(

@@ -7,11 +7,7 @@ import 'package:get/get.dart';
 import 'package:six_cash/view/base/custom_text_field.dart';
 
 class InputSection extends StatefulWidget {
-  final TextEditingController phoneController, 
-  fNameController, 
-  lNameController, 
-  usernameController, 
-  emailController;
+  final TextEditingController phoneController, fNameController, lNameController, usernameController, emailController;
 
   InputSection({
     Key key,
@@ -42,6 +38,9 @@ class _InputSectionState extends State<InputSection> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text("First name"),
+            SizedBox(
+              height: 5,
+            ),
             CustomTextField(
               fillColor: Colors.grey.withOpacity(0.1),
               hintText: 'first_name'.tr,
@@ -56,6 +55,9 @@ class _InputSectionState extends State<InputSection> {
               height: Dimensions.PADDING_SIZE_LARGE,
             ),
             Text("Last name"),
+            SizedBox(
+              height: 5,
+            ),
             CustomTextField(
               fillColor: Colors.grey.withOpacity(0.1),
               hintText: 'last_name'.tr,
@@ -70,6 +72,9 @@ class _InputSectionState extends State<InputSection> {
               height: Dimensions.PADDING_SIZE_EXTRA_EXTRA_LARGE,
             ),
             Text("Username"),
+            SizedBox(
+              height: 5,
+            ),
             CustomTextField(
               fillColor: Colors.grey.withOpacity(0.1),
               hintText: 'Username'.tr,
@@ -85,29 +90,35 @@ class _InputSectionState extends State<InputSection> {
               height: Dimensions.PADDING_SIZE_LARGE,
             ),
             Text("Email Address"),
-                CustomTextField(
-                  fillColor: Colors.grey.withOpacity(0.1),
-                  hintText: 'type_email_address'.tr,
-                  isShowBorder: true,
-                  readOnly: true,
-                  controller: widget.emailController,
-                  focusNode: emailNameFocus,
-                  nextFocus: phoneFocus,
-                  inputType: TextInputType.emailAddress,
-                ),
-                const SizedBox(
+            SizedBox(
+              height: 5,
+            ),
+            CustomTextField(
+              fillColor: Colors.grey.withOpacity(0.1),
+              hintText: 'type_email_address'.tr,
+              isShowBorder: true,
+              readOnly: true,
+              controller: widget.emailController,
+              focusNode: emailNameFocus,
+              nextFocus: phoneFocus,
+              inputType: TextInputType.emailAddress,
+            ),
+            const SizedBox(
               height: Dimensions.PADDING_SIZE_LARGE,
             ),
             Text("Phone"),
-                CustomTextField(
-                  fillColor: Colors.grey.withOpacity(0.1),
-                  hintText: 'Phone'.tr,
-                  isShowBorder: true,
-                  readOnly: true,
-                  controller: widget.phoneController,
-                  focusNode: phoneFocus,
-                  inputType: TextInputType.emailAddress,
-                ),
+            SizedBox(
+              height: 5,
+            ),
+            CustomTextField(
+              fillColor: Colors.grey.withOpacity(0.1),
+              hintText: 'Phone'.tr,
+              isShowBorder: true,
+              readOnly: true,
+              controller: widget.phoneController,
+              focusNode: phoneFocus,
+              inputType: TextInputType.emailAddress,
+            ),
           ],
         ),
       );
@@ -115,12 +126,8 @@ class _InputSectionState extends State<InputSection> {
   }
 }
 
-
 class InputSection2 extends StatefulWidget {
-  final TextEditingController fNameController, 
-  lNameController, 
-  usernameController, 
-  emailController;
+  final TextEditingController fNameController, lNameController, usernameController, emailController;
 
   InputSection2({
     Key key,
@@ -149,6 +156,9 @@ class _InputSection2State extends State<InputSection2> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text("First name"),
+            SizedBox(
+              height: 5,
+            ),
             CustomTextField(
               fillColor: Colors.grey.withOpacity(0.1),
               hintText: 'first_name'.tr,
@@ -163,6 +173,9 @@ class _InputSection2State extends State<InputSection2> {
               height: Dimensions.PADDING_SIZE_LARGE,
             ),
             Text("Last name"),
+            SizedBox(
+              height: 5,
+            ),
             CustomTextField(
               fillColor: Colors.grey.withOpacity(0.1),
               hintText: 'last_name'.tr,
@@ -177,6 +190,9 @@ class _InputSection2State extends State<InputSection2> {
               height: Dimensions.PADDING_SIZE_EXTRA_EXTRA_LARGE,
             ),
             Text("Username"),
+            SizedBox(
+              height: 5,
+            ),
             CustomTextField(
               fillColor: Colors.grey.withOpacity(0.1),
               hintText: 'Username'.tr,
@@ -192,21 +208,22 @@ class _InputSection2State extends State<InputSection2> {
               height: Dimensions.PADDING_SIZE_LARGE,
             ),
             Text("Email Address"),
-                CustomTextField(
-                  fillColor: Colors.grey.withOpacity(0.1),
-                  hintText: 'type_email_address'.tr,
-                  isShowBorder: true,
-                  readOnly: false,
-                  controller: widget.emailController,
-                  focusNode: emailNameFocus,
-                  nextFocus: emailNameFocus,
-                  inputType: TextInputType.emailAddress,
-                ),
-           
+            SizedBox(
+              height: 5,
+            ),
+            CustomTextField(
+              fillColor: Colors.grey.withOpacity(0.1),
+              hintText: 'type_email_address'.tr,
+              isShowBorder: true,
+              readOnly: false,
+              controller: widget.emailController,
+              focusNode: emailNameFocus,
+              nextFocus: emailNameFocus,
+              inputType: TextInputType.emailAddress,
+            ),
           ],
         ),
       );
     });
   }
 }
-

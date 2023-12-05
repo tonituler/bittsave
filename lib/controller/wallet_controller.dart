@@ -23,6 +23,9 @@ class WalletController extends GetxController implements GetxService {
   Map<String, dynamic> receipentInfo;
   Map<String, dynamic> planPreviewResponse;
 
+  List<Map<String, dynamic>> _usdCoinHistory = [];
+  List<Map<String, dynamic>> _btcCoinHistory = [];
+
   bool get isLoading => _isLoading;
   bool get isInitLoading => _isInitLoading;
   bool get isSavingPreviewLoading => _isSavingPreviewLoading;
@@ -31,6 +34,9 @@ class WalletController extends GetxController implements GetxService {
   List<SavingsPlan> get savingsList => _savingsList;
   List<Transactions> get usdHistory => _usdHistory;
   List<Transactions> get btcHistory => _btcHistory;
+
+  List<Map<String, dynamic>> get usdCoinHistory => _usdCoinHistory;
+  List<Map<String, dynamic>> get btcCoinHistory => _btcCoinHistory;
 
   Future<bool> sellBtc(Map<String, dynamic> data) async {
     _isLoading = true;
@@ -210,6 +216,66 @@ class WalletController extends GetxController implements GetxService {
 
       return true;
     } else {
+      print("response.hasError");
+      print(response.bodyString);
+      ApiChecker.checkApi(response);
+    }
+    return false;
+  }
+
+  Future<bool> getNOWPayments(String currency) async {
+    Response response = await transactionRepo.getNOWPayment(currency);
+    if (response.statusCode == 200) {
+      List<Map<String, dynamic>> uList = [];
+
+      for (var item in List<Map<String, dynamic>>.from(response.body["listed_crypto"])) {
+        uList.add(item);
+      }
+      if (currency == "usd") {
+        _usdCoinHistory = uList;
+      }
+      if (currency == "btc") {
+        _btcCoinHistory = uList;
+      }
+      return true;
+    } else {
+      print("response.hasError");
+      print(response.bodyString);
+      ApiChecker.checkApi(response);
+    }
+    return false;
+  }
+
+  Future<bool> createNOWPayment(Map<String, dynamic> credentials) async {
+    _isLoading = true;
+    Response response = await transactionRepo.createNOWPayment(credentials);
+    if (response.statusCode == 200) {
+      if(credentials["pay_currency"].toString().toLowerCase() == "btc"){
+        await getNOWPayments("btc");
+      }
+      if(credentials["pay_currency"].toString().toLowerCase().contains("usd")){
+        await getNOWPayments("usd");
+      }
+      _isLoading = false;
+      return true;
+    } else {
+      _isLoading = false;
+      print("response.hasError");
+      print(response.bodyString);
+      ApiChecker.checkApi(response);
+    }
+    return false;
+  }
+
+  Future<bool> requeryNOWPayment(Map<String, dynamic> credentials) async {
+    _isLoading = true;
+    Response response = await transactionRepo.requeryNOWPayment(credentials);
+    print(response.statusCode);
+    if (response.statusCode == 200) {
+      _isLoading = false;
+      return true;
+    } else {
+      _isLoading = false;
       print("response.hasError");
       print(response.bodyString);
       ApiChecker.checkApi(response);

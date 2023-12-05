@@ -213,7 +213,7 @@ class _BTCWalletScreenState extends State<BTCWalletScreen> {
                 ),
               ),
               SizedBox(
-                height: 10,
+                height: 280,
               ),
               // Text(
               //   'Recent Transactions',

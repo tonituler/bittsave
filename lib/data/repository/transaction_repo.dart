@@ -176,4 +176,20 @@ class TransactionRepo {
     return await apiClient.getData(AppConstants.BTC_HISTORY);
   }
 
+  Future<Response> createNOWPayment(Map<String, dynamic> data) async {
+    return await apiClient.postData(AppConstants.CREATE_NOW_PAYMENT, data);
+  }
+
+  Future<Response> getNOWPayment(String currency) async {
+    return await apiClient.getData(AppConstants.LIST_NOW_PAYMENT + "/" + currency);
+  }
+
+  Future<Response> requeryNOWPayment(Map<String, dynamic> data) async {
+    return await apiClient.postData(AppConstants.REQUERY_NOW_PAYMENT, data);
+  }
+
+
+
+  
+
 }

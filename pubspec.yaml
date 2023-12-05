@@ -59,6 +59,8 @@ dependencies:
   flutter_countdown_timer: ^4.1.0
   syncfusion_flutter_datepicker: 19.4.56
   flutter_datetime_picker: ^1.5.1
+  fluidcoins: 
+  qr_flutter: 
 
 dependency_overrides:
   image_picker_android: 0.8.4+13

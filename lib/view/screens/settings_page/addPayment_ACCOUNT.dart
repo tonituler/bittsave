@@ -108,7 +108,7 @@ class _AddPaymentAccountState extends State<AddPaymentAccount> {
                     textCont('Account Name', 'Enter account number', controller: accountNameController),
                     // textCont('Username', '@johnsam'),
                     Padding(
-                      padding: const EdgeInsets.only(left: 20.0, right: 12, top: 20, bottom: 20),
+                      padding: const EdgeInsets.only(left: 10.0, right: 10, top: 20, bottom: 20),
                       child: GetBuilder<SplashController>(builder: (splashController) {
                         return CustomDropDownButton(
                           busy: false,

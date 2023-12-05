@@ -82,6 +82,10 @@ class AppConstants {
   static const String USD_HISTORY = '/api/v1/customer/transaction-wallet-history/usd';
   static const String BTC_HISTORY = '/api/v1/customer/transaction-wallet-history/btc';
   static const String ALL_WALLET_HISTORY = '/api/v1/customer/transaction-history';
+  
+  static const String CREATE_NOW_PAYMENT = '/api/v1/customer/create-crypto-payment';
+  static const String LIST_NOW_PAYMENT = '/api/v1/customer/list-crypto-payment';
+  static const String REQUERY_NOW_PAYMENT = '/api/v1/customer/confirm-crypto-payment';
 
   // Shared Key
   static const String THEME = 'theme';

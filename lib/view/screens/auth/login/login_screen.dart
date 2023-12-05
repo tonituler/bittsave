@@ -13,6 +13,7 @@ import 'package:six_cash/helper/route_helper.dart';
 import 'package:six_cash/util/color_resources.dart';
 import 'package:six_cash/util/dimensions.dart';
 import 'package:six_cash/util/styles.dart';
+import 'package:six_cash/view/base/custom_country_code_picker.dart';
 import 'package:six_cash/view/base/custom_password_field.dart';
 import 'package:six_cash/view/base/custom_snackbar.dart';
 import 'package:six_cash/view/screens/auth/login/widget/login_qr_popup_card.dart';
@@ -219,20 +220,28 @@ class _LoginScreenState extends State<LoginScreen> {
                                   decoration: InputDecoration(
                                     border: InputBorder.none,
                                     contentPadding: const EdgeInsets.only(top: 14),
-                                    prefixIcon: SizedBox(
-                                      width: 50,
-                                      height: 20,
-                                      child: Row(
-                                        children: [
-                                          Container(
-                                            width: 40,
+                                    prefixIcon: (_countryCode == null || _countryCode == "")
+                                        ? CustomCountryCodePiker(
+                                            initSelect: widget.countryCode,
+                                            onChanged: (code) {
+                                              print(code);
+                                              setCountryCode(code);
+                                            },
+                                          )
+                                        : SizedBox(
+                                            width: 50,
                                             height: 20,
-                                            margin: const EdgeInsets.only(right: 5, left: 5),
-                                            child: const Center(child: Text("+234 ")),
+                                            child: Row(
+                                              children: [
+                                                Container(
+                                                  width: 40,
+                                                  height: 20,
+                                                  margin: const EdgeInsets.only(right: 5, left: 5),
+                                                  child:  Center(child: Text("$_countryCode ")),
+                                                ),
+                                              ],
+                                            ),
                                           ),
-                                        ],
-                                      ),
-                                    ),
                                     // prefixIcon: CustomCountryCodePiker(
                                     //   initSelect: widget.countryCode,
                                     //   onChanged: (code) {
@@ -350,6 +359,7 @@ class _LoginScreenState extends State<LoginScreen> {
       String _phoneNumber = _code + _phone;
 
       try {
+        print(_countryCode);
         PhoneNumber num = await PhoneNumberUtil().parse(_phoneNumber);
         print('+${num.countryCode}');
         print(num.nationalNumber);

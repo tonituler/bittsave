@@ -15,6 +15,7 @@ import 'package:six_cash/util/dimensions.dart';
 import 'package:six_cash/util/images.dart';
 import 'package:six_cash/util/styles.dart';
 import 'package:six_cash/view/screens/home/funding_usd_wallet_page.dart';
+import 'package:six_cash/view/screens/wallet/recieve_usd.dart';
 import 'package:six_cash/view/screens/wallet/send_usd.dart';
 import 'package:six_cash/view/screens/wallet/widget/BTCWallet.dart';
 import 'package:six_cash/view/screens/wallet/widget/WithDraw.dart';
@@ -156,6 +157,18 @@ class _USDWalletScreenState extends State<USDWalletScreen> {
                       icon: "StopCircle.png",
                       label: "Deposit",
                     ),
+                    WalletIcons(
+                      ontap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ReceiveUsd(),
+                          ),
+                        );
+                      },
+                      icon: "PlayCircle.png",
+                      label: "Receive",
+                    )
                   ],
                 ),
               ),
@@ -168,7 +181,7 @@ class _USDWalletScreenState extends State<USDWalletScreen> {
                 ),
               ),
               SizedBox(
-                height: 10,
+                height: 280,
               ),
             ],
           ),

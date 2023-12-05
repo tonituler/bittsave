@@ -65,7 +65,7 @@ class _KycTwoStepsState extends State<KycTwoSteps> {
                   ),
                   SizedBox(height: 50),
                   Padding(
-                    padding: const EdgeInsets.only(left: 20.0, right: 12, top: 0, bottom: 2),
+                    padding: const EdgeInsets.only(left: 10.0, right: 10, top: 0, bottom: 2),
                     child: GetBuilder<SplashController>(builder: (splashController) {
                       return CustomDropDownButton(
                         busy: false,
@@ -83,7 +83,7 @@ class _KycTwoStepsState extends State<KycTwoSteps> {
                     }),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 20.0, right: 12, top: 0, bottom: 2),
+                    padding: const EdgeInsets.only(left: 10.0, right: 10, top: 0, bottom: 2),
                     child: GetBuilder<SplashController>(builder: (splashController) {
                       return CustomDropDownButton(
                         busy: false,

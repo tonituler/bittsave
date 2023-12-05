@@ -29,17 +29,17 @@ class _SendUsdState extends State<SendUsd> {
                   BackButtons(),
                   Padding(
                     padding: const EdgeInsets.only(left: 8, bottom: 10),
-                    child: Text('How do you want to send USD?',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w700, fontSize: 20)),
+                    child: Text(
+                      'How do you want to send USD?',
+                      style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20),
+                    ),
                   ),
                   SizedBox(height: 50),
                   SizedBox(
                     child: contTap(
                         image: 'assets/image/bitc.png',
                         title: "Send to BTC address",
-                        subtitle:
-                            'Send BTC to a wallet address\ndirectly from your USD wallet',
+                        subtitle: 'Send BTC to a wallet address\ndirectly from your USD wallet',
                         scale: 2,
                         ontap: () {
                           Navigator.push(
@@ -103,27 +103,19 @@ class _SendUsdState extends State<SendUsd> {
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 20, bottom: 2),
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        title,
-                        style: TextStyle(
-                            fontWeight: FontWeight.w400,
-                            fontSize: Dimensions.FONT_SIZE_DEFAULT),
-                      ),
-                      SizedBox(height: 2),
-                      Text(
-                        subtitle,
-                        maxLines: 3,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                            fontWeight: FontWeight.w300,
-                            fontSize: 10,
-                            color: Colors.grey),
-                      )
-                    ]),
+                child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisAlignment: MainAxisAlignment.start, children: [
+                  Text(
+                    title,
+                    style: TextStyle(fontWeight: FontWeight.w400, fontSize: Dimensions.FONT_SIZE_DEFAULT),
+                  ),
+                  SizedBox(height: 2),
+                  Text(
+                    subtitle,
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(fontWeight: FontWeight.w300, fontSize: 10, color: Colors.grey),
+                  )
+                ]),
               ),
               Spacer(),
               Icon(Icons.arrow_forward_ios, color: Colors.grey, size: 20)

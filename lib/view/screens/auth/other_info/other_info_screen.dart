@@ -35,7 +35,7 @@ class _OtherInfoScreenState extends State<OtherInfoScreen> {
         //backgroundColor: ColorResources.getWhiteColor(),
         appBar: CustomAppbar(
           title: 'information'.tr,
-          onTap: (){
+          onTap: () {
             _onWillPop(context);
           },
         ),
@@ -61,50 +61,48 @@ class _OtherInfoScreenState extends State<OtherInfoScreen> {
                     const SizedBox(
                       height: Dimensions.PADDING_SIZE_EXTRA_OVER_LARGE,
                     ),
+                    GetBuilder<ProfileController>(builder: (getController) {
+                      return Container(
+                        height: 110,
+                        child: CustomLargeButton(
+                          backgroundColor: Theme.of(context).secondaryHeaderColor,
+                          text: 'proceed'.tr,
+                          onTap: () {
+                            if (fNameTextController.text == '' || lNameTextController.text == '') {
+                              showCustomSnackBar('first_name_or_last_name_must_not_be_null'.tr, isError: true);
+                            } else {
+                              if (emailTextController.text != '') {
+                                bool _emailValid =
+                                    RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(emailTextController.text);
+                                if (!_emailValid) {
+                                  showCustomSnackBar('please_provide_valid_email'.tr, isError: true);
+                                } else {
+                                  Get.toNamed(RouteHelper.getPinSetRoute(
+                                    fName: fNameTextController.text,
+                                    lName: lNameTextController.text,
+                                    email: emailTextController.text,
+                                    username: usernameTextController.text,
+                                  ));
+                                }
+                              } else {
+                                print('without email');
+                                Get.toNamed(RouteHelper.getPinSetRoute(
+                                  fName: fNameTextController.text,
+                                  lName: lNameTextController.text,
+                                  email: emailTextController.text,
+                                  username: usernameTextController.text,
+                                ));
+                              }
+                              //showCustomSnackBar('Successfully done', context, isError: false);
+                            }
+                          },
+                        ),
+                      );
+                    }),
                   ],
                 ),
               ),
             ),
-            GetBuilder<ProfileController>(builder: (getController) {
-              return Container(
-                height: 110,
-                child: CustomLargeButton(
-                  backgroundColor: Theme.of(context).secondaryHeaderColor,
-                  text: 'proceed'.tr,
-                  onTap: () {
-                    if (fNameTextController.text == '' || lNameTextController.text == '') {
-                      showCustomSnackBar('first_name_or_last_name_must_not_be_null'.tr, isError: true);
-                    }
-                    else {
-                      if(emailTextController.text != ''){
-                        bool _emailValid = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(emailTextController.text);
-                        if(!_emailValid){
-                          showCustomSnackBar('please_provide_valid_email'.tr, isError: true);
-                        }
-                        else{
-                          Get.toNamed(RouteHelper.getPinSetRoute(
-                            fName: fNameTextController.text,
-                            lName: lNameTextController.text,
-                            email: emailTextController.text,
-                            username: usernameTextController.text,
-                          ));
-                        }
-                      }
-                      else{
-                        print('without email');
-                        Get.toNamed(RouteHelper.getPinSetRoute(
-                          fName: fNameTextController.text,
-                          lName: lNameTextController.text,
-                          email: emailTextController.text,
-                          username: usernameTextController.text,
-                        ));
-                      }
-                      //showCustomSnackBar('Successfully done', context, isError: false);
-                    }
-                  },
-                ),
-              );
-            })
           ],
         ),
       ),
@@ -112,28 +110,25 @@ class _OtherInfoScreenState extends State<OtherInfoScreen> {
   }
 
   Future _onWillPop(BuildContext context) async {
-
-      showAnimatedDialog(context,
-          MyDialog(
-            icon: Icons.clear,
-            title: 'alert'.tr,
-            description: 'your_information_will_remove'.tr,
-            isFailed: true,
-            showTwoBtn: true,
-            onTap: (){
-                Get.find<ImageController>().removeImage();
-                Get.find<AuthController>().change(0);
-                return Get.offAllNamed(RouteHelper.getChoseLoginRegRoute());
-            },
-          ),
-          dismissible: false,
-          isFlip: true);
-
-
-
+    showAnimatedDialog(
+        context,
+        MyDialog(
+          icon: Icons.clear,
+          title: 'alert'.tr,
+          description: 'your_information_will_remove'.tr,
+          isFailed: true,
+          showTwoBtn: true,
+          onTap: () {
+            Get.find<ImageController>().removeImage();
+            Get.find<AuthController>().change(0);
+            return Get.offAllNamed(RouteHelper.getChoseLoginRegRoute());
+          },
+        ),
+        dismissible: false,
+        isFlip: true);
   }
 
- /* Future<bool> _onWillPop(BuildContext context) async {
+  /* Future<bool> _onWillPop(BuildContext context) async {
     return (await showDialog(
           context: context,
           builder: (context) => AlertDialog(
