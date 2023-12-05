@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:six_cash/controller/profile_screen_controller.dart';
 import 'package:six_cash/data/api/api_checker.dart';
-import 'package:six_cash/data/model/agent_model.dart';
 import 'package:six_cash/data/model/savings_plan.dart';
 import 'package:six_cash/data/model/transaction_model.dart';
 import 'package:six_cash/data/repository/transaction_repo.dart';
@@ -104,7 +103,8 @@ class WalletController extends GetxController implements GetxService {
       _isInitLoading = true;
       receipentInfo = null;
       update();
-      Response response = await transactionRepo.checkCustomerUsername(username: username);
+      Response response =
+          await transactionRepo.checkCustomerUsername(username: username);
       if (response.statusCode == 200) {
         receipentInfo = response.body["data"];
         _isInitLoading = false;
@@ -137,10 +137,10 @@ class WalletController extends GetxController implements GetxService {
     return false;
   }
 
-  Future<bool> sendUSDToBTCWallet(Map<String, dynamic> data) async {
+  Future<bool> sendUSDToBITTSAVEUser(Map<String, dynamic> data) async {
     _isLoading = true;
     update();
-    Response response = await transactionRepo.sendUSDToBTCUser(data: data);
+    Response response = await transactionRepo.sendUSDToBITTSAVEUser(data: data);
     if (response.statusCode == 200) {
       // print(response.body);
       _isLoading = false;
@@ -156,7 +156,27 @@ class WalletController extends GetxController implements GetxService {
     return false;
   }
 
-  Future<bool> withdrawUSD(BuildContext context, String amount, String accountType) async {
+  Future<bool> sendUSDToBTC(Map<String, dynamic> data) async {
+    _isLoading = true;
+    update();
+    Response response = await transactionRepo.sendBTCToUser(data: data);
+    if (response.statusCode == 200) {
+      // print(response.body);
+      _isLoading = false;
+      update();
+      return true;
+    } else {
+      print("response.hasError");
+      print(response.bodyString);
+      _isLoading = false;
+      ApiChecker.checkApi(response);
+    }
+    update();
+    return false;
+  }
+
+  Future<bool> withdrawUSD(
+      BuildContext context, String amount, String accountType) async {
     _isLoadingWithdrawal = true;
     update();
     Response response = await transactionRepo.walletWithdraw(data: {
@@ -189,7 +209,8 @@ class WalletController extends GetxController implements GetxService {
     if (response.statusCode == 200) {
       List<Transactions> uList = [];
 
-      for (var item in List<Map<String, dynamic>>.from(response.body["transactions"])) {
+      for (var item
+          in List<Map<String, dynamic>>.from(response.body["transactions"])) {
         uList.add(Transactions.fromJson(item));
       }
 
@@ -208,7 +229,8 @@ class WalletController extends GetxController implements GetxService {
     if (response.statusCode == 200) {
       List<Transactions> uList = [];
 
-      for (var item in List<Map<String, dynamic>>.from(response.body["transactions"])) {
+      for (var item
+          in List<Map<String, dynamic>>.from(response.body["transactions"])) {
         uList.add(Transactions.fromJson(item));
       }
 

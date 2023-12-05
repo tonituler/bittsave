@@ -126,7 +126,7 @@ class _BTCTransferConfirmationState extends State<BTCTransferConfirmation> {
                             onTap: () async {
                               bool response = false;
                               if (widget.requestInfo["type"] == "USD") {
-                                response = await controller.sendUSDToBTCWallet({
+                                response = await controller.sendUSDToBTC({
                                   ...widget.requestInfo,
                                 });
                               } else {
