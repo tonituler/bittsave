@@ -7,19 +7,18 @@ import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:six_cash/controller/localization_controller.dart';
-import 'package:six_cash/controller/theme_controller.dart';
-import 'package:six_cash/helper/notification_helper.dart';
-import 'package:six_cash/helper/route_helper.dart';
-import 'package:six_cash/theme/dark_theme.dart';
-import 'package:six_cash/theme/light_theme.dart';
-import 'package:six_cash/util/app_constants.dart';
-import 'package:six_cash/util/messages.dart';
+import 'package:bittsave/controller/localization_controller.dart';
+import 'package:bittsave/controller/theme_controller.dart';
+import 'package:bittsave/helper/notification_helper.dart';
+import 'package:bittsave/helper/route_helper.dart';
+import 'package:bittsave/theme/dark_theme.dart';
+import 'package:bittsave/theme/light_theme.dart';
+import 'package:bittsave/util/app_constants.dart';
+import 'package:bittsave/util/messages.dart';
 import 'package:url_strategy/url_strategy.dart';
 import 'helper/get_di.dart' as di;
 
-final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-    FlutterLocalNotificationsPlugin();
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 List<CameraDescription> cameras;
 
 Future<void> main() async {
@@ -41,23 +40,17 @@ Future<void> main() async {
   int _orderID;
   try {
     if (GetPlatform.isMobile) {
-      final NotificationAppLaunchDetails notificationAppLaunchDetails =
-          await flutterLocalNotificationsPlugin
-              .getNotificationAppLaunchDetails();
+      final NotificationAppLaunchDetails notificationAppLaunchDetails = await flutterLocalNotificationsPlugin.getNotificationAppLaunchDetails();
       if (notificationAppLaunchDetails?.didNotificationLaunchApp ?? false) {
-        _orderID = notificationAppLaunchDetails.payload != null
-            ? int.parse(notificationAppLaunchDetails.payload)
-            : null;
+        _orderID = notificationAppLaunchDetails.payload != null ? int.parse(notificationAppLaunchDetails.payload) : null;
       }
       await NotificationHelper.initialize(flutterLocalNotificationsPlugin);
       FirebaseMessaging.onBackgroundMessage(myBackgroundMessageHandler);
     }
   } catch (e) {}
 
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
-      .then((value) => runApp(MyApp(languages: _languages, orderID: _orderID)));
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: Colors.transparent.withOpacity(0.3)));
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then((value) => runApp(MyApp(languages: _languages, orderID: _orderID)));
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(statusBarColor: Colors.transparent.withOpacity(0.3)));
 }
 
 class MyApp extends StatelessWidget {

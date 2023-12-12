@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:six_cash/controller/transaction_history_controller.dart';
-import 'package:six_cash/data/model/transaction_model.dart';
-import 'package:six_cash/util/color_resources.dart';
-import 'package:six_cash/util/dimensions.dart';
-import 'package:six_cash/util/styles.dart';
-import 'package:six_cash/view/base/custom_ink_well.dart';
-import 'package:six_cash/view/screens/history/widget/history_view.dart';
-import 'package:six_cash/view/screens/home/funding_options/request_from_a_riend/friend_identity.dart';
-import 'package:six_cash/view/screens/home/funding_usd_wallet_page.dart';
+import 'package:bittsave/controller/transaction_history_controller.dart';
+import 'package:bittsave/data/model/transaction_model.dart';
+import 'package:bittsave/util/color_resources.dart';
+import 'package:bittsave/util/dimensions.dart';
+import 'package:bittsave/util/styles.dart';
+import 'package:bittsave/view/base/custom_ink_well.dart';
+import 'package:bittsave/view/screens/history/widget/history_view.dart';
+import 'package:bittsave/view/screens/home/funding_options/request_from_a_riend/friend_identity.dart';
+import 'package:bittsave/view/screens/home/funding_usd_wallet_page.dart';
 
 class HistoryScreen extends StatelessWidget {
   final ScrollController _scrollController = ScrollController();
@@ -26,16 +26,14 @@ class HistoryScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                  padding: EdgeInsets.only(left: 10, top: 20),
-                  child: BackButtons()),
+              Padding(padding: EdgeInsets.only(left: 10, top: 20), child: BackButtons()),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Text(
-                  'Transaction History',
+                  'Transaction History', 
                   style: TextStyle(
                     color: Colors.black,
-                    fontWeight: FontWeight.w500,
+                    // fontWeight: FontWeight.w500,
                     fontSize: 22,
                   ),
                 ),
@@ -45,8 +43,7 @@ class HistoryScreen extends StatelessWidget {
                 child: RefreshIndicator(
                   backgroundColor: Theme.of(context).primaryColor,
                   onRefresh: () async {
-                    await Get.find<TransactionHistoryController>()
-                        .getTransactionData(1, reload: true);
+                    await Get.find<TransactionHistoryController>().getTransactionData(1, reload: true);
                     return true;
                   },
                   child: CustomScrollView(
@@ -57,56 +54,28 @@ class HistoryScreen extends StatelessWidget {
                           pinned: true,
                           delegate: SliverDelegate(
                               child: Container(
-                            padding: EdgeInsets.symmetric(
-                                vertical: Dimensions.PADDING_SIZE_SMALL),
+                            padding: EdgeInsets.symmetric(vertical: Dimensions.PADDING_SIZE_SMALL),
                             height: 50,
                             alignment: Alignment.centerLeft,
                             child: GetBuilder<TransactionHistoryController>(
                               builder: (historyController) {
                                 return ListView(
                                     shrinkWrap: true,
-                                    padding: const EdgeInsets.only(
-                                        left: Dimensions.PADDING_SIZE_SMALL),
+                                    padding: const EdgeInsets.only(left: Dimensions.PADDING_SIZE_SMALL),
                                     scrollDirection: Axis.horizontal,
                                     children: [
-                                      TransactionTypeButton(
-                                          text: 'all'.tr,
-                                          index: 0,
-                                          transactionHistoryList:
-                                              historyController
-                                                  .transactionList),
+                                      TransactionTypeButton(text: 'all'.tr, index: 0, transactionHistoryList: historyController.transactionList),
+                                      SizedBox(width: 10),
+                                      TransactionTypeButton(text: 'send_money'.tr, index: 1, transactionHistoryList: historyController.sendMoneyList),
+                                      SizedBox(width: 10),
+                                      TransactionTypeButton(text: 'cash_in'.tr, index: 2, transactionHistoryList: historyController.cashInMoneyList),
+                                      SizedBox(width: 10),
+                                      TransactionTypeButton(text: 'add_money'.tr, index: 3, transactionHistoryList: historyController.addMoneyList),
                                       SizedBox(width: 10),
                                       TransactionTypeButton(
-                                          text: 'send_money'.tr,
-                                          index: 1,
-                                          transactionHistoryList:
-                                              historyController.sendMoneyList),
+                                          text: 'received_money'.tr, index: 4, transactionHistoryList: historyController.receivedMoneyList),
                                       SizedBox(width: 10),
-                                      TransactionTypeButton(
-                                          text: 'cash_in'.tr,
-                                          index: 2,
-                                          transactionHistoryList:
-                                              historyController
-                                                  .cashInMoneyList),
-                                      SizedBox(width: 10),
-                                      TransactionTypeButton(
-                                          text: 'add_money'.tr,
-                                          index: 3,
-                                          transactionHistoryList:
-                                              historyController.addMoneyList),
-                                      SizedBox(width: 10),
-                                      TransactionTypeButton(
-                                          text: 'received_money'.tr,
-                                          index: 4,
-                                          transactionHistoryList:
-                                              historyController
-                                                  .receivedMoneyList),
-                                      SizedBox(width: 10),
-                                      TransactionTypeButton(
-                                          text: 'cash_out'.tr,
-                                          index: 5,
-                                          transactionHistoryList:
-                                              historyController.cashOutList),
+                                      TransactionTypeButton(text: 'cash_out'.tr, index: 5, transactionHistoryList: historyController.cashOutList),
                                     ]);
                               },
                             ),
@@ -114,11 +83,8 @@ class HistoryScreen extends StatelessWidget {
                       SliverToBoxAdapter(
                         child: Scrollbar(
                           child: Padding(
-                            padding:
-                                EdgeInsets.all(Dimensions.PADDING_SIZE_SMALL),
-                            child: TransactionViewScreen(
-                                scrollController: _scrollController,
-                                isHome: false),
+                            padding: EdgeInsets.all(Dimensions.PADDING_SIZE_SMALL),
+                            child: TransactionViewScreen(scrollController: _scrollController, isHome: false),
                           ),
                         ),
                       ),
@@ -139,36 +105,25 @@ class TransactionTypeButton extends StatelessWidget {
   final int index;
   final List<Transactions> transactionHistoryList;
 
-  TransactionTypeButton(
-      {@required this.text,
-      @required this.index,
-      @required this.transactionHistoryList});
+  TransactionTypeButton({@required this.text, @required this.index, @required this.transactionHistoryList});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.center,
       decoration: BoxDecoration(
-          color:
-              Get.find<TransactionHistoryController>().transactionTypeIndex ==
-                      index
-                  ? ColorResources.primaryColor
-                  : Theme.of(context).cardColor,
+          color: Get.find<TransactionHistoryController>().transactionTypeIndex == index ? ColorResources.primaryColor : Theme.of(context).cardColor,
           borderRadius: BorderRadius.circular(Dimensions.RADIUS_SIZE_LARGE),
           border: Border.all(width: .5, color: ColorResources.getGreyColor())),
       child: CustomInkWell(
         onTap: () => Get.find<TransactionHistoryController>().setIndex(index),
         radius: Dimensions.RADIUS_SIZE_LARGE,
         child: Padding(
-          padding: const EdgeInsets.symmetric(
-              horizontal: Dimensions.PADDING_SIZE_DEFAULT,
-              vertical: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+          padding: const EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_DEFAULT, vertical: Dimensions.PADDING_SIZE_EXTRA_SMALL),
           child: Text(text,
               style: montserratRegular.copyWith(
                   fontSize: Dimensions.FONT_SIZE_DEFAULT,
-                  color: Get.find<TransactionHistoryController>()
-                              .transactionTypeIndex ==
-                          index
+                  color: Get.find<TransactionHistoryController>().transactionTypeIndex == index
                       ? ColorResources.whiteColor
                       : ColorResources.getPrimaryTextColor())),
         ),
@@ -182,8 +137,7 @@ class SliverDelegate extends SliverPersistentHeaderDelegate {
   SliverDelegate({@required this.child});
 
   @override
-  Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
     return child;
   }
 
@@ -195,8 +149,6 @@ class SliverDelegate extends SliverPersistentHeaderDelegate {
 
   @override
   bool shouldRebuild(SliverDelegate oldDelegate) {
-    return oldDelegate.maxExtent != 50 ||
-        oldDelegate.minExtent != 50 ||
-        child != oldDelegate.child;
+    return oldDelegate.maxExtent != 50 || oldDelegate.minExtent != 50 || child != oldDelegate.child;
   }
 }

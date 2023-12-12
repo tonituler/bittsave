@@ -4,14 +4,14 @@ import 'package:flutter_countdown_timer/current_remaining_time.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
-import 'package:six_cash/app/extensions.dart';
-import 'package:six_cash/controller/deposit_controller.dart';
-import 'package:six_cash/helper/price_converter.dart';
-import 'package:six_cash/helper/route_helper.dart';
-import 'package:six_cash/util/color_resources.dart';
-import 'package:six_cash/util/dimensions.dart';
-import 'package:six_cash/view/base/buttons.dart';
-import 'package:six_cash/view/base/contact_shimmer.dart';
+import 'package:bittsave/app/extensions.dart';
+import 'package:bittsave/controller/deposit_controller.dart';
+import 'package:bittsave/helper/price_converter.dart';
+import 'package:bittsave/helper/route_helper.dart';
+import 'package:bittsave/util/color_resources.dart';
+import 'package:bittsave/util/dimensions.dart';
+import 'package:bittsave/view/base/buttons.dart';
+import 'package:bittsave/view/base/contact_shimmer.dart';
 
 import '../../../screens/home/funding_usd_wallet_page.dart';
 

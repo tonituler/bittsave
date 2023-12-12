@@ -1,5 +1,5 @@
-import 'package:six_cash/data/model/response/faq_model.dart';
-import 'package:six_cash/data/repository/faq_repo.dart';
+import 'package:bittsave/data/model/response/faq_model.dart';
+import 'package:bittsave/data/repository/faq_repo.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
@@ -13,13 +13,12 @@ class FaqController extends GetxController implements GetxService {
   List<HelpTopic> _helpTopics;
   List<HelpTopic> get helpTopics => _helpTopics;
 
-
-  Future getFaqList() async{
+  Future getFaqList() async {
     _isLoading = true;
     _helpTopics = [];
     Response response = await faqrepo.getFaqList();
-    if(response.body != null && response.body != {} && response.statusCode == 200){
-      _helpTopics =   FaqModel.fromJson(response.body).helpTopics;
+    if (response.body != null && response.body != {} && response.statusCode == 200) {
+      _helpTopics = FaqModel.fromJson(response.body).helpTopics;
       _isLoading = false;
       update();
     }

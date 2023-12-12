@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:six_cash/app/extensions.dart';
-import 'package:six_cash/helper/route_helper.dart';
-import 'package:six_cash/util/color_resources.dart';
-import 'package:six_cash/view/base/buttons.dart';
-import 'package:six_cash/view/screens/home/funding_options/request_from_a_riend/bitsave_user_request.dart';
-import 'package:six_cash/view/screens/home/funding_options/request_from_a_riend/friend_identity.dart';
-import 'package:six_cash/view/screens/home/funding_usd_wallet_page.dart';
-import 'package:six_cash/view/screens/home/home_screen.dart';
+import 'package:bittsave/app/extensions.dart';
+import 'package:bittsave/helper/route_helper.dart';
+import 'package:bittsave/util/color_resources.dart';
+import 'package:bittsave/view/base/buttons.dart';
+import 'package:bittsave/view/screens/home/funding_options/request_from_a_riend/bitsave_user_request.dart';
+import 'package:bittsave/view/screens/home/funding_options/request_from_a_riend/friend_identity.dart';
+import 'package:bittsave/view/screens/home/funding_usd_wallet_page.dart';
+import 'package:bittsave/view/screens/home/home_screen.dart';
 
 class ApplicationSuccessful extends StatefulWidget {
   const ApplicationSuccessful({Key key}) : super(key: key);
@@ -62,7 +62,7 @@ class _ApplicationSuccessfulState extends State<ApplicationSuccessful> {
                   fontWeight: FontWeight.w400,
                   height: 54.h,
                   onTap: () async {
-                      Get.offAllNamed(RouteHelper.getNavBarRoute(), arguments: true);
+                    Get.offAllNamed(RouteHelper.getNavBarRoute(), arguments: true);
                   },
                 ),
               ),

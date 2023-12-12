@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 // import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
-import 'package:six_cash/app/size_config/config.dart';
-import 'package:six_cash/controller/menu_controller.dart';
-import 'package:six_cash/controller/qr_code_scanner_controller.dart';
-import 'package:six_cash/util/color_resources.dart';
-import 'package:six_cash/util/images.dart';
-import 'package:six_cash/view/base/animated_custom_dialog.dart';
-import 'package:six_cash/view/base/logout_dialog.dart';
-import 'package:six_cash/view/screens/deshboard/widget/gradient_border.dart';
+import 'package:bittsave/app/size_config/config.dart';
+import 'package:bittsave/controller/menu_controller.dart';
+import 'package:bittsave/controller/qr_code_scanner_controller.dart';
+import 'package:bittsave/util/color_resources.dart';
+import 'package:bittsave/util/images.dart';
+import 'package:bittsave/view/base/animated_custom_dialog.dart';
+import 'package:bittsave/view/base/logout_dialog.dart';
+import 'package:bittsave/view/screens/deshboard/widget/gradient_border.dart';
 
 import '../../../util/dimensions.dart';
 
@@ -60,10 +60,8 @@ class _NavBarScreenState extends State<NavBarScreen> {
       onWillPop: () => _onWillPop(context),
       child: GetBuilder<MenuController>(builder: (menuController) {
         return Scaffold(
-          backgroundColor:
-              Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
-          body:
-              PageStorage(bucket: bucket, child: menuController.currentScreen),
+          backgroundColor: Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
+          body: PageStorage(bucket: bucket, child: menuController.currentScreen),
           floatingActionButton: UnicornOutlineButton(
             strokeWidth: 1.5,
             radius: 50,
@@ -81,8 +79,7 @@ class _NavBarScreenState extends State<NavBarScreen> {
             child: FloatingActionButton(
               backgroundColor: ColorResources.primaryColor,
               elevation: 1,
-              onPressed: () =>
-                  qrScannerController.scanQR(transactionType: '', isHome: true),
+              onPressed: () => qrScannerController.scanQR(transactionType: '', isHome: true),
               child: Padding(
                 padding: const EdgeInsets.all(15.0),
                 child: Image.asset(
@@ -92,23 +89,15 @@ class _NavBarScreenState extends State<NavBarScreen> {
               ),
             ),
           ),
-          floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerDocked,
+          floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
           bottomNavigationBar: Container(
             height: 60,
             decoration: BoxDecoration(
               color: Theme.of(context).bottomNavigationBarTheme.backgroundColor,
-              borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+              borderRadius: const BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
               boxShadow: [
-                BoxShadow(
-                    color: ColorResources.getBlackAndWhite().withOpacity(0.14),
-                    blurRadius: 80,
-                    offset: const Offset(0, 20)),
-                BoxShadow(
-                    color: ColorResources.getBlackAndWhite().withOpacity(0.20),
-                    blurRadius: 0.5,
-                    offset: const Offset(0, 0)),
+                BoxShadow(color: ColorResources.getBlackAndWhite().withOpacity(0.14), blurRadius: 80, offset: const Offset(0, 20)),
+                BoxShadow(color: ColorResources.getBlackAndWhite().withOpacity(0.20), blurRadius: 0.5, offset: const Offset(0, 0)),
               ],
             ),
             child: Row(
@@ -116,33 +105,25 @@ class _NavBarScreenState extends State<NavBarScreen> {
               children: [
                 customBottomItem(
                   tap: () => menuController.selectHomePage(),
-                  icon: menuController.currentTab == 0
-                      ? Images.home_icon_bold
-                      : Images.home_icon,
+                  icon: menuController.currentTab == 0 ? Images.home_icon_bold : Images.home_icon,
                   name: 'home'.tr,
                   selectIndex: 0,
                 ),
                 customBottomItem(
                     tap: () => menuController.selectHistoryPage(),
-                    icon: menuController.currentTab == 1
-                        ? Images.clock_icon_bold
-                        : Images.clock_icon,
+                    icon: menuController.currentTab == 1 ? Images.clock_icon_bold : Images.clock_icon,
                     name: 'savings'.tr,
                     selectIndex: 1),
                 const SizedBox(height: 20, width: 20),
                 customBottomItem(
                   tap: () => menuController.selectNotificationPage(),
-                  icon: menuController.currentTab == 2
-                      ? Images.notification_icon_bold
-                      : Images.notification_icon,
+                  icon: menuController.currentTab == 2 ? Images.notification_icon_bold : Images.notification_icon,
                   name: 'wallet'.tr,
                   selectIndex: 2,
                 ),
                 customBottomItem(
                   tap: () => menuController.selectProfilePage(),
-                  icon: menuController.currentTab == 3
-                      ? Images.profile_icon_bold
-                      : Images.profile_icon,
+                  icon: menuController.currentTab == 3 ? Images.profile_icon_bold : Images.profile_icon,
                   name: 'account'.tr,
                   selectIndex: 3,
                 ),
@@ -173,8 +154,7 @@ class _NavBarScreenState extends State<NavBarScreen> {
     return true;
   }
 
-  Widget customBottomItem(
-      {String icon, String name, VoidCallback tap, int selectIndex}) {
+  Widget customBottomItem({String icon, String name, VoidCallback tap, int selectIndex}) {
     return InkWell(
       onTap: tap,
       child: Column(
@@ -194,9 +174,7 @@ class _NavBarScreenState extends State<NavBarScreen> {
           Text(
             name,
             style: TextStyle(
-              color: Get.find<MenuController>().currentTab == selectIndex
-                  ? ColorResources.getPrimaryTextColor()
-                  : ColorResources.nevDefaultColor,
+              color: Get.find<MenuController>().currentTab == selectIndex ? ColorResources.getPrimaryTextColor() : ColorResources.nevDefaultColor,
               fontSize: Dimensions.NAVBAR_FONT_SIZE,
               fontWeight: FontWeight.w400,
             ),

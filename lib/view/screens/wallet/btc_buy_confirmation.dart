@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:six_cash/app/extensions.dart';
-import 'package:six_cash/controller/splash_controller.dart';
-import 'package:six_cash/controller/wallet_controller.dart';
-import 'package:six_cash/helper/price_converter.dart';
-import 'package:six_cash/util/color_resources.dart';
-import 'package:six_cash/view/base/buttons.dart';
+import 'package:bittsave/app/extensions.dart';
+import 'package:bittsave/controller/splash_controller.dart';
+import 'package:bittsave/controller/wallet_controller.dart';
+import 'package:bittsave/helper/price_converter.dart';
+import 'package:bittsave/util/color_resources.dart';
+import 'package:bittsave/view/base/buttons.dart';
 
 import '../home/funding_options/request_from_a_riend/friend_identity.dart';
 import '../home/funding_usd_wallet_page.dart';
@@ -36,9 +36,7 @@ class _BTCBuyConfirmationState extends State<BTCBuyConfirmation> {
                     BackButtons(),
                     Padding(
                       padding: const EdgeInsets.only(left: 8, bottom: 15),
-                      child: Text('Confirmation',
-                          style: TextStyle(
-                              fontWeight: FontWeight.w700, fontSize: 20)),
+                      child: Text('Confirmation', style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20)),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 10.0, top: 40),
@@ -47,9 +45,7 @@ class _BTCBuyConfirmationState extends State<BTCBuyConfirmation> {
                         children: [
                           Text(
                             'Amount',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w400,
-                                color: ColorResources.primaryColor),
+                            style: TextStyle(fontWeight: FontWeight.w400, color: ColorResources.primaryColor),
                           ),
                           SizedBox(height: 2),
                           Text(
@@ -59,9 +55,7 @@ class _BTCBuyConfirmationState extends State<BTCBuyConfirmation> {
                           SizedBox(height: 10),
                           Text(
                             'Amount in BTC',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w400,
-                                color: ColorResources.primaryColor),
+                            style: TextStyle(fontWeight: FontWeight.w400, color: ColorResources.primaryColor),
                           ),
                           SizedBox(height: 2),
                           Text(
@@ -71,9 +65,7 @@ class _BTCBuyConfirmationState extends State<BTCBuyConfirmation> {
                           SizedBox(height: 10),
                           Text(
                             'Fees',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w400,
-                                color: ColorResources.primaryColor),
+                            style: TextStyle(fontWeight: FontWeight.w400, color: ColorResources.primaryColor),
                           ),
                           SizedBox(height: 2),
                           Text(
@@ -83,9 +75,7 @@ class _BTCBuyConfirmationState extends State<BTCBuyConfirmation> {
                           SizedBox(height: 10),
                           Text(
                             'Total Amount',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w400,
-                                color: ColorResources.primaryColor),
+                            style: TextStyle(fontWeight: FontWeight.w400, color: ColorResources.primaryColor),
                           ),
                           SizedBox(height: 2),
                           Text(
@@ -97,10 +87,8 @@ class _BTCBuyConfirmationState extends State<BTCBuyConfirmation> {
                     ),
                     SizedBox(height: 30),
                     Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 20.0, horizontal: 12),
-                      child:
-                          GetBuilder<WalletController>(builder: (controller) {
+                      padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 12),
+                      child: GetBuilder<WalletController>(builder: (controller) {
                         return Container(
                           height: 50,
                           width: MediaQuery.of(context).size.width,
@@ -127,8 +115,7 @@ class _BTCBuyConfirmationState extends State<BTCBuyConfirmation> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) =>
-                                        BTCBuyConfirmationSucess(),
+                                    builder: (context) => BTCBuyConfirmationSucess(),
                                   ),
                                 );
                               }

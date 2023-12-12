@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:six_cash/helper/price_converter.dart';
-import 'package:six_cash/util/color_resources.dart';
-import 'package:six_cash/util/dimensions.dart';
-import 'package:six_cash/util/images.dart';
-import 'package:six_cash/util/styles.dart';
+import 'package:bittsave/helper/price_converter.dart';
+import 'package:bittsave/util/color_resources.dart';
+import 'package:bittsave/util/dimensions.dart';
+import 'package:bittsave/util/images.dart';
+import 'package:bittsave/util/styles.dart';
 
 class ShowAmountView extends StatelessWidget {
   const ShowAmountView({Key key, @required this.amountText, @required this.onTap}) : super(key: key);

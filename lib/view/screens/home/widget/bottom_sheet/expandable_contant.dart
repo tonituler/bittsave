@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
-import 'package:six_cash/util/color_resources.dart';
-import 'package:six_cash/util/dimensions.dart';
-import 'package:six_cash/util/styles.dart';
-import 'package:six_cash/view/screens/history/widget/history_view.dart';
+import 'package:bittsave/util/color_resources.dart';
+import 'package:bittsave/util/dimensions.dart';
+import 'package:bittsave/util/styles.dart';
+import 'package:bittsave/view/screens/history/widget/history_view.dart';
 
 class CustomExpandableContant extends StatefulWidget {
   const CustomExpandableContant({Key key}) : super(key: key);
 
   @override
-  State<CustomExpandableContant> createState() =>
-      _CustomExpandableContantState();
+  State<CustomExpandableContant> createState() => _CustomExpandableContantState();
 }
 
 class _CustomExpandableContantState extends State<CustomExpandableContant> {
@@ -28,8 +27,7 @@ class _CustomExpandableContantState extends State<CustomExpandableContant> {
           Expanded(
             flex: 0,
             child: Container(
-              padding: const EdgeInsets.symmetric(
-                  horizontal: Dimensions.PADDING_SIZE_LARGE),
+              padding: const EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE),
               child: Text(
                 'all_transaction'.tr,
                 style: montserratMedium.copyWith(
@@ -46,9 +44,7 @@ class _CustomExpandableContantState extends State<CustomExpandableContant> {
             flex: 10,
             child: Container(
               color: ColorResources.getBackgroundColor(),
-              child: SingleChildScrollView(
-                  child: TransactionViewScreen(
-                      scrollController: scrollController, isHome: true)),
+              child: SingleChildScrollView(child: TransactionViewScreen(scrollController: scrollController, isHome: true)),
             ),
           ),
         ],

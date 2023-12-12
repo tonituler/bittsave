@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:six_cash/app/extensions.dart';
-import 'package:six_cash/util/color_resources.dart';
-import 'package:six_cash/util/dimensions.dart';
-import 'package:six_cash/view/base/text_widgets.dart';
+import 'package:bittsave/app/extensions.dart';
+import 'package:bittsave/util/color_resources.dart';
+import 'package:bittsave/util/dimensions.dart';
+import 'package:bittsave/view/base/text_widgets.dart';
 
 enum DropDownType { Bordered, Underline, None }
 
@@ -49,7 +49,7 @@ class _CustomDropDownButtonState extends State<CustomDropDownButton> {
                 regularText(
                   widget.title,
                   fontSize: Dimensions.FONT_SIZE_DEFAULT,
-                  color: ColorResources.greyColor,
+                  // color: ColorResources.greyColor,
                   fontWeight: FontWeight.w500,
                 ),
                 Spacer(),
@@ -86,7 +86,7 @@ class _CustomDropDownButtonState extends State<CustomDropDownButton> {
                   widget.hintText,
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize:17,
+                    fontSize: 17,
                   ),
                 ),
               ),
@@ -94,7 +94,7 @@ class _CustomDropDownButtonState extends State<CustomDropDownButton> {
               underline: SizedBox(),
               icon: Icon(
                 Icons.keyboard_arrow_down_rounded,
-                color: ColorResources.primaryColor,
+                // color: ColorResources.primaryColor,
                 size: 24.h,
               ),
               onChanged: widget.onChanged,

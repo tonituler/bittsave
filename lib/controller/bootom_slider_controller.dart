@@ -1,7 +1,7 @@
 import 'dart:developer';
 import 'package:flutter/cupertino.dart';
-import 'package:six_cash/data/model/body/transaction_body.dart';
-import 'package:six_cash/helper/route_helper.dart';
+import 'package:bittsave/data/model/body/transaction_body.dart';
+import 'package:bittsave/helper/route_helper.dart';
 import 'package:get/get.dart';
 
 class BottomSliderController extends GetxController implements GetxService {
@@ -14,7 +14,7 @@ class BottomSliderController extends GetxController implements GetxService {
   bool _isNextButtonLoading = false;
   bool _isOtpSheet = false;
   int _statusCode = 200;
-  bool isPinVerified= false;
+  bool isPinVerified = false;
   String _pin;
   TransactionBody _transactionBody;
   String _newBalance; //todo: profile data balance
@@ -34,97 +34,97 @@ class BottomSliderController extends GetxController implements GetxService {
 
   String get pin => _pin;
 
-  set setTransactionBody(TransactionBody transactionBody){
+  set setTransactionBody(TransactionBody transactionBody) {
     _transactionBody = transactionBody;
     update();
   }
-  set setNewBalance(String setBalance){
+
+  set setNewBalance(String setBalance) {
     _newBalance = setBalance;
   }
-  set setResponse(Response getResponse){
+
+  set setResponse(Response getResponse) {
     response = getResponse;
   }
-  set setIsLoading(bool value){
-    _isLoading =  value;
-    update();
-  }
-  set setStatusCode(int value){
-    _statusCode =  value;
-    update();
-  }
-  set setIsNextButtonLoading(bool value){
-    _isNextButtonLoading =  value;
-    update();
-  }
-  set setIsNextButtonSheet(bool value){
-    _isNextBottomSheet =  value;
+
+  set setIsLoading(bool value) {
+    _isLoading = value;
     update();
   }
 
-  void setIsPinCompleted({@required bool isCompleted, bool isNotify}){
-    _isPinCompleted =  isCompleted;
-    if(isNotify) {
+  set setStatusCode(int value) {
+    _statusCode = value;
+    update();
+  }
+
+  set setIsNextButtonLoading(bool value) {
+    _isNextButtonLoading = value;
+    update();
+  }
+
+  set setIsNextButtonSheet(bool value) {
+    _isNextBottomSheet = value;
+    update();
+  }
+
+  void setIsPinCompleted({@required bool isCompleted, bool isNotify}) {
+    _isPinCompleted = isCompleted;
+    if (isNotify) {
       update();
     }
   }
 
-
-
   changeFloatingActionButtonFun(bool state) {
     _isFloatingActionButton = state;
     update();
-
   }
+
   changeIsNextBottomSheetFun() {
     _isNextBottomSheet = !_isNextBottomSheet;
     update();
-
   }
-  changeBottomSheetToOtp(){
+
+  changeBottomSheetToOtp() {
     _isOtpSheet = true;
     update();
-
   }
 
-  changePinComleted(String value){
-    if (value.length==4) {
+  changePinComleted(String value) {
+    if (value.length == 4) {
       _isPinCompleted = true;
       _pin = value;
-
-    }else{
+    } else {
       _isPinCompleted = false;
-
     }
 
     update();
   }
 
-  isStopFun(){
+  isStopFun() {
     _isStop = !_isStop;
   }
-  resetPinField(){
+
+  resetPinField() {
     _pin = '';
     _isPinCompleted = false;
     update();
     Get.back(closeOverlays: true);
   }
 
-  changeAlinmentValue(){
+  changeAlinmentValue() {
     if (_isStop) {
-      Future.delayed(Duration(seconds: 1)).then((value){
+      Future.delayed(Duration(seconds: 1)).then((value) {
         _alinmentRightIndicator = !_alinmentRightIndicator;
         log(alinmentRightIndicator.toString());
         update();
         changeAlinmentValue();
       });
-
     }
   }
 
-  void goBackButton(){
+  void goBackButton() {
     changeIsNextBottomSheetFun();
     _isPinCompleted = false;
-    Get.offAllNamed(RouteHelper.getNavBarRoute(), arguments:  true);
+    Get.offAllNamed(RouteHelper.getNavBarRoute(), arguments: true);
   }
-
 }

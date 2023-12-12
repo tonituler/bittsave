@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:intl/intl.dart';
-import 'package:six_cash/controller/savings_controller.dart';
-import 'package:six_cash/data/model/savings_plan.dart';
-import 'package:six_cash/helper/price_converter.dart';
-import 'package:six_cash/util/color_resources.dart';
-import 'package:six_cash/view/screens/home/funding_options/request_from_a_riend/friend_identity.dart';
-import 'package:six_cash/view/screens/home/savings_pages/plan2.dart';
-import 'package:six_cash/view/screens/home/savings_pages/start_saving_page.dart';
+import 'package:bittsave/controller/savings_controller.dart';
+import 'package:bittsave/data/model/savings_plan.dart';
+import 'package:bittsave/helper/price_converter.dart';
+import 'package:bittsave/util/color_resources.dart';
+import 'package:bittsave/view/screens/home/funding_options/request_from_a_riend/friend_identity.dart';
+import 'package:bittsave/view/screens/home/savings_pages/plan2.dart';
+import 'package:bittsave/view/screens/home/savings_pages/start_saving_page.dart';
 
 import '../../../../util/dimensions.dart';
 import '../funding_usd_wallet_page.dart';
@@ -87,8 +87,7 @@ class _MyPlansState extends State<MyPlans> {
                           SizedBox(
                             height: 60,
                           ),
-                          if(widget.shouldNavigate)
-                          BackButtons(),
+                          if (widget.shouldNavigate) BackButtons(),
                           Text(
                             'My Plans',
                             style: TextStyle(
@@ -97,18 +96,12 @@ class _MyPlansState extends State<MyPlans> {
                               fontSize: 22,
                             ),
                           ),
-                          Text('Check how your savings is gaining',
-                              style: TextStyle(
-                                  color: Colors.grey,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 15)),
+                          Text('Check how your savings is gaining', style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w400, fontSize: 15)),
                           SizedBox(height: 40),
                           Expanded(
                             child: SingleChildScrollView(
                               child: Column(
-                                children: controller.savingsList
-                                    .map((item) => savingItem(item))
-                                    .toList(),
+                                children: controller.savingsList.map((item) => savingItem(item)).toList(),
                               ),
                             ),
                           ),
@@ -140,9 +133,7 @@ class _MyPlansState extends State<MyPlans> {
             width: 80,
             height: 22,
             decoration: BoxDecoration(
-                color: (plan.status?.toLowerCase() == "completed")
-                    ? Colors.green
-                    : Colors.pink,
+                color: (plan.status?.toLowerCase() == "completed") ? Colors.green : Colors.pink,
                 borderRadius: BorderRadius.only(topRight: Radius.circular(10))),
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
@@ -181,17 +172,12 @@ class _MyPlansState extends State<MyPlans> {
                         children: [
                           Text(
                             'Plan name',
-                            style: TextStyle(
-                                color: ColorResources.COLOR_PRIMARY,
-                                fontSize: 10),
+                            style: TextStyle(color: ColorResources.COLOR_PRIMARY, fontSize: 10),
                           ),
                           Text(
                             plan.name,
                             // '\$${PriceConverter.priceFormater(balance: double.parse(loan.loanAmount))}',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: Dimensions.FONT_SIZE_LARGE,
-                                fontWeight: FontWeight.w400),
+                            style: TextStyle(color: Colors.black, fontSize: Dimensions.FONT_SIZE_LARGE, fontWeight: FontWeight.w400),
                           ),
                         ],
                       ),
@@ -201,16 +187,11 @@ class _MyPlansState extends State<MyPlans> {
                         children: [
                           Text(
                             'Gains',
-                            style: TextStyle(
-                                color: ColorResources.COLOR_PRIMARY,
-                                fontSize: 10),
+                            style: TextStyle(color: ColorResources.COLOR_PRIMARY, fontSize: 10),
                           ),
                           Text(
                             '\$${PriceConverter.priceFormater(balance: double.parse(plan.gains))}',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: Dimensions.FONT_SIZE_LARGE,
-                                fontWeight: FontWeight.w400),
+                            style: TextStyle(color: Colors.black, fontSize: Dimensions.FONT_SIZE_LARGE, fontWeight: FontWeight.w400),
                           ),
                         ],
                       ),
@@ -220,16 +201,11 @@ class _MyPlansState extends State<MyPlans> {
                         children: [
                           Text(
                             'Target amount',
-                            style: TextStyle(
-                                color: ColorResources.COLOR_PRIMARY,
-                                fontSize: 10),
+                            style: TextStyle(color: ColorResources.COLOR_PRIMARY, fontSize: 10),
                           ),
                           Text(
                             '\$${PriceConverter.priceFormater(balance: double.parse(plan.targetAmount))}',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: Dimensions.FONT_SIZE_LARGE,
-                                fontWeight: FontWeight.w400),
+                            style: TextStyle(color: Colors.black, fontSize: Dimensions.FONT_SIZE_LARGE, fontWeight: FontWeight.w400),
                           ),
                         ],
                       ),
@@ -240,9 +216,7 @@ class _MyPlansState extends State<MyPlans> {
                     children: [
                       Text(
                         'Next payment:',
-                        style: TextStyle(
-                            color: ColorResources.COLOR_PRIMARY,
-                            fontWeight: FontWeight.w400),
+                        style: TextStyle(color: ColorResources.COLOR_PRIMARY, fontWeight: FontWeight.w400),
                       ),
                       SizedBox(width: 4),
                       Center(
@@ -266,8 +240,7 @@ class _MyPlansState extends State<MyPlans> {
   String formatedDate(String date) {
     DateTime dT = DateTime.parse(date);
 
-    return DateFormat('hh:mm a')
-            .format(DateTime(0, dT.month, dT.day, dT.hour, dT.minute)) +
+    return DateFormat('hh:mm a').format(DateTime(0, dT.month, dT.day, dT.hour, dT.minute)) +
         " | " "${dT.day}-" +
         DateFormat('MMMM').format(DateTime(0, dT.month)) +
         "-" +
@@ -306,11 +279,7 @@ class _MyPlansState extends State<MyPlans> {
               ),
             ),
             SizedBox(height: 8),
-            Text('Check how your savings is gaining',
-                style: TextStyle(
-                    color: Colors.grey,
-                    fontWeight: FontWeight.w400,
-                    fontSize: 15)),
+            Text('Check how your savings is gaining', style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w400, fontSize: 15)),
             SizedBox(height: 70),
             Center(
               child: Image.asset(
@@ -330,9 +299,7 @@ class _MyPlansState extends State<MyPlans> {
               child: Text(
                 'You\'ve not created a plan, but thats about to change. Just tap the button below',
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontSize: Dimensions.FONT_SIZE_DEFAULT,
-                    fontWeight: FontWeight.w400),
+                style: TextStyle(fontSize: Dimensions.FONT_SIZE_DEFAULT, fontWeight: FontWeight.w400),
               ),
             ),
             SizedBox(height: 20),

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:six_cash/controller/profile_screen_controller.dart';
-import 'package:six_cash/data/api/api_checker.dart';
-import 'package:six_cash/data/model/savings_plan.dart';
-import 'package:six_cash/data/repository/transaction_repo.dart';
-import 'package:six_cash/view/base/custom_snackbar.dart';
+import 'package:bittsave/controller/profile_screen_controller.dart';
+import 'package:bittsave/data/api/api_checker.dart';
+import 'package:bittsave/data/model/savings_plan.dart';
+import 'package:bittsave/data/repository/transaction_repo.dart';
+import 'package:bittsave/view/base/custom_snackbar.dart';
 
 class SavingsController extends GetxController implements GetxService {
   final TransactionRepo transactionRepo;
@@ -69,7 +69,7 @@ class SavingsController extends GetxController implements GetxService {
     if (response.statusCode == 200) {
       await checkPlan(planId);
       Navigator.pop(context);
-      
+
       // print(response.body);
       _isLoading = false;
       update();

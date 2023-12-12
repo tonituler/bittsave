@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
-import 'package:six_cash/controller/auth_controller.dart';
-import 'package:six_cash/data/model/response/contact_model.dart';
-import 'package:six_cash/util/color_resources.dart';
-import 'package:six_cash/util/dimensions.dart';
-import 'package:six_cash/util/styles.dart';
+import 'package:bittsave/controller/auth_controller.dart';
+import 'package:bittsave/data/model/response/contact_model.dart';
+import 'package:bittsave/util/color_resources.dart';
+import 'package:bittsave/util/dimensions.dart';
+import 'package:bittsave/util/styles.dart';
 import 'package:flutter/material.dart';
 
 class PreviewContactTile extends StatelessWidget {

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:six_cash/controller/profile_screen_controller.dart';
-import 'package:six_cash/controller/splash_controller.dart';
-import 'package:six_cash/util/color_resources.dart';
-import 'package:six_cash/util/dimensions.dart';
-import 'package:six_cash/view/screens/home/widget/show_balance.dart';
-import 'package:six_cash/view/screens/home/widget/show_name.dart';
+import 'package:bittsave/controller/profile_screen_controller.dart';
+import 'package:bittsave/controller/splash_controller.dart';
+import 'package:bittsave/util/color_resources.dart';
+import 'package:bittsave/util/dimensions.dart';
+import 'package:bittsave/view/screens/home/widget/show_balance.dart';
+import 'package:bittsave/view/screens/home/widget/show_name.dart';
 
 class AppBarBase extends StatelessWidget implements PreferredSizeWidget {
   AppBarBase({Key key}) : super(key: key);
@@ -22,15 +22,12 @@ class AppBarBase extends StatelessWidget implements PreferredSizeWidget {
         ),
         decoration: BoxDecoration(
           color: ColorResources.whiteColor.withOpacity(0.1),
-          borderRadius: const BorderRadius.only(
-              bottomLeft: Radius.circular(Dimensions.RADIUS_SIZE_EXTRA_LARGE)),
+          borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(Dimensions.RADIUS_SIZE_EXTRA_LARGE)),
         ),
         child: Row(
           children: [
-            const SizedBox(width: Dimensions.PADDING_SIZE_SMALL),
-            Get.find<SplashController>().configModel.themeIndex == '1'
-                ? ShowName()
-                : ShowBalance(profileController: profileController),
+            // const SizedBox(width: Dimensions.PADDING_SIZE_SMALL),
+            Get.find<SplashController>().configModel.themeIndex == '1' ? ShowName() : ShowBalance(profileController: profileController),
           ],
         ),
       );

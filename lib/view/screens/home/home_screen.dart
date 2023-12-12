@@ -5,31 +5,31 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:six_cash/app/extensions.dart';
-import 'package:six_cash/app/size_config/config.dart';
-import 'package:six_cash/controller/home_controller.dart';
-import 'package:six_cash/controller/notification_controller.dart';
-import 'package:six_cash/controller/profile_screen_controller.dart';
-import 'package:six_cash/controller/requested_money_controller.dart';
-import 'package:six_cash/controller/splash_controller.dart';
-import 'package:six_cash/controller/transaction_controller.dart';
-import 'package:six_cash/controller/transaction_history_controller.dart';
-import 'package:six_cash/controller/websitelink_controller.dart';
-import 'package:six_cash/data/model/response/requested_money_model.dart';
-import 'package:six_cash/data/model/transaction_model.dart';
-import 'package:six_cash/helper/price_converter.dart';
-import 'package:six_cash/util/color_resources.dart';
-import 'package:six_cash/util/dimensions.dart';
-import 'package:six_cash/util/styles.dart';
-import 'package:six_cash/view/base/buttons.dart';
-import 'package:six_cash/view/screens/home/funding_options/request_from_a_riend/friend_identity.dart';
-import 'package:six_cash/view/screens/home/funding_usd_wallet_page.dart';
-import 'package:six_cash/view/screens/home/loan/loan_page.dart';
-import 'package:six_cash/view/screens/home/savings_pages/myPlans.dart';
-import 'package:six_cash/view/screens/home/widget/app_bar.dart';
-import 'package:six_cash/view/screens/home/widget/shimmer/banner_shimmer.dart';
-import 'package:six_cash/view/screens/home/widget/shimmer/home_screen_shimmer.dart';
-import 'package:six_cash/view/screens/settings_page/KYC.dart';
+import 'package:bittsave/app/extensions.dart';
+import 'package:bittsave/app/size_config/config.dart';
+import 'package:bittsave/controller/home_controller.dart';
+import 'package:bittsave/controller/notification_controller.dart';
+import 'package:bittsave/controller/profile_screen_controller.dart';
+import 'package:bittsave/controller/requested_money_controller.dart';
+import 'package:bittsave/controller/splash_controller.dart';
+import 'package:bittsave/controller/transaction_controller.dart';
+import 'package:bittsave/controller/transaction_history_controller.dart';
+import 'package:bittsave/controller/websitelink_controller.dart';
+import 'package:bittsave/data/model/response/requested_money_model.dart';
+import 'package:bittsave/data/model/transaction_model.dart';
+import 'package:bittsave/helper/price_converter.dart';
+import 'package:bittsave/util/color_resources.dart';
+import 'package:bittsave/util/dimensions.dart';
+import 'package:bittsave/util/styles.dart';
+import 'package:bittsave/view/base/buttons.dart';
+import 'package:bittsave/view/screens/home/funding_options/request_from_a_riend/friend_identity.dart';
+import 'package:bittsave/view/screens/home/funding_usd_wallet_page.dart';
+import 'package:bittsave/view/screens/home/loan/loan_page.dart';
+import 'package:bittsave/view/screens/home/savings_pages/myPlans.dart';
+import 'package:bittsave/view/screens/home/widget/app_bar.dart';
+import 'package:bittsave/view/screens/home/widget/shimmer/banner_shimmer.dart';
+import 'package:bittsave/view/screens/home/widget/shimmer/home_screen_shimmer.dart';
+import 'package:bittsave/view/screens/settings_page/KYC.dart';
 
 import '../../../helper/route_helper.dart';
 
@@ -43,21 +43,14 @@ class _HomeScreenState extends State<HomeScreen> {
   bool isFirst = true;
   final _pinCodeFieldController = TextEditingController();
   Future<void> _loadData(BuildContext context, bool reload) async {
-    await Get.find<ProfileController>()
-        .profileData(loading: true)
-        .then((value) {
+    await Get.find<ProfileController>().profileData(loading: true).then((value) {
       if (value.isOk) {
         // Get.find<BannerController>().getBannerList(reload);
-        Get.find<RequestedMoneyController>()
-            .getDashboardRequestedMoneyList(1, context, reload: reload);
-        Get.find<RequestedMoneyController>()
-            .getRequestedMoneyList(1, context, reload: reload);
-        Get.find<RequestedMoneyController>()
-            .getOwnRequestedMoneyList(1, reload: reload);
-        Get.find<TransactionHistoryController>()
-            .getDepositRequest(reload: reload);
-        Get.find<TransactionHistoryController>()
-            .getTransactionData(1, reload: reload);
+        Get.find<RequestedMoneyController>().getDashboardRequestedMoneyList(1, context, reload: reload);
+        Get.find<RequestedMoneyController>().getRequestedMoneyList(1, context, reload: reload);
+        Get.find<RequestedMoneyController>().getOwnRequestedMoneyList(1, reload: reload);
+        Get.find<TransactionHistoryController>().getDepositRequest(reload: reload);
+        Get.find<TransactionHistoryController>().getTransactionData(1, reload: reload);
         Get.find<WebsiteLinkController>().getWebsiteList();
         Get.find<NotificationController>().getNotificationList();
         Get.find<TransactionMoneyController>().getPurposeList();
@@ -94,16 +87,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
                 child: SingleChildScrollView(
                   physics: AlwaysScrollableScrollPhysics(),
-                  child:
-                      GetBuilder<SplashController>(builder: (splashController) {
-                    return GetBuilder<ProfileController>(
-                        builder: (profileController) {
+                  child: GetBuilder<SplashController>(builder: (splashController) {
+                    return GetBuilder<ProfileController>(builder: (profileController) {
                       return Column(
                         children: [
                           if (profileController.userInfo != null)
                             Container(
-                              margin: EdgeInsets.only(
-                                  left: 20, right: 20, top: 20, bottom: 5),
+                              margin: EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 5),
                               padding: EdgeInsets.all(20),
                               width: double.infinity,
                               height: 210,
@@ -113,8 +103,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
                                     'Investment Balance',
@@ -122,9 +111,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
                                     style: montserratLight.copyWith(
-                                        fontSize: Dimensions.FONT_SIZE_DEFAULT,
-                                        color: ColorResources.whiteColor,
-                                        fontWeight: FontWeight.bold),
+                                        fontSize: Dimensions.FONT_SIZE_DEFAULT, color: ColorResources.whiteColor, fontWeight: FontWeight.bold),
                                   ),
                                   Text(
                                     '\$${PriceConverter.priceFormater(balance: profileController.userInfo.investedBalanceUSD)}',
@@ -132,10 +119,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
                                     style: montserratLight.copyWith(
-                                        fontSize:
-                                            Dimensions.FONT_SIZE_EXTRA_LARGE,
-                                        color: ColorResources.whiteColor,
-                                        fontWeight: FontWeight.w600),
+                                        fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE, color: ColorResources.whiteColor, fontWeight: FontWeight.w600),
                                   ),
                                   Text(
                                     '${PriceConverter.priceFormater(balance: profileController.userInfo.investedBalanceBTC)} BTC',
@@ -143,27 +127,18 @@ class _HomeScreenState extends State<HomeScreen> {
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
                                     style: montserratLight.copyWith(
-                                        fontSize:
-                                            Dimensions.FONT_SIZE_LARGE - 2,
-                                        color: ColorResources.whiteColor,
-                                        fontWeight: FontWeight.w500),
+                                        fontSize: Dimensions.FONT_SIZE_LARGE - 2, color: ColorResources.whiteColor, fontWeight: FontWeight.w500),
                                   ),
                                   Container(
                                     padding: EdgeInsets.all(5),
                                     height: 40,
-                                    decoration: BoxDecoration(
-                                        color: ColorResources.COLOR_WHITE,
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
+                                    decoration: BoxDecoration(color: ColorResources.COLOR_WHITE, borderRadius: BorderRadius.circular(10)),
                                     child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
+                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                                       children: [
                                         Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
+                                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
                                           children: [
                                             Text(
                                               '\$${PriceConverter.priceFormater(balance: double.parse(splashController.configModel.btcValue))}',
@@ -171,10 +146,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                               maxLines: 1,
                                               overflow: TextOverflow.ellipsis,
                                               style: montserratLight.copyWith(
-                                                fontSize:
-                                                    Dimensions.FONT_SIZE_SMALL,
-                                                color:
-                                                    ColorResources.blackColor,
+                                                fontSize: Dimensions.FONT_SIZE_SMALL,
+                                                color: ColorResources.blackColor,
                                               ),
                                             ),
                                             Text(
@@ -183,19 +156,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                               maxLines: 1,
                                               overflow: TextOverflow.ellipsis,
                                               style: montserratLight.copyWith(
-                                                fontSize:
-                                                    Dimensions.FONT_SIZE_SMALL,
-                                                color:
-                                                    ColorResources.blackColor,
+                                                fontSize: Dimensions.FONT_SIZE_SMALL,
+                                                color: ColorResources.blackColor,
                                               ),
                                             ),
                                           ],
                                         ),
                                         Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
+                                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
                                           children: [
                                             Text(
                                               '\$${PriceConverter.priceFormater(balance: profileController.userInfo.invested)}',
@@ -203,10 +172,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                               maxLines: 1,
                                               overflow: TextOverflow.ellipsis,
                                               style: montserratLight.copyWith(
-                                                fontSize:
-                                                    Dimensions.FONT_SIZE_SMALL,
-                                                color:
-                                                    ColorResources.blackColor,
+                                                fontSize: Dimensions.FONT_SIZE_SMALL,
+                                                color: ColorResources.blackColor,
                                               ),
                                             ),
                                             Text(
@@ -215,19 +182,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                               maxLines: 1,
                                               overflow: TextOverflow.ellipsis,
                                               style: montserratLight.copyWith(
-                                                fontSize:
-                                                    Dimensions.FONT_SIZE_SMALL,
-                                                color:
-                                                    ColorResources.blackColor,
+                                                fontSize: Dimensions.FONT_SIZE_SMALL,
+                                                color: ColorResources.blackColor,
                                               ),
                                             ),
                                           ],
                                         ),
                                         Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
+                                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
                                           children: [
                                             Text(
                                               '\$${PriceConverter.priceFormater(balance: profileController.userInfo.returns)}',
@@ -235,10 +198,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                               maxLines: 1,
                                               overflow: TextOverflow.ellipsis,
                                               style: montserratLight.copyWith(
-                                                fontSize:
-                                                    Dimensions.FONT_SIZE_SMALL,
-                                                color:
-                                                    ColorResources.blackColor,
+                                                fontSize: Dimensions.FONT_SIZE_SMALL,
+                                                color: ColorResources.blackColor,
                                               ),
                                             ),
                                             Text(
@@ -247,10 +208,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                               maxLines: 1,
                                               overflow: TextOverflow.ellipsis,
                                               style: montserratLight.copyWith(
-                                                fontSize:
-                                                    Dimensions.FONT_SIZE_SMALL,
-                                                color:
-                                                    ColorResources.blackColor,
+                                                fontSize: Dimensions.FONT_SIZE_SMALL,
+                                                color: ColorResources.blackColor,
                                               ),
                                             ),
                                           ],
@@ -270,30 +229,22 @@ class _HomeScreenState extends State<HomeScreen> {
 
                           if (profileController.userInfo != null)
                             Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 15, right: 15),
+                              padding: const EdgeInsets.only(left: 15, right: 15),
                               child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
                                 children: [
                                   Expanded(
                                     child: Container(
                                       margin: EdgeInsets.all(5),
                                       padding: EdgeInsets.all(20),
                                       height: 180,
-                                      decoration: BoxDecoration(
-                                          color: ColorResources.primaryColor,
-                                          borderRadius:
-                                              BorderRadius.circular(20)),
+                                      decoration: BoxDecoration(color: ColorResources.primaryColor, borderRadius: BorderRadius.circular(20)),
                                       child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
                                           Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
+                                            mainAxisAlignment: MainAxisAlignment.start,
                                             children: [
                                               Container(
                                                 height: 30,
@@ -309,38 +260,26 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 width: 5,
                                               ),
                                               Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
+                                                crossAxisAlignment: CrossAxisAlignment.start,
                                                 children: [
                                                   Text(
                                                     'USD',
                                                     textAlign: TextAlign.start,
                                                     maxLines: 1,
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                    style: montserratLight
-                                                        .copyWith(
-                                                            fontSize: Dimensions
-                                                                .FONT_SIZE_SMALL,
-                                                            color:
-                                                                ColorResources
-                                                                    .whiteColor,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .bold),
+                                                    overflow: TextOverflow.ellipsis,
+                                                    style: montserratLight.copyWith(
+                                                        fontSize: Dimensions.FONT_SIZE_SMALL,
+                                                        color: ColorResources.whiteColor,
+                                                        fontWeight: FontWeight.bold),
                                                   ),
                                                   Text(
                                                     'Wallet',
                                                     textAlign: TextAlign.start,
                                                     maxLines: 1,
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                    style: montserratLight
-                                                        .copyWith(
-                                                      fontSize: Dimensions
-                                                          .FONT_SIZE_SMALL,
-                                                      color: ColorResources
-                                                          .whiteColor,
+                                                    overflow: TextOverflow.ellipsis,
+                                                    style: montserratLight.copyWith(
+                                                      fontSize: Dimensions.FONT_SIZE_SMALL,
+                                                      color: ColorResources.whiteColor,
                                                     ),
                                                   ),
                                                 ],
@@ -348,76 +287,49 @@ class _HomeScreenState extends State<HomeScreen> {
                                             ],
                                           ),
                                           Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                            crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
                                               Row(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.end,
+                                                crossAxisAlignment: CrossAxisAlignment.end,
                                                 children: [
                                                   Text(
                                                     '\$ ${PriceConverter.priceFormatInt(balance: profileController.userInfo.usdBalance.toInt())}',
                                                     textAlign: TextAlign.start,
                                                     maxLines: 1,
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                    style: montserratLight
-                                                        .copyWith(
-                                                      fontSize: Dimensions
-                                                              .FONT_SIZE_OVER_LARGE -
-                                                          1,
-                                                      color: ColorResources
-                                                          .whiteColor,
-                                                      fontWeight:
-                                                          FontWeight.w600,
+                                                    overflow: TextOverflow.ellipsis,
+                                                    style: montserratLight.copyWith(
+                                                      fontSize: Dimensions.FONT_SIZE_OVER_LARGE - 1,
+                                                      color: ColorResources.whiteColor,
+                                                      fontWeight: FontWeight.w600,
                                                     ),
                                                   ),
                                                   Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
+                                                    padding: const EdgeInsets.only(
                                                       bottom: 3,
                                                     ),
                                                     child: Text(
-                                                      '.' +
-                                                          ((profileController
-                                                                          .userInfo
-                                                                          .usdBalance %
-                                                                      1) *
-                                                                  pow(10, 2))
-                                                              .round()
-                                                              .toString(),
-                                                      textAlign:
-                                                          TextAlign.start,
+                                                      '.' + ((profileController.userInfo.usdBalance % 1) * pow(10, 2)).round().toString(),
+                                                      textAlign: TextAlign.start,
                                                       maxLines: 1,
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                      style: montserratLight
-                                                          .copyWith(
-                                                        fontSize: Dimensions
-                                                                .FONT_SIZE_SMALL +
-                                                            2,
-                                                        color: ColorResources
-                                                            .whiteColor,
+                                                      overflow: TextOverflow.ellipsis,
+                                                      style: montserratLight.copyWith(
+                                                        fontSize: Dimensions.FONT_SIZE_SMALL + 2,
+                                                        color: ColorResources.whiteColor,
                                                       ),
                                                     ),
                                                   ),
                                                 ],
                                               ),
                                               Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 10),
+                                                padding: const EdgeInsets.only(left: 10),
                                                 child: Text(
                                                   'USD',
                                                   textAlign: TextAlign.center,
                                                   maxLines: 1,
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                  style:
-                                                      montserratLight.copyWith(
-                                                    fontSize: Dimensions
-                                                        .FONT_SIZE_DEFAULT,
-                                                    color: ColorResources
-                                                        .whiteColor,
+                                                  overflow: TextOverflow.ellipsis,
+                                                  style: montserratLight.copyWith(
+                                                    fontSize: Dimensions.FONT_SIZE_DEFAULT,
+                                                    color: ColorResources.whiteColor,
                                                   ),
                                                 ),
                                               ),
@@ -429,23 +341,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                   Expanded(
                                     child: Container(
-                                      margin:
-                                          EdgeInsets.only(left: 5, right: 5),
+                                      margin: EdgeInsets.only(left: 5, right: 5),
                                       padding: EdgeInsets.all(20),
                                       height: 180,
-                                      decoration: BoxDecoration(
-                                          color: ColorResources.blackColor,
-                                          borderRadius:
-                                              BorderRadius.circular(20)),
+                                      decoration: BoxDecoration(color: ColorResources.blackColor, borderRadius: BorderRadius.circular(20)),
                                       child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
                                           Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
+                                            mainAxisAlignment: MainAxisAlignment.start,
                                             children: [
                                               Container(
                                                 height: 30,
@@ -461,38 +366,26 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 width: 5,
                                               ),
                                               Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
+                                                crossAxisAlignment: CrossAxisAlignment.start,
                                                 children: [
                                                   Text(
                                                     'BTC',
                                                     textAlign: TextAlign.start,
                                                     maxLines: 1,
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                    style: montserratLight
-                                                        .copyWith(
-                                                            fontSize: Dimensions
-                                                                .FONT_SIZE_SMALL,
-                                                            color:
-                                                                ColorResources
-                                                                    .whiteColor,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .bold),
+                                                    overflow: TextOverflow.ellipsis,
+                                                    style: montserratLight.copyWith(
+                                                        fontSize: Dimensions.FONT_SIZE_SMALL,
+                                                        color: ColorResources.whiteColor,
+                                                        fontWeight: FontWeight.bold),
                                                   ),
                                                   Text(
                                                     'Wallet',
                                                     textAlign: TextAlign.start,
                                                     maxLines: 1,
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                    style: montserratLight
-                                                        .copyWith(
-                                                      fontSize: Dimensions
-                                                          .FONT_SIZE_SMALL,
-                                                      color: ColorResources
-                                                          .whiteColor,
+                                                    overflow: TextOverflow.ellipsis,
+                                                    style: montserratLight.copyWith(
+                                                      fontSize: Dimensions.FONT_SIZE_SMALL,
+                                                      color: ColorResources.whiteColor,
                                                     ),
                                                   ),
                                                 ],
@@ -500,64 +393,37 @@ class _HomeScreenState extends State<HomeScreen> {
                                             ],
                                           ),
                                           Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                            crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
                                               Row(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.end,
+                                                crossAxisAlignment: CrossAxisAlignment.end,
                                                 children: [
                                                   Row(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment.end,
+                                                    crossAxisAlignment: CrossAxisAlignment.end,
                                                     children: [
                                                       Text(
                                                         '\$ ${PriceConverter.priceFormatInt(balance: profileController.userInfo.btcBalanceInUSD.toInt())}',
-                                                        textAlign:
-                                                            TextAlign.start,
+                                                        textAlign: TextAlign.start,
                                                         maxLines: 1,
-                                                        overflow: TextOverflow
-                                                            .ellipsis,
-                                                        style: montserratLight
-                                                            .copyWith(
-                                                          fontSize: Dimensions
-                                                                  .FONT_SIZE_OVER_LARGE -
-                                                              1,
-                                                          color: ColorResources
-                                                              .whiteColor,
-                                                          fontWeight:
-                                                              FontWeight.w600,
+                                                        overflow: TextOverflow.ellipsis,
+                                                        style: montserratLight.copyWith(
+                                                          fontSize: Dimensions.FONT_SIZE_OVER_LARGE - 1,
+                                                          color: ColorResources.whiteColor,
+                                                          fontWeight: FontWeight.w600,
                                                         ),
                                                       ),
                                                       Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .only(
+                                                        padding: const EdgeInsets.only(
                                                           bottom: 3,
                                                         ),
                                                         child: Text(
-                                                          '.' +
-                                                              ((profileController
-                                                                              .userInfo
-                                                                              .btcBalanceInUSD %
-                                                                          1) *
-                                                                      pow(10,
-                                                                          2))
-                                                                  .round()
-                                                                  .toString(),
-                                                          textAlign:
-                                                              TextAlign.start,
+                                                          '.' + ((profileController.userInfo.btcBalanceInUSD % 1) * pow(10, 2)).round().toString(),
+                                                          textAlign: TextAlign.start,
                                                           maxLines: 1,
-                                                          overflow: TextOverflow
-                                                              .ellipsis,
-                                                          style: montserratLight
-                                                              .copyWith(
-                                                            fontSize: Dimensions
-                                                                    .FONT_SIZE_SMALL +
-                                                                2,
-                                                            color:
-                                                                ColorResources
-                                                                    .whiteColor,
+                                                          overflow: TextOverflow.ellipsis,
+                                                          style: montserratLight.copyWith(
+                                                            fontSize: Dimensions.FONT_SIZE_SMALL + 2,
+                                                            color: ColorResources.whiteColor,
                                                           ),
                                                         ),
                                                       ),
@@ -566,20 +432,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 ],
                                               ),
                                               Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 10),
+                                                padding: const EdgeInsets.only(left: 10),
                                                 child: Text(
                                                   'USD',
                                                   textAlign: TextAlign.center,
                                                   maxLines: 1,
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                  style:
-                                                      montserratLight.copyWith(
-                                                    fontSize: Dimensions
-                                                        .FONT_SIZE_DEFAULT,
-                                                    color: ColorResources
-                                                        .whiteColor,
+                                                  overflow: TextOverflow.ellipsis,
+                                                  style: montserratLight.copyWith(
+                                                    fontSize: Dimensions.FONT_SIZE_DEFAULT,
+                                                    color: ColorResources.whiteColor,
                                                   ),
                                                 ),
                                               ),
@@ -593,15 +454,13 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             ),
                           Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 20, horizontal: 10),
+                            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 InkWell(
                                   onTap: () {
-                                    Navigator.push(context,
-                                        MaterialPageRoute(builder: (context) {
+                                    Navigator.push(context, MaterialPageRoute(builder: (context) {
                                       return FundingUsdWallet();
                                     }));
                                   },
@@ -626,8 +485,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                                 InkWell(
                                   onTap: () {
-                                    Navigator.push(context,
-                                        MaterialPageRoute(builder: (context) {
+                                    Navigator.push(context, MaterialPageRoute(builder: (context) {
                                       return LoanApplication();
                                     }));
                                   },
@@ -637,8 +495,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                 ),
                                 InkWell(
-                                  onTap: () => Get.toNamed(
-                                      RouteHelper.getRequestedMoneyRoute()),
+                                  onTap: () => Get.toNamed(RouteHelper.getRequestedMoneyRoute()),
                                   child: savingsItems(
                                     image: "grid_03.png",
                                     label: "Request",
@@ -647,8 +504,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ],
                             ),
                           ),
-                          if (profileController.userInfo != null &&
-                              profileController.userInfo.isKycVerified != 2)
+                          if (profileController.userInfo != null && profileController.userInfo.isKycVerified != 2)
                             GestureDetector(
                               onTap: () {
                                 Navigator.push(
@@ -660,13 +516,10 @@ class _HomeScreenState extends State<HomeScreen> {
                               },
                               child: Container(
                                 margin: EdgeInsets.all(20),
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 20, vertical: 10),
+                                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                                 width: double.infinity,
-                                height: 60,
-                                decoration: BoxDecoration(
-                                    color: ColorResources.primaryColor,
-                                    borderRadius: BorderRadius.circular(10)),
+                                height: 65,
+                                decoration: BoxDecoration(color: ColorResources.primaryColor, borderRadius: BorderRadius.circular(10)),
                                 child: Row(
                                   children: [
                                     Image.asset(
@@ -677,10 +530,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                       width: 20,
                                     ),
                                     Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                                       children: [
                                         Text(
                                           'Verify your Identity',
@@ -688,9 +539,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                           maxLines: 1,
                                           overflow: TextOverflow.ellipsis,
                                           style: montserratLight.copyWith(
-                                            fontSize:
-                                                Dimensions.FONT_SIZE_DEFAULT,
+                                            fontSize: Dimensions.FONT_SIZE_DEFAULT,
                                             color: ColorResources.whiteColor,
+                                            fontWeight: FontWeight.bold,
                                           ),
                                         ),
                                         Text(
@@ -699,10 +550,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                           maxLines: 2,
                                           overflow: TextOverflow.ellipsis,
                                           style: montserratLight.copyWith(
-                                            fontSize:
-                                                Dimensions.FONT_SIZE_SMALL,
-                                            color: ColorResources.whiteColor
-                                                .withOpacity(0.6),
+                                            fontSize: Dimensions.FONT_SIZE_SMALL + 1,
+                                            color: ColorResources.whiteColor,
                                           ),
                                         ),
                                       ],
@@ -712,35 +561,27 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             ),
 
-                          GetBuilder<RequestedMoneyController>(
-                              builder: (requestedMoneyController) {
-                            if (requestedMoneyController
-                                .isLoadingDashboardRequestedMoney) {
-                              return BannerShimmer();
-                            }
+                          GetBuilder<RequestedMoneyController>(builder: (requestedMoneyController) {
+                            // if (requestedMoneyController.isLoadingDashboardRequestedMoney) {
+                            //   return BannerShimmer();
+                            // }
 
                             return Column(
                               children: [
-                                ...requestedMoneyController
-                                    .pendingDashboardRequestedMoneyList
-                                    .map((item) {
+                                ...requestedMoneyController.pendingDashboardRequestedMoneyList.map((item) {
                                   return requestMoneyCard(item);
                                 }).toList(),
                               ],
                             );
                           }),
 
-                          GetBuilder<TransactionHistoryController>(
-                              builder: (transactionHistoryController) {
-                            if (transactionHistoryController
-                                .isLoadingUnpaidDeposit) {
-                              return BannerShimmer();
-                            }
+                          GetBuilder<TransactionHistoryController>(builder: (transactionHistoryController) {
+                            // if (transactionHistoryController.isLoadingUnpaidDeposit) {
+                            //   return BannerShimmer();
+                            // }
 
-                            if (transactionHistoryController.unpaidDeposit !=
-                                null) {
-                              return requestCard(
-                                  transactionHistoryController.unpaidDeposit);
+                            if (transactionHistoryController.unpaidDeposit != null) {
+                              return requestCard(transactionHistoryController.unpaidDeposit);
                             }
 
                             return SizedBox();
@@ -785,9 +626,7 @@ class _HomeScreenState extends State<HomeScreen> {
       margin: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
       padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       width: double.infinity,
-      decoration: BoxDecoration(
-          color: Colors.grey.withOpacity(0.08),
-          borderRadius: BorderRadius.circular(10)),
+      decoration: BoxDecoration(color: Colors.grey.withOpacity(0.08), borderRadius: BorderRadius.circular(10)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -796,9 +635,7 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               Container(
                 padding: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-                decoration: BoxDecoration(
-                    color: ColorResources.blackColor,
-                    borderRadius: BorderRadius.circular(5)),
+                decoration: BoxDecoration(color: ColorResources.blackColor, borderRadius: BorderRadius.circular(5)),
                 child: Text(
                   "Request",
                   textAlign: TextAlign.start,
@@ -897,11 +734,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         showPinBottomSheet("approve", request.id);
                       },
                       child: Container(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 4, horizontal: 10),
-                        decoration: BoxDecoration(
-                            color: ColorResources.blackColor,
-                            borderRadius: BorderRadius.circular(10)),
+                        padding: EdgeInsets.symmetric(vertical: 4, horizontal: 10),
+                        decoration: BoxDecoration(color: ColorResources.blackColor, borderRadius: BorderRadius.circular(10)),
                         child: Text(
                           'Accept',
                           textAlign: TextAlign.start,
@@ -922,14 +756,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         showPinBottomSheet("deny", request.id);
                       },
                       child: Container(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 4, horizontal: 15),
+                        padding: EdgeInsets.symmetric(vertical: 4, horizontal: 15),
                         decoration: BoxDecoration(
                           color: ColorResources.whiteColor,
                           borderRadius: BorderRadius.circular(10),
-                          border: Border.all(
-                              color: ColorResources.blackColor.withOpacity(0.1),
-                              width: 1),
+                          border: Border.all(color: ColorResources.blackColor.withOpacity(0.1), width: 1),
                         ),
                         child: Text(
                           'Deny',
@@ -948,18 +779,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        showConfirmUpdateRequestBottomSheet(
-                            "later", request.id);
+                        showConfirmUpdateRequestBottomSheet("later", request.id);
                       },
                       child: Container(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 4, horizontal: 15),
+                        padding: EdgeInsets.symmetric(vertical: 4, horizontal: 15),
                         decoration: BoxDecoration(
                           color: ColorResources.whiteColor,
                           borderRadius: BorderRadius.circular(10),
-                          border: Border.all(
-                              color: ColorResources.blackColor.withOpacity(0.1),
-                              width: 1),
+                          border: Border.all(color: ColorResources.blackColor.withOpacity(0.1), width: 1),
                         ),
                         child: Text(
                           'Later',
@@ -986,8 +813,7 @@ class _HomeScreenState extends State<HomeScreen> {
   String formatedHistoryDate(String date) {
     DateTime dT = DateTime.parse(date);
 
-    return DateFormat('hh:mm a')
-            .format(DateTime(0, dT.month, dT.day, dT.hour, dT.minute)) +
+    return DateFormat('hh:mm a').format(DateTime(0, dT.month, dT.day, dT.hour, dT.minute)) +
         " | " "${dT.day}-" +
         DateFormat('MMMM').format(DateTime(0, dT.month)) +
         "-" +
@@ -1010,28 +836,22 @@ class _HomeScreenState extends State<HomeScreen> {
             return Container(
               height: 300,
               child: Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: Dimensions.PADDING_SIZE_LARGE),
+                padding: const EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(
-                          top: Dimensions.PADDING_SIZE_EXTRA_EXTRA_LARGE,
-                          bottom: Dimensions.PADDING_SIZE_DEFAULT),
+                      padding: const EdgeInsets.only(top: Dimensions.PADDING_SIZE_EXTRA_EXTRA_LARGE, bottom: Dimensions.PADDING_SIZE_DEFAULT),
                       child: Text(
                         'Enter your transaction PIN',
-                        style: montserratMedium.copyWith(
-                            fontSize: Dimensions.FONT_SIZE_LARGE),
+                        style: montserratMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE),
                       ),
                     ),
                     SizedBox(height: 20),
                     Container(
                       alignment: Alignment.center,
                       height: 50,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(27.0),
-                          color: ColorResources.getGreyBaseGray6()),
+                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(27.0), color: ColorResources.getGreyBaseGray6()),
                       child: TextField(
                         controller: _pinCodeFieldController,
                         obscureText: true,
@@ -1042,9 +862,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           updateState(() {});
                         },
                         keyboardType: TextInputType.number,
-                        inputFormatters: <TextInputFormatter>[
-                          FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
-                        ],
+                        inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))],
                         decoration: InputDecoration(
                           hintText: 'PIN',
                           hintStyle: TextStyle(
@@ -1059,8 +877,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                     ),
-                    GetBuilder<RequestedMoneyController>(
-                        builder: (requestedMoneyController) {
+                    GetBuilder<RequestedMoneyController>(builder: (requestedMoneyController) {
                       return Container(
                         height: 50,
                         width: MediaQuery.of(context).size.width,
@@ -1075,16 +892,11 @@ class _HomeScreenState extends State<HomeScreen> {
                           textColor: Colors.white,
                           buttonColor: ColorResources.primaryColor,
                           fontSize: 18.sp,
-                          busy: requestedMoneyController
-                              .isLoadingUpdateRequestedMoney,
+                          busy: requestedMoneyController.isLoadingUpdateRequestedMoney,
                           fontWeight: FontWeight.w400,
                           height: 54.h,
                           onTap: () async {
-                            await requestedMoneyController.updateRequest(
-                                context,
-                                slug,
-                                id,
-                                _pinCodeFieldController.text);
+                            await requestedMoneyController.updateRequest(context, slug, id, _pinCodeFieldController.text);
                             _pinCodeFieldController.text = "";
                           },
                         ),
@@ -1114,29 +926,24 @@ class _HomeScreenState extends State<HomeScreen> {
             return Container(
               height: 300,
               child: Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: Dimensions.PADDING_SIZE_LARGE),
+                padding: const EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(height: 20),
                     Padding(
-                      padding: const EdgeInsets.only(
-                          top: Dimensions.PADDING_SIZE_EXTRA_EXTRA_LARGE,
-                          bottom: Dimensions.PADDING_SIZE_DEFAULT),
+                      padding: const EdgeInsets.only(top: Dimensions.PADDING_SIZE_EXTRA_EXTRA_LARGE, bottom: Dimensions.PADDING_SIZE_DEFAULT),
                       child: Text(
                         'Are you sure you want to differ this request',
                         textAlign: TextAlign.center,
-                        style: montserratMedium.copyWith(
-                            fontSize: Dimensions.FONT_SIZE_LARGE + 5),
+                        style: montserratMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE + 5),
                       ),
                     ),
                     SizedBox(height: 20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        GetBuilder<RequestedMoneyController>(
-                            builder: (requestedMoneyController) {
+                        GetBuilder<RequestedMoneyController>(builder: (requestedMoneyController) {
                           return Container(
                             height: 50,
                             width: MediaQuery.of(context).size.width * 0.4,
@@ -1151,19 +958,16 @@ class _HomeScreenState extends State<HomeScreen> {
                               textColor: Colors.white,
                               buttonColor: ColorResources.primaryColor,
                               fontSize: 18.sp,
-                              busy: requestedMoneyController
-                                  .isLoadingUpdateRequestedMoney,
+                              busy: requestedMoneyController.isLoadingUpdateRequestedMoney,
                               fontWeight: FontWeight.w400,
                               height: 54.h,
                               onTap: () async {
-                                await requestedMoneyController.updateRequest(
-                                    context, slug, id, "");
+                                await requestedMoneyController.updateRequest(context, slug, id, "");
                               },
                             ),
                           );
                         }),
-                        GetBuilder<RequestedMoneyController>(
-                            builder: (requestedMoneyController) {
+                        GetBuilder<RequestedMoneyController>(builder: (requestedMoneyController) {
                           return Container(
                             height: 50,
                             width: MediaQuery.of(context).size.width * 0.4,
@@ -1181,8 +985,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               borderRadius: 10,
                               fontSize: 18.sp,
                               busy: false,
-                              diabled: requestedMoneyController
-                                  .isLoadingUpdateRequestedMoney,
+                              diabled: requestedMoneyController.isLoadingUpdateRequestedMoney,
                               fontWeight: FontWeight.w400,
                               height: 54.h,
                               onTap: () async {
@@ -1217,25 +1020,20 @@ class _HomeScreenState extends State<HomeScreen> {
             return Container(
               height: 250,
               child: Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: Dimensions.PADDING_SIZE_LARGE),
+                padding: const EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(
-                          top: Dimensions.PADDING_SIZE_EXTRA_EXTRA_LARGE,
-                          bottom: Dimensions.PADDING_SIZE_DEFAULT),
+                      padding: const EdgeInsets.only(top: Dimensions.PADDING_SIZE_EXTRA_EXTRA_LARGE, bottom: Dimensions.PADDING_SIZE_DEFAULT),
                       child: Text(
                         'Are you sure you want to confirm payment?',
                         textAlign: TextAlign.center,
-                        style: montserratMedium.copyWith(
-                            fontSize: Dimensions.FONT_SIZE_LARGE + 2),
+                        style: montserratMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE + 2),
                       ),
                     ),
                     SizedBox(height: 10),
-                    GetBuilder<TransactionHistoryController>(
-                        builder: (requestedMoneyController) {
+                    GetBuilder<TransactionHistoryController>(builder: (requestedMoneyController) {
                       return Container(
                         height: 50,
                         width: MediaQuery.of(context).size.width,
@@ -1250,13 +1048,11 @@ class _HomeScreenState extends State<HomeScreen> {
                           textColor: Colors.white,
                           buttonColor: ColorResources.primaryColor,
                           fontSize: 18.sp,
-                          busy: requestedMoneyController
-                              .isLoadingUpdateUnpaidDeposit,
+                          busy: requestedMoneyController.isLoadingUpdateUnpaidDeposit,
                           fontWeight: FontWeight.w400,
                           height: 54.h,
                           onTap: () async {
-                            await requestedMoneyController
-                                .confirmDepositRequest(context, id);
+                            await requestedMoneyController.confirmDepositRequest(context, id);
                           },
                         ),
                       );
@@ -1274,9 +1070,7 @@ class _HomeScreenState extends State<HomeScreen> {
       margin: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
       padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       width: double.infinity,
-      decoration: BoxDecoration(
-          color: Colors.grey.withOpacity(0.08),
-          borderRadius: BorderRadius.circular(10)),
+      decoration: BoxDecoration(color: Colors.grey.withOpacity(0.08), borderRadius: BorderRadius.circular(10)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -1285,9 +1079,7 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               Container(
                 padding: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-                decoration: BoxDecoration(
-                    color: ColorResources.blackColor,
-                    borderRadius: BorderRadius.circular(5)),
+                decoration: BoxDecoration(color: ColorResources.blackColor, borderRadius: BorderRadius.circular(5)),
                 child: Text(
                   "Pending payment",
                   textAlign: TextAlign.start,
@@ -1370,11 +1162,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         showConfirmBottomSheet(int.parse(deposit.id));
                       },
                       child: Container(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 4, horizontal: 10),
-                        decoration: BoxDecoration(
-                            color: ColorResources.blackColor,
-                            borderRadius: BorderRadius.circular(10)),
+                        padding: EdgeInsets.symmetric(vertical: 4, horizontal: 10),
+                        decoration: BoxDecoration(color: ColorResources.blackColor, borderRadius: BorderRadius.circular(10)),
                         child: Text(
                           'Paid',
                           textAlign: TextAlign.start,

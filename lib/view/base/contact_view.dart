@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:six_cash/controller/localization_controller.dart';
-import 'package:six_cash/controller/transaction_controller.dart';
-import 'package:six_cash/util/color_resources.dart';
-import 'package:six_cash/util/dimensions.dart';
-import 'package:six_cash/util/images.dart';
-import 'package:six_cash/util/styles.dart';
-import 'package:six_cash/view/base/contact_shimmer.dart';
-import 'package:six_cash/view/screens/transaction_money/widget/contact_tile.dart';
+import 'package:bittsave/controller/localization_controller.dart';
+import 'package:bittsave/controller/transaction_controller.dart';
+import 'package:bittsave/util/color_resources.dart';
+import 'package:bittsave/util/dimensions.dart';
+import 'package:bittsave/util/images.dart';
+import 'package:bittsave/util/styles.dart';
+import 'package:bittsave/view/base/contact_shimmer.dart';
+import 'package:bittsave/view/screens/transaction_money/widget/contact_tile.dart';
 
 import 'custom_ink_well.dart';
 

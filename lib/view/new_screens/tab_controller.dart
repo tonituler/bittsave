@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:six_cash/view/screens/home/funding_usd_wallet_page.dart';
-import 'package:six_cash/view/new_screens/wallet_tabs/transfer_funds.dart';
-import 'package:six_cash/view/new_screens/wallet_tabs/wallet2.dart';
-import 'package:six_cash/view/new_screens/wallet_tabs/wallets.dart';
+import 'package:bittsave/view/screens/home/funding_usd_wallet_page.dart';
+import 'package:bittsave/view/new_screens/wallet_tabs/transfer_funds.dart';
+import 'package:bittsave/view/new_screens/wallet_tabs/wallet2.dart';
+import 'package:bittsave/view/new_screens/wallet_tabs/wallets.dart';
 
 class TabContrller extends StatefulWidget {
   const TabContrller({Key key}) : super(key: key);
@@ -50,8 +50,7 @@ class _TabContrllerState extends State<TabContrller> {
                 Icons.account_balance_wallet_outlined,
               ),
               label: ''),
-          BottomNavigationBarItem(
-              icon: Icon(CupertinoIcons.arrow_up_arrow_down), label: '')
+          BottomNavigationBarItem(icon: Icon(CupertinoIcons.arrow_up_arrow_down), label: '')
         ],
       ),
     );

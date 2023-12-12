@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:six_cash/app/extensions.dart';
-import 'package:six_cash/util/color_resources.dart';
-import 'package:six_cash/view/base/buttons.dart';
-import 'package:six_cash/view/base/custom_snackbar.dart';
-import 'package:six_cash/view/screens/wallet/widget/confirm_friendIdentity.dart';
+import 'package:bittsave/app/extensions.dart';
+import 'package:bittsave/util/color_resources.dart';
+import 'package:bittsave/view/base/buttons.dart';
+import 'package:bittsave/view/base/custom_snackbar.dart';
+import 'package:bittsave/view/screens/wallet/widget/confirm_friendIdentity.dart';
 
 import '../home/funding_options/request_from_a_riend/bitsave_user_request.dart';
 import '../home/funding_usd_wallet_page.dart';

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:six_cash/util/dimensions.dart';
+import 'package:bittsave/util/dimensions.dart';
+
 class AppBarShimmer extends StatelessWidget {
   const AppBarShimmer({Key key}) : super(key: key);
 
@@ -11,10 +12,7 @@ class AppBarShimmer extends StatelessWidget {
       highlightColor: Colors.grey[200],
       child: Container(
         padding: const EdgeInsets.only(
-            top: 54,
-            left: Dimensions.PADDING_SIZE_LARGE,
-            right: Dimensions.PADDING_SIZE_LARGE,
-            bottom: Dimensions.PADDING_SIZE_SMALL),
+            top: 54, left: Dimensions.PADDING_SIZE_LARGE, right: Dimensions.PADDING_SIZE_LARGE, bottom: Dimensions.PADDING_SIZE_SMALL),
         decoration: BoxDecoration(
           color: Colors.black38,
           borderRadius: const BorderRadius.only(
@@ -28,8 +26,7 @@ class AppBarShimmer extends StatelessWidget {
               width: Dimensions.RADIUS_SIZE_OVER_LARGE,
               decoration: BoxDecoration(
                 color: Colors.black54,
-                borderRadius:
-                BorderRadius.circular(Dimensions.RADIUS_SIZE_DEFAULT),
+                borderRadius: BorderRadius.circular(Dimensions.RADIUS_SIZE_DEFAULT),
               ),
             ),
             const SizedBox(
@@ -46,7 +43,9 @@ class AppBarShimmer extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
-                const SizedBox(height: 5,),
+                const SizedBox(
+                  height: 5,
+                ),
                 Container(
                   height: Dimensions.FONT_SIZE_OVER_LARGE,
                   width: 100,
@@ -59,7 +58,8 @@ class AppBarShimmer extends StatelessWidget {
             ),
             const Spacer(),
             Container(
-              height: 45,width: 45,
+              height: 45,
+              width: 45,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: Colors.black54,

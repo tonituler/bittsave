@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:six_cash/util/color_resources.dart';
-import 'package:six_cash/util/dimensions.dart';
+import 'package:bittsave/util/color_resources.dart';
+import 'package:bittsave/util/dimensions.dart';
 
 class CustomTextField extends StatefulWidget {
   final String hintText;
@@ -88,7 +88,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         isDense: true,
         hintText: widget.hintText,
         fillColor: widget.fillColor != null ? widget.fillColor : Theme.of(context).highlightColor,
-        hintStyle: Theme.of(context).textTheme.headline2.copyWith(fontSize: Dimensions.FONT_SIZE_SMALL, color: ColorResources.COLOR_GREY_CHATEAU),
+        hintStyle: Theme.of(context).textTheme.headline2.copyWith(fontSize: Dimensions.FONT_SIZE_SMALL + 4, color: ColorResources.COLOR_GREY_CHATEAU),
         filled: true,
         prefixIcon: widget.isShowPrefixIcon
             ? Padding(

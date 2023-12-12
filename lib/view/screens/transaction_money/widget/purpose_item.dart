@@ -1,12 +1,12 @@
-import 'package:six_cash/controller/splash_controller.dart';
-import 'package:six_cash/util/color_resources.dart';
-import 'package:six_cash/util/dimensions.dart';
-import 'package:six_cash/util/images.dart';
-import 'package:six_cash/util/styles.dart';
+import 'package:bittsave/controller/splash_controller.dart';
+import 'package:bittsave/util/color_resources.dart';
+import 'package:bittsave/util/dimensions.dart';
+import 'package:bittsave/util/images.dart';
+import 'package:bittsave/util/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
-import 'package:six_cash/view/base/custom_ink_well.dart';
+import 'package:bittsave/view/base/custom_ink_well.dart';
 
 class PurposeItem extends StatelessWidget {
   const PurposeItem({Key key, @required this.image, @required this.title, @required this.color, @required this.onTap}) : super(key: key);

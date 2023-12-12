@@ -3,10 +3,10 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:six_cash/controller/localization_controller.dart';
-import 'package:six_cash/util/dimensions.dart';
-import 'package:six_cash/util/images.dart';
-import 'package:six_cash/util/styles.dart';
+import 'package:bittsave/controller/localization_controller.dart';
+import 'package:bittsave/util/dimensions.dart';
+import 'package:bittsave/util/images.dart';
+import 'package:bittsave/util/styles.dart';
 
 class PurposeShimmer extends StatelessWidget {
   const PurposeShimmer({Key key}) : super(key: key);

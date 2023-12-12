@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:six_cash/view/screens/home/funding_options/request_from_a_riend/friend_identity.dart';
-import 'package:six_cash/view/screens/wallet/sendBtcTo.dart';
-import 'package:six_cash/view/screens/wallet/send_usd_to_friend.dart';
+import 'package:bittsave/view/screens/home/funding_options/request_from_a_riend/friend_identity.dart';
+import 'package:bittsave/view/screens/wallet/sendBtcTo.dart';
+import 'package:bittsave/view/screens/wallet/send_usd_to_friend.dart';
 
 import '../../../util/dimensions.dart';
 import '../home/funding_usd_wallet_page.dart';

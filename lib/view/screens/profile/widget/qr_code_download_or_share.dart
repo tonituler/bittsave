@@ -2,17 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:screenshot/screenshot.dart';
-import 'package:six_cash/controller/screen_shot_widget_controller.dart';
-import 'package:six_cash/util/color_resources.dart';
-import 'package:six_cash/util/dimensions.dart';
-import 'package:six_cash/util/styles.dart';
-import 'package:six_cash/view/base/custom_logo.dart';
+import 'package:bittsave/controller/screen_shot_widget_controller.dart';
+import 'package:bittsave/util/color_resources.dart';
+import 'package:bittsave/util/dimensions.dart';
+import 'package:bittsave/util/styles.dart';
+import 'package:bittsave/view/base/custom_logo.dart';
 
 class QrCodeDownloadOrShareScreen extends StatelessWidget {
   final String qrCode;
   final String phoneNumber;
-  const QrCodeDownloadOrShareScreen(
-      {@required this.qrCode, @required this.phoneNumber});
+  const QrCodeDownloadOrShareScreen({@required this.qrCode, @required this.phoneNumber});
 
   @override
   Widget build(BuildContext context) {
@@ -63,8 +62,7 @@ class QrCodeDownloadOrShareScreen extends StatelessWidget {
                     const SizedBox(
                       height: Dimensions.PADDING_SIZE_EXTRA_OVER_LARGE,
                     ),
-                    SvgPicture.string(qrCode,
-                        height: size.width * 0.6, width: size.width * 0.6),
+                    SvgPicture.string(qrCode, height: size.width * 0.6, width: size.width * 0.6),
                     const SizedBox(
                       height: Dimensions.PADDING_SIZE_OVER_LARGE,
                     ),

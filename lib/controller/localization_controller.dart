@@ -1,5 +1,5 @@
-import 'package:six_cash/data/model/response/language_model.dart';
-import 'package:six_cash/util/app_constants.dart';
+import 'package:bittsave/data/model/response/language_model.dart';
+import 'package:bittsave/util/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -10,8 +10,6 @@ class LocalizationController extends GetxController {
   LocalizationController({@required this.sharedPreferences}) {
     loadCurrentLanguage();
   }
-
-
 
   Locale _locale = Locale(AppConstants.languages[0].languageCode, AppConstants.languages[0].countryCode);
   bool _isLtr = true;
@@ -24,9 +22,9 @@ class LocalizationController extends GetxController {
   void setLanguage(Locale locale) {
     Get.updateLocale(locale);
     _locale = locale;
-    if(_locale.languageCode == 'ar') {
+    if (_locale.languageCode == 'ar') {
       _isLtr = false;
-    }else {
+    } else {
       _isLtr = true;
     }
     saveLanguage(_locale);
@@ -38,8 +36,8 @@ class LocalizationController extends GetxController {
         sharedPreferences.getString(AppConstants.CUSTOMER_COUNTRY_CODE) ?? AppConstants.languages[0].countryCode);
     _isLtr = _locale.languageCode != 'ar';
 
-    for(int index = 0; index<AppConstants.languages.length; index++) {
-      if(AppConstants.languages[index].languageCode == _locale.languageCode) {
+    for (int index = 0; index < AppConstants.languages.length; index++) {
+      if (AppConstants.languages[index].languageCode == _locale.languageCode) {
         _selectedIndex = index;
         break;
       }
@@ -66,7 +64,7 @@ class LocalizationController extends GetxController {
 
   void searchLanguage(String query) {
     if (query.isEmpty) {
-      _languages  = [];
+      _languages = [];
       _languages = AppConstants.languages;
     } else {
       _selectedIndex = -1;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:six_cash/view/screens/home/funding_usd_wallet_page.dart';
+import 'package:bittsave/view/screens/home/funding_usd_wallet_page.dart';
 
 class MyAppBar {
   static PreferredSizeWidget myAppBar() {

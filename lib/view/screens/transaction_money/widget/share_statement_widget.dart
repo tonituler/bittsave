@@ -3,15 +3,15 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:screenshot/screenshot.dart';
-import 'package:six_cash/controller/screen_shot_widget_controller.dart';
-import 'package:six_cash/controller/splash_controller.dart';
-import 'package:six_cash/data/model/response/contact_model.dart';
-import 'package:six_cash/helper/price_converter.dart';
-import 'package:six_cash/util/color_resources.dart';
-import 'package:six_cash/util/dimensions.dart';
-import 'package:six_cash/util/images.dart';
-import 'package:six_cash/util/styles.dart';
-import 'package:six_cash/view/base/custom_logo.dart';
+import 'package:bittsave/controller/screen_shot_widget_controller.dart';
+import 'package:bittsave/controller/splash_controller.dart';
+import 'package:bittsave/data/model/response/contact_model.dart';
+import 'package:bittsave/helper/price_converter.dart';
+import 'package:bittsave/util/color_resources.dart';
+import 'package:bittsave/util/dimensions.dart';
+import 'package:bittsave/util/images.dart';
+import 'package:bittsave/util/styles.dart';
+import 'package:bittsave/view/base/custom_logo.dart';
 
 class ShareStatementWidget extends StatefulWidget {
   final String amount;

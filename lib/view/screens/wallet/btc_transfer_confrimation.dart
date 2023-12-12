@@ -1,24 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:six_cash/app/extensions.dart';
-import 'package:six_cash/controller/splash_controller.dart';
-import 'package:six_cash/controller/wallet_controller.dart';
-import 'package:six_cash/helper/price_converter.dart';
-import 'package:six_cash/util/color_resources.dart';
-import 'package:six_cash/view/base/buttons.dart';
-import 'package:six_cash/view/screens/wallet/widget/confirmation.dart';
+import 'package:bittsave/app/extensions.dart';
+import 'package:bittsave/controller/splash_controller.dart';
+import 'package:bittsave/controller/wallet_controller.dart';
+import 'package:bittsave/helper/price_converter.dart';
+import 'package:bittsave/util/color_resources.dart';
+import 'package:bittsave/view/base/buttons.dart';
+import 'package:bittsave/view/screens/wallet/widget/confirmation.dart';
 
 import '../home/funding_options/request_from_a_riend/friend_identity.dart';
 import '../home/funding_usd_wallet_page.dart';
 
 class BTCTransferConfirmation extends StatefulWidget {
-  BTCTransferConfirmation({Key key, @required this.requestInfo})
-      : super(key: key);
+  BTCTransferConfirmation({Key key, @required this.requestInfo}) : super(key: key);
   Map<String, dynamic> requestInfo;
 
   @override
-  State<BTCTransferConfirmation> createState() =>
-      _BTCTransferConfirmationState();
+  State<BTCTransferConfirmation> createState() => _BTCTransferConfirmationState();
 }
 
 class _BTCTransferConfirmationState extends State<BTCTransferConfirmation> {
@@ -38,11 +36,7 @@ class _BTCTransferConfirmationState extends State<BTCTransferConfirmation> {
                     BackButtons(),
                     Padding(
                       padding: const EdgeInsets.only(left: 8, bottom: 15),
-                      child: Text('Transfer Confirmation',
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 22)),
+                      child: Text('Transfer Confirmation', style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500, fontSize: 22)),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 10.0, top: 40),
@@ -51,9 +45,7 @@ class _BTCTransferConfirmationState extends State<BTCTransferConfirmation> {
                         children: [
                           Text(
                             'Amount',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w400,
-                                color: ColorResources.primaryColor),
+                            style: TextStyle(fontWeight: FontWeight.w400, color: ColorResources.primaryColor),
                           ),
                           SizedBox(height: 5),
                           Text(
@@ -63,9 +55,7 @@ class _BTCTransferConfirmationState extends State<BTCTransferConfirmation> {
                           SizedBox(height: 15),
                           Text(
                             'Fees',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w400,
-                                color: ColorResources.primaryColor),
+                            style: TextStyle(fontWeight: FontWeight.w400, color: ColorResources.primaryColor),
                           ),
                           SizedBox(height: 5),
                           Text(
@@ -75,9 +65,7 @@ class _BTCTransferConfirmationState extends State<BTCTransferConfirmation> {
                           SizedBox(height: 15),
                           Text(
                             'Total Amount',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w400,
-                                color: ColorResources.primaryColor),
+                            style: TextStyle(fontWeight: FontWeight.w400, color: ColorResources.primaryColor),
                           ),
                           SizedBox(height: 5),
                           Text(
@@ -87,9 +75,7 @@ class _BTCTransferConfirmationState extends State<BTCTransferConfirmation> {
                           SizedBox(height: 15),
                           Text(
                             'BTC Address',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w400,
-                                color: ColorResources.primaryColor),
+                            style: TextStyle(fontWeight: FontWeight.w400, color: ColorResources.primaryColor),
                           ),
                           SizedBox(height: 5),
                           Text(
@@ -102,10 +88,8 @@ class _BTCTransferConfirmationState extends State<BTCTransferConfirmation> {
                     ),
                     SizedBox(height: 15),
                     Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 20.0, horizontal: 12),
-                      child:
-                          GetBuilder<WalletController>(builder: (controller) {
+                      padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 12),
+                      child: GetBuilder<WalletController>(builder: (controller) {
                         return Container(
                           height: 50,
                           width: MediaQuery.of(context).size.width,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:six_cash/view/screens/auth/create_account/newScreens/regPage2.dart';
+import 'package:bittsave/view/screens/auth/create_account/newScreens/regPage2.dart';
 
 class ScanPage extends StatefulWidget {
   const ScanPage({Key key}) : super(key: key);
@@ -39,25 +39,19 @@ class _ScanPageState extends State<ScanPage> {
                 children: [
                   InkWell(
                     onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => CheckInfoRegPage()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => CheckInfoRegPage()));
                     },
                     child: Container(
                       margin: EdgeInsets.only(top: 180, left: 10, right: 10),
                       height: 200,
                       decoration: BoxDecoration(
-                          color: Colors.white,
-                          border: Border.all(color: Colors.blue, width: 1),
-                          borderRadius: BorderRadius.circular(20)),
+                          color: Colors.white, border: Border.all(color: Colors.blue, width: 1), borderRadius: BorderRadius.circular(20)),
                     ),
                   ),
                   SizedBox(height: 15),
                   Text(
                     'Scan your passport or driver license',
-                    style: TextStyle(
-                        color: Colors.black, fontWeight: FontWeight.w500),
+                    style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
                   ),
                 ],
               )

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:six_cash/view/base/custom_snackbar.dart';
-import 'package:six_cash/view/screens/home/savings_pages/myPlans.dart';
-import 'package:six_cash/view/screens/home/savings_pages/savings_account.dart';
+import 'package:bittsave/view/base/custom_snackbar.dart';
+import 'package:bittsave/view/screens/home/savings_pages/myPlans.dart';
+import 'package:bittsave/view/screens/home/savings_pages/savings_account.dart';
 
 import '../funding_options/request_from_a_riend/friend_identity.dart';
 import '../funding_usd_wallet_page.dart';

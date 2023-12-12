@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:six_cash/view/screens/home/funding_options/request_from_a_riend/friend_identity.dart';
-import 'package:six_cash/view/screens/settings_page/profileUpdate.dart';
+import 'package:bittsave/view/screens/home/funding_options/request_from_a_riend/friend_identity.dart';
+import 'package:bittsave/view/screens/settings_page/profileUpdate.dart';
 
 import '../home/funding_usd_wallet_page.dart';
 
@@ -26,21 +26,13 @@ class _CompletePaymentOptionState extends State<CompletePaymentOption> {
                   BackButtons(),
                   Padding(
                     padding: const EdgeInsets.only(left: 10.0),
-                    child: Text('Payment Options',
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 22)),
+                    child: Text('Payment Options', style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500, fontSize: 22)),
                   ),
                   SizedBox(height: 8),
                   Padding(
                     padding: const EdgeInsets.only(left: 10.0),
-                    child: Text(
-                        'Bank account and mobile money account can be found here',
-                        style: TextStyle(
-                            color: Colors.grey,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 13)),
+                    child: Text('Bank account and mobile money account can be found here',
+                        style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w400, fontSize: 13)),
                   ),
                   Container(
                     margin: EdgeInsets.only(top: 30, left: 20, right: 30),
@@ -65,10 +57,7 @@ class _CompletePaymentOptionState extends State<CompletePaymentOption> {
                         Spacer(),
                         InkWell(
                           onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => ProfileUpdate()));
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileUpdate()));
                           },
                           child: Image.asset(
                             'assets/newImages/note.png',

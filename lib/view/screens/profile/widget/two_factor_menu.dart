@@ -4,12 +4,12 @@ import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:six_cash/controller/profile_screen_controller.dart';
-import 'package:six_cash/util/color_resources.dart';
-import 'package:six_cash/util/dimensions.dart';
-import 'package:six_cash/util/images.dart';
-import 'package:six_cash/util/styles.dart';
-import 'package:six_cash/view/base/custom_ink_well.dart';
+import 'package:bittsave/controller/profile_screen_controller.dart';
+import 'package:bittsave/util/color_resources.dart';
+import 'package:bittsave/util/dimensions.dart';
+import 'package:bittsave/util/images.dart';
+import 'package:bittsave/util/styles.dart';
+import 'package:bittsave/view/base/custom_ink_well.dart';
 
 import 'confirm_pin_bottom_sheet.dart';
 

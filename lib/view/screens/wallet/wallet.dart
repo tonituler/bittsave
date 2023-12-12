@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:six_cash/util/color_resources.dart';
-import 'package:six_cash/view/screens/wallet/widget/BTCWallet.dart';
-import 'package:six_cash/view/screens/wallet/widget/USDWallet.dart';
+import 'package:bittsave/util/color_resources.dart';
+import 'package:bittsave/view/screens/wallet/widget/BTCWallet.dart';
+import 'package:bittsave/view/screens/wallet/widget/USDWallet.dart';
 
 class WalletScreen extends StatefulWidget {
   const WalletScreen({Key key}) : super(key: key);
@@ -20,15 +20,17 @@ class _WalletScreenState extends State<WalletScreen> {
       child: Container(
         child: Column(
           children: [
-            SizedBox(height: 15,),
+            SizedBox(
+              height: 15,
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Row(
-                  children: [
-                    sliconIcon(0),
-                    sliconIcon(1),
-                  ],
-                ),
+                children: [
+                  sliconIcon(0),
+                  sliconIcon(1),
+                ],
+              ),
             ),
             Expanded(
               child: PageView(
@@ -48,37 +50,32 @@ class _WalletScreenState extends State<WalletScreen> {
 
   Widget sliconIcon(int i) {
     return Padding(
-      padding: EdgeInsets.all(3),
-      child: (_activeIndex == i) ? Container(
-        height: 10,
-        width: 20,
-        decoration: BoxDecoration(
-          color: ColorResources.primaryColor,
-          borderRadius: BorderRadius.circular(5)
-        ),
-      ): Container(
-        height: 10,
-        width: 10,
-        decoration: BoxDecoration(
-          color: ColorResources.blackColor,
-          borderRadius: BorderRadius.circular(5)
-        ),
-      )
-      
-      
-      // Text(
-      //   i == 0
-      //       ? 'Bio Data'
-      //       : i == 1
-      //           ? 'Specialization'
-      //           : 'Experience',
-      //   textAlign: TextAlign.center,
-      //   style: TextStyle(
-      //     fontSize: 16,
-      //     fontWeight: FontWeight.w700,
-      //     color: i == _activeIndex ? ColorResources.blackColor : ColorResources.primaryColor,
-      //   ),
-      // ),
-    );
+        padding: EdgeInsets.all(3),
+        child: (_activeIndex == i)
+            ? Container(
+                height: 10,
+                width: 20,
+                decoration: BoxDecoration(color: ColorResources.primaryColor, borderRadius: BorderRadius.circular(5)),
+              )
+            : Container(
+                height: 10,
+                width: 10,
+                decoration: BoxDecoration(color: ColorResources.blackColor, borderRadius: BorderRadius.circular(5)),
+              )
+
+        // Text(
+        //   i == 0
+        //       ? 'Bio Data'
+        //       : i == 1
+        //           ? 'Specialization'
+        //           : 'Experience',
+        //   textAlign: TextAlign.center,
+        //   style: TextStyle(
+        //     fontSize: 16,
+        //     fontWeight: FontWeight.w700,
+        //     color: i == _activeIndex ? ColorResources.blackColor : ColorResources.primaryColor,
+        //   ),
+        // ),
+        );
   }
 }

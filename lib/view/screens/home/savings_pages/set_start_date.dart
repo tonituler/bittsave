@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:six_cash/app/extensions.dart';
-import 'package:six_cash/util/color_resources.dart';
-import 'package:six_cash/view/screens/home/savings_pages/choos_payment_source.dart';
+import 'package:bittsave/app/extensions.dart';
+import 'package:bittsave/util/color_resources.dart';
+import 'package:bittsave/view/screens/home/savings_pages/choos_payment_source.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 import '../funding_options/request_from_a_riend/friend_identity.dart';

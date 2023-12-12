@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:six_cash/util/color_resources.dart';
-import 'package:six_cash/util/dimensions.dart';
+import 'package:bittsave/util/color_resources.dart';
+import 'package:bittsave/util/dimensions.dart';
 
 class CustomPasswordField extends StatefulWidget {
   final bool isShowSuffixIcon;
@@ -14,6 +14,7 @@ class CustomPasswordField extends StatefulWidget {
   final double fontSize, letterSpacing;
   final FocusNode nextFocus, focusNode;
   final TextInputAction textInputAction;
+  final Color fillColor;
   CustomPasswordField({
     this.isShowSuffixIcon,
     this.isPassword,
@@ -28,6 +29,7 @@ class CustomPasswordField extends StatefulWidget {
     this.focusNode,
     this.nextFocus,
     this.textInputAction = TextInputAction.next,
+    this.fillColor,
   });
 
   @override
@@ -47,9 +49,7 @@ class _CustomPasswordFieldState extends State<CustomPasswordField> {
       keyboardType: TextInputType.phone,
       textInputAction: widget.textInputAction,
       maxLength: 4,
-      onSubmitted: (text) => widget.nextFocus != null
-          ? FocusScope.of(context).requestFocus(widget.nextFocus)
-          : null,
+      onSubmitted: (text) => widget.nextFocus != null ? FocusScope.of(context).requestFocus(widget.nextFocus) : null,
       style: TextStyle(
         color: ColorResources.getBlackColor(),
         fontSize: widget.fontSize,
@@ -57,20 +57,24 @@ class _CustomPasswordFieldState extends State<CustomPasswordField> {
         letterSpacing: widget.letterSpacing,
       ),
       decoration: InputDecoration(
+        fillColor: widget.fillColor != null ? widget.fillColor : Theme.of(context).highlightColor,
+        filled: true,
         contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 22),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(Dimensions.RADIUS_SIZE_SMALL),
-          borderSide: BorderSide(
-            color: ColorResources.getPrimaryTextColor(),
-            width: 2,
-          ),
+          borderSide: BorderSide(style: BorderStyle.none, width: 0),
+          // borderSide: BorderSide(
+          //   color: ColorResources.getPrimaryTextColor(),
+          //   width: 2,
+          // ),
         ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(Dimensions.RADIUS_SIZE_SMALL),
-          borderSide: BorderSide(
-            color: ColorResources.textFieldBorderColor,
-            width: 1,
-          ),
+          borderSide: BorderSide(style: BorderStyle.none, width: 0),
+          // borderSide: BorderSide(
+          //   color: ColorResources.textFieldBorderColor,
+          //   width: 1,
+          // ),
         ),
         hintText: widget.hint,
         hintStyle: TextStyle(

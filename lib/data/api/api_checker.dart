@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
-import 'package:six_cash/controller/auth_controller.dart';
-import 'package:six_cash/data/model/body/error_body.dart';
-import 'package:six_cash/helper/route_helper.dart';
-import 'package:six_cash/view/base/custom_snackbar.dart';
+import 'package:bittsave/controller/auth_controller.dart';
+import 'package:bittsave/data/model/body/error_body.dart';
+import 'package:bittsave/helper/route_helper.dart';
+import 'package:bittsave/view/base/custom_snackbar.dart';
 
 class ApiChecker {
   static void checkApi(Response response) {

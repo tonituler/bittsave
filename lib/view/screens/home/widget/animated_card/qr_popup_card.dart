@@ -1,6 +1,6 @@
-import 'package:six_cash/controller/home_controller.dart';
-import 'package:six_cash/controller/profile_screen_controller.dart';
-import 'package:six_cash/util/color_resources.dart';
+import 'package:bittsave/controller/home_controller.dart';
+import 'package:bittsave/controller/profile_screen_controller.dart';
+import 'package:bittsave/util/color_resources.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -24,8 +24,7 @@ class QrPopupCard extends StatelessWidget {
           child: Material(
             color: ColorResources.whiteColor,
             elevation: 2,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
             child: Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: GetBuilder<ProfileController>(

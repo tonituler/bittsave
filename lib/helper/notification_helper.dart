@@ -6,11 +6,9 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:http/http.dart' as http;
-import 'package:six_cash/util/app_constants.dart';
-
+import 'package:bittsave/util/app_constants.dart';
 
 class NotificationHelper {
-
   static Future<void> initialize(FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin) async {
     var androidInitialize = const AndroidInitializationSettings('notification_icon');
     var iOSInitialize = const IOSInitializationSettings();
@@ -23,43 +21,53 @@ class NotificationHelper {
     String _body;
     String _orderID;
     String _image;
-    if(data) {
+    if (data) {
       _title = message.data['title'];
       _body = message.data['body'];
       _orderID = message.data['order_id'];
       _image = (message.data['image'] != null && message.data['image'].isNotEmpty)
-          ? message.data['image'].startsWith('http') ? message.data['image']
-          : '${AppConstants.BASE_URL}/storage/app/public/notification/${message.data['image']}' : null;
-    }else {
+          ? message.data['image'].startsWith('http')
+              ? message.data['image']
+              : '${AppConstants.BASE_URL}/storage/app/public/notification/${message.data['image']}'
+          : null;
+    } else {
       _title = message.notification.title;
       _body = message.notification.body;
       _orderID = message.notification.titleLocKey;
-      if(GetPlatform.isAndroid) {
+      if (GetPlatform.isAndroid) {
         _image = (message.notification.android.imageUrl != null && message.notification.android.imageUrl.isNotEmpty)
-            ? message.notification.android.imageUrl.startsWith('http') ? message.notification.android.imageUrl
-            : '${AppConstants.BASE_URL}/storage/app/public/notification/${message.notification.android.imageUrl}' : null;
-      }else if(GetPlatform.isIOS) {
+            ? message.notification.android.imageUrl.startsWith('http')
+                ? message.notification.android.imageUrl
+                : '${AppConstants.BASE_URL}/storage/app/public/notification/${message.notification.android.imageUrl}'
+            : null;
+      } else if (GetPlatform.isIOS) {
         _image = (message.notification.apple.imageUrl != null && message.notification.apple.imageUrl.isNotEmpty)
-            ? message.notification.apple.imageUrl.startsWith('http') ? message.notification.apple.imageUrl
-            : '${AppConstants.BASE_URL}/storage/app/public/notification/${message.notification.apple.imageUrl}' : null;
+            ? message.notification.apple.imageUrl.startsWith('http')
+                ? message.notification.apple.imageUrl
+                : '${AppConstants.BASE_URL}/storage/app/public/notification/${message.notification.apple.imageUrl}'
+            : null;
       }
     }
 
-    if(_image != null && _image.isNotEmpty) {
-      try{
+    if (_image != null && _image.isNotEmpty) {
+      try {
         await showBigPictureNotificationHiddenLargeIcon(_title, _body, _orderID, _image, fln);
-      }catch(e) {
+      } catch (e) {
         await showBigTextNotification(_title, _body, _orderID, fln);
       }
-    }else {
+    } else {
       await showBigTextNotification(_title, _body, _orderID, fln);
     }
   }
 
   static Future<void> showTextNotification(String title, String body, String orderID, FlutterLocalNotificationsPlugin fln) async {
     const AndroidNotificationDetails androidPlatformChannelSpecifics = AndroidNotificationDetails(
-      '6valley_delivery', '6valley_delivery name', playSound: true,
-      importance: Importance.max, priority: Priority.max, sound: RawResourceAndroidNotificationSound('notification'),
+      '6valley_delivery',
+      '6valley_delivery name',
+      playSound: true,
+      importance: Importance.max,
+      priority: Priority.max,
+      sound: RawResourceAndroidNotificationSound('notification'),
     );
     const NotificationDetails platformChannelSpecifics = NotificationDetails(android: androidPlatformChannelSpecifics);
     await fln.show(0, title, body, platformChannelSpecifics, payload: orderID);
@@ -67,30 +75,44 @@ class NotificationHelper {
 
   static Future<void> showBigTextNotification(String title, String body, String orderID, FlutterLocalNotificationsPlugin fln) async {
     BigTextStyleInformation bigTextStyleInformation = BigTextStyleInformation(
-      body, htmlFormatBigText: true,
-      contentTitle: title, htmlFormatContentTitle: true,
+      body,
+      htmlFormatBigText: true,
+      contentTitle: title,
+      htmlFormatContentTitle: true,
     );
     AndroidNotificationDetails androidPlatformChannelSpecifics = AndroidNotificationDetails(
-      '6valley_delivery channel id', '6valley_delivery name', importance: Importance.max,
-      styleInformation: bigTextStyleInformation, priority: Priority.max, playSound: true,
+      '6valley_delivery channel id',
+      '6valley_delivery name',
+      importance: Importance.max,
+      styleInformation: bigTextStyleInformation,
+      priority: Priority.max,
+      playSound: true,
       sound: const RawResourceAndroidNotificationSound('notification'),
     );
     NotificationDetails platformChannelSpecifics = NotificationDetails(android: androidPlatformChannelSpecifics);
     await fln.show(0, title, body, platformChannelSpecifics, payload: orderID);
   }
 
-  static Future<void> showBigPictureNotificationHiddenLargeIcon(String title, String body, String orderID, String image, FlutterLocalNotificationsPlugin fln) async {
+  static Future<void> showBigPictureNotificationHiddenLargeIcon(
+      String title, String body, String orderID, String image, FlutterLocalNotificationsPlugin fln) async {
     final String largeIconPath = await _downloadAndSaveFile(image, 'largeIcon');
     final String bigPicturePath = await _downloadAndSaveFile(image, 'bigPicture');
     final BigPictureStyleInformation bigPictureStyleInformation = BigPictureStyleInformation(
-      FilePathAndroidBitmap(bigPicturePath), hideExpandedLargeIcon: true,
-      contentTitle: title, htmlFormatContentTitle: true,
-      summaryText: body, htmlFormatSummaryText: true,
+      FilePathAndroidBitmap(bigPicturePath),
+      hideExpandedLargeIcon: true,
+      contentTitle: title,
+      htmlFormatContentTitle: true,
+      summaryText: body,
+      htmlFormatSummaryText: true,
     );
     final AndroidNotificationDetails androidPlatformChannelSpecifics = AndroidNotificationDetails(
-      '6valley_delivery', '6valley_delivery name',
-      largeIcon: FilePathAndroidBitmap(largeIconPath), priority: Priority.max, playSound: true,
-      styleInformation: bigPictureStyleInformation, importance: Importance.max,
+      '6valley_delivery',
+      '6valley_delivery name',
+      largeIcon: FilePathAndroidBitmap(largeIconPath),
+      priority: Priority.max,
+      playSound: true,
+      styleInformation: bigPictureStyleInformation,
+      importance: Importance.max,
       sound: const RawResourceAndroidNotificationSound('notification'),
     );
     final NotificationDetails platformChannelSpecifics = NotificationDetails(android: androidPlatformChannelSpecifics);

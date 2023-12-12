@@ -1,24 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:six_cash/controller/auth_controller.dart';
-import 'package:six_cash/controller/splash_controller.dart';
-import 'package:six_cash/controller/theme_controller.dart';
-import 'package:six_cash/data/api/api_checker.dart';
-import 'package:six_cash/data/model/response/user_info.dart';
-import 'package:six_cash/data/repository/profile_repo.dart';
-import 'package:six_cash/helper/route_helper.dart';
-import 'package:six_cash/view/base/animated_custom_dialog.dart';
-import 'package:six_cash/view/base/custom_snackbar.dart';
-import 'package:six_cash/view/base/logout_dialog.dart';
-import 'package:six_cash/view/screens/settings_page/accountAddedSuccessfull.dart';
+import 'package:bittsave/controller/auth_controller.dart';
+import 'package:bittsave/controller/splash_controller.dart';
+import 'package:bittsave/controller/theme_controller.dart';
+import 'package:bittsave/data/api/api_checker.dart';
+import 'package:bittsave/data/model/response/user_info.dart';
+import 'package:bittsave/data/repository/profile_repo.dart';
+import 'package:bittsave/helper/route_helper.dart';
+import 'package:bittsave/view/base/animated_custom_dialog.dart';
+import 'package:bittsave/view/base/custom_snackbar.dart';
+import 'package:bittsave/view/base/logout_dialog.dart';
+import 'package:bittsave/view/screens/settings_page/accountAddedSuccessfull.dart';
 
 import 'bootom_slider_controller.dart';
 
 class ProfileController extends GetxController implements GetxService {
   final ProfileRepo profileRepo;
   ProfileController({@required this.profileRepo});
-  final BottomSliderController bottomSliderController =
-      Get.find<BottomSliderController>();
+  final BottomSliderController bottomSliderController = Get.find<BottomSliderController>();
   UserInfo _userInfo;
   bool _isLoading = false;
 
@@ -44,8 +43,7 @@ class ProfileController extends GetxController implements GetxService {
     Response response = await profileRepo.getProfileDataApi();
     if (response.statusCode == 200) {
       _userInfo = UserInfo.fromJson(response.body);
-      Get.find<AuthController>()
-          .setCustomerName('${_userInfo.fName} ${_userInfo.lName}');
+      Get.find<AuthController>().setCustomerName('${_userInfo.fName} ${_userInfo.lName}');
       Get.find<AuthController>().setCustomerQrCode(_userInfo.qrCode);
       _isLoading = false;
     } else {
@@ -69,27 +67,18 @@ class ProfileController extends GetxController implements GetxService {
     return response;
   }
 
-  Future<void> changePin(
-      {@required String oldPassword,
-      @required String newPassword,
-      @required String confirmPassword}) async {
-    if ((oldPassword.length < 4) ||
-        (newPassword.length < 4) ||
-        (confirmPassword.length < 4)) {
+  Future<void> changePin({@required String oldPassword, @required String newPassword, @required String confirmPassword}) async {
+    if ((oldPassword.length < 4) || (newPassword.length < 4) || (confirmPassword.length < 4)) {
       showCustomSnackBar('please_input_4_digit_pin'.tr);
     } else if (newPassword != confirmPassword) {
       showCustomSnackBar('pin_not_match'.tr);
     } else {
       _isLoading = true;
       update();
-      Response response = await profileRepo.changePinApi(
-          oldPin: oldPassword,
-          newPin: newPassword,
-          confirmPin: confirmPassword);
+      Response response = await profileRepo.changePinApi(oldPin: oldPassword, newPin: newPassword, confirmPin: confirmPassword);
       if (response.statusCode == 200) {
         Get.offAllNamed(RouteHelper.getLoginRoute(
-            countryCode: Get.find<AuthController>().getCustomerCountryCode(),
-            phoneNumber: Get.find<AuthController>().getCustomerNumber()));
+            countryCode: Get.find<AuthController>().getCustomerCountryCode(), phoneNumber: Get.find<AuthController>().getCustomerNumber()));
       } else {
         // Get.back();
         ApiChecker.checkApi(response);
@@ -134,12 +123,10 @@ class ProfileController extends GetxController implements GetxService {
     update();
   }
 
-  Future<void> updateAccountInfo(
-      BuildContext context, String slug, Map<String, Object> _body) async {
+  Future<void> updateAccountInfo(BuildContext context, String slug, Map<String, Object> _body) async {
     _isLoadingAccountUpdate = true;
     update();
-    Response response = await profileRepo.updateAccountInfo(
-        (slug == "create") ? "add-bank" : "edit-bank", {..._body});
+    Response response = await profileRepo.updateAccountInfo((slug == "create") ? "add-bank" : "edit-bank", {..._body});
     // await getProfileData(loading: false);
     if (response.statusCode == 200) {
       await getProfileData(loading: false);

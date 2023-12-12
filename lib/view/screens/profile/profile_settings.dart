@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:six_cash/view/screens/home/funding_options/request_from_a_riend/friend_identity.dart';
-import 'package:six_cash/view/screens/home/funding_usd_wallet_page.dart';
-import 'package:six_cash/view/screens/profile/profile_confirmation.dart';
+import 'package:bittsave/view/screens/home/funding_options/request_from_a_riend/friend_identity.dart';
+import 'package:bittsave/view/screens/home/funding_usd_wallet_page.dart';
+import 'package:bittsave/view/screens/profile/profile_confirmation.dart';
 
 class ProfileSettings extends StatefulWidget {
   const ProfileSettings({Key key}) : super(key: key);
@@ -25,9 +25,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                   BackButtons(),
                   Padding(
                     padding: const EdgeInsets.only(left: 8),
-                    child: Text('Profile Setting',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w700, fontSize: 20)),
+                    child: Text('Profile Setting', style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20)),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 8.0),
@@ -44,14 +42,12 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                   textCont('Phone', '+234884848484'),
                   InkWell(
                     onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) {
                         return ConfirmationPage();
                       }));
                     },
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 20.0, horizontal: 12),
+                      padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 12),
                       child: Container(
                         width: double.infinity,
                         height: 40,
@@ -61,9 +57,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                           textAlign: TextAlign.center,
                           style: TextStyle(color: Colors.white),
                         )),
-                        decoration: BoxDecoration(
-                            color: Colors.pink,
-                            borderRadius: BorderRadius.circular(8)),
+                        decoration: BoxDecoration(color: Colors.pink, borderRadius: BorderRadius.circular(8)),
                       ),
                     ),
                   ),

@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:six_cash/controller/localization_controller.dart';
-import 'package:six_cash/util/app_constants.dart';
-import 'package:six_cash/util/color_resources.dart';
-import 'package:six_cash/util/dimensions.dart';
-import 'package:six_cash/util/styles.dart';
-import 'package:six_cash/view/base/custom_app_bar.dart';
-import 'package:six_cash/view/base/custom_logo.dart';
-import 'package:six_cash/view/base/custom_small_button.dart';
-import 'package:six_cash/view/base/custom_snackbar.dart';
-import 'package:six_cash/view/screens/more/widget/language_widget.dart';
+import 'package:bittsave/controller/localization_controller.dart';
+import 'package:bittsave/util/app_constants.dart';
+import 'package:bittsave/util/color_resources.dart';
+import 'package:bittsave/util/dimensions.dart';
+import 'package:bittsave/util/styles.dart';
+import 'package:bittsave/view/base/custom_app_bar.dart';
+import 'package:bittsave/view/base/custom_logo.dart';
+import 'package:bittsave/view/base/custom_small_button.dart';
+import 'package:bittsave/view/base/custom_snackbar.dart';
+import 'package:bittsave/view/screens/more/widget/language_widget.dart';
 
 class ChooseLanguageScreen extends StatelessWidget {
   @override

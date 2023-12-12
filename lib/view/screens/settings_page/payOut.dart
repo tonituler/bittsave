@@ -27,15 +27,14 @@ class _PayOutState extends State<PayOut> {
                   Padding(
                     padding: const EdgeInsets.only(left: 8),
                     child: Text('Payouts',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w500, fontSize: 20)),
+                        style: TextStyle(fontSize: 20)),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 8.0, bottom: 10),
+                    padding: const EdgeInsets.only(left: 8.0, bottom: 10, top: 5),
                     child: Text(
                       'With payouts, you can choose how and where you want you BTC payment to be settled. This is caters'
                       'for BTC received via wallet address',
-                      style: TextStyle(fontSize: 12, color: Colors.grey),
+                      style: TextStyle(fontSize: 12),
                     ),
                   ),
                   Padding(

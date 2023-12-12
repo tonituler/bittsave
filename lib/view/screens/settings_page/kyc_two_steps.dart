@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:six_cash/app/extensions.dart';
-import 'package:six_cash/controller/edit_profile_controller.dart';
-import 'package:six_cash/controller/profile_screen_controller.dart';
-import 'package:six_cash/controller/splash_controller.dart';
-import 'package:six_cash/main.dart';
-import 'package:six_cash/util/color_resources.dart';
-import 'package:six_cash/view/base/buttons.dart';
-import 'package:six_cash/view/base/custom_drop_down.dart';
-import 'package:six_cash/view/screens/profile/widget/appbar.dart';
-import 'package:six_cash/view/screens/settings_page/kycScan.dart';
+import 'package:bittsave/app/extensions.dart';
+import 'package:bittsave/controller/edit_profile_controller.dart';
+import 'package:bittsave/controller/profile_screen_controller.dart';
+import 'package:bittsave/controller/splash_controller.dart';
+import 'package:bittsave/main.dart';
+import 'package:bittsave/util/color_resources.dart';
+import 'package:bittsave/view/base/buttons.dart';
+import 'package:bittsave/view/base/custom_drop_down.dart';
+import 'package:bittsave/view/screens/profile/widget/appbar.dart';
+import 'package:bittsave/view/screens/settings_page/kycScan.dart';
 
 import '../home/funding_options/request_from_a_riend/friend_identity.dart';
 import '../home/funding_usd_wallet_page.dart';
@@ -26,6 +26,7 @@ class _KycTwoStepsState extends State<KycTwoSteps> {
   String country;
   TextEditingController cityController = TextEditingController();
   TextEditingController addressController = TextEditingController();
+  TextEditingController houseNoController = TextEditingController();
 
   @override
   void initState() {
@@ -36,6 +37,7 @@ class _KycTwoStepsState extends State<KycTwoSteps> {
 
     cityController.text = profileController.userInfo.city ?? '';
     addressController.text = profileController.userInfo.address ?? '';
+    houseNoController.text = profileController.userInfo.houseNo ?? '';
     editProfileController.isLoadingKYCUpdate = false;
   }
 
@@ -53,11 +55,11 @@ class _KycTwoStepsState extends State<KycTwoSteps> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 8, top: 10),
+                    padding: const EdgeInsets.only(left: 10, top: 10),
                     child: Text('KYC-Step Two', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20)),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
+                    padding: const EdgeInsets.only(left: 10.0),
                     child: Text(
                       'Let us know your location as it reflect on your proof of Identification',
                       style: TextStyle(color: Colors.grey[600], fontSize: 13),
@@ -100,7 +102,8 @@ class _KycTwoStepsState extends State<KycTwoSteps> {
                       );
                     }),
                   ),
-                  textCont('City', 'Ikeji', controller: cityController),
+                  textCont('City', 'Ikeja', controller: cityController),
+                  textCont('House no', 'Plot 505 or House 5', controller: houseNoController),
                   textCont('Address', 'Street name', controller: addressController),
                   Container(
                     height: 50,
@@ -125,12 +128,11 @@ class _KycTwoStepsState extends State<KycTwoSteps> {
                           'address': addressController.text,
                           'country': country,
                           'state_region': state,
+                          'house_no': houseNoController.text,
                           '_method': 'post',
-                        }, [],
-                        callback: (){
-                           Navigator.push(context, MaterialPageRoute(builder: (context) => KycScan()));
-                        }
-                        );
+                        }, [], callback: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => KycScan()));
+                        });
                       },
                     ),
                   ),

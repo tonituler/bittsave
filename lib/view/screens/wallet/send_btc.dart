@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:six_cash/view/screens/wallet/sendBtcTo.dart';
-import 'package:six_cash/view/screens/wallet/send_usd_to_friend.dart';
+import 'package:bittsave/view/screens/wallet/sendBtcTo.dart';
+import 'package:bittsave/view/screens/wallet/send_usd_to_friend.dart';
 
 import '../../../util/dimensions.dart';
 import '../home/funding_options/request_from_a_riend/friend_identity.dart';
@@ -29,16 +29,13 @@ class _BuyBTCState extends State<SendBTC> {
                   BackButtons(),
                   Padding(
                     padding: const EdgeInsets.only(left: 8, bottom: 50),
-                    child: Text('How do you want to send BTC?',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w700, fontSize: 20)),
+                    child: Text('How do you want to send BTC?', style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20)),
                   ),
                   SizedBox(
                     child: contTap(
                         image: 'assets/image/bitc.png',
                         title: "Send to BTC address",
-                        subtitle:
-                            'Send BTC to a wallet address\ndirectly from your USD wallet',
+                        subtitle: 'Send BTC to a wallet address\ndirectly from your USD wallet',
                         ontap: () {
                           Navigator.push(
                             context,
@@ -92,27 +89,19 @@ class _BuyBTCState extends State<SendBTC> {
               Image.asset(image, scale: 2),
               Padding(
                 padding: const EdgeInsets.only(left: 20, bottom: 2),
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        title,
-                        style: TextStyle(
-                            fontWeight: FontWeight.w400,
-                            fontSize: Dimensions.FONT_SIZE_DEFAULT),
-                      ),
-                      SizedBox(height: 2),
-                      Text(
-                        subtitle,
-                        maxLines: 3,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                            fontWeight: FontWeight.w300,
-                            fontSize: 10,
-                            color: Colors.grey),
-                      )
-                    ]),
+                child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisAlignment: MainAxisAlignment.start, children: [
+                  Text(
+                    title,
+                    style: TextStyle(fontWeight: FontWeight.w400, fontSize: Dimensions.FONT_SIZE_DEFAULT),
+                  ),
+                  SizedBox(height: 2),
+                  Text(
+                    subtitle,
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(fontWeight: FontWeight.w300, fontSize: 10, color: Colors.grey),
+                  )
+                ]),
               ),
               Spacer(),
               Icon(Icons.arrow_forward_ios, color: Colors.grey, size: 20)

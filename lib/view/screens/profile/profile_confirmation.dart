@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:six_cash/view/screens/deshboard/nav_bar.dart';
-import 'package:six_cash/view/screens/home/funding_options/request_from_a_riend/friend_identity.dart';
+import 'package:bittsave/view/screens/deshboard/nav_bar.dart';
+import 'package:bittsave/view/screens/home/funding_options/request_from_a_riend/friend_identity.dart';
 
 class ConfirmationPage extends StatefulWidget {
   const ConfirmationPage({Key key}) : super(key: key);
@@ -36,14 +36,12 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
             SizedBox(height: 150),
             InkWell(
               onTap: () {
-                Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) {
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
                   return NavBarScreen();
                 }));
               },
               child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 30.0, horizontal: 20),
+                padding: const EdgeInsets.symmetric(vertical: 30.0, horizontal: 20),
                 child: Container(
                   width: double.infinity,
                   height: 40,
@@ -53,9 +51,7 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
                     textAlign: TextAlign.center,
                     style: TextStyle(color: Colors.white),
                   )),
-                  decoration: BoxDecoration(
-                      color: Colors.pink,
-                      borderRadius: BorderRadius.circular(8)),
+                  decoration: BoxDecoration(color: Colors.pink, borderRadius: BorderRadius.circular(8)),
                 ),
               ),
             ),

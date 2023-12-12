@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:six_cash/app/extensions.dart';
-import 'package:six_cash/controller/savings_controller.dart';
-import 'package:six_cash/controller/splash_controller.dart';
-import 'package:six_cash/data/model/savings_plan.dart';
-import 'package:six_cash/util/color_resources.dart';
-import 'package:six_cash/view/base/buttons.dart';
-import 'package:six_cash/view/base/custom_drop_down.dart';
-import 'package:six_cash/view/screens/home/home_screen.dart';
+import 'package:bittsave/app/extensions.dart';
+import 'package:bittsave/controller/savings_controller.dart';
+import 'package:bittsave/controller/splash_controller.dart';
+import 'package:bittsave/data/model/savings_plan.dart';
+import 'package:bittsave/util/color_resources.dart';
+import 'package:bittsave/view/base/buttons.dart';
+import 'package:bittsave/view/base/custom_drop_down.dart';
+import 'package:bittsave/view/screens/home/home_screen.dart';
 
 import '../../../../util/dimensions.dart';
 import '../../wallet/widget/confirm_friendIdentity.dart';
@@ -35,8 +35,7 @@ class _EditPlanState extends State<EditPlan> {
     name.text = widget.savingsPlan.name;
     amount.text = widget.savingsPlan.invested;
     frequency = getFrequency(widget.savingsPlan.frequency);
-    credit =
-        (widget.savingsPlan.creditType == "usd_wallet") ? "USD Wallet" : "BTC";
+    credit = (widget.savingsPlan.creditType == "usd_wallet") ? "USD Wallet" : "BTC";
     autoInvest = (widget.savingsPlan.autoInvest == 1) ? "Yes" : "No";
   }
 
@@ -56,17 +55,13 @@ class _EditPlanState extends State<EditPlan> {
                     BackButtons(),
                     Padding(
                       padding: const EdgeInsets.only(left: 8),
-                      child: Text('Edit Plan',
-                          style: TextStyle(
-                              fontWeight: FontWeight.w400, fontSize: 20)),
+                      child: Text('Edit Plan', style: TextStyle(fontWeight: FontWeight.w400, fontSize: 20)),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0),
                       child: Text(
                         'I think, I changed my mind',
-                        style: TextStyle(
-                            color: Colors.grey[800],
-                            fontSize: Dimensions.FONT_SIZE_LARGE),
+                        style: TextStyle(color: Colors.grey[800], fontSize: Dimensions.FONT_SIZE_LARGE),
                       ),
                     ),
                     SizedBox(height: 20),
@@ -93,15 +88,12 @@ class _EditPlanState extends State<EditPlan> {
                           frequency = a;
                           setState(() {});
                         },
-                        list: splashController.configModel.planFrequency
-                            .map((e) => e["name"].toString())
-                            .toList(),
+                        list: splashController.configModel.planFrequency.map((e) => e["name"].toString()).toList(),
                       ),
                     ),
                     Container(
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 8, vertical: 5),
+                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
                         child: CustomDropDownButton(
                           title: 'Credit',
                           hintText: 'Choose credit type',
@@ -157,8 +149,7 @@ class _EditPlanState extends State<EditPlan> {
                               loading = true;
                             });
                             bool response = await controller.updateSavings({
-                              "credit_type":
-                                  (credit == "BTC") ? "btc" : "usd_wallet",
+                              "credit_type": (credit == "BTC") ? "btc" : "usd_wallet",
                               "auto_invest": (autoInvest == "Yes") ? 1 : 0,
                               "frequency": getFrequencyValue(frequency),
                               "amount": amount.text,
@@ -193,8 +184,7 @@ class _EditPlanState extends State<EditPlan> {
 
   String getFrequencyValue(String value) {
     String _frequency = "0";
-    List<Map<String, dynamic>> freq =
-        Get.find<SplashController>().configModel.planFrequency;
+    List<Map<String, dynamic>> freq = Get.find<SplashController>().configModel.planFrequency;
     freq.forEach((element) {
       if (value == element["name"].toString()) {
         _frequency = element["value"].toString();
@@ -205,8 +195,7 @@ class _EditPlanState extends State<EditPlan> {
 
   String getFrequency(String frequencyId) {
     String _frequency = "Weekly";
-    List<Map<String, dynamic>> freq =
-        Get.find<SplashController>().configModel.planFrequency;
+    List<Map<String, dynamic>> freq = Get.find<SplashController>().configModel.planFrequency;
     freq.forEach((element) {
       if (frequencyId == element["value"].toString()) {
         _frequency = element["name"];
@@ -227,15 +216,11 @@ class _EditPlanState extends State<EditPlan> {
         children: [
           Text(
             '$titleText',
-            style: TextStyle(
-                fontWeight: FontWeight.w500,
-                color: ColorResources.primaryColor,
-                fontSize: Dimensions.FONT_SIZE_LARGE),
+            style: TextStyle(fontWeight: FontWeight.w500, color: ColorResources.primaryColor, fontSize: Dimensions.FONT_SIZE_LARGE),
           ),
           SizedBox(height: 10),
           TextField(
-            style: TextStyle(
-                color: Colors.black, fontSize: Dimensions.FONT_SIZE_LARGE),
+            style: TextStyle(color: Colors.black, fontSize: Dimensions.FONT_SIZE_LARGE),
             controller: controller,
             decoration: InputDecoration(
               filled: true,

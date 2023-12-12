@@ -1,17 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:six_cash/app/extensions.dart';
-import 'package:six_cash/controller/deposit_controller.dart';
-import 'package:six_cash/controller/splash_controller.dart';
-import 'package:six_cash/helper/route_helper.dart';
-import 'package:six_cash/util/color_resources.dart';
-import 'package:six_cash/util/images.dart';
-import 'package:six_cash/view/base/buttons.dart';
-import 'package:six_cash/view/base/contact_shimmer.dart';
-import 'package:six_cash/view/base/custom_snackbar.dart';
-import 'package:six_cash/view/screens/home/funding_options/fund_bit_express.dart';
-import 'package:six_cash/view/screens/home/funding_options/request_from_a_riend/request_successful_page.dart';
+import 'package:bittsave/app/extensions.dart';
+import 'package:bittsave/controller/deposit_controller.dart';
+import 'package:bittsave/controller/splash_controller.dart';
+import 'package:bittsave/helper/route_helper.dart';
+import 'package:bittsave/util/color_resources.dart';
+import 'package:bittsave/util/images.dart';
+import 'package:bittsave/view/base/buttons.dart';
+import 'package:bittsave/view/base/contact_shimmer.dart';
+import 'package:bittsave/view/base/custom_snackbar.dart';
+import 'package:bittsave/view/screens/home/funding_options/fund_bit_express.dart';
+import 'package:bittsave/view/screens/home/funding_options/request_from_a_riend/request_successful_page.dart';
 
 import '../../../../screens/home/funding_usd_wallet_page.dart';
 
@@ -75,7 +75,7 @@ class _FriendsIdentityState extends State<FriendsIdentity> {
                         child: Column(
                           children: [
                             GestureDetector(
-                              onTap: (){
+                              onTap: () {
                                 Get.offAllNamed(RouteHelper.getNavBarRoute(), arguments: true);
                               },
                               child: CircleAvatar(
@@ -273,7 +273,7 @@ class _FriendsIdentityState extends State<FriendsIdentity> {
                                               "amount": amountInDolar,
                                               "note": "",
                                             },
-                                            funder:controller.funderInfo,
+                                            funder: controller.funderInfo,
                                           );
                                         }),
                                       );

@@ -1,6 +1,6 @@
-import 'package:six_cash/controller/auth_controller.dart';
-import 'package:six_cash/util/app_constants.dart';
-import 'package:six_cash/util/color_resources.dart';
+import 'package:bittsave/controller/auth_controller.dart';
+import 'package:bittsave/util/app_constants.dart';
+import 'package:bittsave/util/color_resources.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -12,9 +12,7 @@ class IndicatorSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<AuthController>(
-      
-      builder: (controller) {
+    return GetBuilder<AuthController>(builder: (controller) {
       return AnimatedSmoothIndicator(
         activeIndex: controller.page,
         count: AppConstants.onboardList.length,
@@ -31,7 +29,6 @@ class IndicatorSection extends StatelessWidget {
             width: 30,
             borderRadius: BorderRadius.all(Radius.circular(5)),
             color: ColorResources.getPrimaryTextColor(),
-
           ),
         ),
       );

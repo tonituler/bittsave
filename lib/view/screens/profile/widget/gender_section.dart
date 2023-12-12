@@ -1,9 +1,9 @@
-import 'package:six_cash/controller/edit_profile_controller.dart';
-import 'package:six_cash/util/color_resources.dart';
-import 'package:six_cash/util/dimensions.dart';
-import 'package:six_cash/util/images.dart';
-import 'package:six_cash/util/styles.dart';
-import 'package:six_cash/view/screens/auth/other_info/widget/custom_gender_card.dart';
+import 'package:bittsave/controller/edit_profile_controller.dart';
+import 'package:bittsave/util/color_resources.dart';
+import 'package:bittsave/util/dimensions.dart';
+import 'package:bittsave/util/images.dart';
+import 'package:bittsave/util/styles.dart';
+import 'package:bittsave/view/screens/auth/other_info/widget/custom_gender_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

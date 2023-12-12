@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:six_cash/view/screens/home/savings_pages/choose_payment_method.dart';
+import 'package:bittsave/view/screens/home/savings_pages/choose_payment_method.dart';
 
 import '../funding_options/request_from_a_riend/friend_identity.dart';
 import '../funding_usd_wallet_page.dart';
@@ -28,17 +28,10 @@ class _ChoosePayMentSourceState extends State<ChoosePayMentSource> {
               BackButtons(),
               Text(
                 'Choose payment source',
-                style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 22),
+                style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500, fontSize: 22),
               ),
               SizedBox(height: 8),
-              Text('Select your preferred funding source',
-                  style: TextStyle(
-                      color: Colors.grey,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 15)),
+              Text('Select your preferred funding source', style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w400, fontSize: 15)),
               InkWell(
                 onTap: () {
                   // Navigator.push(context, MaterialPageRoute(builder: (context) {
@@ -47,14 +40,11 @@ class _ChoosePayMentSourceState extends State<ChoosePayMentSource> {
                 },
                 child: Container(
                   margin: EdgeInsets.only(top: 120, right: 10, left: 10),
-                  padding:
-                      EdgeInsets.only(left: 12, top: 15, right: 12, bottom: 5),
+                  padding: EdgeInsets.only(left: 12, top: 15, right: 12, bottom: 5),
                   height: 100,
                   width: double.infinity,
-                  decoration: BoxDecoration(
-                      color: Colors.white60,
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(color: Colors.pink, width: 1)),
+                  decoration:
+                      BoxDecoration(color: Colors.white60, borderRadius: BorderRadius.circular(20), border: Border.all(color: Colors.pink, width: 1)),
                   child: Row(
                     children: [
                       Column(
@@ -62,8 +52,7 @@ class _ChoosePayMentSourceState extends State<ChoosePayMentSource> {
                         children: [
                           Text(
                             ' Use USD wallet',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w500, fontSize: 18),
+                            style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
                           ),
                           SizedBox(height: 6),
                           Padding(
@@ -100,14 +89,9 @@ class _ChoosePayMentSourceState extends State<ChoosePayMentSource> {
                   text: 'Next',
                   ontap: () {
                     print(widget.savingsInfo);
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) {
                       return ChoosePaymentMethod(
-                        savingsInfo: {
-                          ...widget.savingsInfo,
-                          "debit_type": "usd_wallet",
-                          "debit_type_name": "USD Wallet"
-                        },
+                        savingsInfo: {...widget.savingsInfo, "debit_type": "usd_wallet", "debit_type_name": "USD Wallet"},
                       );
                     }));
                   },

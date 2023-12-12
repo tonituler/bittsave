@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:six_cash/controller/splash_controller.dart';
-import 'package:six_cash/controller/websitelink_controller.dart';
-import 'package:six_cash/helper/custom_launch_url.dart';
-import 'package:six_cash/util/color_resources.dart';
-import 'package:six_cash/util/dimensions.dart';
-import 'package:six_cash/util/images.dart';
-import 'package:six_cash/util/styles.dart';
-import 'package:six_cash/view/base/CustomImage.dart';
-import 'package:six_cash/view/base/custom_ink_well.dart';
+import 'package:bittsave/controller/splash_controller.dart';
+import 'package:bittsave/controller/websitelink_controller.dart';
+import 'package:bittsave/helper/custom_launch_url.dart';
+import 'package:bittsave/util/color_resources.dart';
+import 'package:bittsave/util/dimensions.dart';
+import 'package:bittsave/util/images.dart';
+import 'package:bittsave/util/styles.dart';
+import 'package:bittsave/view/base/CustomImage.dart';
+import 'package:bittsave/view/base/custom_ink_well.dart';
 
 class LinkedWebsite extends StatelessWidget {
   final WebsiteLinkController websiteLinkController;

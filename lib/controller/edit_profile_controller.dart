@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:six_cash/controller/image_controller.dart';
-import 'package:six_cash/controller/profile_screen_controller.dart';
-import 'package:six_cash/data/api/api_checker.dart';
-import 'package:six_cash/data/api/api_client.dart';
-import 'package:six_cash/data/model/body/edit_profile_body.dart';
-import 'package:six_cash/data/model/response/response_model.dart';
-import 'package:six_cash/data/repository/auth_repo.dart';
-import 'package:six_cash/view/base/custom_snackbar.dart';
+import 'package:bittsave/controller/image_controller.dart';
+import 'package:bittsave/controller/profile_screen_controller.dart';
+import 'package:bittsave/data/api/api_checker.dart';
+import 'package:bittsave/data/api/api_client.dart';
+import 'package:bittsave/data/model/body/edit_profile_body.dart';
+import 'package:bittsave/data/model/response/response_model.dart';
+import 'package:bittsave/data/repository/auth_repo.dart';
+import 'package:bittsave/view/base/custom_snackbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:six_cash/view/screens/settings_page/kycScan.dart';
+import 'package:bittsave/view/screens/settings_page/kycScan.dart';
 
 class EditProfileController extends GetxController implements GetxService {
   final AuthRepo authRepo;

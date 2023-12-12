@@ -1,7 +1,7 @@
 // import 'package:flutter/cupertino.dart';
 // import 'package:flutter/material.dart';
-// import 'package:six_cash/view/screens/home/funding_options/request_from_a_riend/friend_identity.dart';
-// import 'package:six_cash/view/screens/home/funding_usd_wallet_page.dart';
+// import 'package:bittsave/view/screens/home/funding_options/request_from_a_riend/friend_identity.dart';
+// import 'package:bittsave/view/screens/home/funding_usd_wallet_page.dart';
 // class MyPlan1 extends StatefulWidget {
 //   const MyPlan1({Key key}) : super(key: key);
 

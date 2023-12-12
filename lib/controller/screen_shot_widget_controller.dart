@@ -7,13 +7,12 @@ import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:six_cash/data/model/response/contact_model.dart';
-import 'package:six_cash/helper/route_helper.dart';
-import 'package:six_cash/view/base/custom_snackbar.dart';
-import 'package:six_cash/view/screens/transaction_money/widget/share_statement_widget.dart';
+import 'package:bittsave/data/model/response/contact_model.dart';
+import 'package:bittsave/helper/route_helper.dart';
+import 'package:bittsave/view/base/custom_snackbar.dart';
+import 'package:bittsave/view/screens/transaction_money/widget/share_statement_widget.dart';
 
-class ScreenShootWidgetController extends GetxController
-    implements GetxService {
+class ScreenShootWidgetController extends GetxController implements GetxService {
   ScreenshotController statementController = ScreenshotController();
 
   Future statementScreenShootFunction(
@@ -23,12 +22,7 @@ class ScreenShootWidgetController extends GetxController
       @required String charge,
       @required String trxId}) async {
     Uint8List image;
-    Get.to(ShareStatementWidget(
-        amount: amount,
-        transactionType: transactionType,
-        contactModel: contactModel,
-        charge: charge,
-        trxId: trxId));
+    Get.to(ShareStatementWidget(amount: amount, transactionType: transactionType, contactModel: contactModel, charge: charge, trxId: trxId));
     Future.delayed(Duration(milliseconds: 1000)).then((value) async {
       image = await statementController.capture();
 
@@ -40,13 +34,9 @@ class ScreenShootWidgetController extends GetxController
     });
   }
 
-  Future<void> qrCodeDownloadAndShare(
-      {@required String qrCode,
-      @required String phoneNumber,
-      @required bool isShare}) async {
+  Future<void> qrCodeDownloadAndShare({@required String qrCode, @required String phoneNumber, @required bool isShare}) async {
     Uint8List _image;
-    Get.toNamed(RouteHelper.getQrCodeDownloadOrShareRoute(
-        qrCode: qrCode, phoneNumber: phoneNumber));
+    Get.toNamed(RouteHelper.getQrCodeDownloadOrShareRoute(qrCode: qrCode, phoneNumber: phoneNumber));
     Future.delayed(Duration(milliseconds: 100)).then((value) async {
       _image = await statementController.capture();
 
@@ -64,8 +54,7 @@ class ScreenShootWidgetController extends GetxController
         await GallerySaver.saveImage(
           _imageFile.path,
           albumName: 'Bittsave',
-        ).then((value) =>
-            showCustomSnackBar('QR code save to your Gallery', isError: false));
+        ).then((value) => showCustomSnackBar('QR code save to your Gallery', isError: false));
       }
     });
   }

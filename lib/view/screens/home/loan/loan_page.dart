@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:six_cash/app/extensions.dart';
-import 'package:six_cash/controller/loan_controller.dart';
-import 'package:six_cash/controller/splash_controller.dart';
-import 'package:six_cash/util/color_resources.dart';
-import 'package:six_cash/util/dimensions.dart';
-import 'package:six_cash/view/base/buttons.dart';
-import 'package:six_cash/view/base/custom_drop_down.dart';
-import 'package:six_cash/view/base/custom_snackbar.dart';
-import 'package:six_cash/view/base/text_widgets.dart';
-import 'package:six_cash/view/screens/home/funding_options/request_from_a_riend/friend_identity.dart';
-import 'package:six_cash/view/screens/home/funding_usd_wallet_page.dart';
-import 'package:six_cash/view/screens/home/loan/history/loan_history.dart';
-import 'package:six_cash/view/screens/home/loan/howToBeFunded.dart';
+import 'package:bittsave/app/extensions.dart';
+import 'package:bittsave/controller/loan_controller.dart';
+import 'package:bittsave/controller/splash_controller.dart';
+import 'package:bittsave/util/color_resources.dart';
+import 'package:bittsave/util/dimensions.dart';
+import 'package:bittsave/view/base/buttons.dart';
+import 'package:bittsave/view/base/custom_drop_down.dart';
+import 'package:bittsave/view/base/custom_snackbar.dart';
+import 'package:bittsave/view/base/text_widgets.dart';
+import 'package:bittsave/view/screens/home/funding_options/request_from_a_riend/friend_identity.dart';
+import 'package:bittsave/view/screens/home/funding_usd_wallet_page.dart';
+import 'package:bittsave/view/screens/home/loan/history/loan_history.dart';
+import 'package:bittsave/view/screens/home/loan/howToBeFunded.dart';
 
 bool _show = false;
 bool _showSummaryOfLoan = false;
@@ -235,7 +235,7 @@ class _LoanApplicationState extends State<LoanApplication> {
                                   title: 'Select a loan to value',
                                   hintText: 'Choose a value',
                                   value: loanToValue,
-                                   borderColor: Colors.grey,
+                                  borderColor: Colors.grey,
                                   busy: false,
                                   onChanged: (a) {
                                     loanToValue = a;
@@ -247,7 +247,7 @@ class _LoanApplicationState extends State<LoanApplication> {
                                   title: 'Select a repayment type',
                                   hintText: 'Choose type',
                                   value: repaymentOption,
-                                   borderColor: Colors.grey,
+                                  borderColor: Colors.grey,
                                   busy: false,
                                   onChanged: (a) {
                                     repaymentOption = a;

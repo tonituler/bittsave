@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
-import 'package:six_cash/util/color_resources.dart';
+import 'package:bittsave/util/color_resources.dart';
 
 class CustomPinCodeField extends StatelessWidget {
   final Function onCompleted;
   final double padding;
-  const CustomPinCodeField(
-      {Key key, @required this.onCompleted, this.padding = 0.0})
-      : super(key: key);
+  const CustomPinCodeField({Key key, @required this.onCompleted, this.padding = 0.0}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

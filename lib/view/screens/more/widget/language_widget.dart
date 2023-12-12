@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:six_cash/controller/localization_controller.dart';
-import 'package:six_cash/data/model/response/language_model.dart';
-import 'package:six_cash/util/app_constants.dart';
-import 'package:six_cash/util/color_resources.dart';
-import 'package:six_cash/util/dimensions.dart';
-import 'package:six_cash/util/styles.dart';
-import 'package:six_cash/view/base/custom_ink_well.dart';
+import 'package:bittsave/controller/localization_controller.dart';
+import 'package:bittsave/data/model/response/language_model.dart';
+import 'package:bittsave/util/app_constants.dart';
+import 'package:bittsave/util/color_resources.dart';
+import 'package:bittsave/util/dimensions.dart';
+import 'package:bittsave/util/styles.dart';
+import 'package:bittsave/view/base/custom_ink_well.dart';
 
 class LanguageWidget extends StatelessWidget {
   final LanguageModel languageModel;

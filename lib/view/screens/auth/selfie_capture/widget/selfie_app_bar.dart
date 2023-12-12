@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:six_cash/helper/route_helper.dart';
-import 'package:six_cash/util/color_resources.dart';
-import 'package:six_cash/util/dimensions.dart';
+import 'package:bittsave/helper/route_helper.dart';
+import 'package:bittsave/util/color_resources.dart';
+import 'package:bittsave/util/dimensions.dart';
 
 class SelfieAppbar extends StatelessWidget implements PreferredSizeWidget {
   final bool showIcon;

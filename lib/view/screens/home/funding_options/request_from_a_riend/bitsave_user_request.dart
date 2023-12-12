@@ -1,10 +1,11 @@
+import 'package:bittsave/view/base/custom_text_field.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:six_cash/app/extensions.dart';
-import 'package:six_cash/util/color_resources.dart';
-import 'package:six_cash/view/base/buttons.dart';
-import 'package:six_cash/view/screens/home/funding_options/request_from_a_riend/friend_identity.dart';
-import 'package:six_cash/view/screens/home/funding_usd_wallet_page.dart';
+import 'package:bittsave/app/extensions.dart';
+import 'package:bittsave/util/color_resources.dart';
+import 'package:bittsave/view/base/buttons.dart';
+import 'package:bittsave/view/screens/home/funding_options/request_from_a_riend/friend_identity.dart';
+import 'package:bittsave/view/screens/home/funding_usd_wallet_page.dart';
 
 class BittSaveUserRequest extends StatefulWidget {
   const BittSaveUserRequest({Key key}) : super(key: key);
@@ -39,63 +40,15 @@ class _BittSaveUserRequestState extends State<BittSaveUserRequest> {
                         padding: const EdgeInsets.only(top: 1.0, left: 0, bottom: 80),
                         child: Text(
                           'Request funds from Bittsave user',
-                          style: TextStyle(color: Colors.black, fontWeight: FontWeight.w400, fontSize: 24.sp),
+                          style: TextStyle(fontSize: 20),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 0),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: ColorResources.primaryColor.withOpacity(0.1),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: TextFormField(
-                            cursorColor: ColorResources.primaryColor,
-                            cursorWidth: 1,
-                            autofocus: true,
-                            maxLines: 1,
-                            controller: usernameController,
-
-                            // style: GoogleFonts.mulish(
-                            //   color: AppColors.black,
-                            //   fontWeight: FontWeight.w500,
-                            //   fontSize: 15.sp,
-                            //   letterSpacing: 0.4,
-                            // ),
-                            decoration: InputDecoration(
-                              counterText: '',
-                              fillColor: ColorResources.primaryColor.withOpacity(0.5),
-                              contentPadding: EdgeInsets.symmetric(
-                                vertical: 15,
-                                horizontal: 15,
-                              ),
-                              hintText: "Bittsave username",
-                              // hintStyle: GoogleFonts.mulish(
-                              //   color: AppColors.textGrey,
-                              //   fontWeight: FontWeight.w400,
-                              //   fontSize: 12.sp,
-                              // ),
-                              border: OutlineInputBorder(
-                                borderSide: BorderSide(color: ColorResources.primaryColor, width: 1),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: ColorResources.primaryColor.withOpacity(0.1), width: 1),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              errorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: ColorResources.primaryColor, width: 1),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: ColorResources.primaryColor, width: 1),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                            ),
-                            // controller: controller,
-                            textAlign: TextAlign.start,
-                          ),
-                        ),
+                      CustomTextField(
+                        fillColor: Colors.grey.withOpacity(0.1),
+                        hintText: "Bittsave username",
+                        isShowBorder: true,
+                        controller: usernameController,
+                        inputType: TextInputType.name,
                       ),
                     ],
                   ),

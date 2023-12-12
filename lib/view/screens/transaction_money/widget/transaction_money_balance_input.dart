@@ -3,24 +3,24 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:six_cash/controller/add_money_controller.dart';
-import 'package:six_cash/controller/localization_controller.dart';
-import 'package:six_cash/controller/profile_screen_controller.dart';
-import 'package:six_cash/controller/splash_controller.dart';
-import 'package:six_cash/controller/transaction_controller.dart';
-import 'package:six_cash/data/model/purpose_models.dart';
-import 'package:six_cash/data/model/response/contact_model.dart';
-import 'package:six_cash/helper/price_converter.dart';
-import 'package:six_cash/util/app_constants.dart';
-import 'package:six_cash/util/color_resources.dart';
-import 'package:six_cash/util/dimensions.dart';
-import 'package:six_cash/util/styles.dart';
-import 'package:six_cash/view/base/CustomImage.dart';
-import 'package:six_cash/view/base/custom_app_bar.dart';
-import 'package:six_cash/view/base/custom_snackbar.dart';
-import 'package:six_cash/view/base/input_field_shimmer.dart';
-import 'package:six_cash/view/screens/transaction_money/widget/purpose_widget.dart';
-import 'package:six_cash/view/screens/transaction_money/widget/transaction_money_confirmation.dart';
+import 'package:bittsave/controller/add_money_controller.dart';
+import 'package:bittsave/controller/localization_controller.dart';
+import 'package:bittsave/controller/profile_screen_controller.dart';
+import 'package:bittsave/controller/splash_controller.dart';
+import 'package:bittsave/controller/transaction_controller.dart';
+import 'package:bittsave/data/model/purpose_models.dart';
+import 'package:bittsave/data/model/response/contact_model.dart';
+import 'package:bittsave/helper/price_converter.dart';
+import 'package:bittsave/util/app_constants.dart';
+import 'package:bittsave/util/color_resources.dart';
+import 'package:bittsave/util/dimensions.dart';
+import 'package:bittsave/util/styles.dart';
+import 'package:bittsave/view/base/CustomImage.dart';
+import 'package:bittsave/view/base/custom_app_bar.dart';
+import 'package:bittsave/view/base/custom_snackbar.dart';
+import 'package:bittsave/view/base/input_field_shimmer.dart';
+import 'package:bittsave/view/screens/transaction_money/widget/purpose_widget.dart';
+import 'package:bittsave/view/screens/transaction_money/widget/transaction_money_confirmation.dart';
 
 import 'for_person_widget.dart';
 import 'next_button.dart';
@@ -28,24 +28,19 @@ import 'next_button.dart';
 class TransactionMoneyBalanceInput extends StatefulWidget {
   final String transactionType;
   final ContactModel contactModel;
-  TransactionMoneyBalanceInput(
-      {Key key, this.transactionType, this.contactModel})
-      : super(key: key);
+  TransactionMoneyBalanceInput({Key key, this.transactionType, this.contactModel}) : super(key: key);
   @override
-  State<TransactionMoneyBalanceInput> createState() =>
-      _TransactionMoneyBalanceInputState();
+  State<TransactionMoneyBalanceInput> createState() => _TransactionMoneyBalanceInputState();
 }
 
-class _TransactionMoneyBalanceInputState
-    extends State<TransactionMoneyBalanceInput> {
+class _TransactionMoneyBalanceInputState extends State<TransactionMoneyBalanceInput> {
   final TextEditingController _inputAmountController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     final ProfileController profileController = Get.find<ProfileController>();
     final SplashController splashController = Get.find<SplashController>();
-    final LocalizationController localizationController =
-        Get.find<LocalizationController>();
+    final LocalizationController localizationController = Get.find<LocalizationController>();
     final size = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
@@ -62,13 +57,10 @@ class _TransactionMoneyBalanceInputState
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                widget.transactionType != 'add_money'
-                    ? ForPersonWidget(contactModel: widget.contactModel)
-                    : SizedBox.shrink(),
+                widget.transactionType != 'add_money' ? ForPersonWidget(contactModel: widget.contactModel) : SizedBox.shrink(),
                 GetBuilder<TransactionMoneyController>(builder: (controller) {
                   return controller.isLoading
-                      ? widget.transactionType == 'cash_out' &&
-                              widget.transactionType != 'add_money'
+                      ? widget.transactionType == 'cash_out' && widget.transactionType != 'add_money'
                           ? SizedBox()
                           : InputFieldShimmer()
                       : Column(
@@ -81,95 +73,46 @@ class _TransactionMoneyBalanceInputState
                                     children: [
                                       Container(
                                         width: size.width * 0.6,
-                                        padding: const EdgeInsets.symmetric(
-                                            vertical:
-                                                Dimensions.PADDING_SIZE_LARGE),
+                                        padding: const EdgeInsets.symmetric(vertical: Dimensions.PADDING_SIZE_LARGE),
                                         child: TextField(
                                           inputFormatters: <TextInputFormatter>[
                                             LengthLimitingTextInputFormatter(
-                                              Get.find<SplashController>()
-                                                          .configModel
-                                                          .currencyPosition ==
-                                                      'left'
-                                                  ? AppConstants
-                                                          .BALANCE_INPUT_LEN +
-                                                      (AppConstants
-                                                                  .BALANCE_INPUT_LEN /
-                                                              3)
-                                                          .floor() +
-                                                      Get.find<
-                                                              SplashController>()
-                                                          .configModel
-                                                          .currencySymbol
-                                                          .length
-                                                  : AppConstants
-                                                          .BALANCE_INPUT_LEN +
-                                                      (AppConstants
-                                                                  .BALANCE_INPUT_LEN /
-                                                              3)
-                                                          .ceil() +
-                                                      Get.find<
-                                                              SplashController>()
-                                                          .configModel
-                                                          .currencySymbol
-                                                          .length,
+                                              Get.find<SplashController>().configModel.currencyPosition == 'left'
+                                                  ? AppConstants.BALANCE_INPUT_LEN +
+                                                      (AppConstants.BALANCE_INPUT_LEN / 3).floor() +
+                                                      Get.find<SplashController>().configModel.currencySymbol.length
+                                                  : AppConstants.BALANCE_INPUT_LEN +
+                                                      (AppConstants.BALANCE_INPUT_LEN / 3).ceil() +
+                                                      Get.find<SplashController>().configModel.currencySymbol.length,
                                             ),
                                             CurrencyTextInputFormatter(
-                                              locale: Get.find<
-                                                              SplashController>()
-                                                          .configModel
-                                                          .currencyPosition ==
-                                                      'left'
-                                                  ? 'en'
-                                                  : 'fr',
+                                              locale: Get.find<SplashController>().configModel.currencyPosition == 'left' ? 'en' : 'fr',
                                               decimalDigits: 0,
-                                              symbol:
-                                                  '${Get.find<SplashController>().configModel.currencySymbol}',
+                                              symbol: '${Get.find<SplashController>().configModel.currencySymbol}',
                                             ),
                                           ],
-                                          keyboardType:
-                                              TextInputType.numberWithOptions(
-                                                  decimal: true),
+                                          keyboardType: TextInputType.numberWithOptions(decimal: true),
                                           controller: _inputAmountController,
-                                          textAlignVertical:
-                                              TextAlignVertical.center,
+                                          textAlignVertical: TextAlignVertical.center,
                                           textAlign: TextAlign.center,
-                                          style: montserratMedium.copyWith(
-                                              fontSize: 34,
-                                              color: ColorResources
-                                                  .getWhiteColor()),
+                                          style: montserratMedium.copyWith(fontSize: 34, color: ColorResources.getWhiteColor()),
                                           decoration: InputDecoration(
                                             isCollapsed: true,
-                                            hintText:
-                                                '${PriceConverter.balanceInputHint()}',
+                                            hintText: '${PriceConverter.balanceInputHint()}',
                                             border: InputBorder.none,
-                                            focusedBorder:
-                                                UnderlineInputBorder(),
+                                            focusedBorder: UnderlineInputBorder(),
                                             hintStyle:
-                                                montserratMedium.copyWith(
-                                                    fontSize: 34,
-                                                    color: ColorResources
-                                                            .getWhiteColor()
-                                                        .withOpacity(0.7)),
+                                                montserratMedium.copyWith(fontSize: 34, color: ColorResources.getWhiteColor().withOpacity(0.7)),
                                           ),
                                         ),
                                       ),
                                       Center(
-                                        child: GetBuilder<ProfileController>(
-                                            builder: (profController) {
+                                        child: GetBuilder<ProfileController>(builder: (profController) {
                                           return profController.isLoading
-                                              ? Center(
-                                                  child: CircularProgressIndicator(
-                                                      color: ColorResources
-                                                          .getPrimaryTextColor()))
-                                              : Text(
-                                                  '${'available_balance'.tr} ${PriceConverter.availableBalance()}',
-                                                  style: montserratRegular
-                                                      .copyWith(
-                                                          fontSize: Dimensions
-                                                              .FONT_SIZE_DEFAULT,
-                                                          color: ColorResources
-                                                              .getWhiteColor()));
+                                              ? Center(child: CircularProgressIndicator(color: ColorResources.getPrimaryTextColor()))
+                                              : Text('${'available_balance'.tr} ${PriceConverter.availableBalance()}',
+                                                  style: montserratRegular.copyWith(
+                                                      fontSize: Dimensions.FONT_SIZE_DEFAULT, color: ColorResources.getWhiteColor()));
                                         }),
                                       ),
                                       SizedBox(
@@ -178,13 +121,11 @@ class _TransactionMoneyBalanceInputState
                                     ],
                                   ),
                                 ),
-                                widget.transactionType != 'cash_out' &&
-                                        widget.transactionType != 'add_money'
+                                widget.transactionType != 'cash_out' && widget.transactionType != 'add_money'
                                     ? localizationController.isLtr
                                         ? Positioned(
                                             left: Dimensions.PADDING_SIZE_LARGE,
-                                            bottom: Dimensions
-                                                .PADDING_SIZE_EXTRA_LARGE,
+                                            bottom: Dimensions.PADDING_SIZE_EXTRA_LARGE,
                                             child: CustomImage(
                                                 image:
                                                     '${splashController.configModel.baseUrls.purposeImageUrl}/${controller.purposeList.isEmpty ? Purpose().logo : controller.purposeList[controller.selectedItem].logo}',
@@ -193,10 +134,8 @@ class _TransactionMoneyBalanceInputState
                                                 fit: BoxFit.cover),
                                           )
                                         : Positioned(
-                                            right:
-                                                Dimensions.PADDING_SIZE_LARGE,
-                                            bottom: Dimensions
-                                                .PADDING_SIZE_EXTRA_LARGE,
+                                            right: Dimensions.PADDING_SIZE_LARGE,
+                                            bottom: Dimensions.PADDING_SIZE_EXTRA_LARGE,
                                             child: CustomImage(
                                                 image:
                                                     '${splashController.configModel.baseUrls.purposeImageUrl}/${controller.purposeList.isEmpty ? Purpose().logo : controller.purposeList[controller.selectedItem].logo}',
@@ -217,23 +156,16 @@ class _TransactionMoneyBalanceInputState
                 widget.transactionType != 'add_money'
                     ? widget.transactionType == 'cash_out'
                         ? Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: Dimensions.PADDING_SIZE_LARGE,
-                                vertical: Dimensions.PADDING_SIZE_DEFAULT),
+                            padding: const EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE, vertical: Dimensions.PADDING_SIZE_DEFAULT),
                             child: Row(
                               children: [
-                                Text('save_future_cash_out'.tr,
-                                    style: montserratRegular.copyWith(
-                                        fontSize: Dimensions.FONT_SIZE_LARGE)),
+                                Text('save_future_cash_out'.tr, style: montserratRegular.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
                                 Spacer(),
-                                GetBuilder<TransactionMoneyController>(
-                                    builder: (switchController) {
+                                GetBuilder<TransactionMoneyController>(builder: (switchController) {
                                   return Padding(
                                       padding: EdgeInsets.zero,
-                                      child: CupertinoSwitch(
-                                          value: switchController.isFutureSave,
-                                          onChanged: switchController
-                                              .cupertinoSwitchOnChange));
+                                      child:
+                                          CupertinoSwitch(value: switchController.isFutureSave, onChanged: switchController.cupertinoSwitchOnChange));
                                 })
                               ],
                             ),
@@ -242,32 +174,23 @@ class _TransactionMoneyBalanceInputState
                     : SizedBox(),
                 widget.transactionType != 'cash_out' &&
                         widget.transactionType != 'add_money' &&
-                        Get.find<TransactionMoneyController>()
-                            .purposeList
-                            .isNotEmpty
+                        Get.find<TransactionMoneyController>().purposeList.isNotEmpty
                     ? MediaQuery.of(context).viewInsets.bottom > 10
                         ? Container(
                             color: ColorResources.whiteColor.withOpacity(0.92),
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: Dimensions.PADDING_SIZE_LARGE,
-                                vertical: Dimensions.PADDING_SIZE_SMALL),
+                            padding: const EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE, vertical: Dimensions.PADDING_SIZE_SMALL),
                             child: Row(
                               children: [
-                                GetBuilder<TransactionMoneyController>(
-                                    builder: (controller) {
+                                GetBuilder<TransactionMoneyController>(builder: (controller) {
                                   if (controller.purposeList.isEmpty) {
-                                    return Center(
-                                        child: CircularProgressIndicator(
-                                            color: ColorResources
-                                                .getPrimaryTextColor()));
+                                    return Center(child: CircularProgressIndicator(color: ColorResources.getPrimaryTextColor()));
                                   }
                                   return SizedBox();
                                 }),
                                 SizedBox(width: Dimensions.PADDING_SIZE_SMALL),
                                 Text(
                                   'change_purpose'.tr,
-                                  style: montserratRegular.copyWith(
-                                      fontSize: Dimensions.FONT_SIZE_LARGE),
+                                  style: montserratRegular.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE),
                                 )
                               ],
                             ),
@@ -277,8 +200,7 @@ class _TransactionMoneyBalanceInputState
               ],
             ),
           ),
-          floatingActionButton:
-              GetBuilder<TransactionMoneyController>(builder: (controller) {
+          floatingActionButton: GetBuilder<TransactionMoneyController>(builder: (controller) {
             return FloatingActionButton(
               onPressed: () {
                 double amount;
@@ -286,10 +208,8 @@ class _TransactionMoneyBalanceInputState
                   showCustomSnackBar('please_input_amount'.tr, isError: true);
                 } else {
                   String balance = _inputAmountController.text;
-                  if (balance.contains(
-                      '${splashController.configModel.currencySymbol}')) {
-                    balance = balance.replaceAll(
-                        '${splashController.configModel.currencySymbol}', '');
+                  if (balance.contains('${splashController.configModel.currencySymbol}')) {
+                    balance = balance.replaceAll('${splashController.configModel.currencySymbol}', '');
                   }
                   if (balance.contains(',')) {
                     balance = balance.replaceAll(',', '');
@@ -299,30 +219,19 @@ class _TransactionMoneyBalanceInputState
                   }
                   amount = double.parse(balance);
                   if (amount == 0) {
-                    showCustomSnackBar('transaction_amount_must_be'.tr,
-                        isError: true);
+                    showCustomSnackBar('transaction_amount_must_be'.tr, isError: true);
                   } else {
-                    if ((widget.transactionType == 'send_money' &&
-                            PriceConverter.withSendMoneyCharge(amount) >
-                                profileController.userInfo.balance) ||
-                        (widget.transactionType == 'cash_out' &&
-                            PriceConverter.withCashOutCharge(amount) >
-                                profileController.userInfo.balance)) {
-                      showCustomSnackBar('insufficient_balance'.tr,
-                          isError: true);
+                    if ((widget.transactionType == 'send_money' && PriceConverter.withSendMoneyCharge(amount) > profileController.userInfo.balance) ||
+                        (widget.transactionType == 'cash_out' && PriceConverter.withCashOutCharge(amount) > profileController.userInfo.balance)) {
+                      showCustomSnackBar('insufficient_balance'.tr, isError: true);
                     } else {
                       if (widget.transactionType == 'add_money') {
-                        Get.find<AddMoneyController>()
-                            .addMoney(context, amount.toString());
+                        Get.find<AddMoneyController>().addMoney(context, amount.toString());
                       } else {
                         Get.to(() => TransactionMoneyConfirmation(
                               inputBalance: amount,
                               transactionType: widget.transactionType,
-                              purpose: controller.purposeList.isEmpty
-                                  ? Purpose().title
-                                  : controller
-                                      .purposeList[controller.selectedItem]
-                                      .title,
+                              purpose: controller.purposeList.isEmpty ? Purpose().title : controller.purposeList[controller.selectedItem].title,
                               contactModel: widget.contactModel,
                             ));
                       }

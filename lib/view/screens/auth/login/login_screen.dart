@@ -5,20 +5,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:phone_number/phone_number.dart';
-import 'package:six_cash/controller/auth_controller.dart';
-import 'package:six_cash/controller/menu_controller.dart';
-import 'package:six_cash/controller/profile_screen_controller.dart';
-import 'package:six_cash/controller/splash_controller.dart';
-import 'package:six_cash/helper/route_helper.dart';
-import 'package:six_cash/util/color_resources.dart';
-import 'package:six_cash/util/dimensions.dart';
-import 'package:six_cash/util/styles.dart';
-import 'package:six_cash/view/base/custom_country_code_picker.dart';
-import 'package:six_cash/view/base/custom_password_field.dart';
-import 'package:six_cash/view/base/custom_snackbar.dart';
-import 'package:six_cash/view/screens/auth/login/widget/login_qr_popup_card.dart';
-import 'package:six_cash/view/screens/home/widget/animated_card/custom_rect_tween.dart';
-import 'package:six_cash/view/screens/home/widget/animated_card/hero_dialogue_route.dart';
+import 'package:bittsave/controller/auth_controller.dart';
+import 'package:bittsave/controller/menu_controller.dart';
+import 'package:bittsave/controller/profile_screen_controller.dart';
+import 'package:bittsave/controller/splash_controller.dart';
+import 'package:bittsave/helper/route_helper.dart';
+import 'package:bittsave/util/color_resources.dart';
+import 'package:bittsave/util/dimensions.dart';
+import 'package:bittsave/util/styles.dart';
+import 'package:bittsave/view/base/custom_country_code_picker.dart';
+import 'package:bittsave/view/base/custom_password_field.dart';
+import 'package:bittsave/view/base/custom_snackbar.dart';
+import 'package:bittsave/view/screens/auth/login/widget/login_qr_popup_card.dart';
+import 'package:bittsave/view/screens/home/widget/animated_card/custom_rect_tween.dart';
+import 'package:bittsave/view/screens/home/widget/animated_card/hero_dialogue_route.dart';
 
 class LoginScreen extends StatefulWidget {
   final String phoneNumber, countryCode;
@@ -237,7 +237,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                                   width: 40,
                                                   height: 20,
                                                   margin: const EdgeInsets.only(right: 5, left: 5),
-                                                  child:  Center(child: Text("$_countryCode ")),
+                                                  child: Center(child: Text("$_countryCode ")),
                                                 ),
                                               ],
                                             ),

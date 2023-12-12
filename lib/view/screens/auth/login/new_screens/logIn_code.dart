@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:six_cash/view/screens/auth/create_account/newScreens/scan_Page.dart';
-import 'package:six_cash/view/screens/home/funding_options/request_from_a_riend/friend_identity.dart';
+import 'package:bittsave/view/screens/auth/create_account/newScreens/scan_Page.dart';
+import 'package:bittsave/view/screens/home/funding_options/request_from_a_riend/friend_identity.dart';
 
 class LogInCode extends StatefulWidget {
   const LogInCode({Key key}) : super(key: key);
@@ -34,9 +34,7 @@ class _LogInCodeState extends State<LogInCode> {
                         decoration: BoxDecoration(
                             color: Colors.pink,
                             borderRadius: BorderRadius.circular(15),
-                            image: DecorationImage(
-                                image:
-                                    AssetImage('assets/image/about_us.png'))),
+                            image: DecorationImage(image: AssetImage('assets/image/about_us.png'))),
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 15.0),
@@ -46,14 +44,12 @@ class _LogInCodeState extends State<LogInCode> {
                           children: [
                             Text(
                               'Jerome Bell',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w600, fontSize: 16),
+                              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
                             ),
                             SizedBox(height: 2),
                             Text(
                               '+7 (319) 555-0115',
-                              style:
-                                  TextStyle(color: Colors.grey, fontSize: 15),
+                              style: TextStyle(color: Colors.grey, fontSize: 15),
                             )
                           ],
                         ),
@@ -61,8 +57,7 @@ class _LogInCodeState extends State<LogInCode> {
                       Spacer(),
                       Text(
                         'Change',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w600, fontSize: 16),
+                        style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
                       )
                     ],
                   )),
@@ -150,13 +145,9 @@ class _LogInCodeState extends State<LogInCode> {
                               numericCont(text: '0'),
                               InkWell(
                                 onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => ScanPage()));
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => ScanPage()));
                                 },
-                                child: numericCont2(
-                                    Image.asset('assets/newImages/Icon.png')),
+                                child: numericCont2(Image.asset('assets/newImages/Icon.png')),
                               )
                             ],
                           ),
@@ -177,13 +168,11 @@ class _LogInCodeState extends State<LogInCode> {
         margin: EdgeInsets.all(5),
         width: 100,
         height: 80,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10), color: Colors.grey[200]),
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: Colors.grey[200]),
         child: Center(
             child: Text(
           text,
-          style: TextStyle(
-              color: Colors.black, fontSize: 25, fontWeight: FontWeight.w700),
+          style: TextStyle(color: Colors.black, fontSize: 25, fontWeight: FontWeight.w700),
         )),
       ),
     );

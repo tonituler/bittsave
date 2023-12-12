@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:six_cash/util/color_resources.dart';
-import 'package:six_cash/util/dimensions.dart';
-import 'package:six_cash/util/styles.dart';
+import 'package:bittsave/util/color_resources.dart';
+import 'package:bittsave/util/dimensions.dart';
+import 'package:bittsave/util/styles.dart';
 
 class CustomSmallButton extends StatelessWidget {
   final String text;
@@ -26,8 +26,7 @@ class CustomSmallButton extends StatelessWidget {
             color: backgroundColor,
             border: Border.all(width: 1, color: ColorResources.primaryColor),
             borderRadius: BorderRadius.circular(Dimensions.RADIUS_SIZE_SMALL)),
-        padding:
-            EdgeInsets.symmetric(vertical: Dimensions.PADDING_SIZE_DEFAULT),
+        padding: EdgeInsets.symmetric(vertical: Dimensions.PADDING_SIZE_DEFAULT),
         child: Text(
           text,
           textAlign: TextAlign.center,

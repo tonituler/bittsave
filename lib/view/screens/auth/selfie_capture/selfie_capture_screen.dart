@@ -5,21 +5,20 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:six_cash/controller/auth_controller.dart';
-import 'package:six_cash/controller/image_controller.dart';
-import 'package:six_cash/helper/route_helper.dart';
-import 'package:six_cash/main.dart';
-import 'package:six_cash/util/color_resources.dart';
-import 'package:six_cash/util/dimensions.dart';
-import 'package:six_cash/view/base/animated_custom_dialog.dart';
-import 'package:six_cash/view/base/my_dialog.dart';
-import 'package:six_cash/view/screens/auth/selfie_capture/widget/selfie_app_bar.dart';
-import 'package:six_cash/view/screens/auth/selfie_capture/widget/text_section.dart';
+import 'package:bittsave/controller/auth_controller.dart';
+import 'package:bittsave/controller/image_controller.dart';
+import 'package:bittsave/helper/route_helper.dart';
+import 'package:bittsave/main.dart';
+import 'package:bittsave/util/color_resources.dart';
+import 'package:bittsave/util/dimensions.dart';
+import 'package:bittsave/view/base/animated_custom_dialog.dart';
+import 'package:bittsave/view/base/my_dialog.dart';
+import 'package:bittsave/view/screens/auth/selfie_capture/widget/selfie_app_bar.dart';
+import 'package:bittsave/view/screens/auth/selfie_capture/widget/text_section.dart';
 
 class SelfieCaptureScreen extends StatefulWidget {
   final bool fromEditProfile;
-  SelfieCaptureScreen({Key key, @required this.fromEditProfile})
-      : super(key: key);
+  SelfieCaptureScreen({Key key, @required this.fromEditProfile}) : super(key: key);
   @override
   State<SelfieCaptureScreen> createState() => _SelfieCaptureScreenState();
 }
@@ -86,8 +85,7 @@ class _SelfieCaptureScreenState extends State<SelfieCaptureScreen> {
           },
         ),
         body: Padding(
-          padding: const EdgeInsets.symmetric(
-              horizontal: Dimensions.PADDING_SIZE_DEFAULT),
+          padding: const EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_DEFAULT),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -124,8 +122,7 @@ class _SelfieCaptureScreenState extends State<SelfieCaptureScreen> {
         ),
         bottomNavigationBar: Container(
           color: ColorResources.getPrimaryColor(),
-          padding: const EdgeInsets.symmetric(
-              vertical: Dimensions.PADDING_SIZE_EXTRA_LARGE),
+          padding: const EdgeInsets.symmetric(vertical: Dimensions.PADDING_SIZE_EXTRA_LARGE),
           child: Container(
             padding: const EdgeInsets.all(Dimensions.PADDING_SIZE_EXTRA_SMALL),
             decoration: BoxDecoration(

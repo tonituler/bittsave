@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:phone_number/phone_number.dart';
-import 'package:six_cash/app/extensions.dart';
-import 'package:six_cash/app/size_config/config.dart';
-import 'package:six_cash/controller/auth_controller.dart';
-import 'package:six_cash/controller/create_account_controller.dart';
-import 'package:six_cash/controller/splash_controller.dart';
-import 'package:six_cash/util/color_resources.dart';
-import 'package:six_cash/util/dimensions.dart';
-import 'package:six_cash/util/styles.dart';
-import 'package:six_cash/view/base/buttons.dart';
+import 'package:bittsave/app/extensions.dart';
+import 'package:bittsave/app/size_config/config.dart';
+import 'package:bittsave/controller/auth_controller.dart';
+import 'package:bittsave/controller/create_account_controller.dart';
+import 'package:bittsave/controller/splash_controller.dart';
+import 'package:bittsave/util/color_resources.dart';
+import 'package:bittsave/util/dimensions.dart';
+import 'package:bittsave/util/styles.dart';
+import 'package:bittsave/view/base/buttons.dart';
 
-// import 'package:six_cash/view/base/custom_logo';
+// import 'package:bittsave/view/base/custom_logo';
 
 import '../../../base/custom_snackbar.dart';
 import '../../home/funding_options/request_from_a_riend/friend_identity.dart';
@@ -29,8 +29,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
   @override
   void initState() {
     super.initState();
-    Get.find<CreateAccountController>()
-        .setInitCountryCode(Get.find<SplashController>().getCountryCode());
+    Get.find<CreateAccountController>().setInitCountryCode(Get.find<SplashController>().getCountryCode());
   }
 
   @override
@@ -50,15 +49,13 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     BackButtons(),
-                    const SizedBox(
-                        height: Dimensions.PADDING_SIZE_EXTRA_OVER_LARGE),
+                    const SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_OVER_LARGE),
                     // CustomLogo(
                     //     height: Dimensions.BIG_LOGO,
                     //     width: Dimensions.BIG_LOGO),
                     const SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
                     Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: Dimensions.PADDING_SIZE_DEFAULT),
+                      padding: const EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_DEFAULT),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -75,18 +72,14 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                             // 'create_account_description'.tr,
                             'Enter your\nmobile number'.tr,
                             style: montserratRegular.copyWith(
-                                color: ColorResources.getBlackColor(),
-                                fontSize: Dimensions.FONT_SIZE_OVER_OVER_LARGE,
-                                fontWeight: FontWeight.w500),
+                                color: ColorResources.getBlackColor(), fontSize: Dimensions.FONT_SIZE_OVER_OVER_LARGE, fontWeight: FontWeight.w500),
                             textAlign: TextAlign.left,
                           ),
                           Text(
                             // 'create_account_description'.tr,
                             'we will send you a confirmation code'.tr,
                             style: montserratRegular.copyWith(
-                                color: ColorResources.getGreyColor(),
-                                fontSize: Dimensions.FONT_SIZE_DEFAULT,
-                                fontWeight: FontWeight.w500),
+                                color: ColorResources.getGreyColor(), fontSize: Dimensions.FONT_SIZE_DEFAULT, fontWeight: FontWeight.w500),
                             textAlign: TextAlign.left,
                           ),
                         ],
@@ -98,24 +91,19 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                     GetBuilder<CreateAccountController>(
                       builder: (controller) => Container(
                         height: 52,
-                        margin: EdgeInsets.symmetric(
-                            horizontal: Dimensions.PADDING_SIZE_DEFAULT),
+                        margin: EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_DEFAULT),
                         child: Center(
                           child: TextField(
                             maxLength: 10,
                             textAlign: TextAlign.left,
-                            style: TextStyle(
-                                fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE),
+                            style: TextStyle(fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE),
                             controller: numberFieldController,
                             keyboardType: TextInputType.phone,
                             cursorColor: ColorResources.getPrimaryTextColor(),
                             decoration: InputDecoration(
                               counterText: '',
                               hintText: "___ ___ ___ ___",
-                              hintStyle: TextStyle(
-                                  fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE,
-                                  fontWeight: FontWeight.w100,
-                                  color: Colors.grey[400]),
+                              hintStyle: TextStyle(fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE, fontWeight: FontWeight.w100, color: Colors.grey[400]),
                               contentPadding: const EdgeInsets.only(
                                 bottom: 0,
                                 top: 0,
@@ -130,8 +118,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                               //   // ),
                               // ),
                               border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(
-                                      Dimensions.RADIUS_SIZE_SMALL),
+                                  borderRadius: BorderRadius.circular(Dimensions.RADIUS_SIZE_SMALL),
                                   // borderSide: BorderSide(
                                   //   color: ColorResources.textFieldBorderColor,
                                   //   width: 1,
@@ -146,15 +133,12 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                                       // color: Colors.green,
                                       width: 50,
                                       height: 20,
-                                      margin: const EdgeInsets.only(
-                                          left: 0, bottom: 5),
+                                      margin: const EdgeInsets.only(left: 0, bottom: 5),
                                       // decoration: const BoxDecoration(border: Border(right: BorderSide(width: 2, color: Colors.grey))),
                                       child: const Center(
                                           child: Text(
                                         "+234",
-                                        style: TextStyle(
-                                            fontSize: Dimensions
-                                                .FONT_SIZE_EXTRA_LARGE),
+                                        style: TextStyle(fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE),
                                       )),
                                     ),
                                   ],
@@ -188,15 +172,13 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                     fontWeight: FontWeight.w400,
                     height: 54.h,
                     onTap: () async {
-                      String _phoneNumber =
-                          '${Get.find<CreateAccountController>().countryCode}${numberFieldController.text}';
+                      String _phoneNumber = '${Get.find<CreateAccountController>().countryCode}${numberFieldController.text}';
                       try {
-                        await PhoneNumberUtil().parse(_phoneNumber).then(
-                            (value) => Get.find<CreateAccountController>()
-                                .sendOtpResponse(number: _phoneNumber));
+                        await PhoneNumberUtil()
+                            .parse(_phoneNumber)
+                            .then((value) => Get.find<CreateAccountController>().sendOtpResponse(number: _phoneNumber));
                       } catch (e) {
-                        showCustomSnackBar('please_input_your_valid_number'.tr,
-                            isError: true);
+                        showCustomSnackBar('please_input_your_valid_number'.tr, isError: true);
                         numberFieldController.clear();
                       }
                     },

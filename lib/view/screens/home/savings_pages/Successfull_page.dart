@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:six_cash/helper/route_helper.dart';
-import 'package:six_cash/view/screens/deshboard/nav_bar.dart';
+import 'package:bittsave/helper/route_helper.dart';
+import 'package:bittsave/view/screens/deshboard/nav_bar.dart';
 
 import '../funding_options/request_from_a_riend/friend_identity.dart';
 import 'myPlans.dart';

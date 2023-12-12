@@ -3,9 +3,9 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get_connect/http/src/response/response.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:six_cash/data/api/api_client.dart';
-import 'package:six_cash/data/model/response/contact_model.dart';
-import 'package:six_cash/util/app_constants.dart';
+import 'package:bittsave/data/api/api_client.dart';
+import 'package:bittsave/data/model/response/contact_model.dart';
+import 'package:bittsave/util/app_constants.dart';
 
 class TransactionRepo {
   final ApiClient apiClient;
@@ -17,46 +17,28 @@ class TransactionRepo {
     return await apiClient.getData(AppConstants.CUSTOMER_PURPOSE_URL);
   }
 
-  Future<Response> sendMoneyApi(
-      {@required String phoneNumber,
-      @required double amount,
-      @required String purpose,
-      @required String pin}) async {
-    return await apiClient.postData(AppConstants.CUSTOMER_SEND_MONEY, {
-      'phone': phoneNumber,
-      'amount': amount,
-      'purpose': purpose,
-      'pin': pin
-    });
+  Future<Response> sendMoneyApi({@required String phoneNumber, @required double amount, @required String purpose, @required String pin}) async {
+    return await apiClient.postData(AppConstants.CUSTOMER_SEND_MONEY, {'phone': phoneNumber, 'amount': amount, 'purpose': purpose, 'pin': pin});
   }
 
-  Future<Response> requestMoneyApi(
-      {@required String phoneNumber, @required double amount}) async {
-    return await apiClient.postData(AppConstants.CUSTOMER_REQUEST_MONEY,
-        {'phone': phoneNumber, 'amount': amount});
+  Future<Response> requestMoneyApi({@required String phoneNumber, @required double amount}) async {
+    return await apiClient.postData(AppConstants.CUSTOMER_REQUEST_MONEY, {'phone': phoneNumber, 'amount': amount});
   }
 
-  Future<Response> cashOutApi(
-      {@required String phoneNumber,
-      @required double amount,
-      @required String pin}) async {
-    return await apiClient.postData(AppConstants.CUSTOMER_CASH_OUT,
-        {'phone': phoneNumber, 'amount': amount, 'pin': pin});
+  Future<Response> cashOutApi({@required String phoneNumber, @required double amount, @required String pin}) async {
+    return await apiClient.postData(AppConstants.CUSTOMER_CASH_OUT, {'phone': phoneNumber, 'amount': amount, 'pin': pin});
   }
 
   Future<Response> checkCustomerNumber({@required String phoneNumber}) async {
-    return await apiClient
-        .postData(AppConstants.CHECK_CUSTOMER_URI, {'phone': phoneNumber});
+    return await apiClient.postData(AppConstants.CHECK_CUSTOMER_URI, {'phone': phoneNumber});
   }
 
   Future<Response> checkCustomerUsername({@required String username}) async {
-    return await apiClient
-        .postData(AppConstants.CHECK_CUSTOMER_URI, {'username': username});
+    return await apiClient.postData(AppConstants.CHECK_CUSTOMER_URI, {'username': username});
   }
 
   Future<Response> checkAgentNumber({@required String phoneNumber}) async {
-    return await apiClient
-        .postData(AppConstants.CHECK_AGENT_URI, {'phone': phoneNumber});
+    return await apiClient.postData(AppConstants.CHECK_AGENT_URI, {'phone': phoneNumber});
   }
 
   List<ContactModel> getRecentList({@required String type}) {
@@ -75,31 +57,24 @@ class TransactionRepo {
       }
     }
     if (recent != null && recent != '' && recent != 'null') {
-      return contactModelFromJson(
-          utf8.decode(base64Url.decode(recent.replaceAll(' ', '+'))));
+      return contactModelFromJson(utf8.decode(base64Url.decode(recent.replaceAll(' ', '+'))));
     }
     return null;
   }
 
-  void addToSuggestList(List<ContactModel> contactModelList,
-      {@required String type}) async {
-    String _suggests =
-        base64Url.encode(utf8.encode(contactModelToJson(contactModelList)));
+  void addToSuggestList(List<ContactModel> contactModelList, {@required String type}) async {
+    String _suggests = base64Url.encode(utf8.encode(contactModelToJson(contactModelList)));
     if (type == 'send_money') {
-      await sharedPreferences.setString(
-          AppConstants.SEND_MONEY_SUGGEST_LIST, _suggests);
+      await sharedPreferences.setString(AppConstants.SEND_MONEY_SUGGEST_LIST, _suggests);
     } else if (type == 'request_money') {
-      await sharedPreferences.setString(
-          AppConstants.REQUEST_MONEY_SUGGEST_LIST, _suggests);
+      await sharedPreferences.setString(AppConstants.REQUEST_MONEY_SUGGEST_LIST, _suggests);
     } else if (type == "cash_out") {
-      await sharedPreferences.setString(
-          AppConstants.RECENT_AGENT_LIST, _suggests);
+      await sharedPreferences.setString(AppConstants.RECENT_AGENT_LIST, _suggests);
     }
   }
 
   Future<Response> depositRequest({@required double amount}) async {
-    return await apiClient
-        .postData(AppConstants.CUSTOMER_DEPOSIT_REQUEST, {'amount': amount});
+    return await apiClient.postData(AppConstants.CUSTOMER_DEPOSIT_REQUEST, {'amount': amount});
   }
 
   Future<Response> findAgent() async {
@@ -107,18 +82,15 @@ class TransactionRepo {
   }
 
   Future<Response> confirmDeposit({@required String depositId}) async {
-    return await apiClient.postData(
-        AppConstants.CUSTOMER_DEPOSIT_CONFIRMATION, {'id': depositId});
+    return await apiClient.postData(AppConstants.CUSTOMER_DEPOSIT_CONFIRMATION, {'id': depositId});
   }
 
   Future<Response> fundRequest(Map<String, dynamic> credentials) async {
-    return await apiClient.postData(
-        AppConstants.CUSTOMER_REQUEST_MONEY, credentials);
+    return await apiClient.postData(AppConstants.CUSTOMER_REQUEST_MONEY, credentials);
   }
 
   /// LOAN
-  Future<Response> loanCalculation(
-      {@required Map<String, dynamic> data}) async {
+  Future<Response> loanCalculation({@required Map<String, dynamic> data}) async {
     return await apiClient.postData(AppConstants.LOAN_CALCULATOR, data);
   }
 
@@ -159,19 +131,16 @@ class TransactionRepo {
     return await apiClient.postData(AppConstants.PLAN_PREVIEW, data);
   }
 
-  Future<Response> planPaymentHistory(
-      {@required Map<String, dynamic> data}) async {
+  Future<Response> planPaymentHistory({@required Map<String, dynamic> data}) async {
     return await apiClient.postData(AppConstants.PLAN_PAYMENT_HISTORY, data);
   }
 
   Future<Response> payPlan(String planId, String pin) async {
-    return await apiClient
-        .postData(AppConstants.PAY_PLAN, {"id": planId, "pin": pin});
+    return await apiClient.postData(AppConstants.PAY_PLAN, {"id": planId, "pin": pin});
   }
 
   Future<Response> withdrawPlan(String planId, String pin) async {
-    return await apiClient
-        .postData(AppConstants.WITHDRAWAL_PLAN, {"id": planId, "pin": pin});
+    return await apiClient.postData(AppConstants.WITHDRAWAL_PLAN, {"id": planId, "pin": pin});
   }
 
   ///WALLET
@@ -195,10 +164,8 @@ class TransactionRepo {
     return await apiClient.postData(AppConstants.WALLET_WITHDRAWAL, data);
   }
 
-  Future<Response> sendUSDToBITTSAVEUser(
-      {@required Map<String, dynamic> data}) async {
-    return await apiClient.postData(
-        AppConstants.SEND_USD_TO_BITTSAVE_USER, data);
+  Future<Response> sendUSDToBITTSAVEUser({@required Map<String, dynamic> data}) async {
+    return await apiClient.postData(AppConstants.SEND_USD_TO_BITTSAVE_USER, data);
   }
 
   Future<Response> getUSDHistory() async {

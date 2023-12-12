@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:six_cash/controller/auth_controller.dart';
-import 'package:six_cash/helper/route_helper.dart';
-import 'package:six_cash/util/app_constants.dart';
-import 'package:six_cash/util/color_resources.dart';
-import 'package:six_cash/util/dimensions.dart';
-import 'package:six_cash/view/base/custom_small_button.dart';
-import 'package:six_cash/view/screens/onboarding/chose_login_registration/widget/indicator_section.dart';
+import 'package:bittsave/controller/auth_controller.dart';
+import 'package:bittsave/helper/route_helper.dart';
+import 'package:bittsave/util/app_constants.dart';
+import 'package:bittsave/util/color_resources.dart';
+import 'package:bittsave/util/dimensions.dart';
+import 'package:bittsave/view/base/custom_small_button.dart';
+import 'package:bittsave/view/screens/onboarding/chose_login_registration/widget/indicator_section.dart';
 
 import '../../../../util/styles.dart';
 

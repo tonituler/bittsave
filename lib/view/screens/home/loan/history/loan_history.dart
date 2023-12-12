@@ -1,29 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:intl/intl.dart';
-import 'package:six_cash/app/extensions.dart';
-import 'package:six_cash/controller/loan_controller.dart';
-import 'package:six_cash/controller/splash_controller.dart';
-import 'package:six_cash/data/model/loan_model.dart';
-import 'package:six_cash/helper/price_converter.dart';
-import 'package:six_cash/util/color_resources.dart';
-import 'package:six_cash/view/base/buttons.dart';
-import 'package:six_cash/view/base/custom_drop_down.dart';
-import 'package:six_cash/view/base/custom_snackbar.dart';
-import 'package:six_cash/view/base/text_widgets.dart';
-import 'package:six_cash/view/screens/home/funding_options/request_from_a_riend/bitsave_user_request.dart';
-import 'package:six_cash/view/screens/home/funding_options/request_from_a_riend/friend_identity.dart';
-import 'package:six_cash/view/screens/home/funding_usd_wallet_page.dart';
-import 'package:six_cash/view/screens/home/loan/history/loan_info.dart';
-import 'package:six_cash/view/screens/home/loan/howToBeFunded.dart';
+import 'package:bittsave/app/extensions.dart';
+import 'package:bittsave/controller/loan_controller.dart';
+import 'package:bittsave/controller/splash_controller.dart';
+import 'package:bittsave/data/model/loan_model.dart';
+import 'package:bittsave/helper/price_converter.dart';
+import 'package:bittsave/util/color_resources.dart';
+import 'package:bittsave/view/base/buttons.dart';
+import 'package:bittsave/view/base/custom_drop_down.dart';
+import 'package:bittsave/view/base/custom_snackbar.dart';
+import 'package:bittsave/view/base/text_widgets.dart';
+import 'package:bittsave/view/screens/home/funding_options/request_from_a_riend/bitsave_user_request.dart';
+import 'package:bittsave/view/screens/home/funding_options/request_from_a_riend/friend_identity.dart';
+import 'package:bittsave/view/screens/home/funding_usd_wallet_page.dart';
+import 'package:bittsave/view/screens/home/loan/history/loan_info.dart';
+import 'package:bittsave/view/screens/home/loan/howToBeFunded.dart';
 
 import '../../../../../util/dimensions.dart';
 
 bool _showBtSheet = false;
 const kTextField = InputDecoration(
   hintText: 'Choose a value',
-  hintStyle:
-      TextStyle(color: Colors.pink, fontWeight: FontWeight.w300, fontSize: 16),
+  hintStyle: TextStyle(color: Colors.pink, fontWeight: FontWeight.w300, fontSize: 16),
 );
 
 class LoanHistory extends StatefulWidget {
@@ -82,8 +81,7 @@ class _LoanHistoryState extends State<LoanHistory> {
                             return FutureBuilder(
                               future: loadLoans(controller),
                               builder: (context, snapshot) {
-                                if (snapshot.connectionState ==
-                                    ConnectionState.waiting) {
+                                if (snapshot.connectionState == ConnectionState.waiting) {
                                   isInitialLoad = true;
                                   return Center(
                                     child: CircularProgressIndicator(),
@@ -99,9 +97,7 @@ class _LoanHistoryState extends State<LoanHistory> {
                                   } else {
                                     return SingleChildScrollView(
                                       child: Column(
-                                        children: controller.loansHistory
-                                            .map((item) => loanItem(item))
-                                            .toList(),
+                                        children: controller.loansHistory.map((item) => loanItem(item)).toList(),
                                       ),
                                     );
                                   }
@@ -166,9 +162,7 @@ class _LoanHistoryState extends State<LoanHistory> {
           ),
           Padding(
             padding: const EdgeInsets.only(bottom: 10, top: 10),
-            child: Text(
-                'You have not applied for a loan, but thats about to change. Tap the button below',
-                textAlign: TextAlign.center),
+            child: Text('You have not applied for a loan, but thats about to change. Tap the button below', textAlign: TextAlign.center),
           ),
           Container(
             height: 50,
@@ -681,7 +675,6 @@ class _LoanHistoryState extends State<LoanHistory> {
     );
   }
 
-  
   Widget loanItem(Loan loan) {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 5),
@@ -694,7 +687,9 @@ class _LoanHistoryState extends State<LoanHistory> {
             decoration: BoxDecoration(
                 color: (loan.status?.toLowerCase() == "completed")
                     ? Colors.green
-                    : (loan.status?.toLowerCase() == "due") ? Colors.grey : Colors.pink,
+                    : (loan.status?.toLowerCase() == "due")
+                        ? Colors.grey
+                        : Colors.pink,
                 borderRadius: BorderRadius.only(topRight: Radius.circular(10))),
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
@@ -724,10 +719,7 @@ class _LoanHistoryState extends State<LoanHistory> {
                         ),
                         Text(
                           '\$${PriceConverter.priceFormater(balance: double.parse(loan.loanAmount))}',
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: Dimensions.FONT_SIZE_LARGE,
-                              fontWeight: FontWeight.w400),
+                          style: TextStyle(color: Colors.black, fontSize: Dimensions.FONT_SIZE_LARGE, fontWeight: FontWeight.w400),
                         ),
                       ],
                     ),
@@ -741,10 +733,7 @@ class _LoanHistoryState extends State<LoanHistory> {
                         ),
                         Text(
                           '\$${PriceConverter.priceFormater(balance: double.parse(loan.totalRepayment))}',
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: Dimensions.FONT_SIZE_LARGE,
-                              fontWeight: FontWeight.w400),
+                          style: TextStyle(color: Colors.black, fontSize: Dimensions.FONT_SIZE_LARGE, fontWeight: FontWeight.w400),
                         ),
                       ],
                     ),
@@ -755,9 +744,7 @@ class _LoanHistoryState extends State<LoanHistory> {
                   children: [
                     Text(
                       'Due date:',
-                      style: TextStyle(
-                          color: ColorResources.COLOR_PRIMARY,
-                          fontWeight: FontWeight.w500),
+                      style: TextStyle(color: ColorResources.COLOR_PRIMARY, fontWeight: FontWeight.w500),
                     ),
                     SizedBox(width: 4),
                     Center(
@@ -840,7 +827,7 @@ class _LoanHistoryState extends State<LoanHistory> {
   }
 
   String capitalizeOnlyFirstLater(String value) {
-    if(value.trim().isEmpty) return "";
+    if (value.trim().isEmpty) return "";
 
     return "${value[0].toUpperCase()}${value.substring(1)}";
   }
@@ -858,8 +845,7 @@ class _LoanHistoryState extends State<LoanHistory> {
   String formatedDate(String date) {
     DateTime dT = DateTime.parse(date);
 
-    return DateFormat('hh:mm a')
-            .format(DateTime(0, dT.month, dT.day, dT.hour, dT.minute)) +
+    return DateFormat('hh:mm a').format(DateTime(0, dT.month, dT.day, dT.hour, dT.minute)) +
         " | " "${dT.day}-" +
         DateFormat('MMM').format(DateTime(0, dT.month)) +
         "-" +
@@ -878,9 +864,7 @@ class _LoanHistoryState extends State<LoanHistory> {
                 height: 400,
                 width: 300,
                 decoration: BoxDecoration(
-                    color: Colors.grey[50],
-                    border: Border.all(color: Colors.black26, width: 0.2),
-                    borderRadius: BorderRadius.circular(20)),
+                    color: Colors.grey[50], border: Border.all(color: Colors.black26, width: 0.2), borderRadius: BorderRadius.circular(20)),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -915,9 +899,7 @@ class _LoanHistoryState extends State<LoanHistory> {
                           col: Colors.pink,
                           widget: Text(
                             'Close',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w500),
+                            style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
                           ),
                         ),
                       ),

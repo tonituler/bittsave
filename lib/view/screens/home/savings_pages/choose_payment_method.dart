@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:six_cash/app/extensions.dart';
-import 'package:six_cash/controller/savings_controller.dart';
-import 'package:six_cash/util/color_resources.dart';
-import 'package:six_cash/view/base/buttons.dart';
-import 'package:six_cash/view/screens/home/savings_pages/plan_summary.dart';
+import 'package:bittsave/app/extensions.dart';
+import 'package:bittsave/controller/savings_controller.dart';
+import 'package:bittsave/util/color_resources.dart';
+import 'package:bittsave/view/base/buttons.dart';
+import 'package:bittsave/view/screens/home/savings_pages/plan_summary.dart';
 
 import '../funding_options/request_from_a_riend/friend_identity.dart';
 import '../funding_usd_wallet_page.dart';
@@ -33,17 +33,9 @@ class _ChoosePaymentMethodState extends State<ChoosePaymentMethod> {
               children: [
                 SizedBox(height: 60),
                 BackButtons(),
-                Text('Choose payment method',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 22)),
+                Text('Choose payment method', style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500, fontSize: 22)),
                 SizedBox(height: 8),
-                Text('Select your preferred method of payment',
-                    style: TextStyle(
-                        color: Colors.grey,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 15)),
+                Text('Select your preferred method of payment', style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w400, fontSize: 15)),
                 Container(
                   margin: EdgeInsets.only(top: 120, right: 10, left: 10),
                   child: InkWell(
@@ -53,17 +45,14 @@ class _ChoosePaymentMethodState extends State<ChoosePaymentMethod> {
                       });
                     },
                     child: Container(
-                      padding: EdgeInsets.only(
-                          left: 12, top: 15, right: 12, bottom: 5),
+                      padding: EdgeInsets.only(left: 12, top: 15, right: 12, bottom: 5),
                       height: 100,
                       width: double.infinity,
                       decoration: BoxDecoration(
                         color: Colors.white60,
                         borderRadius: BorderRadius.circular(20),
                         border: Border.all(
-                          color: (paymentMethod == "usd_wallet")
-                              ? Colors.pink
-                              : Colors.grey,
+                          color: (paymentMethod == "usd_wallet") ? Colors.pink : Colors.grey,
                           width: 1,
                         ),
                       ),
@@ -74,8 +63,7 @@ class _ChoosePaymentMethodState extends State<ChoosePaymentMethod> {
                             children: [
                               Text(
                                 'Fund my USD wallet',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w500, fontSize: 18),
+                                style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
                               ),
                               SizedBox(height: 6),
                               Padding(
@@ -121,17 +109,14 @@ class _ChoosePaymentMethodState extends State<ChoosePaymentMethod> {
                       });
                     },
                     child: Container(
-                      padding: EdgeInsets.only(
-                          left: 12, top: 15, right: 12, bottom: 5),
+                      padding: EdgeInsets.only(left: 12, top: 15, right: 12, bottom: 5),
                       height: 100,
                       width: double.infinity,
                       decoration: BoxDecoration(
                         color: Colors.white60,
                         borderRadius: BorderRadius.circular(20),
                         border: Border.all(
-                          color: (paymentMethod == "btc")
-                              ? Colors.pink
-                              : Colors.grey,
+                          color: (paymentMethod == "btc") ? Colors.pink : Colors.grey,
                           width: 1,
                         ),
                       ),
@@ -142,8 +127,7 @@ class _ChoosePaymentMethodState extends State<ChoosePaymentMethod> {
                             children: [
                               Text(
                                 'Fund my BTC wallet',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w500, fontSize: 18),
+                                style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
                               ),
                               SizedBox(height: 6),
                               Padding(
@@ -195,8 +179,7 @@ class _ChoosePaymentMethodState extends State<ChoosePaymentMethod> {
                       bool response = await controller.planPreview({
                         ...widget.savingsInfo,
                         "credit_type": paymentMethod,
-                        "credit_type_name":
-                            (paymentMethod == "btc") ? "BTC" : "USD Wallet",
+                        "credit_type_name": (paymentMethod == "btc") ? "BTC" : "USD Wallet",
                         "auto_invest": 1,
                       });
 
@@ -209,9 +192,7 @@ class _ChoosePaymentMethodState extends State<ChoosePaymentMethod> {
                               savingsInfo: {
                                 ...widget.savingsInfo,
                                 "credit_type": paymentMethod,
-                                "credit_type_name": (paymentMethod == "btc")
-                                    ? "BTC"
-                                    : "USD Wallet",
+                                "credit_type_name": (paymentMethod == "btc") ? "BTC" : "USD Wallet",
                               },
                             ),
                           ),

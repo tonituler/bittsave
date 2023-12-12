@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
-import 'package:six_cash/app/extensions.dart';
-import 'package:six_cash/controller/profile_screen_controller.dart';
-import 'package:six_cash/helper/price_converter.dart';
-import 'package:six_cash/view/screens/wallet/withdrawal_confirmation.dart';
+import 'package:bittsave/app/extensions.dart';
+import 'package:bittsave/controller/profile_screen_controller.dart';
+import 'package:bittsave/helper/price_converter.dart';
+import 'package:bittsave/view/screens/wallet/withdrawal_confirmation.dart';
 
 import '../../../controller/deposit_controller.dart';
 import '../../../controller/splash_controller.dart';

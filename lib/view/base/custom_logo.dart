@@ -1,12 +1,9 @@
-
 import 'package:flutter/material.dart';
-import 'package:six_cash/util/images.dart';
+import 'package:bittsave/util/images.dart';
 
 class CustomLogo extends StatelessWidget {
-  final double height,width;
-   CustomLogo({
-    this.height,this.width
-  });
+  final double height, width;
+  CustomLogo({this.height, this.width});
 
   @override
   Widget build(BuildContext context) {

@@ -4,20 +4,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:get/get.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:six_cash/controller/auth_controller.dart';
-import 'package:six_cash/controller/edit_profile_controller.dart';
-import 'package:six_cash/controller/image_controller.dart';
-import 'package:six_cash/controller/profile_screen_controller.dart';
-import 'package:six_cash/controller/splash_controller.dart';
-import 'package:six_cash/data/api/api_client.dart';
-import 'package:six_cash/data/model/body/edit_profile_body.dart';
-import 'package:six_cash/util/color_resources.dart';
-import 'package:six_cash/util/dimensions.dart';
-import 'package:six_cash/util/images.dart';
-import 'package:six_cash/view/base/custom_small_button.dart';
-import 'package:six_cash/view/screens/auth/other_info/widget/input_section.dart';
-import 'package:six_cash/view/screens/home/funding_options/request_from_a_riend/friend_identity.dart';
-import 'package:six_cash/view/screens/home/funding_usd_wallet_page.dart';
+import 'package:bittsave/controller/auth_controller.dart';
+import 'package:bittsave/controller/edit_profile_controller.dart';
+import 'package:bittsave/controller/image_controller.dart';
+import 'package:bittsave/controller/profile_screen_controller.dart';
+import 'package:bittsave/controller/splash_controller.dart';
+import 'package:bittsave/data/api/api_client.dart';
+import 'package:bittsave/data/model/body/edit_profile_body.dart';
+import 'package:bittsave/util/color_resources.dart';
+import 'package:bittsave/util/dimensions.dart';
+import 'package:bittsave/util/images.dart';
+import 'package:bittsave/view/base/custom_small_button.dart';
+import 'package:bittsave/view/screens/auth/other_info/widget/input_section.dart';
+import 'package:bittsave/view/screens/home/funding_options/request_from_a_riend/friend_identity.dart';
+import 'package:bittsave/view/screens/home/funding_usd_wallet_page.dart';
 
 class EditProfileScreen extends StatefulWidget {
   const EditProfileScreen({Key key}) : super(key: key);
@@ -208,7 +208,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                       onTap: () {
                                         _saveProfile(controller);
                                       },
-                                      backgroundColor: Theme.of(context).primaryColor,
+                                      backgroundColor: ColorResources.primaryColor,
                                       text: 'save changes'.tr,
                                       textColor: ColorResources.getWhiteColor(),
                                     ),

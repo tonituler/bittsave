@@ -2,24 +2,24 @@ import 'package:expandable_bottom_sheet/expandable_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:six_cash/app/extensions.dart';
-import 'package:six_cash/controller/localization_controller.dart';
-import 'package:six_cash/controller/profile_screen_controller.dart';
-import 'package:six_cash/controller/wallet_controller.dart';
-import 'package:six_cash/data/model/transaction_model.dart';
-import 'package:six_cash/helper/date_converter.dart';
-import 'package:six_cash/helper/price_converter.dart';
-import 'package:six_cash/util/app_constants.dart';
-import 'package:six_cash/util/color_resources.dart';
-import 'package:six_cash/util/dimensions.dart';
-import 'package:six_cash/util/images.dart';
-import 'package:six_cash/util/styles.dart';
-import 'package:six_cash/view/screens/home/funding_usd_wallet_page.dart';
-import 'package:six_cash/view/screens/home/widget/bottom_sheet/ecpandable_bottom_sheet.dart';
-import 'package:six_cash/view/screens/home/widget/bottom_sheet/expandable_contant.dart';
-import 'package:six_cash/view/screens/wallet/buy_btc.dart';
-import 'package:six_cash/view/screens/wallet/recieve_Btc.dart';
-import 'package:six_cash/view/screens/wallet/sell_btc.dart';
+import 'package:bittsave/app/extensions.dart';
+import 'package:bittsave/controller/localization_controller.dart';
+import 'package:bittsave/controller/profile_screen_controller.dart';
+import 'package:bittsave/controller/wallet_controller.dart';
+import 'package:bittsave/data/model/transaction_model.dart';
+import 'package:bittsave/helper/date_converter.dart';
+import 'package:bittsave/helper/price_converter.dart';
+import 'package:bittsave/util/app_constants.dart';
+import 'package:bittsave/util/color_resources.dart';
+import 'package:bittsave/util/dimensions.dart';
+import 'package:bittsave/util/images.dart';
+import 'package:bittsave/util/styles.dart';
+import 'package:bittsave/view/screens/home/funding_usd_wallet_page.dart';
+import 'package:bittsave/view/screens/home/widget/bottom_sheet/ecpandable_bottom_sheet.dart';
+import 'package:bittsave/view/screens/home/widget/bottom_sheet/expandable_contant.dart';
+import 'package:bittsave/view/screens/wallet/buy_btc.dart';
+import 'package:bittsave/view/screens/wallet/recieve_Btc.dart';
+import 'package:bittsave/view/screens/wallet/sell_btc.dart';
 
 import '../../home/widget/bottom_sheet/persistent_header.dart';
 import '../send_btc.dart';
@@ -284,7 +284,7 @@ class _BTCWalletScreenState extends State<BTCWalletScreen> {
     );
   }
 
-  Widget transactionItem(Transactions transactions){
+  Widget transactionItem(Transactions transactions) {
     String _userPhone = transactions.transactionType == AppConstants.SEND_MONEY
         ? transactions.receiver.phone
         : transactions.transactionType == AppConstants.RECEIVED_MONEY

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:six_cash/util/color_resources.dart';
-import 'package:six_cash/util/dimensions.dart';
-import 'package:six_cash/view/base/custom_ink_well.dart';
+import 'package:bittsave/util/color_resources.dart';
+import 'package:bittsave/util/dimensions.dart';
+import 'package:bittsave/view/base/custom_ink_well.dart';
 
 class CustomButton extends StatelessWidget {
   final Function onTap;
@@ -20,10 +20,14 @@ class CustomButton extends StatelessWidget {
         onTap: onTap,
         radius: Dimensions.RADIUS_SIZE_SMALL,
         child: Padding(
-
           padding: const EdgeInsets.symmetric(vertical: 10),
-          child: Center(child: Text(buttonText,maxLines: 1,overflow: TextOverflow.ellipsis,style: TextStyle(color: ColorResources.whiteColor),)),
-
+          child: Center(
+              child: Text(
+            buttonText,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(color: ColorResources.whiteColor),
+          )),
         ),
       ),
     );

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:six_cash/app/extensions.dart';
-import 'package:six_cash/controller/profile_screen_controller.dart';
-import 'package:six_cash/data/model/response/user_info.dart';
-import 'package:six_cash/util/color_resources.dart';
-import 'package:six_cash/view/base/buttons.dart';
-import 'package:six_cash/view/screens/settings_page/kyc_two_steps.dart';
+import 'package:bittsave/app/extensions.dart';
+import 'package:bittsave/controller/profile_screen_controller.dart';
+import 'package:bittsave/data/model/response/user_info.dart';
+import 'package:bittsave/util/color_resources.dart';
+import 'package:bittsave/view/base/buttons.dart';
+import 'package:bittsave/view/screens/settings_page/kyc_two_steps.dart';
 
 import '../../../util/dimensions.dart';
 import '../home/funding_options/request_from_a_riend/friend_identity.dart';
@@ -36,9 +36,7 @@ class _KYCState extends State<KYC> {
                     BackButtons(),
                     Padding(
                       padding: const EdgeInsets.only(left: 8),
-                      child: Text('KYC Requirement',
-                          style: TextStyle(
-                              fontWeight: FontWeight.w500, fontSize: 20)),
+                      child: Text('KYC Requirement', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20)),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0, bottom: 10),
@@ -94,9 +92,7 @@ class _KYCState extends State<KYC> {
                                 backgroundColor: Colors.pink[50],
                                 child: Checkbox(
                                   value: isChecked,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(10))),
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10))),
                                   onChanged: (value) {
                                     setState(() {
                                       isChecked = value;
@@ -128,9 +124,7 @@ class _KYCState extends State<KYC> {
                               busy: false,
                               fontWeight: FontWeight.w400,
                               height: 54.h,
-                              diabled: (!isChecked ||
-                                  profileController.userInfo.isKycVerified ==
-                                      2),
+                              diabled: (!isChecked || profileController.userInfo.isKycVerified == 2),
                               onTap: () async {
                                 Navigator.push(
                                   context,
@@ -168,8 +162,7 @@ class _KYCState extends State<KYC> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(4),
           color: ColorResources.primaryColor.withOpacity(0.2),
-          border: Border.all(
-              color: ColorResources.primaryColor.withOpacity(0.2), width: 1),
+          border: Border.all(color: ColorResources.primaryColor.withOpacity(0.2), width: 1),
         ),
       );
     }
@@ -209,22 +202,16 @@ class _KYCState extends State<KYC> {
     );
   }
 
-  Widget ContJ(
-      Widget widget, String text1, String text2, Color col, Widget child2) {
+  Widget ContJ(Widget widget, String text1, String text2, Color col, Widget child2) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
       padding: EdgeInsets.all(7),
-      decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border.all(color: col, width: 0.8),
-          borderRadius: BorderRadius.circular(12)),
+      decoration: BoxDecoration(color: Colors.white, border: Border.all(color: col, width: 0.8), borderRadius: BorderRadius.circular(12)),
       child: ListTile(
         leading: widget,
         title: Text(
           text1,
-          style: TextStyle(
-              fontSize: Dimensions.FONT_SIZE_DEFAULT,
-              fontWeight: FontWeight.w500),
+          style: TextStyle(fontSize: Dimensions.FONT_SIZE_DEFAULT, fontWeight: FontWeight.w500),
         ),
         subtitle: Text(
           text2,
@@ -239,9 +226,7 @@ class _KYCState extends State<KYC> {
     return Container(
       width: 20,
       height: 20,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: Colors.pink, width: 1)),
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), border: Border.all(color: Colors.pink, width: 1)),
     );
   }
 }

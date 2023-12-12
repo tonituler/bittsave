@@ -2,21 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:phone_number/phone_number.dart';
-import 'package:six_cash/controller/image_controller.dart';
-import 'package:six_cash/controller/profile_screen_controller.dart';
-import 'package:six_cash/controller/selfie_controller.dart';
-import 'package:six_cash/controller/splash_controller.dart';
-import 'package:six_cash/controller/varification_controller.dart';
-import 'package:six_cash/data/api/api_checker.dart';
-import 'package:six_cash/data/api/api_client.dart';
-import 'package:six_cash/data/model/agent_model.dart';
-import 'package:six_cash/data/model/body/signup_body.dart';
-import 'package:six_cash/data/model/loan_model.dart';
-import 'package:six_cash/data/model/response/response_model.dart';
-import 'package:six_cash/data/repository/auth_repo.dart';
-import 'package:six_cash/data/repository/transaction_repo.dart';
-import 'package:six_cash/helper/route_helper.dart';
-import 'package:six_cash/view/base/custom_snackbar.dart';
+import 'package:bittsave/controller/image_controller.dart';
+import 'package:bittsave/controller/profile_screen_controller.dart';
+import 'package:bittsave/controller/selfie_controller.dart';
+import 'package:bittsave/controller/splash_controller.dart';
+import 'package:bittsave/controller/varification_controller.dart';
+import 'package:bittsave/data/api/api_checker.dart';
+import 'package:bittsave/data/api/api_client.dart';
+import 'package:bittsave/data/model/agent_model.dart';
+import 'package:bittsave/data/model/body/signup_body.dart';
+import 'package:bittsave/data/model/loan_model.dart';
+import 'package:bittsave/data/model/response/response_model.dart';
+import 'package:bittsave/data/repository/auth_repo.dart';
+import 'package:bittsave/data/repository/transaction_repo.dart';
+import 'package:bittsave/helper/route_helper.dart';
+import 'package:bittsave/view/base/custom_snackbar.dart';
 
 class LoanController extends GetxController implements GetxService {
   final TransactionRepo transactionRepo;
@@ -97,7 +97,7 @@ class LoanController extends GetxController implements GetxService {
   }
 
   Future<bool> payLoan({@required String loanId}) async {
-     _isLoading = true;
+    _isLoading = true;
     update();
     Response response = await transactionRepo.loanPay(loanId: loanId);
     if (response.statusCode == 200) {

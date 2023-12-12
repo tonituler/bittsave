@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:six_cash/controller/splash_controller.dart';
-import 'package:six_cash/data/model/response/notification_model.dart';
-import 'package:six_cash/util/dimensions.dart';
-import 'package:six_cash/util/images.dart';
-import 'package:six_cash/util/styles.dart';
+import 'package:bittsave/controller/splash_controller.dart';
+import 'package:bittsave/data/model/response/notification_model.dart';
+import 'package:bittsave/util/dimensions.dart';
+import 'package:bittsave/util/images.dart';
+import 'package:bittsave/util/styles.dart';
 
 class NotificationDialog extends StatelessWidget {
   final Notifications notificationModel;

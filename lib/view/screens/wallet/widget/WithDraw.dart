@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:six_cash/controller/profile_screen_controller.dart';
-import 'package:six_cash/view/screens/settings_page/paymentDestination.dart';
-import 'package:six_cash/view/screens/wallet/amount_to_withdraw.dart';
+import 'package:bittsave/controller/profile_screen_controller.dart';
+import 'package:bittsave/view/screens/settings_page/paymentDestination.dart';
+import 'package:bittsave/view/screens/wallet/amount_to_withdraw.dart';
 
 import '../../home/funding_options/request_from_a_riend/friend_identity.dart';
 import '../../home/funding_usd_wallet_page.dart';

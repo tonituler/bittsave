@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:six_cash/controller/faq_controller.dart';
-import 'package:six_cash/util/color_resources.dart';
-import 'package:six_cash/util/styles.dart';
-import 'package:six_cash/view/base/custom_app_bar.dart';
-import 'package:six_cash/view/screens/profile/widget/shimmer/faq_shimmer.dart';
+import 'package:bittsave/controller/faq_controller.dart';
+import 'package:bittsave/util/color_resources.dart';
+import 'package:bittsave/util/styles.dart';
+import 'package:bittsave/view/base/custom_app_bar.dart';
+import 'package:bittsave/view/screens/profile/widget/shimmer/faq_shimmer.dart';
 
 class FaqScreen extends StatefulWidget {
   final String title;

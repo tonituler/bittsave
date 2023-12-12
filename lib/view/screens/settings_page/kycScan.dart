@@ -3,16 +3,16 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:six_cash/app/extensions.dart';
-import 'package:six_cash/controller/auth_controller.dart';
-import 'package:six_cash/controller/edit_profile_controller.dart';
-import 'package:six_cash/controller/image_controller.dart';
-import 'package:six_cash/data/api/api_client.dart';
-import 'package:six_cash/util/color_resources.dart';
-import 'package:six_cash/view/base/buttons.dart';
-import 'package:six_cash/view/screens/home/funding_usd_wallet_page.dart';
-import 'package:six_cash/view/screens/settings_page/card_capture_screen.dart';
-import 'package:six_cash/view/screens/settings_page/kyc_confirmation.dart';
+import 'package:bittsave/app/extensions.dart';
+import 'package:bittsave/controller/auth_controller.dart';
+import 'package:bittsave/controller/edit_profile_controller.dart';
+import 'package:bittsave/controller/image_controller.dart';
+import 'package:bittsave/data/api/api_client.dart';
+import 'package:bittsave/util/color_resources.dart';
+import 'package:bittsave/view/base/buttons.dart';
+import 'package:bittsave/view/screens/home/funding_usd_wallet_page.dart';
+import 'package:bittsave/view/screens/settings_page/card_capture_screen.dart';
+import 'package:bittsave/view/screens/settings_page/kyc_confirmation.dart';
 
 class KycScan extends StatefulWidget {
   const KycScan({Key key}) : super(key: key);
@@ -47,7 +47,7 @@ class _KycScanState extends State<KycScan> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(left: 8, top: 10),
-                      child: Text('KYC-Step Two', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20)),
+                      child: Text('KYC-Step Three', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20)),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0),
@@ -59,12 +59,14 @@ class _KycScanState extends State<KycScan> {
                     GestureDetector(
                       onTap: () {
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => CardCaptureScreen(
-                                      fromEditProfile: false,
-                                      updateState: updateState,
-                                    ),),);
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => CardCaptureScreen(
+                              fromEditProfile: false,
+                              updateState: updateState,
+                            ),
+                          ),
+                        );
                       },
                       child: Container(
                         margin: EdgeInsets.only(top: 100, left: 10, right: 10),
@@ -87,13 +89,17 @@ class _KycScanState extends State<KycScan> {
                                   ),
                                 ),
                               )
-                            : Center(child: Text("Tap here", style: TextStyle(fontSize: 20),)),
+                            : Center(
+                                child: Text(
+                                "Tap here",
+                                style: TextStyle(fontSize: 20),
+                              )),
                       ),
                     ),
                     SizedBox(height: 15),
                     Center(
                       child: Text(
-                        'Upload your passport or driver license',
+                        'Snap your passport, NIN or driver license',
                         style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
                       ),
                     ),
@@ -115,6 +121,7 @@ class _KycScanState extends State<KycScan> {
                           fontSize: 18.sp,
                           busy: profileEditController.isLoadingKYCUpdate,
                           fontWeight: FontWeight.w400,
+                          diabled: Get.find<ImageController>().getKycImageFile == null,
                           height: 54.h,
                           onTap: () async {
                             File _image = Get.find<ImageController>().getKycImageFile;

@@ -1,14 +1,16 @@
+import 'package:bittsave/util/dimensions.dart';
+import 'package:bittsave/view/base/custom_small_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:six_cash/app/extensions.dart';
-import 'package:six_cash/controller/profile_screen_controller.dart';
-import 'package:six_cash/controller/splash_controller.dart';
-import 'package:six_cash/data/model/response/user_info.dart';
-import 'package:six_cash/util/color_resources.dart';
-import 'package:six_cash/view/base/buttons.dart';
-import 'package:six_cash/view/base/custom_drop_down.dart';
-import 'package:six_cash/view/screens/settings_page/accountAddedSuccessfull.dart';
+import 'package:bittsave/app/extensions.dart';
+import 'package:bittsave/controller/profile_screen_controller.dart';
+import 'package:bittsave/controller/splash_controller.dart';
+import 'package:bittsave/data/model/response/user_info.dart';
+import 'package:bittsave/util/color_resources.dart';
+import 'package:bittsave/view/base/buttons.dart';
+import 'package:bittsave/view/base/custom_drop_down.dart';
+import 'package:bittsave/view/screens/settings_page/accountAddedSuccessfull.dart';
 
 import '../home/funding_options/request_from_a_riend/friend_identity.dart';
 import '../home/funding_usd_wallet_page.dart';
@@ -93,22 +95,24 @@ class _AddPaymentAccountState extends State<AddPaymentAccount> {
                   children: [
                     BackButtons(),
                     Padding(
-                      padding: const EdgeInsets.only(left: 8, top: 10),
+                      padding: const EdgeInsets.only(left: 10, top: 10),
                       child: Text('Destination Bank Account', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20)),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
+                      padding: const EdgeInsets.only(left: 10.0),
                       child: Text(
                         'Provide bank account details for easy transfer',
                         style: TextStyle(color: Colors.grey[600], fontSize: 13),
                       ),
                     ),
                     SizedBox(height: 50),
-                    textCont('Account Number', 'Enter account number', controller: accountNoController),
-                    textCont('Account Name', 'Enter account number', controller: accountNameController),
+                    textCont('Account Number', 'Enter account number',
+                        controller: accountNoController, padding: const EdgeInsets.only(left: 10.0, right: 12, top: 14)),
+                    textCont('Account Name', 'Enter account number',
+                        controller: accountNameController, padding: const EdgeInsets.only(left: 10.0, right: 12, top: 14)),
                     // textCont('Username', '@johnsam'),
                     Padding(
-                      padding: const EdgeInsets.only(left: 10.0, right: 10, top: 20, bottom: 20),
+                      padding: const EdgeInsets.only(left: 0.0, right: 10, top: 20, bottom: 20),
                       child: GetBuilder<SplashController>(builder: (splashController) {
                         return CustomDropDownButton(
                           busy: false,
@@ -127,23 +131,18 @@ class _AddPaymentAccountState extends State<AddPaymentAccount> {
                     ),
                     Center(
                       child: Container(
-                        height: 50,
-                        width: MediaQuery.of(context).size.width * .7,
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 0.w,
-                        ),
-                        margin: EdgeInsets.symmetric(
-                          vertical: 35.w,
-                        ),
+                        height: 55,
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
                         child: buttonWithBorder(
                           'Save Change',
-                          textColor: Colors.white,
+                          textColor: ColorResources.getWhiteColor(),
                           buttonColor: ColorResources.primaryColor,
                           fontSize: 18.sp,
                           busy: profileController.isLoadingAccountUpdate,
                           diabled: false,
+                          borderRadius: 12,
                           fontWeight: FontWeight.w400,
-                          height: 54.h,
+                          height: 100.h,
                           onTap: () async {
                             Map<String, dynamic> credentials = {
                               "account_name": accountNameController.text,
@@ -171,9 +170,9 @@ class _AddPaymentAccountState extends State<AddPaymentAccount> {
     );
   }
 
-  Widget textCont(String titleText, String hintText, {TextEditingController controller}) {
+  Widget textCont(String titleText, String hintText, {TextEditingController controller, EdgeInsetsGeometry padding}) {
     return Padding(
-      padding: const EdgeInsets.only(left: 20.0, right: 12, top: 14),
+      padding: padding ?? const EdgeInsets.only(left: 20.0, right: 12, top: 14),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

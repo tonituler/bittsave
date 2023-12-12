@@ -2,12 +2,12 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:six_cash/controller/home_controller.dart';
-import 'package:six_cash/controller/profile_screen_controller.dart';
-import 'package:six_cash/controller/splash_controller.dart';
-import 'package:six_cash/util/color_resources.dart';
-import 'package:six_cash/util/dimensions.dart';
-import 'package:six_cash/util/styles.dart';
+import 'package:bittsave/controller/home_controller.dart';
+import 'package:bittsave/controller/profile_screen_controller.dart';
+import 'package:bittsave/controller/splash_controller.dart';
+import 'package:bittsave/util/color_resources.dart';
+import 'package:bittsave/util/dimensions.dart';
+import 'package:bittsave/util/styles.dart';
 
 class ShowName extends StatelessWidget {
   const ShowName({Key key}) : super(key: key);
@@ -43,7 +43,7 @@ class ShowName extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                         style: montserratLight.copyWith(
                           fontSize: Dimensions.FONT_SIZE_LARGE,
-                          color: ColorResources.blackColor.withOpacity(0.5),
+                          color: ColorResources.blackColor.withOpacity(0.9),
                         ),
                       ),
                     ],

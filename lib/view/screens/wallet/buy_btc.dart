@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
-import 'package:six_cash/app/extensions.dart';
-import 'package:six_cash/controller/profile_screen_controller.dart';
-import 'package:six_cash/helper/price_converter.dart';
+import 'package:bittsave/app/extensions.dart';
+import 'package:bittsave/controller/profile_screen_controller.dart';
+import 'package:bittsave/helper/price_converter.dart';
 
 import '../../../controller/deposit_controller.dart';
 import '../../../controller/splash_controller.dart';
@@ -43,8 +43,7 @@ class _BuyBTCState extends State<BuyBTC> {
                     SizedBox(height: 20),
                     BackButtons(),
                     Padding(
-                      padding:
-                          const EdgeInsets.only(left: 10.0, top: 10, bottom: 2),
+                      padding: const EdgeInsets.only(left: 10.0, top: 10, bottom: 2),
                       child: BoldTextTitle(
                         data: 'Buy Bitcoin',
                         fontSize: 24.sp,
@@ -52,8 +51,7 @@ class _BuyBTCState extends State<BuyBTC> {
                     ),
                     GetBuilder<SplashController>(
                       builder: (config) => Padding(
-                        padding: const EdgeInsets.only(
-                            left: 10.0, top: 3.0, bottom: 10),
+                        padding: const EdgeInsets.only(left: 10.0, top: 3.0, bottom: 10),
                         child: LightText(
                           text: 'How much bitcoin would you like to buy?',
                         ),
@@ -61,12 +59,9 @@ class _BuyBTCState extends State<BuyBTC> {
                     ),
                     Container(
                       // height: 500,
-                      margin: const EdgeInsets.only(
-                          top: 50.0, right: 20, left: 0, bottom: 0),
+                      margin: const EdgeInsets.only(top: 50.0, right: 20, left: 0, bottom: 0),
                       padding: const EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.pink),
+                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: Colors.pink),
                       child: Center(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -74,8 +69,7 @@ class _BuyBTCState extends State<BuyBTC> {
                             SizedBox(height: 30),
                             Center(
                               child: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 80),
+                                padding: const EdgeInsets.symmetric(horizontal: 80),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   // crossAxisAlignment: CrossAxisAlignment.center,
@@ -94,8 +88,7 @@ class _BuyBTCState extends State<BuyBTC> {
                                         decoration: InputDecoration(
                                             border: InputBorder.none,
                                             hintText: "0.00",
-                                            contentPadding: EdgeInsets.only(
-                                                left: 2, bottom: 0, right: 0),
+                                            contentPadding: EdgeInsets.only(left: 2, bottom: 0, right: 0),
                                             hintStyle: TextStyle(
                                               color: Colors.white,
                                               fontWeight: FontWeight.w900,
@@ -104,14 +97,10 @@ class _BuyBTCState extends State<BuyBTC> {
                                         controller: amount,
                                         keyboardType: TextInputType.number,
                                         onChanged: (String value) {
-                                          if (value.trim() != "" &&
-                                              usdToNgn != null &&
-                                              usdToNgn != "") {
+                                          if (value.trim() != "" && usdToNgn != null && usdToNgn != "") {
                                             try {
-                                              double val =
-                                                  double.parse(value.trim());
-                                              double uToN =
-                                                  double.parse(usdToNgn);
+                                              double val = double.parse(value.trim());
+                                              double uToN = double.parse(usdToNgn);
                                               amountInNaira = val * uToN;
                                               amountInDolar = val;
                                               setState(() {});
@@ -122,10 +111,7 @@ class _BuyBTCState extends State<BuyBTC> {
                                             setState(() {});
                                           }
                                         },
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w900,
-                                            fontSize: 52.sp,
-                                            color: Colors.white),
+                                        style: TextStyle(fontWeight: FontWeight.w900, fontSize: 52.sp, color: Colors.white),
                                       ),
                                     ),
                                     // SizedBox(
@@ -175,7 +161,7 @@ class _BuyBTCState extends State<BuyBTC> {
                                   txAlign: TextAlign.center,
                                   text:
                                       // 'Available BTC Bal: \$${PriceConverter.priceFormater(balance: PriceConverter.converBTCToDolar(profileController.userInfo.btcBalance - profileController.userInfo.btcCollateralUsed))}',
-                                      'Available USD Bal: \$${PriceConverter.priceFormater(balance:  profileController.userInfo.usdBalance)}',
+                                      'Available USD Bal: \$${PriceConverter.priceFormater(balance: profileController.userInfo.usdBalance)}',
                                   fontSize: 12.sp,
                                   col: ColorResources.whiteColor),
                             ),
@@ -188,24 +174,19 @@ class _BuyBTCState extends State<BuyBTC> {
                                 children: [
                                   Text(
                                     "Amount in BTC",
-                                    style: kLightTextStyle.copyWith(
-                                        color: Colors.pink),
+                                    style: kLightTextStyle.copyWith(color: Colors.pink),
                                   ),
                                   SizedBox(height: 2),
                                   Text(
                                     '${PriceConverter.converDolarToBTC(amountInDolar)}BTC',
-                                    style: kLightTextStyle.copyWith(
-                                        fontWeight: FontWeight.w400,
-                                        color: Colors.black,
-                                        fontSize: 16.sp),
+                                    style: kLightTextStyle.copyWith(fontWeight: FontWeight.w400, color: Colors.black, fontSize: 16.sp),
                                   ),
                                 ],
                               ),
                               style: kLightTextStyle,
                             ),
                             Padding(
-                              padding: EdgeInsets.only(
-                                  left: 5.w, right: 5.w, bottom: 5.w),
+                              padding: EdgeInsets.only(left: 5.w, right: 5.w, bottom: 5.w),
                               child: GetBuilder<DepositController>(
                                 builder: (controller) {
                                   return buttonWithBorder(
@@ -222,9 +203,7 @@ class _BuyBTCState extends State<BuyBTC> {
                                         MaterialPageRoute(builder: (context) {
                                           return BTCBuyConfirmation(
                                             requestInfo: {
-                                              "amount_btc": PriceConverter
-                                                  .converDolarToBTC(
-                                                      amountInDolar),
+                                              "amount_btc": PriceConverter.converDolarToBTC(amountInDolar),
                                               "amount": amountInDolar,
                                             },
                                           );
@@ -249,8 +228,7 @@ class _BuyBTCState extends State<BuyBTC> {
     );
   }
 
-  Widget LightText(
-      {String text, double fontSize, TextAlign txAlign, Color col}) {
+  Widget LightText({String text, double fontSize, TextAlign txAlign, Color col}) {
     return Text(
       text,
       textAlign: txAlign,
@@ -258,20 +236,13 @@ class _BuyBTCState extends State<BuyBTC> {
     );
   }
 
-  Widget InnerContainer(
-      {double height,
-      Color col,
-      double data,
-      String text,
-      TextStyle style,
-      Widget widget}) {
+  Widget InnerContainer({double height, Color col, double data, String text, TextStyle style, Widget widget}) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
         height: height,
         width: double.infinity,
-        decoration: BoxDecoration(
-            color: col, borderRadius: BorderRadius.circular(data)),
+        decoration: BoxDecoration(color: col, borderRadius: BorderRadius.circular(data)),
         child: Center(
           child: widget,
         ),

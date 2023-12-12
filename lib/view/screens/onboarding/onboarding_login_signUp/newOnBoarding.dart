@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_onboarding_slider/flutter_onboarding_slider.dart';
-import 'package:six_cash/view/screens/auth/login/new_screens/logIn1.dart';
+import 'package:bittsave/view/screens/auth/login/new_screens/logIn1.dart';
 
 class Onbarding extends StatefulWidget {
   const Onbarding({Key key}) : super(key: key);
@@ -29,8 +29,7 @@ class _OnbardingState extends State<Onbarding> {
               },
             ),
           );
-          Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) {
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
             return LogIn1();
             // return TestApp();
           }));
@@ -54,10 +53,7 @@ class _OnbardingState extends State<Onbarding> {
                   Center(
                     child: Text(
                       'Secure Payment',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 20),
+                      style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500, fontSize: 20),
                     ),
                   ),
                   SizedBox(
@@ -66,10 +62,7 @@ class _OnbardingState extends State<Onbarding> {
                   Text(
                     'Our unique payment encryption technology will protect your funds',
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.grey,
-                        fontWeight: FontWeight.w400),
+                    style: TextStyle(fontSize: 12, color: Colors.grey, fontWeight: FontWeight.w400),
                   ),
                 ],
               ),
@@ -86,10 +79,7 @@ class _OnbardingState extends State<Onbarding> {
                   Center(
                     child: Text(
                       'Add any accounts',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 20),
+                      style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500, fontSize: 20),
                     ),
                   ),
                   SizedBox(
@@ -98,10 +88,7 @@ class _OnbardingState extends State<Onbarding> {
                   Text(
                     'You can add any account, card or crypto wallet to the app and make payments',
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.grey,
-                        fontWeight: FontWeight.w400),
+                    style: TextStyle(fontSize: 12, color: Colors.grey, fontWeight: FontWeight.w400),
                   ),
                 ],
               ),
@@ -118,10 +105,7 @@ class _OnbardingState extends State<Onbarding> {
                   Center(
                     child: Text(
                       'Custom card',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 20),
+                      style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500, fontSize: 20),
                     ),
                   ),
                   SizedBox(
@@ -130,10 +114,7 @@ class _OnbardingState extends State<Onbarding> {
                   Text(
                     'You can issue a card without leaving your home. Physical and online cards are available in the application.',
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.grey,
-                        fontWeight: FontWeight.w400),
+                    style: TextStyle(fontSize: 12, color: Colors.grey, fontWeight: FontWeight.w400),
                   ),
                 ],
               ),

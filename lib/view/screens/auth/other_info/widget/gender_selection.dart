@@ -1,8 +1,8 @@
-import 'package:six_cash/controller/profile_screen_controller.dart';
-import 'package:six_cash/util/color_resources.dart';
-import 'package:six_cash/util/dimensions.dart';
-import 'package:six_cash/util/images.dart';
-import 'package:six_cash/util/styles.dart';
+import 'package:bittsave/controller/profile_screen_controller.dart';
+import 'package:bittsave/util/color_resources.dart';
+import 'package:bittsave/util/dimensions.dart';
+import 'package:bittsave/util/images.dart';
+import 'package:bittsave/util/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

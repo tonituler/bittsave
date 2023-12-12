@@ -1,9 +1,9 @@
-import 'package:six_cash/data/api/api_checker.dart';
-import 'package:six_cash/data/model/transaction_model.dart';
-import 'package:six_cash/data/repository/transaction_history_repo.dart';
+import 'package:bittsave/data/api/api_checker.dart';
+import 'package:bittsave/data/model/transaction_model.dart';
+import 'package:bittsave/data/repository/transaction_history_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:six_cash/util/app_constants.dart';
+import 'package:bittsave/util/app_constants.dart';
 
 class TransactionHistoryController extends GetxController implements GetxService {
   final TransactionHistoryRepo transactionHistoryRepo;

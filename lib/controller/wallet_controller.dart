@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:six_cash/controller/profile_screen_controller.dart';
-import 'package:six_cash/data/api/api_checker.dart';
-import 'package:six_cash/data/model/savings_plan.dart';
-import 'package:six_cash/data/model/transaction_model.dart';
-import 'package:six_cash/data/repository/transaction_repo.dart';
-import 'package:six_cash/view/base/custom_snackbar.dart';
-import 'package:six_cash/view/screens/wallet/usd_withdrawal_confirmation.dart';
+import 'package:bittsave/controller/profile_screen_controller.dart';
+import 'package:bittsave/data/api/api_checker.dart';
+import 'package:bittsave/data/model/savings_plan.dart';
+import 'package:bittsave/data/model/transaction_model.dart';
+import 'package:bittsave/data/repository/transaction_repo.dart';
+import 'package:bittsave/view/base/custom_snackbar.dart';
+import 'package:bittsave/view/screens/wallet/usd_withdrawal_confirmation.dart';
 
 class WalletController extends GetxController implements GetxService {
   final TransactionRepo transactionRepo;
@@ -103,8 +103,7 @@ class WalletController extends GetxController implements GetxService {
       _isInitLoading = true;
       receipentInfo = null;
       update();
-      Response response =
-          await transactionRepo.checkCustomerUsername(username: username);
+      Response response = await transactionRepo.checkCustomerUsername(username: username);
       if (response.statusCode == 200) {
         receipentInfo = response.body["data"];
         _isInitLoading = false;
@@ -175,8 +174,7 @@ class WalletController extends GetxController implements GetxService {
     return false;
   }
 
-  Future<bool> withdrawUSD(
-      BuildContext context, String amount, String accountType) async {
+  Future<bool> withdrawUSD(BuildContext context, String amount, String accountType) async {
     _isLoadingWithdrawal = true;
     update();
     Response response = await transactionRepo.walletWithdraw(data: {
@@ -209,8 +207,7 @@ class WalletController extends GetxController implements GetxService {
     if (response.statusCode == 200) {
       List<Transactions> uList = [];
 
-      for (var item
-          in List<Map<String, dynamic>>.from(response.body["transactions"])) {
+      for (var item in List<Map<String, dynamic>>.from(response.body["transactions"])) {
         uList.add(Transactions.fromJson(item));
       }
 
@@ -229,8 +226,7 @@ class WalletController extends GetxController implements GetxService {
     if (response.statusCode == 200) {
       List<Transactions> uList = [];
 
-      for (var item
-          in List<Map<String, dynamic>>.from(response.body["transactions"])) {
+      for (var item in List<Map<String, dynamic>>.from(response.body["transactions"])) {
         uList.add(Transactions.fromJson(item));
       }
 
@@ -272,10 +268,10 @@ class WalletController extends GetxController implements GetxService {
     _isLoading = true;
     Response response = await transactionRepo.createNOWPayment(credentials);
     if (response.statusCode == 200) {
-      if(credentials["pay_currency"].toString().toLowerCase() == "btc"){
+      if (credentials["pay_currency"].toString().toLowerCase() == "btc") {
         await getNOWPayments("btc");
       }
-      if(credentials["pay_currency"].toString().toLowerCase().contains("usd")){
+      if (credentials["pay_currency"].toString().toLowerCase().contains("usd")) {
         await getNOWPayments("usd");
       }
       _isLoading = false;

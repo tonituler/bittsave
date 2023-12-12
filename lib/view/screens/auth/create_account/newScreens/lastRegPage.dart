@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:six_cash/view/screens/home/funding_options/request_from_a_riend/friend_identity.dart';
-import 'package:six_cash/view/screens/home/home_screen.dart';
+import 'package:bittsave/view/screens/home/funding_options/request_from_a_riend/friend_identity.dart';
+import 'package:bittsave/view/screens/home/home_screen.dart';
 
 import '../../../home/funding_options/request_from_a_riend/bitsave_user_request.dart';
 
@@ -23,10 +23,7 @@ class _LastRegPageState extends State<LastRegPage> {
             SizedBox(height: 20),
             Text(
               'Your account created',
-              style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 20),
+              style: TextStyle(color: Colors.black, fontWeight: FontWeight.w600, fontSize: 20),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 15.0),
@@ -39,8 +36,7 @@ class _LastRegPageState extends State<LastRegPage> {
             SizedBox(height: 200),
             InkWell(
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => HomeScreen()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
               },
               child: Container(
                 margin: EdgeInsets.symmetric(horizontal: 10),

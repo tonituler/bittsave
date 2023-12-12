@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:six_cash/view/screens/auth/login/new_screens/login_otp.dart';
-import 'package:six_cash/view/screens/home/funding_options/request_from_a_riend/bitsave_user_request.dart';
-import 'package:six_cash/view/screens/home/funding_options/request_from_a_riend/friend_identity.dart';
+import 'package:bittsave/view/screens/auth/login/new_screens/login_otp.dart';
+import 'package:bittsave/view/screens/home/funding_options/request_from_a_riend/bitsave_user_request.dart';
+import 'package:bittsave/view/screens/home/funding_options/request_from_a_riend/friend_identity.dart';
 
 class LogIn1 extends StatefulWidget {
   const LogIn1({Key key}) : super(key: key);
@@ -26,10 +26,7 @@ class _LogIn1State extends State<LogIn1> {
                 children: [
                   Text(
                     "Enter the phone number",
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 16),
+                    style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500, fontSize: 16),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 15.0, right: 15),
@@ -57,8 +54,7 @@ class _LogIn1State extends State<LogIn1> {
                                   contentPadding: EdgeInsets.only(left: 2),
                                   hintText: '7 (319) 555-0115',
                                   border: InputBorder.none,
-                                  hintStyle: TextStyle(
-                                      color: Colors.black, fontSize: 20)),
+                                  hintStyle: TextStyle(color: Colors.black, fontSize: 20)),
                             ),
                           )
                         ],
@@ -66,8 +62,7 @@ class _LogIn1State extends State<LogIn1> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(
-                        left: 10.0, right: 10, top: 150, bottom: 12),
+                    padding: const EdgeInsets.only(left: 10.0, right: 10, top: 150, bottom: 12),
                     child: Text(
                       'By clicking "Continue" you agree to the terms of service and tarrifs.',
                       textAlign: TextAlign.center,
@@ -76,8 +71,7 @@ class _LogIn1State extends State<LogIn1> {
                   ),
                   InkWell(
                     onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => OtpPAge()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => OtpPAge()));
                     },
                     child: Container(
                       child: InnerContainer(

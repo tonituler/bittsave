@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:six_cash/controller/auth_controller.dart';
-import 'package:six_cash/controller/image_controller.dart';
-import 'package:six_cash/controller/profile_screen_controller.dart';
-import 'package:six_cash/helper/route_helper.dart';
-import 'package:six_cash/util/dimensions.dart';
-import 'package:six_cash/view/base/animated_custom_dialog.dart';
-import 'package:six_cash/view/base/custom_app_bar.dart';
-import 'package:six_cash/view/base/custom_large_button.dart';
-import 'package:six_cash/view/base/custom_snackbar.dart';
-import 'package:six_cash/view/base/my_dialog.dart';
-import 'package:six_cash/view/screens/auth/other_info/widget/gender_selection.dart';
-import 'package:six_cash/view/screens/auth/other_info/widget/input_section.dart';
+import 'package:bittsave/controller/auth_controller.dart';
+import 'package:bittsave/controller/image_controller.dart';
+import 'package:bittsave/controller/profile_screen_controller.dart';
+import 'package:bittsave/helper/route_helper.dart';
+import 'package:bittsave/util/dimensions.dart';
+import 'package:bittsave/view/base/animated_custom_dialog.dart';
+import 'package:bittsave/view/base/custom_app_bar.dart';
+import 'package:bittsave/view/base/custom_large_button.dart';
+import 'package:bittsave/view/base/custom_snackbar.dart';
+import 'package:bittsave/view/base/my_dialog.dart';
+import 'package:bittsave/view/screens/auth/other_info/widget/gender_selection.dart';
+import 'package:bittsave/view/screens/auth/other_info/widget/input_section.dart';
 
 class OtherInfoScreen extends StatefulWidget {
   const OtherInfoScreen({Key key}) : super(key: key);

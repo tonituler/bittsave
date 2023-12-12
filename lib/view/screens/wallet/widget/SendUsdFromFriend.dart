@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:six_cash/app/extensions.dart';
-import 'package:six_cash/controller/profile_screen_controller.dart';
-import 'package:six_cash/controller/screen_shot_widget_controller.dart';
-import 'package:six_cash/controller/splash_controller.dart';
-import 'package:six_cash/helper/price_converter.dart';
-import 'package:six_cash/util/images.dart';
+import 'package:bittsave/app/extensions.dart';
+import 'package:bittsave/controller/profile_screen_controller.dart';
+import 'package:bittsave/controller/screen_shot_widget_controller.dart';
+import 'package:bittsave/controller/splash_controller.dart';
+import 'package:bittsave/helper/price_converter.dart';
+import 'package:bittsave/util/images.dart';
 
 import '../../../../util/color_resources.dart';
 import '../../deshboard/nav_bar.dart';

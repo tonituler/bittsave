@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:six_cash/view/screens/auth/create_account/newScreens/lastRegPage.dart';
-import 'package:six_cash/view/screens/home/funding_options/request_from_a_riend/bitsave_user_request.dart';
-import 'package:six_cash/view/screens/home/funding_options/request_from_a_riend/friend_identity.dart';
+import 'package:bittsave/view/screens/auth/create_account/newScreens/lastRegPage.dart';
+import 'package:bittsave/view/screens/home/funding_options/request_from_a_riend/bitsave_user_request.dart';
+import 'package:bittsave/view/screens/home/funding_options/request_from_a_riend/friend_identity.dart';
 
 class CheckInfoRegPage extends StatefulWidget {
   const CheckInfoRegPage({Key key}) : super(key: key);
@@ -36,8 +36,7 @@ class _CheckInfoRegPageState extends State<CheckInfoRegPage> {
                         padding: const EdgeInsets.only(top: 5),
                         child: Text(
                           'Check your info',
-                          style: TextStyle(
-                              fontWeight: FontWeight.w500, fontSize: 18),
+                          style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
                         ),
                       )
                     ],
@@ -47,20 +46,15 @@ class _CheckInfoRegPageState extends State<CheckInfoRegPage> {
                   SizedBox(height: 20),
                   fieldCont(text: 'Last Name', fieldText: 'Musa'),
                   SizedBox(height: 20),
-                  fieldCont(
-                      text: 'Email Address', fieldText: 'johnasam@gmail.com'),
+                  fieldCont(text: 'Email Address', fieldText: 'johnasam@gmail.com'),
                   SizedBox(height: 20),
                   fieldCont(text: 'Username', fieldText: '@johnsam'),
                   SizedBox(height: 20),
-                  fieldCont(
-                      text: 'Date of Expiration', fieldText: 'April 21, 2026'),
+                  fieldCont(text: 'Date of Expiration', fieldText: 'April 21, 2026'),
                   SizedBox(height: 30),
                   InkWell(
                     onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => LastRegPage()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => LastRegPage()));
                     },
                     child: Container(
                       child: InnerContainer(
@@ -94,11 +88,7 @@ class _CheckInfoRegPageState extends State<CheckInfoRegPage> {
         SizedBox(height: 5),
         TextField(
           decoration: InputDecoration(
-              hintStyle: TextStyle(
-                  color: Colors.black,
-                  fontSize: 15,
-                  letterSpacing: 0.9,
-                  fontWeight: FontWeight.w500),
+              hintStyle: TextStyle(color: Colors.black, fontSize: 15, letterSpacing: 0.9, fontWeight: FontWeight.w500),
               hintText: '$fieldText',
               filled: true,
               fillColor: Colors.grey[200],

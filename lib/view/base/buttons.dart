@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:six_cash/app/extensions.dart';
-import 'package:six_cash/util/color_resources.dart';
-import 'package:six_cash/view/base/text_widgets.dart';
+import 'package:bittsave/app/extensions.dart';
+import 'package:bittsave/util/color_resources.dart';
+import 'package:bittsave/view/base/text_widgets.dart';
 
 Widget buttonWithBorder(
   String text, {
   Color buttonColor,
-   Color textColor,
+  Color textColor,
   Function() onTap,
   Color borderColor,
   FontWeight fontWeight,

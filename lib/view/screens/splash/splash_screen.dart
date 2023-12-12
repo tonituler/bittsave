@@ -3,11 +3,11 @@ import 'dart:async';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:six_cash/controller/auth_controller.dart';
-import 'package:six_cash/controller/splash_controller.dart';
-import 'package:six_cash/helper/route_helper.dart';
+import 'package:bittsave/controller/auth_controller.dart';
+import 'package:bittsave/controller/splash_controller.dart';
+import 'package:bittsave/helper/route_helper.dart';
 
-// import 'package:six_cash/util/imageses.dart';
+// import 'package:bittsave/util/imageses.dart';
 
 import '../../../util/images.dart';
 

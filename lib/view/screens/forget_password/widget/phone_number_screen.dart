@@ -1,17 +1,17 @@
 import 'package:phone_number/phone_number.dart';
-import 'package:six_cash/controller/auth_controller.dart';
-import 'package:six_cash/controller/forget_password_controller.dart';
-import 'package:six_cash/helper/phone_cheker.dart';
-import 'package:six_cash/util/color_resources.dart';
-import 'package:six_cash/util/dimensions.dart';
-import 'package:six_cash/util/styles.dart';
-import 'package:six_cash/view/base/custom_app_bar.dart';
-import 'package:six_cash/view/base/custom_country_code_picker.dart';
-import 'package:six_cash/view/base/custom_logo.dart';
-import 'package:six_cash/view/base/custom_large_button.dart';
+import 'package:bittsave/controller/auth_controller.dart';
+import 'package:bittsave/controller/forget_password_controller.dart';
+import 'package:bittsave/helper/phone_cheker.dart';
+import 'package:bittsave/util/color_resources.dart';
+import 'package:bittsave/util/dimensions.dart';
+import 'package:bittsave/util/styles.dart';
+import 'package:bittsave/view/base/custom_app_bar.dart';
+import 'package:bittsave/view/base/custom_country_code_picker.dart';
+import 'package:bittsave/view/base/custom_logo.dart';
+import 'package:bittsave/view/base/custom_large_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:six_cash/view/base/custom_snackbar.dart';
+import 'package:bittsave/view/base/custom_snackbar.dart';
 
 class FphoneNumberScreen extends StatefulWidget {
   final String phoneNumber, countryCode;

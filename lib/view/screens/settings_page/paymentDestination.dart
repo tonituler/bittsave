@@ -30,8 +30,7 @@ class _PaymentDestinationState extends State<PaymentDestination> {
                   Padding(
                     padding: const EdgeInsets.only(left: 8),
                     child: Text('Payment Destination',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w700, fontSize: 20)),
+                        style: TextStyle(fontSize: 20)),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 8.0, bottom: 10),

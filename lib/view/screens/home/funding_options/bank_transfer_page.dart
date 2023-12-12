@@ -3,16 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_connect/connect.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
-import 'package:six_cash/app/extensions.dart';
-import 'package:six_cash/controller/deposit_controller.dart';
-import 'package:six_cash/util/color_resources.dart';
-import 'package:six_cash/view/screens/home/funding_options/partner_information.dart';
-import 'package:six_cash/view/screens/home/funding_usd_wallet_page.dart';
+import 'package:bittsave/app/extensions.dart';
+import 'package:bittsave/controller/deposit_controller.dart';
+import 'package:bittsave/util/color_resources.dart';
+import 'package:bittsave/view/screens/home/funding_options/partner_information.dart';
+import 'package:bittsave/view/screens/home/funding_usd_wallet_page.dart';
 
 class BankTransferPage extends StatefulWidget {
-  BankTransferPage(
-      {Key key, @required this.amountInDolar, @required this.amountInNaira})
-      : super(key: key);
+  BankTransferPage({Key key, @required this.amountInDolar, @required this.amountInNaira}) : super(key: key);
 
   double amountInNaira;
   double amountInDolar;
@@ -57,8 +55,7 @@ class _BankTransferPageState extends State<BankTransferPage> {
                   padding: const EdgeInsets.only(right: 20.0),
                   child: getFunds(
                     ontap: () async {
-                      Response response =
-                          await controller.depositRequest(widget.amountInDolar);
+                      Response response = await controller.depositRequest(widget.amountInDolar);
                       if (response.body["message"] == "success") {
                         Navigator.push(
                           context,
@@ -77,8 +74,7 @@ class _BankTransferPageState extends State<BankTransferPage> {
                       'assets/image/TelegramLogo.png',
                     ),
                     title: 'Bank Transfer',
-                    subTitle:
-                        'You will be required to make\na bank transfer to any of our available partners.',
+                    subTitle: 'You will be required to make\na bank transfer to any of our available partners.',
                   ),
                 )
               ],

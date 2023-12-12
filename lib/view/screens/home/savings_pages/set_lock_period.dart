@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:six_cash/app/extensions.dart';
-import 'package:six_cash/controller/splash_controller.dart';
-import 'package:six_cash/util/color_resources.dart';
-import 'package:six_cash/view/screens/home/savings_pages/set_frequency.dart';
+import 'package:bittsave/app/extensions.dart';
+import 'package:bittsave/controller/splash_controller.dart';
+import 'package:bittsave/util/color_resources.dart';
+import 'package:bittsave/view/screens/home/savings_pages/set_frequency.dart';
 
 import '../funding_options/request_from_a_riend/friend_identity.dart';
 import '../funding_usd_wallet_page.dart';
@@ -56,9 +56,7 @@ class _SetLockPeriodState extends State<SetLockPeriod> {
                   ),
                 ),
                 SizedBox(height: 80),
-                ...splashController.configModel.planPeriod
-                    .map((Map<String, dynamic> item) => monthItem(month: item))
-                    .toList(),
+                ...splashController.configModel.planPeriod.map((Map<String, dynamic> item) => monthItem(month: item)).toList(),
                 SizedBox(height: 40),
                 Padding(
                   padding: const EdgeInsets.only(left: 20.0, top: 60),
@@ -103,8 +101,7 @@ class _SetLockPeriodState extends State<SetLockPeriod> {
 
   String getInterestRate(String month, SplashController splashController) {
     String interestRate = "0";
-    splashController.configModel.planPeriod
-        .forEach((Map<String, dynamic> element) {
+    splashController.configModel.planPeriod.forEach((Map<String, dynamic> element) {
       if (element["period"].toString() == month) {
         interestRate = element["interest"].toString();
       }
@@ -142,11 +139,7 @@ class _SetLockPeriodState extends State<SetLockPeriod> {
             Center(
               child: CircleAvatar(
                 radius: 10,
-                child: Icon(Icons.check,
-                    color: (month["id"].toString() == selectedMonth)
-                        ? ColorResources.primaryColor
-                        : Colors.white,
-                    size: 13),
+                child: Icon(Icons.check, color: (month["id"].toString() == selectedMonth) ? ColorResources.primaryColor : Colors.white, size: 13),
                 backgroundColor: Colors.pink[100],
               ),
             ),

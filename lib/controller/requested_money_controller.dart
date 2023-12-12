@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:six_cash/data/api/api_checker.dart';
-import 'package:six_cash/data/model/response/requested_money_model.dart';
-import 'package:six_cash/data/repository/requested_money_repo.dart';
-import 'package:six_cash/util/app_constants.dart';
-import 'package:six_cash/view/base/custom_snackbar.dart';
+import 'package:bittsave/data/api/api_checker.dart';
+import 'package:bittsave/data/model/response/requested_money_model.dart';
+import 'package:bittsave/data/repository/requested_money_repo.dart';
+import 'package:bittsave/util/app_constants.dart';
+import 'package:bittsave/view/base/custom_snackbar.dart';
 
 class RequestedMoneyController extends GetxController implements GetxService {
   final RequestedMoneyRepo requestedMoneyRepo;
@@ -19,15 +19,13 @@ class RequestedMoneyController extends GetxController implements GetxService {
   bool _isLoadingRequestedMoney = true;
   bool _isLoadingDashboardRequestedMoney = true;
   bool get isLoadingRequestedMoney => _isLoadingRequestedMoney;
-  bool get isLoadingDashboardRequestedMoney =>
-      _isLoadingDashboardRequestedMoney;
+  bool get isLoadingDashboardRequestedMoney => _isLoadingDashboardRequestedMoney;
 
   List<RequestedMoney> _requestedMoneyList = [];
   List<RequestedMoney> _dashboardRequestedMoneyList = [];
   List<RequestedMoney> _ownRequestList = [];
 
-  List<RequestedMoney> get dashboardRequestedMoneyList =>
-      _dashboardRequestedMoneyList;
+  List<RequestedMoney> get dashboardRequestedMoneyList => _dashboardRequestedMoneyList;
   List<RequestedMoney> get requestedMoneyList => _requestedMoneyList;
   List<RequestedMoney> get ownRequestList => _ownRequestList;
 
@@ -35,34 +33,25 @@ class RequestedMoneyController extends GetxController implements GetxService {
   List<RequestedMoney> _pendingDashboardRequestedMoneyList = [];
   List<RequestedMoney> _ownPendingRequestedMoneyList = [];
 
-  List<RequestedMoney> get pendingRequestedMoneyList =>
-      _pendingRequestedMoneyList;
-  List<RequestedMoney> get pendingDashboardRequestedMoneyList =>
-      _pendingDashboardRequestedMoneyList;
-  List<RequestedMoney> get ownPendingRequestedMoneyList =>
-      _ownPendingRequestedMoneyList;
+  List<RequestedMoney> get pendingRequestedMoneyList => _pendingRequestedMoneyList;
+  List<RequestedMoney> get pendingDashboardRequestedMoneyList => _pendingDashboardRequestedMoneyList;
+  List<RequestedMoney> get ownPendingRequestedMoneyList => _ownPendingRequestedMoneyList;
 
   List<RequestedMoney> _acceptedRequestedMoneyList = [];
   List<RequestedMoney> _acceptedDashboardRequestedMoneyList = [];
   List<RequestedMoney> _ownAcceptedRequestedMoneyList = [];
 
-  List<RequestedMoney> get acceptedRequestedMoneyList =>
-      _acceptedRequestedMoneyList;
-  List<RequestedMoney> get acceptedDashboardRequestedMoneyList =>
-      _acceptedDashboardRequestedMoneyList;
-  List<RequestedMoney> get ownAcceptedRequestedMoneyList =>
-      _ownAcceptedRequestedMoneyList;
+  List<RequestedMoney> get acceptedRequestedMoneyList => _acceptedRequestedMoneyList;
+  List<RequestedMoney> get acceptedDashboardRequestedMoneyList => _acceptedDashboardRequestedMoneyList;
+  List<RequestedMoney> get ownAcceptedRequestedMoneyList => _ownAcceptedRequestedMoneyList;
 
   List<RequestedMoney> _deniedRequestedMoneyList = [];
   List<RequestedMoney> _deniedDashboardRequestedMoneyList = [];
   List<RequestedMoney> _ownDeniedRequestedMoneyList = [];
 
-  List<RequestedMoney> get deniedRequestedMoneyList =>
-      _deniedRequestedMoneyList;
-  List<RequestedMoney> get deniedDashboardRequestedMoneyList =>
-      _deniedDashboardRequestedMoneyList;
-  List<RequestedMoney> get ownDeniedRequestedMoneyList =>
-      _ownDeniedRequestedMoneyList;
+  List<RequestedMoney> get deniedRequestedMoneyList => _deniedRequestedMoneyList;
+  List<RequestedMoney> get deniedDashboardRequestedMoneyList => _deniedDashboardRequestedMoneyList;
+  List<RequestedMoney> get ownDeniedRequestedMoneyList => _ownDeniedRequestedMoneyList;
 
   int _offset = 1;
   int _pageSize;
@@ -71,8 +60,7 @@ class RequestedMoneyController extends GetxController implements GetxService {
   List<int> get offsetList => _offsetList;
   int get pageSize => _pageSize;
 
-  Future getDashboardRequestedMoneyList(int offset, BuildContext context,
-      {bool reload = false}) async {
+  Future getDashboardRequestedMoneyList(int offset, BuildContext context, {bool reload = false}) async {
     if (reload) {
       _offsetList = [];
       _dashboardRequestedMoneyList = [];
@@ -82,11 +70,8 @@ class RequestedMoneyController extends GetxController implements GetxService {
     }
     _isLoadingDashboardRequestedMoney = true;
 
-    Response response =
-        await requestedMoneyRepo.getDashboardRequestedMoneyList();
-    if (response.body['requested_money'] != null &&
-        response.body['requested_money'] != {} &&
-        response.statusCode == 200) {
+    Response response = await requestedMoneyRepo.getDashboardRequestedMoneyList();
+    if (response.body['requested_money'] != null && response.body['requested_money'] != {} && response.statusCode == 200) {
       print('body req : ${response.body['requested_money']}');
       _dashboardRequestedMoneyList = [];
       _pendingDashboardRequestedMoneyList = [];
@@ -113,8 +98,7 @@ class RequestedMoneyController extends GetxController implements GetxService {
     }
   }
 
-  Future getRequestedMoneyList(int offset, BuildContext context,
-      {bool reload = false}) async {
+  Future getRequestedMoneyList(int offset, BuildContext context, {bool reload = false}) async {
     if (reload) {
       _offsetList = [];
       _requestedMoneyList = [];
@@ -125,9 +109,7 @@ class RequestedMoneyController extends GetxController implements GetxService {
     _isLoadingRequestedMoney = true;
 
     Response response = await requestedMoneyRepo.getRequestedMoneyList();
-    if (response.body['requested_money'] != null &&
-        response.body['requested_money'] != {} &&
-        response.statusCode == 200) {
+    if (response.body['requested_money'] != null && response.body['requested_money'] != {} && response.statusCode == 200) {
       print('body req : ${response.body['requested_money']}');
       _requestedMoneyList = [];
       _pendingRequestedMoneyList = [];
@@ -165,9 +147,7 @@ class RequestedMoneyController extends GetxController implements GetxService {
     }
     Response response = await requestedMoneyRepo.getOwnRequestedMoneyList();
 
-    if (response.body['requested_money'] != null &&
-        response.body['requested_money'] != {} &&
-        response.statusCode == 200) {
+    if (response.body['requested_money'] != null && response.body['requested_money'] != {} && response.statusCode == 200) {
       print('own request : ${response.body['requested_money']}');
       _ownRequestList = [];
       _ownPendingRequestedMoneyList = [];
@@ -193,12 +173,10 @@ class RequestedMoneyController extends GetxController implements GetxService {
     }
   }
 
-  Future<void> acceptRequest(
-      BuildContext context, int requestId, String pin) async {
+  Future<void> acceptRequest(BuildContext context, int requestId, String pin) async {
     _isLoading = true;
     update();
-    Response response =
-        await requestedMoneyRepo.approveRequestedMoney(requestId, pin);
+    Response response = await requestedMoneyRepo.approveRequestedMoney(requestId, pin);
     print(response.status);
 
     if (response.statusCode == 200) {
@@ -213,12 +191,10 @@ class RequestedMoneyController extends GetxController implements GetxService {
     update();
   }
 
-  Future<void> denyRequest(
-      BuildContext context, int requestId, String pin) async {
+  Future<void> denyRequest(BuildContext context, int requestId, String pin) async {
     _isLoading = true;
     update();
-    Response response =
-        await requestedMoneyRepo.denyRequestedMoney(requestId, pin);
+    Response response = await requestedMoneyRepo.denyRequestedMoney(requestId, pin);
     if (response.statusCode == 200) {
       getRequestedMoneyList(offset, context);
       showCustomSnackBar('request_denied_successfully'.tr, isError: false);
@@ -232,13 +208,10 @@ class RequestedMoneyController extends GetxController implements GetxService {
     update();
   }
 
-  Future<void> updateRequest(
-      BuildContext context, String slug, int requestId, String pin,
-      {Function callback}) async {
+  Future<void> updateRequest(BuildContext context, String slug, int requestId, String pin, {Function callback}) async {
     _isLoadingUpdateRequestedMoney = true;
     update();
-    Response response =
-        await requestedMoneyRepo.updateRequestedMoney(slug, requestId, pin);
+    Response response = await requestedMoneyRepo.updateRequestedMoney(slug, requestId, pin);
     print(response.status);
 
     if (response.statusCode == 200) {

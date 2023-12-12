@@ -1,20 +1,21 @@
 import 'dart:io';
 import 'dart:math' as math;
 
+import 'package:bittsave/util/styles.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:six_cash/controller/auth_controller.dart';
-import 'package:six_cash/controller/image_controller.dart';
-import 'package:six_cash/helper/route_helper.dart';
-import 'package:six_cash/main.dart';
-import 'package:six_cash/util/color_resources.dart';
-import 'package:six_cash/util/dimensions.dart';
-import 'package:six_cash/view/base/animated_custom_dialog.dart';
-import 'package:six_cash/view/base/my_dialog.dart';
-import 'package:six_cash/view/screens/auth/selfie_capture/widget/selfie_app_bar.dart';
-import 'package:six_cash/view/screens/auth/selfie_capture/widget/text_section.dart';
+import 'package:bittsave/controller/auth_controller.dart';
+import 'package:bittsave/controller/image_controller.dart';
+import 'package:bittsave/helper/route_helper.dart';
+import 'package:bittsave/main.dart';
+import 'package:bittsave/util/color_resources.dart';
+import 'package:bittsave/util/dimensions.dart';
+import 'package:bittsave/view/base/animated_custom_dialog.dart';
+import 'package:bittsave/view/base/my_dialog.dart';
+import 'package:bittsave/view/screens/auth/selfie_capture/widget/selfie_app_bar.dart';
+import 'package:bittsave/view/screens/auth/selfie_capture/widget/text_section.dart';
 
 class CardCaptureScreen extends StatefulWidget {
   final bool fromEditProfile;
@@ -80,7 +81,7 @@ class _CardCaptureScreenState extends State<CardCaptureScreen> {
               setState(() {});
             },
             onAccept: () {
-            widget. updateState();
+              widget.updateState();
             }),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_DEFAULT),
@@ -114,7 +115,36 @@ class _CardCaptureScreenState extends State<CardCaptureScreen> {
                         ),
                       ),
               ),
-              TextSection()
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: Dimensions.PADDING_SIZE_DEFAULT,
+                  vertical: Dimensions.PADDING_SIZE_SMALL,
+                ),
+                decoration:
+                    BoxDecoration(color: ColorResources.getWhiteColor(), borderRadius: BorderRadius.circular(Dimensions.RADIUS_SIZE_VERY_SMALL)),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Snap your ID'.tr,
+                      style: montserratRegular.copyWith(
+                        color: ColorResources.getPrimaryColor(),
+                        fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: Dimensions.PADDING_SIZE_SMALL,
+                    ),
+                    Text(
+                      'Snap your passport, NIN or driver license'.tr,
+                      style: montserratLight.copyWith(
+                        color: ColorResources.getOnboardGreyColor(),
+                        fontSize: Dimensions.FONT_SIZE_DEFAULT,
+                      ),
+                    ),
+                  ],
+                ),
+              )
             ],
           ),
         ),
