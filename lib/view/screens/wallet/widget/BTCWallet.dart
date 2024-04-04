@@ -37,7 +37,7 @@ class _BTCWalletScreenState extends State<BTCWalletScreen> {
   Widget build(BuildContext context) {
     return ExpandableBottomSheet(
       enableToggle: true,
-      persistentContentHeight: 200,
+      persistentContentHeight: 100,
       background: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
@@ -239,7 +239,7 @@ class _BTCWalletScreenState extends State<BTCWalletScreen> {
     );
   }
 
-  Widget transactionList() {
+  Widget transactionList() { 
     return GetBuilder<WalletController>(
       builder: (controller) {
         return Padding(
@@ -260,7 +260,7 @@ class _BTCWalletScreenState extends State<BTCWalletScreen> {
                 return Container();
               } else if (snapshot.hasData) {
                 isInitialLoad = true;
-
+                print(controller.usdHistory.length);
                 if (controller.btcHistory.isEmpty) {
                   return Container();
                 } else {

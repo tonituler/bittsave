@@ -9,13 +9,18 @@ import 'package:get/get.dart';
 import 'package:bittsave/view/screens/wallet/wallet.dart';
 
 class MenuController extends GetxController implements GetxService {
+
+  MenuController._privateConstructor();
+  static MenuController _instance;
+
+  factory MenuController() => _instance ??= MenuController._privateConstructor();
+
   int _currentTab = 0;
   int get currentTab => _currentTab;
   final List<Widget> screen = [
     HomeScreen(),
-    // HistoryScreen(),
     MyPlans(),
-    WalletScreen(),
+    WalletScreen(index: 0,),
     ProfileScreen()
   ];
   Widget _currentScreen = HomeScreen();
@@ -40,8 +45,8 @@ class MenuController extends GetxController implements GetxService {
     update();
   }
 
-  selectNotificationPage() {
-    _currentScreen = WalletScreen();
+  selectWalletPage({int index = 0}) {
+    _currentScreen = WalletScreen(index: index);
     _currentTab = 2;
     update();
   }

@@ -1,3 +1,4 @@
+import 'package:bittsave/controller/profile_screen_controller.dart';
 import 'package:expandable_bottom_sheet/expandable_bottom_sheet.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -274,87 +275,103 @@ class _Plan2State extends State<SavingPlan> {
               padding: EdgeInsets.only(
                 bottom: MediaQuery.of(context).viewInsets.bottom,
               ),
-              child: Container(
-                height: 300,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: Dimensions.PADDING_SIZE_EXTRA_EXTRA_LARGE, bottom: Dimensions.PADDING_SIZE_DEFAULT),
-                        child: Text(
-                          'Enter your transaction PIN',
-                          style: montserratMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE),
-                        ),
-                      ),
-                      SizedBox(height: 20),
-                      Container(
-                        alignment: Alignment.center,
-                        height: 50,
-                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(27.0), color: ColorResources.getGreyBaseGray6()),
-                        child: TextField(
-                          controller: _pinCodeFieldController,
-                          obscureText: true,
-                          maxLength: 4,
-                          textAlign: TextAlign.center,
-                          // hintCharacter: '•',
-                          onChanged: (value) {
-                            updateState(() {});
-                          },
-                          keyboardType: TextInputType.number,
-                          inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))],
-                          decoration: InputDecoration(
-                            hintText: 'PIN',
-                            hintStyle: TextStyle(
-                              color: Colors.pink,
-                              fontSize: 18,
+              child:  GetBuilder<ProfileController>(builder: (profileController) {
+                  return Container(
+                    height: 350,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top: Dimensions.PADDING_SIZE_EXTRA_EXTRA_LARGE, bottom: Dimensions.PADDING_SIZE_DEFAULT),
+                            child: Text(
+                              'Answer security question',
+                              style: montserratMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE),
                             ),
-                            contentPadding: const EdgeInsets.all(0),
-                            border: InputBorder.none,
-                            enabledBorder: InputBorder.none,
-                            focusedBorder: InputBorder.none,
-                            disabledBorder: InputBorder.none,
                           ),
-                        ),
+                          SizedBox(height: 20),
+                           Padding(
+                            padding: const EdgeInsets.only(top: Dimensions.PADDING_SIZE_EXTRA_EXTRA_LARGE, bottom: Dimensions.PADDING_SIZE_DEFAULT),
+                            child: Text(
+                              profileController.userInfo?.question ?? "",
+                              style: montserratMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE, fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          Container(
+                            alignment: Alignment.center,
+                            height: 50,
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0), color: ColorResources.getGreyBaseGray6()),
+                            child: TextField(
+                              controller: _pinCodeFieldController,
+                              onChanged: (value) {
+                                updateState(() {});
+                              },
+                              keyboardType: TextInputType.text,
+                              // inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))],
+                              decoration: InputDecoration(
+                                hintText: 'Answer',
+                                hintStyle: TextStyle(
+                                  color: Colors.pink,
+                                  fontSize: 18,
+                                ),
+                                contentPadding: const EdgeInsets.symmetric(horizontal: 10),
+                                border: InputBorder.none,
+                                enabledBorder: InputBorder.none,
+                                focusedBorder: InputBorder.none,
+                                disabledBorder: InputBorder.none,
+                              ),
+                            ),
+                          ),
+                          GetBuilder<SavingsController>(builder: (savingsController) {
+                            return Container(
+                              height: 50,
+                              width: MediaQuery.of(context).size.width,
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 5.w,
+                              ),
+                              margin: EdgeInsets.symmetric(
+                                vertical: 35.w,
+                              ),
+                              child: buttonWithBorder(
+                                'Submit',
+                                textColor: Colors.white,
+                                buttonColor: ColorResources.primaryColor,
+                                fontSize: 18.sp,
+                                busy: isWithdrawing,
+                                fontWeight: FontWeight.w400,
+                                diabled: _pinCodeFieldController.text.trim().isEmpty,
+                                height: 54.h,
+                                onTap: () async {
+                                  isWithdrawing = true;
+                                  updateState(() {});
+                                  if (slug == "pay") {
+                                    await savingsController.planPay(
+                                      context: context,
+                                      planId: id.toString(),
+                                      questionId: profileController.userInfo.questionId.toString(),
+                                      answer: _pinCodeFieldController.text,);
+                                  }
+                                  if (slug == "withdraw") {
+                                    await savingsController.withdrawPlan(
+                                        context: context,
+                                      planId: id.toString(),
+                                      questionId: profileController.userInfo.questionId.toString(),
+                                      answer: _pinCodeFieldController.text,
+                                    );
+                                  }
+                                  _pinCodeFieldController.text = "";
+                                  isWithdrawing = false;
+                                  updateState(() {});
+                                },
+                              ),
+                            );
+                          }),
+                        ],
                       ),
-                      GetBuilder<SavingsController>(builder: (savingsController) {
-                        return Container(
-                          height: 50,
-                          width: MediaQuery.of(context).size.width,
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 5.w,
-                          ),
-                          margin: EdgeInsets.symmetric(
-                            vertical: 35.w,
-                          ),
-                          child: buttonWithBorder(
-                            'Submit',
-                            textColor: Colors.white,
-                            buttonColor: ColorResources.primaryColor,
-                            fontSize: 18.sp,
-                            busy: isWithdrawing,
-                            fontWeight: FontWeight.w400,
-                            height: 54.h,
-                            onTap: () async {
-                              isWithdrawing = true;
-                              updateState(() {});
-                              if (slug == "pay") {
-                                await savingsController.planPay(context, id.toString(), _pinCodeFieldController.text);
-                              }
-                              if (slug == "withdraw") {
-                                await savingsController.withdrawPlan(context, id.toString(), _pinCodeFieldController.text);
-                              }
-                              _pinCodeFieldController.text = "";
-                              isWithdrawing = false;
-                              updateState(() {});
-                            },
-                          ),
-                        );
-                      }),
-                    ],
-                  ),
-                ),
+                    ),
+                  );
+                }
               ),
             );
           });

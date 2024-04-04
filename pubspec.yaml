@@ -61,6 +61,7 @@ dependencies:
   flutter_datetime_picker: ^1.5.1
   fluidcoins:
   qr_flutter:
+  url_launcher:
 
 dependency_overrides:
   image_picker_android: 0.8.4+13

@@ -37,4 +37,8 @@ class ProfileRepo {
   Future<Response> updateAccountInfo(String slug, Map<String, Object> _body) async {
     return await apiClient.postData(AppConstants.CUSTOMER_ADD_UPDATE_BANK + slug, _body);
   }
+
+  Future<Response> updateSecurityQuestion(Map<String, Object> _body) async {
+    return await apiClient.postData(AppConstants.UPDATE_SECURITY_QUESTION, _body);
+  }
 }

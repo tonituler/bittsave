@@ -54,6 +54,38 @@ class _SelfieCaptureScreenState extends State<SelfieCaptureScreen> {
     });
   }
 
+  void toggleCameraLens() {
+    if (cameras.length < 2) {
+      return;
+    }
+
+    final lensDirection = controller.description.lensDirection;
+    if (lensDirection == CameraLensDirection.front) {
+      setState(() {
+        controller = CameraController(
+          cameras.first,
+          ResolutionPreset.medium,
+        );
+      });
+    } else {
+      setState(() {
+        controller = CameraController(
+          cameras.last,
+          ResolutionPreset.medium,
+        );
+      });
+    }
+
+    controller.initialize().then((_) {
+      if (!mounted) {
+        return;
+      }
+      setState(() {});
+    }).onError((error, stackTrace) {
+      print("initialization error is: $error");
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     var tmp = MediaQuery.of(context).size;
@@ -123,28 +155,44 @@ class _SelfieCaptureScreenState extends State<SelfieCaptureScreen> {
         bottomNavigationBar: Container(
           color: ColorResources.getPrimaryColor(),
           padding: const EdgeInsets.symmetric(vertical: Dimensions.PADDING_SIZE_EXTRA_LARGE),
-          child: Container(
-            padding: const EdgeInsets.all(Dimensions.PADDING_SIZE_EXTRA_SMALL),
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(
-                color: ColorResources.getWhiteColor(),
-                width: 4,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(width: 50,),
+              Container(
+                padding: const EdgeInsets.all(Dimensions.PADDING_SIZE_EXTRA_SMALL),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                    color: ColorResources.getWhiteColor(),
+                    width: 4,
+                  ),
+                ),
+                child: FloatingActionButton(
+                  backgroundColor: Theme.of(context).cardColor,
+                  elevation: 0,
+                  onPressed: () async {
+                    if (imageFile == null) {
+                      imageFile = await controller.takePicture();
+                      print(File(imageFile.path));
+                      print(imageFile.path);
+                      Get.find<ImageController>().setImage(File(imageFile.path));
+                      setState(() {});
+                    }
+                  },
+                ),
               ),
-            ),
-            child: FloatingActionButton(
-              backgroundColor: Theme.of(context).cardColor,
-              elevation: 0,
-              onPressed: () async {
-                if (imageFile == null) {
-                  imageFile = await controller.takePicture();
-                  print(File(imageFile.path));
-                  print(imageFile.path);
-                  Get.find<ImageController>().setImage(File(imageFile.path));
-                  setState(() {});
-                }
-              },
-            ),
+              IconButton(
+                onPressed: () {
+                  toggleCameraLens();
+                },
+                icon: Icon(
+                  Icons.cameraswitch_outlined,
+                  color: ColorResources.getWhiteColor(),
+                ),
+              ),
+            ],
           ),
         ),
       ),

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:bittsave/controller/auth_controller.dart';
@@ -11,6 +13,7 @@ import 'package:bittsave/view/base/animated_custom_dialog.dart';
 import 'package:bittsave/view/base/custom_snackbar.dart';
 import 'package:bittsave/view/base/logout_dialog.dart';
 import 'package:bittsave/view/screens/settings_page/accountAddedSuccessfull.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'bootom_slider_controller.dart';
 
@@ -18,6 +21,8 @@ class ProfileController extends GetxController implements GetxService {
   final ProfileRepo profileRepo;
   ProfileController({@required this.profileRepo});
   final BottomSliderController bottomSliderController = Get.find<BottomSliderController>();
+
+  SharedPreferences sharedPreferences;
   UserInfo _userInfo;
   bool _isLoading = false;
 
@@ -39,14 +44,28 @@ class ProfileController extends GetxController implements GetxService {
 
   Future<Response> profileData({bool loading = false}) async {
     _isLoading = true;
+    sharedPreferences = await SharedPreferences.getInstance();
     update();
     Response response = await profileRepo.getProfileDataApi();
     if (response.statusCode == 200) {
+      print(response.body);
       _userInfo = UserInfo.fromJson(response.body);
       Get.find<AuthController>().setCustomerName('${_userInfo.fName} ${_userInfo.lName}');
       Get.find<AuthController>().setCustomerQrCode(_userInfo.qrCode);
+
+      //update cache data
+      await sharedPreferences.setString('profileData', jsonEncode(response.body));
+
       _isLoading = false;
     } else {
+      //load old cache data
+      final String userInfo = sharedPreferences.getString('profileData');
+      if (userInfo != null) {
+        _userInfo = UserInfo.fromJson(jsonDecode(userInfo));
+        Get.find<AuthController>().setCustomerName('${_userInfo.fName} ${_userInfo.lName}');
+        Get.find<AuthController>().setCustomerQrCode(_userInfo.qrCode);
+      }
+
       ApiChecker.checkApi(response);
     }
     update();
@@ -147,6 +166,22 @@ class ProfileController extends GetxController implements GetxService {
     update();
   }
 
+  Future<void> updateSecurityQuestion(BuildContext context, Map<String, Object> _body, Function callBack) async {
+    _isLoadingAccountUpdate = true;
+    update();
+    Response response = await profileRepo.updateSecurityQuestion({..._body});
+    if (response.statusCode == 200) {
+      await getProfileData(loading: false);
+      showCustomSnackBar(response.body['message'], isError: false);
+      _isLoadingAccountUpdate = false;
+      callBack();
+    } else {
+      ApiChecker.checkApi(response);
+      _isLoadingAccountUpdate = false;
+    }
+    update();
+  }
+
   void routeToTwoFactorAuthScreen(String getPin) {
     pinVerify(getPin);
   }
@@ -192,6 +227,7 @@ class ProfileController extends GetxController implements GetxService {
           onTapFalseText: 'clear_logout'.tr,
           onTapTrueText: 'logout'.tr,
           isFailed: true,
+          shouldClose: true,
           onTapFalse: () {
             Get.find<AuthController>().change(0);
             Get.find<AuthController>().logout();

@@ -13,6 +13,7 @@ class CustomDropDownButton extends StatefulWidget {
   final String hintText;
   final String title;
   final bool busy;
+  double height;
   final DropDownType bordered;
   final Color backgroundColor;
   final Color borderColor;
@@ -24,6 +25,7 @@ class CustomDropDownButton extends StatefulWidget {
     this.hintText,
     this.title,
     this.busy = false,
+    this.height = 85,
     this.bordered = DropDownType.Underline,
     this.backgroundColor = Colors.transparent,
     this.borderColor = Colors.transparent,
@@ -37,7 +39,7 @@ class _CustomDropDownButtonState extends State<CustomDropDownButton> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 85,
+      height: widget.height,
       margin: EdgeInsets.only(top: 2.h, left: 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,7 +72,7 @@ class _CustomDropDownButtonState extends State<CustomDropDownButton> {
               horizontal: 20.h,
             ),
             decoration: getDecoration(),
-            height: 60,
+            height: widget.height - 25,
             width: MediaQuery.of(context).size.width,
             alignment: Alignment.center,
             child: DropdownButton<String>(
@@ -105,6 +107,9 @@ class _CustomDropDownButtonState extends State<CustomDropDownButton> {
                     padding: EdgeInsets.symmetric(vertical: 8.h),
                     child: Text(
                       value,
+                      softWrap: true,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: Dimensions.FONT_SIZE_LARGE,

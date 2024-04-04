@@ -62,10 +62,17 @@ class SavingsController extends GetxController implements GetxService {
     return false;
   }
 
-  Future<bool> planPay(BuildContext context, String planId, String pin) async {
+  Future<bool> planPay({
+    @required BuildContext context, 
+    @required String planId, 
+    @required String questionId,
+    @required String answer,
+  }) async {
     _isLoading = true;
     update();
-    Response response = await transactionRepo.payPlan(planId, pin);
+    Response response = await transactionRepo.payPlan(
+      data: {"id": planId, "question_id": questionId, "answer": answer}
+    );
     if (response.statusCode == 200) {
       await checkPlan(planId);
       Navigator.pop(context);
@@ -84,10 +91,17 @@ class SavingsController extends GetxController implements GetxService {
     return false;
   }
 
-  Future<bool> withdrawPlan(BuildContext context, String planId, String pin) async {
+  Future<bool> withdrawPlan({
+     @required BuildContext context, 
+    @required String planId, 
+    @required String questionId,
+    @required String answer,
+  }) async {
     _isLoading = true;
     update();
-    Response response = await transactionRepo.withdrawPlan(planId, pin);
+    Response response = await transactionRepo.withdrawPlan(
+      data: {"id": planId, "question_id": questionId, "answer": answer}
+    );
     if (response.statusCode == 200) {
       await checkPlan(planId);
       Navigator.pop(context);

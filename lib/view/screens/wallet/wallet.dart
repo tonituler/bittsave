@@ -4,7 +4,8 @@ import 'package:bittsave/view/screens/wallet/widget/BTCWallet.dart';
 import 'package:bittsave/view/screens/wallet/widget/USDWallet.dart';
 
 class WalletScreen extends StatefulWidget {
-  const WalletScreen({Key key}) : super(key: key);
+  int index;
+  WalletScreen({Key key, @required this.index}) : super(key: key);
 
   @override
   State<WalletScreen> createState() => _WalletScreenState();
@@ -12,7 +13,13 @@ class WalletScreen extends StatefulWidget {
 
 class _WalletScreenState extends State<WalletScreen> {
   int _activeIndex = 0;
-  PageController _controller = PageController();
+  PageController _controller;
+  @override
+  void initState() {
+    _activeIndex = widget.index;
+    _controller = PageController(initialPage: widget.index);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +46,14 @@ class _WalletScreenState extends State<WalletScreen> {
                   _activeIndex = a;
                   setState(() {});
                 },
-                children: [BTCWalletScreen(), USDWalletScreen()],
+                children: [
+                  BTCWalletScreen(
+                    key: GlobalKey(),
+                  ),
+                  USDWalletScreen(
+                    key: GlobalKey(),
+                  )
+                ],
               ),
             ),
           ],
@@ -61,21 +75,6 @@ class _WalletScreenState extends State<WalletScreen> {
                 height: 10,
                 width: 10,
                 decoration: BoxDecoration(color: ColorResources.blackColor, borderRadius: BorderRadius.circular(5)),
-              )
-
-        // Text(
-        //   i == 0
-        //       ? 'Bio Data'
-        //       : i == 1
-        //           ? 'Specialization'
-        //           : 'Experience',
-        //   textAlign: TextAlign.center,
-        //   style: TextStyle(
-        //     fontSize: 16,
-        //     fontWeight: FontWeight.w700,
-        //     color: i == _activeIndex ? ColorResources.blackColor : ColorResources.primaryColor,
-        //   ),
-        // ),
-        );
+              ));
   }
 }

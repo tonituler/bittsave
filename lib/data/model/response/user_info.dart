@@ -43,6 +43,8 @@ class UserInfo {
     this.country,
     this.bankAccounts,
     this.identification,
+    this.questionId,
+    this.question,
   });
 
   String username;
@@ -79,6 +81,8 @@ class UserInfo {
   String houseNo;
   String country;
   String identification;
+  String question;
+  String questionId;
   List<dynamic> bankAccounts;
 
   factory UserInfo.fromJson(Map<String, dynamic> json) => UserInfo(
@@ -117,5 +121,7 @@ class UserInfo {
         country: json["country:"],
         identification: json["identification:"],
         bankAccounts: json["bank_accounts"],
+        questionId: json["question_id"].toString(),
+        question: json["question"],
       );
 }

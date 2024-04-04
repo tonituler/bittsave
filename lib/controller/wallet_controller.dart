@@ -37,11 +37,16 @@ class WalletController extends GetxController implements GetxService {
   List<Map<String, dynamic>> get usdCoinHistory => _usdCoinHistory;
   List<Map<String, dynamic>> get btcCoinHistory => _btcCoinHistory;
 
+  Future<void> getUserAccountBallance() async {
+    await Get.find<ProfileController>().profileData(loading: false);
+  }
+
   Future<bool> sellBtc(Map<String, dynamic> data) async {
     _isLoading = true;
     update();
     Response response = await transactionRepo.sellBTC(data: data);
     if (response.statusCode == 200) {
+      await getUserAccountBallance();
       // print(response.body);
       _isLoading = false;
       update();
@@ -61,6 +66,7 @@ class WalletController extends GetxController implements GetxService {
     update();
     Response response = await transactionRepo.buyBTC(data: data);
     if (response.statusCode == 200) {
+      await getUserAccountBallance();
       // print(response.body);
       _isLoading = false;
       update();
@@ -80,6 +86,7 @@ class WalletController extends GetxController implements GetxService {
     update();
     Response response = await transactionRepo.sendBTCToBTC(data: data);
     if (response.statusCode == 200) {
+      await getUserAccountBallance();
       // print(response.body);
       _isLoading = false;
       update();
@@ -122,6 +129,7 @@ class WalletController extends GetxController implements GetxService {
     update();
     Response response = await transactionRepo.sendBTCToUser(data: credentials);
     if (response.statusCode == 200) {
+      await getUserAccountBallance();
       _isLoading = false;
       update();
 
@@ -141,6 +149,7 @@ class WalletController extends GetxController implements GetxService {
     update();
     Response response = await transactionRepo.sendUSDToBITTSAVEUser(data: data);
     if (response.statusCode == 200) {
+      await getUserAccountBallance();
       // print(response.body);
       _isLoading = false;
       update();
@@ -160,6 +169,7 @@ class WalletController extends GetxController implements GetxService {
     update();
     Response response = await transactionRepo.sendBTCToUser(data: data);
     if (response.statusCode == 200) {
+      await getUserAccountBallance();
       // print(response.body);
       _isLoading = false;
       update();

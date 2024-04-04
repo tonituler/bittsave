@@ -15,7 +15,7 @@ class AppBarBase extends StatelessWidget implements PreferredSizeWidget {
     return GetBuilder<ProfileController>(builder: (profileController) {
       return Container(
         padding: const EdgeInsets.only(
-          top: 80,
+          top: 20,
           left: Dimensions.PADDING_SIZE_LARGE,
           right: Dimensions.PADDING_SIZE_LARGE,
           bottom: Dimensions.PADDING_SIZE_SMALL,

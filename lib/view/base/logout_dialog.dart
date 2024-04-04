@@ -7,6 +7,7 @@ import 'custom_button.dart';
 
 class CustomDialog extends StatelessWidget {
   final bool isFailed;
+  final bool shouldClose;
   final double rotateAngle;
   final IconData icon;
   final String title;
@@ -16,7 +17,9 @@ class CustomDialog extends StatelessWidget {
   final Function onTapFalse;
   final String onTapFalseText;
   CustomDialog(
-      {this.isFailed = false,
+      {
+        this.isFailed = false,
+        this.shouldClose = false,
       this.rotateAngle = 0,
       @required this.icon,
       @required this.title,
@@ -45,6 +48,18 @@ class CustomDialog extends StatelessWidget {
               child: Transform.rotate(angle: rotateAngle, child: Icon(icon, size: 40, color: Colors.white)),
             ),
           ),
+          if(shouldClose)
+          Positioned(
+            right: -10,
+            top: -10,
+            child: GestureDetector(
+              onTap: (){
+                Navigator.of(context).pop(true);
+              },
+              child: Icon(Icons.close, size: 30, color: Colors.black),
+            ),
+          ),
+          
           Padding(
             padding: EdgeInsets.only(top: 40),
             child: Column(mainAxisSize: MainAxisSize.min, children: [

@@ -56,7 +56,7 @@ class _ReceiveBtcState extends State<ReceiveBtc> {
                   BackButtons(),
                   Padding(
                     padding: const EdgeInsets.only(left: 8, bottom: 10),
-                    child: Text('Trasaction History', style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20)),
+                    child: Text('Transaction History', style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20)),
                   ),
                   transactionList(),
                 ],
@@ -169,120 +169,124 @@ class _ReceiveBtcState extends State<ReceiveBtc> {
         ),
       ),
       builder: (context) {
-        return Container(
-          height: 350,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(40.h),
-              topRight: Radius.circular(40.h),
+        return Padding(
+          padding: MediaQuery.of(context).viewInsets,
+          child: Container(
+            height: 350,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(40.h),
+                topRight: Radius.circular(40.h),
+              ),
             ),
-          ),
-          child: GetBuilder<WalletController>(
-            builder: (controller) {
-              return GetBuilder<SplashController>(builder: (splashController) {
-                return StatefulBuilder(builder: (context, updateState) {
-                  return Container(
-                    padding: EdgeInsets.only(top: 10),
-                    decoration: BoxDecoration(
-                      color: Colors.grey[50],
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20.h),
-                        topRight: Radius.circular(20.h),
-                      ),
-                    ),
-                    child: Container(
-                      height: 220,
-                      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 5),
-                      alignment: Alignment.center,
+            child: GetBuilder<WalletController>(
+              builder: (controller) {
+                return GetBuilder<SplashController>(builder: (splashController) {
+                  return StatefulBuilder(builder: (context, updateState) {
+                    return Container(
+                      padding: EdgeInsets.only(top: 10),
                       decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.only(topRight: Radius.circular(20), topLeft: Radius.circular(20)),
-                      ),
-                      child: SingleChildScrollView(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              child: Row(
-                                children: [
-                                  Text(
-                                    'DEPOSIT BTC',
-                                    style: TextStyle(fontWeight: FontWeight.w400, fontSize: 23),
-                                  ),
-                                  Spacer(),
-                                  GestureDetector(
-                                    onTap: () {
-                                      Navigator.pop(context);
-                                    },
-                                    child: CircleAvatar(
-                                      backgroundColor: Colors.pink,
-                                      radius: 14,
-                                      child: Icon(
-                                        Icons.clear,
-                                        size: 20,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            SingleChildScrollView(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  SizedBox(
-                                    height: 20,
-                                  ),
-                                  regularText(
-                                    "Amount",
-                                    fontSize: Dimensions.FONT_SIZE_DEFAULT,
-                                    color: ColorResources.greyColor,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                  CustomTextField(
-                                    hintText: "Amount",
-                                    inputType: TextInputType.number,
-                                    controller: amount,
-                                  ),
-                                  SizedBox(
-                                    height: 40.h,
-                                  ),
-                                  Container(
-                                    height: 50,
-                                    width: MediaQuery.of(context).size.width,
-                                    padding: EdgeInsets.symmetric(horizontal: 5.w),
-                                    child: buttonWithBorder(
-                                      'Submit',
-                                      textColor: Colors.white,
-                                      buttonColor: ColorResources.primaryColor,
-                                      fontSize: 18.sp,
-                                      busy: controller.isLoading,
-                                      fontWeight: FontWeight.w400,
-                                      height: 54.h,
-                                      onTap: () async {
-                                        updateState(() {});
-                                        await controller.createNOWPayment({
-                                          "price_amount": amount.text,
-                                          "pay_currency": "btc",
-                                        });
-                                        amount.text = "";
-                                        setState(() {});
-                                        Navigator.of(context).pop();
-                                      },
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            )
-                          ],
+                        color: Colors.grey[50],
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(20.h),
+                          topRight: Radius.circular(20.h),
                         ),
                       ),
-                    ),
-                  );
+                      child: Container(
+                        height: 220,
+                        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 5),
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.only(topRight: Radius.circular(20), topLeft: Radius.circular(20)),
+                        ),
+                        child: SingleChildScrollView(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      'DEPOSIT BTC',
+                                      style: TextStyle(fontWeight: FontWeight.w400, fontSize: 23),
+                                    ),
+                                    Spacer(),
+                                    GestureDetector(
+                                      onTap: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: CircleAvatar(
+                                        backgroundColor: Colors.pink,
+                                        radius: 14,
+                                        child: Icon(
+                                          Icons.clear,
+                                          size: 20,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SingleChildScrollView(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      height: 20,
+                                    ),
+                                    regularText(
+                                      "Amount",
+                                      fontSize: Dimensions.FONT_SIZE_DEFAULT,
+                                      color: ColorResources.greyColor,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                    CustomTextField(
+                                      hintText: "Amount",
+                                      inputType: TextInputType.number,
+                                      controller: amount,
+                                      fillColor: ColorResources.textFieldColor,
+                                    ),
+                                    SizedBox(
+                                      height: 40.h,
+                                    ),
+                                    Container(
+                                      height: 50,
+                                      width: MediaQuery.of(context).size.width,
+                                      padding: EdgeInsets.symmetric(horizontal: 5.w),
+                                      child: buttonWithBorder(
+                                        'Submit',
+                                        textColor: Colors.white,
+                                        buttonColor: ColorResources.primaryColor,
+                                        fontSize: 18.sp,
+                                        busy: controller.isLoading,
+                                        fontWeight: FontWeight.w400,
+                                        height: 54.h,
+                                        onTap: () async {
+                                          updateState(() {});
+                                          await controller.createNOWPayment({
+                                            "price_amount": amount.text,
+                                            "pay_currency": "btc",
+                                          });
+                                          amount.text = "";
+                                          setState(() {});
+                                          Navigator.of(context).pop();
+                                        },
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  });
                 });
-              });
-            },
+              },
+            ),
           ),
         );
       },

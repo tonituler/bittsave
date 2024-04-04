@@ -17,6 +17,7 @@ import 'package:bittsave/util/app_constants.dart';
 import 'package:bittsave/util/messages.dart';
 import 'package:url_strategy/url_strategy.dart';
 import 'helper/get_di.dart' as di;
+import 'view/screens/auth/selfie_capture/selfie_capture_screen.dart';
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 List<CameraDescription> cameras;
@@ -24,6 +25,7 @@ List<CameraDescription> cameras;
 Future<void> main() async {
   setPathUrlStrategy();
   WidgetsFlutterBinding.ensureInitialized();
+  Map<String, Map<String, String>> _languages = await di.init();
   await Firebase.initializeApp();
 
   ///get camera permission
@@ -35,7 +37,7 @@ Future<void> main() async {
 
   cameras = await availableCameras();
 
-  Map<String, Map<String, String>> _languages = await di.init();
+ 
 
   int _orderID;
   try {
@@ -74,6 +76,7 @@ class MyApp extends StatelessWidget {
                 AppConstants.languages[0].languageCode,
                 AppConstants.languages[0].countryCode,
               ),
+              // home: SelfieCaptureScreen(fromEditProfile: false),
               initialRoute: RouteHelper.getSplashRoute(),
               getPages: RouteHelper.routes,
               defaultTransition: Transition.topLevel,

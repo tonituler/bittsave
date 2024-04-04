@@ -25,7 +25,7 @@ class ReceiveUsd extends StatefulWidget {
 class _ReceiveUsdState extends State<ReceiveUsd> {
   bool isInitialLoad = false;
   bool isRequeryLoading = false;
-  String payCurrency = "USDT";
+  String payCurrency = "USDC";
   final TextEditingController amount = TextEditingController();
 
   @override
@@ -161,137 +161,142 @@ class _ReceiveUsdState extends State<ReceiveUsd> {
         ),
       ),
       builder: (context) {
-        return Container(
-          height: 350,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(40.h),
-              topRight: Radius.circular(40.h),
+        return Padding(
+           padding: MediaQuery.of(context).viewInsets,
+          child: Container(
+            height: 350,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(40.h),
+                topRight: Radius.circular(40.h),
+              ),
             ),
-          ),
-          child: GetBuilder<WalletController>(
-            builder: (controller) {
-              return GetBuilder<SplashController>(builder: (splashController) {
-                return StatefulBuilder(builder: (context, updateState) {
-                  return Container(
-                    padding: EdgeInsets.only(top: 10),
-                    decoration: BoxDecoration(
-                      color: Colors.grey[50],
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20.h),
-                        topRight: Radius.circular(20.h),
-                      ),
-                    ),
-                    child: Container(
-                      height: 300,
-                      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 5),
-                      alignment: Alignment.center,
+            child: GetBuilder<WalletController>(
+              builder: (controller) {
+                return GetBuilder<SplashController>(builder: (splashController) {
+                  return StatefulBuilder(builder: (context, updateState) {
+                    return Container(
+                      padding: EdgeInsets.only(top: 10),
                       decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.only(topRight: Radius.circular(20), topLeft: Radius.circular(20)),
-                      ),
-                      child: SingleChildScrollView(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              child: Row(
-                                children: [
-                                  Text(
-                                    'DEPOSIT USD',
-                                    style: TextStyle(fontWeight: FontWeight.w400, fontSize: 23),
-                                  ),
-                                  Spacer(),
-                                  GestureDetector(
-                                    onTap: () {
-                                      Navigator.pop(context);
-                                    },
-                                    child: CircleAvatar(
-                                      backgroundColor: Colors.pink,
-                                      radius: 14,
-                                      child: Icon(
-                                        Icons.clear,
-                                        size: 20,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            SingleChildScrollView(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  SizedBox(
-                                    height: 20,
-                                  ),
-                                  regularText(
-                                    "Amount",
-                                    fontSize: Dimensions.FONT_SIZE_DEFAULT,
-                                    color: ColorResources.greyColor,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                  CustomTextField(
-                                    hintText: "Amount",
-                                    inputType: TextInputType.number,
-                                    controller: amount,
-                                  ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  CustomDropDownButton(
-                                    title: 'Select payment currency',
-                                    hintText: 'Choose currency',
-                                    value: payCurrency,
-                                    borderColor: Colors.grey,
-                                    busy: false,
-                                    onChanged: (a) {
-                                      payCurrency = a;
-                                      updateState(() {});
-                                    },
-                                    list: ["USDC", "USDT"],
-                                  ),
-                                  SizedBox(
-                                    height: 40.h,
-                                  ),
-                                  Container(
-                                    height: 50,
-                                    width: MediaQuery.of(context).size.width,
-                                    padding: EdgeInsets.symmetric(horizontal: 5.w),
-                                    child: buttonWithBorder(
-                                      'Submit',
-                                      textColor: Colors.white,
-                                      buttonColor: ColorResources.primaryColor,
-                                      fontSize: 18.sp,
-                                      busy: controller.isLoading,
-                                      fontWeight: FontWeight.w400,
-                                      height: 54.h,
-                                      onTap: () async {
-                                        updateState(() {});
-                                        if (amount.text == "") return;
-                                        await controller.createNOWPayment({
-                                          "price_amount": amount.text,
-                                          "pay_currency": payCurrency,
-                                        });
-                                        amount.text = "";
-                                        payCurrency = "USDT";
-                                        setState(() {});
-                                        Navigator.of(context).pop();
-                                      },
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            )
-                          ],
+                        color: Colors.grey[50],
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(20.h),
+                          topRight: Radius.circular(20.h),
                         ),
                       ),
-                    ),
-                  );
+                      child: Container(
+                        height: 300,
+                        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 5),
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.only(topRight: Radius.circular(20), topLeft: Radius.circular(20)),
+                        ),
+                        child: SingleChildScrollView(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      'DEPOSIT USD',
+                                      style: TextStyle(fontWeight: FontWeight.w400, fontSize: 23),
+                                    ),
+                                    Spacer(),
+                                    GestureDetector(
+                                      onTap: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: CircleAvatar(
+                                        backgroundColor: Colors.pink,
+                                        radius: 14,
+                                        child: Icon(
+                                          Icons.clear,
+                                          size: 20,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SingleChildScrollView(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      height: 20,
+                                    ),
+                                    regularText(
+                                      "Amount",
+                                      fontSize: Dimensions.FONT_SIZE_DEFAULT,
+                                      color: ColorResources.greyColor,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                    CustomTextField(
+                                      hintText: "Amount",
+                                      inputType: TextInputType.number,
+                                      controller: amount,
+                                      fillColor: ColorResources.textFieldColor,
+                                    ),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    CustomDropDownButton(
+                                      title: 'Select payment currency',
+                                      hintText: 'Choose currency',
+                                      value: payCurrency,
+                                      backgroundColor: ColorResources.textFieldColor,
+                                      bordered: DropDownType.Bordered,
+                                      busy: false,
+                                      onChanged: (a) {
+                                        payCurrency = a;
+                                        updateState(() {});
+                                      },
+                                      list: ["USDC", "USDT(Tron)", "USDT(Etherum)", "BUSD"],
+                                    ),
+                                    SizedBox(
+                                      height: 40.h,
+                                    ),
+                                    Container(
+                                      height: 50,
+                                      width: MediaQuery.of(context).size.width,
+                                      padding: EdgeInsets.symmetric(horizontal: 5.w),
+                                      child: buttonWithBorder(
+                                        'Submit',
+                                        textColor: Colors.white,
+                                        buttonColor: ColorResources.primaryColor,
+                                        fontSize: 18.sp,
+                                        busy: controller.isLoading,
+                                        fontWeight: FontWeight.w400,
+                                        height: 54.h, 
+                                        onTap: () async {
+                                          updateState(() {});
+                                          if (amount.text == "") return;
+                                          await controller.createNOWPayment({
+                                            "price_amount": amount.text,
+                                            "pay_currency": payCurrency,
+                                          });
+                                          amount.text = "";
+                                          payCurrency = "USDT";
+                                          setState(() {});
+                                          Navigator.of(context).pop();
+                                        },
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  });
                 });
-              });
-            },
+              },
+            ),
           ),
         );
       },

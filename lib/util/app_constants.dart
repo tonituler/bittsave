@@ -51,6 +51,7 @@ class AppConstants {
   static const String GET_REQUESTED_MONEY = '/api/v1/customer/get-requested-money';
   static const String CUSTOMER_ADD_BANK = '/api/v1/customer/add-bank';
   static const String CUSTOMER_ADD_UPDATE_BANK = '/api/v1/customer/';
+  static const String UPDATE_SECURITY_QUESTION = '/api/v1/customer/update-answer';
 
   static const String CUSTOMER_FIND_AGENT = '/api/v1/customer/get-deposit-request';
   static const String CUSTOMER_DEPOSIT_REQUEST = '/api/v1/customer/deposit-request';
@@ -91,7 +92,7 @@ class AppConstants {
   // Shared Key
   static const String THEME = 'theme';
   static const String TOKEN = 'token';
-  static const String CUSTOMER_COUNTRY_CODE = 'customer_country_code'; //not in project
+  static const String CUSTOMER_COUNTRY_CODE = 'customer_country_code'; // not in project
   static const String LANGUAGE_CODE = 'language_code';
   static const String CART_LIST = 'cart_list';
   static const String USER_PASSWORD = 'user_password';

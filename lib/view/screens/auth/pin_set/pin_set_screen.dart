@@ -16,8 +16,8 @@ import 'package:bittsave/view/screens/auth/pin_set/widget/appbar_section.dart';
 import 'package:bittsave/view/screens/auth/pin_set/widget/password_section.dart';
 
 class PinSetScreen extends StatelessWidget {
-  final String username, fName, lName, email;
-  PinSetScreen({Key key, this.username, this.fName, this.lName, this.email}) : super(key: key);
+  final String username, fName, lName, email, questionId, answer;
+  PinSetScreen({Key key, this.username, this.fName, this.lName, this.email, this.questionId, this.answer}) : super(key: key);
 
   final TextEditingController passController = TextEditingController();
   final TextEditingController confirmPassController = TextEditingController();
@@ -98,6 +98,8 @@ class PinSetScreen extends StatelessWidget {
                           phone: _phoneNumber,
                           otp: _otp,
                           password: _password,
+                          questionId: questionId,
+                          answer: answer,
                         );
 
                         MultipartBody multipartBody = MultipartBody('image', _image);

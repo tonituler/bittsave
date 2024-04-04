@@ -51,11 +51,13 @@ class ApiClient extends GetxService {
         Uri.parse(appBaseUrl + uri),
         headers: headers ?? _mainHeaders,
       ).timeout(Duration(seconds: timeoutInSeconds));
+
       Response response = handleResponse(_response);
       print('Server issue occur');
       if (Foundation.kDebugMode) {
         print('====> API Response: [${response.statusCode}] $uri\n${response.body}');
       }
+     
       return response;
     } catch (e) {
       return Response(statusCode: 1, statusText: noInternetMessage);

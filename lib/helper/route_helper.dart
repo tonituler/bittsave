@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:bittsave/view/screens/auth/pin_set/set_security_question.dart';
 import 'package:flutter/material.dart';
 import 'package:bittsave/controller/splash_controller.dart';
 import 'package:bittsave/data/model/response/contact_model.dart';
@@ -53,6 +54,7 @@ class RouteHelper {
   static const String selfie_screen = '/selfie_screen';
   static const String other_info_screen = '/other_info_screen';
   static const String pin_set_screen = '/pin_set_screen';
+  static const String security_question_set_screen = '/security_question_set_screen';
   static const String welcome_screen = '/welcome_screen';
   static const String login_screen = '/login_screen';
   static const String f_phone_number_screen = '/f_phone_number';
@@ -102,8 +104,10 @@ class RouteHelper {
   static getSelfieRoute({@required bool fromEditProfile}) => '$selfie_screen?page=${fromEditProfile ? 'edit-profile' : 'verify'}';
   static getNavBarRoute() => '$navbar';
   static getOtherInformationRoute() => '$other_info_screen';
-  static getPinSetRoute({@required String username, @required String fName, @required String lName, String email}) =>
-      '$pin_set_screen?username=$username&f-name=$fName&l-name=$lName&email=$email';
+  static getPinSetRoute({@required String username, @required String fName, @required String lName, String email, @required String questionId, @required String answer}) =>
+      '$pin_set_screen?username=$username&f-name=$fName&l-name=$lName&email=$email&question_id=$questionId&answer=$answer';
+  static getSecurityQuestionSetRoute({@required String username, @required String fName, @required String lName, String email}) =>
+      '$security_question_set_screen?username=$username&f-name=$fName&l-name=$lName&email=$email';
   static getRequestMoneyRoute({String phoneNumber, @required bool fromEdit}) =>
       '$requestMoney?phone-number=$phoneNumber&from-edit=${fromEdit ? 'edit-number' : 'home'}';
   static getForgetPassRoute({@required String countryCode, @required String phoneNumber}) =>
@@ -180,6 +184,17 @@ class RouteHelper {
     GetPage(
         name: pin_set_screen,
         page: () => PinSetScreen(
+              username: Get.parameters['username'],
+              fName: Get.parameters['f-name'],
+              lName: Get.parameters['l-name'],
+              email: Get.parameters['email'],
+              questionId: Get.parameters['question_id'],
+              answer: Get.parameters['answer'],
+            )),
+
+    GetPage(
+        name: security_question_set_screen,
+        page: () => SecurityQuestionSetScreen(
               username: Get.parameters['username'],
               fName: Get.parameters['f-name'],
               lName: Get.parameters['l-name'],

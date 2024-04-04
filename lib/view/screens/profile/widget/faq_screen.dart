@@ -1,3 +1,4 @@
+import 'package:bittsave/util/dimensions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:bittsave/controller/faq_controller.dart';
@@ -20,32 +21,57 @@ class _FaqScreenState extends State<FaqScreen> {
   Widget build(BuildContext context) {
     Get.find<FaqController>().getFaqList();
     return Scaffold(
-      appBar: CustomAppbar(title: widget.title),
-      body: GetBuilder<FaqController>(builder: (faqController) {
-        return faqController.isLoading
-            ? FaqShimmer()
-            : ListView.builder(
-                itemCount: faqController.helpTopics.length,
-                itemBuilder: (ctx, index) {
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ExpansionTile(
-                        iconColor: Theme.of(context).primaryColor,
-                        title:
-                            Text(faqController.helpTopics[index].question, style: montserratRegular.copyWith(color: ColorResources.getTextColor())),
-                        leading: Icon(Icons.collections_bookmark_outlined, color: ColorResources.getTextColor()),
-                        children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(faqController.helpTopics[index].answer, style: montserratLight, textAlign: TextAlign.justify),
-                          )
-                        ],
-                      ),
-                    ],
-                  );
-                });
-      }),
+      appBar: CustomAppbar(title: ""),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+                padding: const EdgeInsets.only(top: 1.0, left: 20, bottom: 0),
+                child: Row(
+                  children: [
+                    Text(
+                      widget.title,
+                      textAlign: TextAlign.start,
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: Dimensions.PADDING_SIZE_EXTRA_OVER_LARGE,
+              ),
+            SizedBox(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height - 70,
+              child: GetBuilder<FaqController>(builder: (faqController) {
+                return faqController.isLoading
+                    ? FaqShimmer()
+                    : ListView.builder(
+                        itemCount: faqController.helpTopics.length,
+                        itemBuilder: (ctx, index) {
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              ExpansionTile(
+                                iconColor: Theme.of(context).primaryColor,
+                                title:
+                                    Text(faqController.helpTopics[index].question, style: montserratRegular.copyWith(color: ColorResources.getTextColor())),
+                                leading: Icon(Icons.collections_bookmark_outlined, color: ColorResources.getTextColor()),
+                                children: <Widget>[
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(faqController.helpTopics[index].answer, style: montserratLight, textAlign: TextAlign.justify),
+                                  )
+                                ],
+                              ),
+                            ],
+                          );
+                        });
+              }),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

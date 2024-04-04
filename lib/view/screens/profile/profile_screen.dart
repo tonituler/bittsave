@@ -1,3 +1,5 @@
+import 'package:bittsave/view/screens/profile/widget/html_view_Screen.dart';
+import 'package:bittsave/view/screens/settings_page/security_question.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -14,6 +16,7 @@ import 'package:bittsave/view/screens/profile/widget/user_info.dart';
 import 'package:bittsave/view/screens/settings_page/KYC.dart';
 import 'package:bittsave/view/screens/settings_page/payOut.dart';
 import 'package:bittsave/view/screens/settings_page/paymentDestination.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../home/funding_options/request_from_a_riend/bitsave_user_request.dart';
 
@@ -129,13 +132,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               child: menu.MenuItem(title: 'Change Pin'),
                               onTap: () => Get.toNamed(RouteHelper.getChangePinRoute()),
                             ),
+                            CustomInkWell(
+                              child: menu.MenuItem(title: 'Change Security Question'),
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => UpdateSecurityQuestion(),
+                                  ),
+                                );
+                              } ,
+                            ),
                           ],
                         ),
                         menu.MenuSegment(
                           title: "Verification",
                           menuItem: [
                             CustomInkWell(
-                              child: menu.MenuItem(title: 'Step ${kycAuth(Get.find<ProfileController>().userInfo)}'),
+                              child: menu.MenuItem(title: 'Step ' + (kycAuth(Get.find<ProfileController>().userInfo) ?? 1).toString()),
                               onTap: () {
                                 Navigator.push(
                                   context,
@@ -165,11 +179,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             CustomInkWell(
                               child: menu.MenuItem(title: 'About Us'),
                               onTap: () {
-                                Get.toNamed(RouteHelper.about_us);
+                                // Get.toNamed(RouteHelper.about_us);
+                                 launchWebUrl("https://bittsave.com/about-us/");
                               },
                             ),
-                            CustomInkWell(child: menu.MenuItem(title: 'Term of Use'), onTap: () => Get.toNamed(RouteHelper.terms)),
-                            CustomInkWell(child: menu.MenuItem(title: 'Privacy Policy'), onTap: () => Get.toNamed(RouteHelper.privacy)),
+                            // CustomInkWell(child: menu.MenuItem(title: 'Term of Use'), onTap: () => Get.toNamed(RouteHelper.terms)),
+                            CustomInkWell(child: menu.MenuItem(title: 'Term of Use'), onTap: (){
+                               launchWebUrl("https://bittsave.com/innerpage/privacy-policy/");
+                              
+                            }),
+                            CustomInkWell(child: menu.MenuItem(title: 'Privacy Policy'), onTap: (){
+                              launchWebUrl("https://bittsave.com/innerpage/privacy-policy/");
+                            }),
+                            // CustomInkWell(child: menu.MenuItem(title: 'Privacy Policy'), onTap: () => Get.toNamed(RouteHelper.privacy)),
                           ],
                         ),
                         menu.MenuSegment(
@@ -246,4 +268,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
           )),
     );
   }
+
+  Future<void> launchWebUrl(String url) async {
+  if (!await launchUrl(Uri.parse(url))) {
+    throw Exception('Could not launch $url');
+  }
+}
 }

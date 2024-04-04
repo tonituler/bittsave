@@ -77,7 +77,7 @@ class _OtherInfoScreenState extends State<OtherInfoScreen> {
                                 if (!_emailValid) {
                                   showCustomSnackBar('please_provide_valid_email'.tr, isError: true);
                                 } else {
-                                  Get.toNamed(RouteHelper.getPinSetRoute(
+                                  Get.toNamed(RouteHelper.getSecurityQuestionSetRoute(
                                     fName: fNameTextController.text,
                                     lName: lNameTextController.text,
                                     email: emailTextController.text,
@@ -86,7 +86,7 @@ class _OtherInfoScreenState extends State<OtherInfoScreen> {
                                 }
                               } else {
                                 print('without email');
-                                Get.toNamed(RouteHelper.getPinSetRoute(
+                                Get.toNamed(RouteHelper.getSecurityQuestionSetRoute(
                                   fName: fNameTextController.text,
                                   lName: lNameTextController.text,
                                   email: emailTextController.text,

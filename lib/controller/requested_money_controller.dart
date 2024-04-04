@@ -208,10 +208,20 @@ class RequestedMoneyController extends GetxController implements GetxService {
     update();
   }
 
-  Future<void> updateRequest(BuildContext context, String slug, int requestId, String pin, {Function callback}) async {
+  Future<void> updateRequest(
+      {@required BuildContext context,
+      @required String slug,
+      @required int requestId,
+      @required String questionId,
+      @required String answer,
+      Function callback}) async {
     _isLoadingUpdateRequestedMoney = true;
     update();
-    Response response = await requestedMoneyRepo.updateRequestedMoney(slug, requestId, pin);
+    Response response = await requestedMoneyRepo.updateRequestedMoney(slug, data: {
+      "id": requestId,
+      "question_id": questionId,
+      "answer": answer,
+    });
     print(response.status);
 
     if (response.statusCode == 200) {

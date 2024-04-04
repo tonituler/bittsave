@@ -44,6 +44,7 @@ class ConfigModel {
     this.planFrequency,
     this.bankList,
     this.stateRegion,
+    this.secretQuestions,
   });
 
   String companyName;
@@ -83,6 +84,7 @@ class ConfigModel {
   List<Map<String, dynamic>> planFrequency;
   List<Map<String, dynamic>> bankList;
   List<Map<String, dynamic>> stateRegion;
+  List<Map<String, dynamic>> secretQuestions;
 
   factory ConfigModel.fromJson(Map<String, dynamic> json) => ConfigModel(
     companyName: json["company_name"],
@@ -121,6 +123,7 @@ class ConfigModel {
     planFrequency: List<Map<String, dynamic>>.from(json["plan_frequency"]),
     bankList: List<Map<String, dynamic>>.from(json["bank_list"]),
     stateRegion: List<Map<String, dynamic>>.from(json["state_region"]),
+    secretQuestions: List<Map<String, dynamic>>.from(json["secret_questions"]),
   );
 }
 

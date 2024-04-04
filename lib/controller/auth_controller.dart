@@ -120,6 +120,8 @@ class AuthController extends GetxController implements GetxService {
       'password': signUpBody.password,
       'gender': signUpBody.gender,
       'username': signUpBody.username,
+      'question_id': signUpBody.questionId,
+      'answer': signUpBody.answer,
       'occupation': "NILL",
     };
     if (signUpBody.otp != null) {

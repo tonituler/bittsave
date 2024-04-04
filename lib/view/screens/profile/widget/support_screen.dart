@@ -17,11 +17,26 @@ class SupportScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final splashController = Get.find<SplashController>();
     return Scaffold(
-      appBar: CustomAppbar(title: '24_support'.tr),
+      appBar: CustomAppbar(title: ''.tr),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 1.0, left: 20, bottom: 0),
+              child: Row(
+                children: [
+                  Text(
+                    '24_support'.tr,
+                    textAlign: TextAlign.start,
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: Dimensions.PADDING_SIZE_EXTRA_OVER_LARGE,
+            ),
             Padding(
               padding: const EdgeInsets.all(Dimensions.PADDING_SIZE_EXTRA_OVER_LARGE),
               child: Image.asset(Images.support_image),

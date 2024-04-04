@@ -37,7 +37,7 @@ class _USDWalletScreenState extends State<USDWalletScreen> {
   Widget build(BuildContext context) {
     return ExpandableBottomSheet(
       enableToggle: true,
-      persistentContentHeight: 200,
+      persistentContentHeight: 100,
       background: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.only(
